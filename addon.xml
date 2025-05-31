@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+	<addon id="skin.arctic.zephyr.rounded" version="2.0.5" name="Arctic: Zephyr - Rounded" provider-name="jurialmunkey, beatmasterrs, nanomani">
+		<requires>
+			<import addon="xbmc.gui" version="5.17.0"/>
+			<import addon="script.skinshortcuts" version="0.4.0"/>
+			<import addon="script.skinvariables" version="2.1.9" />
+			<import addon="script.texturemaker" version="0.2.9" />
+			<import addon="plugin.video.themoviedb.helper" version="5.2.17~nexus" />
+			<import addon="script.wikipedia" version="0.0.5" />
+			<import addon="script.artistslideshow" version="3.3.5"/>
+			<import addon="script.globalsearch" version="3.0.0"/>
+			<import addon="script.image.resource.select" version="0.0.5"/>
+			<import addon="resource.images.recordlabels.white" version="0.0.1" />
+			<import addon="resource.images.studios.coloured" version="0.0.1" />
+			<import addon="resource.images.moviecountryicons.flags" version="0.0.1" />
+			<import addon="resource.images.weathericons.white" version="0.0.6"/>
+			<import addon="resource.images.weatherfanart.single" version="0.0.6"/>
+		</requires>
+		<extension point="xbmc.gui.skin" defaultthemename="Textures.xbt" debugging="false" effectslowdown="1">
+			<res width="1920" height="1080" aspect="16:9" default="true" folder="1080i" />
+		</extension>
+		<extension point="xbmc.addon.metadata">
+			<platform>all</platform>
+			<license>Creative Commons Non Commercial 3.0 License</license>
+			<!-- <forum>https://forum.kodi.tv/showthread.php?tid=337862</forum> -->
+			<!-- <source>https://github.com/beatmasterRS/skin.arctic.zephyr.mod</source> -->
+			<assets>
+				<icon>icon.png</icon>
+				<fanart>fanart.jpg</fanart>
+				<screenshot>resources/screenshot-01.jpg</screenshot>
+				<screenshot>resources/screenshot-02.jpg</screenshot>
+				<screenshot>resources/screenshot-03.jpg</screenshot>
+				<screenshot>resources/screenshot-04.jpg</screenshot>
+				<screenshot>resources/screenshot-05.jpg</screenshot>
+				<screenshot>resources/screenshot-06.jpg</screenshot>
+				<screenshot>resources/screenshot-07.jpg</screenshot>
+				<screenshot>resources/screenshot-08.jpg</screenshot>
+				<screenshot>resources/screenshot-09.jpg</screenshot>
+				<screenshot>resources/screenshot-10.jpg</screenshot>
+				<screenshot>resources/screenshot-11.jpg</screenshot>
+				<screenshot>resources/screenshot-12.jpg</screenshot>
+			</assets>
+			<summary lang="de">Basiert auf dem original Arctic: Zephyr Skin von jurialmunkey und Arctic: Zephyr Reloaded Skin von beatmasterrs.</summary>
+			<summary lang="en">Based on the original Arctic: Zephyr skin by jurialmunkey and Arctic: Zephyr Reloaded  skin by beatmasterrs.</summary>
+			<summary lang="es">Basado en el original Arctic: Zephyr skin por jurialmunkey y Arctic: Zephyr Reloaded skin por beatmasterrs.</summary>
+			<summary lang="fr">Basé sur le skin original Arctic: Zephyr par jurialmunkey et Arctic: Zephyr Reloaded par beatmasterrs.</summary>
+
+			<description lang="de">Arctic: Zephyr - Rounded basiert auf dem original Arctic: Zephyr Skin von jurialmunkey und Arctic: Zephyr Reloaded Skin von beatmasterrs.</description>
+			<description lang="en">Arctic: Zephyr - Rounded is based on original Arctic: Zephyr skin, created by jurialmunkey and Arctic: Zephyr Reloaded  skin by beatmasterrs.</description>
+			<description lang="es">Arctic : Zephyr - Rounded se basa en la skin original Arctic : Zephyr, creada por jurialmunkey y Arctic : Zephyr Reloaded por beatmasterrs.</description>
+			<description lang="fr">Arctic: Zephyr - Rounded est basé sur le skin original Arctic: Zephyr, créé par jurialmunkey et Arctic: Zephyr Reloaded par beatmasterrs.</description>
+		</extension>
+	</addon>
+
+	<addon id="script.arctic.zephyr.rounded.autocolors" name="Arctic: Zephyr - Rounded - Automatic Day and Night Colors" version="2.1.5" provider-name="semool">
+		<requires>
+			<import addon="xbmc.gui" version="5.17.0"/>
+			<import addon="script.module.simplecache"/>
+			<import addon="script.module.requests"/>
+			<import addon="script.module.astral"/>
+		</requires>
+		<extension point="xbmc.python.script" library="script.py">
+			<provides>executable</provides>
+		</extension>
+		<extension point="xbmc.service" library="service.py" start="startup"/>
+		<extension point="xbmc.addon.metadata">
+			<summary lang="fr_FR">Changement automatique de la couleur du thème entre Clair et Foncé en fonction de l'heure</summary>	
+			<summary lang="en_GB">Automatic time controlled theme color change between Light and Dark</summary>
+			<summary lang="de_DE">Automatischer Zeitgesteuerter Skin Farbwechsel zwischen Hell und Dunkel</summary>
+			<platform>all</platform>
+			<source>https://github.com/Nanomani/script.arctic.zephyr.rounded.autocolors</source>
+			<license>GNU GENERAL PUBLIC LICENSE Version 2</license>
+			<assets>
+				<icon>icon.png</icon>
+				<fanart>fanart.jpg</fanart>
+			</assets>
+		</extension>
+	</addon>
+
+	<addon id="script.module.astral" name="astral" version="3.2" provider-name="semool">
+		<requires>
+			<import addon="xbmc.python" version="3.0.0"/>
+			<import addon="script.module.backports.zoneinfo"/>
+		</requires>
+		<extension point="xbmc.python.module" library="lib"/>
+		<extension point="xbmc.addon.metadata">
+			<summary lang="en_GB">Astral for Python</summary>
+			<description lang="en_GB">Astral is a python package for calculating the times of various aspects of the sun and phases of the moon</description>
+			<platform>all</platform>
+			<license>MIT</license>
+			<website>https://pypi.org/project/astral</website>
+			<source>https://github.com/sffjunkie/astral</source>
+			<assets>
+				<icon>icon.png</icon>
+			</assets>
+		</extension>
+	</addon>
+
+	<addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.5" provider-name="jurialmunkey">
+		<extension point="xbmc.addon.repository" name="jurialmunkey Alpha Repository">
+			<dir>
+				<info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml</info>
+				<checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml.md5</checksum>
+				<datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/</datadir>
+			</dir>
+			<dir minversion="19.9.1" maxversion="20.9.0">
+				<info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml</info>
+				<checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml.md5</checksum>
+				<datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/</datadir>
+			</dir>
+			<dir minversion="20.9.1">
+				<info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/addons.xml</info>
+				<checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/addons.xml.md5</checksum>
+				<datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/</datadir>
+			</dir>
+		</extension>
+		<extension point="xbmc.addon.metadata">
+			<summary>jurialmunkey Alpha Repository</summary>
+			<description>A repository for alpha releases of jurialmunkey's skins.</description>
+			<disclaimer></disclaimer>
+			<platform>all</platform>
+			<assets>
+				<icon>icon.png</icon>
+			</assets>
+		</extension>
+	</addon>
+</addons>

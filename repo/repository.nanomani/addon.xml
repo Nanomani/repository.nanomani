@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.nanomani" name="Nanomani Repository" version="1.4" provider-name="nanomani">
+    <extension point="xbmc.addon.repository" name="Nanomani Repository">
+        <dir>
+            <info compressed="false">https://github.com/Nanomani/repository.nanomani/blob/master/addon.xml</info>
+            <checksum>https://github.com/Nanomani/repository.nanomani/blob/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://github.com/Nanomani/repository.nanomani/blob/master/</datadir>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Nanomani Repository</summary>
+        <description>A repository for releases of nanomani's skins.</description>
+        <disclaimer></disclaimer>
+        <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
+    </extension>
+</addon>
