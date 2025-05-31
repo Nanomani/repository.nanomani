@@ -1,7 +1,7 @@
 # repository.nanomani
 
 Download & install in Kodi Addon Repo :
-https://github.com/Nanomani/repository.nanomani/blob/master/repository.nanomani-1.4.zip
+https://github.com/Nanomani/repository.nanomani/raw/main/repository.nanomani-1.0.zip
 
 Or 
 
