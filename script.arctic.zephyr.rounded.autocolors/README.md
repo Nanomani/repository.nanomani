@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/semool/script.arctic.zephyr.mod.autocolors/master/resources/images/icon.png)
+![](https://github.com/Nanomani/script.arctic.zephyr.rounded.autocolors/blob/master/resources/images/icon.png)
 
 ## Arctic: Zephyr - Reloaded - Automatic Day and Night Colors
 
@@ -11,3 +11,10 @@ The Time can set manualy or you can set your Location and the Theme will switch 
 Disable the Automatic:
 - Turn off this Addon
 - Go to "Skin Settings - Furniture" and deactivate the Automatic
+
+## Credits
+
+All profits from this add-on must go to the author and creator.
+[Semool](https://github.com/semool).
+
+
