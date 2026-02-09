@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.silvo" name="SiLVO Development Repository" version="1.0.0" provider-name="SiLVO">
+    <extension point="xbmc.addon.repository" name="SiLVO Dev Repo">
+        <dir minversion="21.9.1">
+            <info compressed="false">https://raw.githubusercontent.com/MikeSiLVO/repository.silvo/main/piers/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/MikeSiLVO/repository.silvo/main/piers/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/MikeSiLVO/repository.silvo/main/piers/</datadir>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">SiLVO Development Repository</summary>
+        <description lang="en_GB">Development and pre-release repository for Aeon Nox: SiLVO skin and related addons. Contains beta versions for testing before official Kodi repo releases.</description>
+        <disclaimer lang="en_GB">Pre-release software may contain bugs. Use at your own risk. Stable versions are available in the official Kodi repository.</disclaimer>
+        <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+    </extension>
+</addon>
