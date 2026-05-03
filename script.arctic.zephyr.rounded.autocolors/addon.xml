@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="script.arctic.zephyr.rounded.autocolors" name="Arctic: Zephyr - Rounded - Automatic Day and Night Colors" version="2.2.0" provider-name="semool">
+<addon id="script.arctic.zephyr.rounded.autocolors" name="Arctic: Zephyr - Rounded - Automatic Day and Night Colors" version="2.2.1" provider-name="semool">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0"/>
 		<import addon="script.module.simplecache"/>
 		<import addon="script.module.requests"/>
-		<import addon="script.module.astral"/>
+		<import addon="script.module.astral" version="3.4"/>
 	</requires>
 	<extension point="xbmc.python.script" library="script.py">
 		<provides>executable</provides>

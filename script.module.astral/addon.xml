@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="script.module.astral" name="astral" version="3.3" provider-name="semool">
+<addon id="script.module.astral" name="astral" version="3.4" provider-name="semool">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 		<import addon="script.module.backports.zoneinfo"/>
