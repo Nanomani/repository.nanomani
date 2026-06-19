@@ -53,7 +53,7 @@
 			<description lang="fr">Arctic: Zephyr - Rounded est basé sur le skin original Arctic: Zephyr, créé par jurialmunkey et Arctic: Zephyr Reloaded par beatmasterrs.</description>
 		</extension>
 	</addon>
-	<addon id="script.arctic.zephyr.rounded.autocolors" name="Arctic: Zephyr - Rounded - Automatic Day and Night Colors" version="2.2.2" provider-name="semool">
+	<addon id="script.arctic.zephyr.rounded.autocolors" name="Arctic: Zephyr - Rounded - Automatic Day and Night Colors" version="2.2.2" provider-name="semool, nanomani">
 		<requires>
 			<import addon="xbmc.gui" version="5.17.0"/>
 			<import addon="script.module.simplecache"/>
@@ -83,7 +83,7 @@
 			</assets>
 		</extension>
 	</addon>
-	<addon id="script.module.astral" name="astral" version="3.4" provider-name="semool">
+	<addon id="script.module.astral" name="astral" version="3.4" provider-name="semool, nanomani">
 		<requires>
 			<import addon="xbmc.python" version="3.0.0"/>
 			<import addon="script.module.backports.zoneinfo"/>
@@ -148,7 +148,7 @@
 			</assets>
 		</extension>
 	</addon>
-	<addon id="plugin.audio.apple.podcasts" name="Apple Podcasts" version="1.2.1" provider-name="Tristan Fischer">
+	<addon id="plugin.audio.apple.podcasts" name="Apple Podcasts" version="1.2.1" provider-name="Tristan Fischer, nanomani">
 		<requires>
 			<import addon="xbmc.python" version="3.0.0"/>
 			<import addon="script.module.feedparser" version="3.0.0"/>
