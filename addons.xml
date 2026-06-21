@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-	<addon id="skin.arctic.zephyr.rounded" version="2.2.11" name="Arctic: Zephyr - Rounded" provider-name="jurialmunkey, beatmasterrs, nanomani">
+	<addon id="skin.arctic.zephyr.rounded" version="2.2.12" name="Arctic: Zephyr - Rounded" provider-name="jurialmunkey, beatmasterrs, nanomani">
 		<requires>
 			<import addon="xbmc.gui" version="5.18.0"/>
 			<import addon="script.skinshortcuts" version="3.0.0~beta32"/>
-			<import addon="script.skin.info.service" version="2.0.0~beta31" />
 			<import addon="script.skinvariables" version="2.1.9" />
-			<import addon="script.texturemaker" version="0.2.9" />
 			<import addon="plugin.video.themoviedb.helper" version="5.2.17~nexus" />
 			<import addon="script.wikipedia" version="0.0.5" />
 			<import addon="script.artistslideshow" version="3.3.5"/>
@@ -25,7 +23,7 @@
 			<platform>all</platform>
 			<license>Creative Commons Non Commercial 3.0 License</license>
 			<!-- <forum>https://forum.kodi.tv/showthread.php?tid=337862</forum> -->
-			<!-- <source>https://github.com/beatmasterRS/skin.arctic.zephyr.mod</source> -->
+			<source>https://github.com/Nanomani/skin.arctic.zephyr.rounded</source>
 			<assets>
 				<icon>icon.png</icon>
 				<fanart>fanart.jpg</fanart>
