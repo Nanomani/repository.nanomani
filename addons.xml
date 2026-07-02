@@ -1,221 +1,221 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <addons>
-	<addon id="skin.arctic.zephyr.rounded" version="2.2.17" name="Arctic: Zephyr - Rounded" provider-name="jurialmunkey, beatmasterrs, nanomani">
-		<requires>
-			<import addon="xbmc.gui" version="5.18.0"/>
-			<import addon="script.skinshortcuts" version="3.0.0~beta32"/>
-			<import addon="script.skinvariables" version="2.1.9" />
-			<import addon="plugin.video.themoviedb.helper" version="5.2.17~nexus" />
-			<import addon="script.wikipedia" version="0.0.5" />
-			<import addon="script.artistslideshow" version="3.3.5"/>
-			<import addon="script.globalsearch" version="3.0.0"/>
-			<import addon="script.image.resource.select" version="0.0.5"/>
-			<import addon="resource.images.recordlabels.white" version="0.0.1" />
-			<import addon="resource.images.studios.coloured" version="0.0.1" />
-			<import addon="resource.images.moviecountryicons.flags" version="0.0.1" />
-			<import addon="resource.images.weathericons.white" version="0.0.6"/>
-			<import addon="resource.images.weatherfanart.single" version="0.0.6"/>
-		</requires>
-		<extension point="xbmc.gui.skin" defaultthemename="Textures.xbt" debugging="false" effectslowdown="1">
-			<res width="1920" height="1080" aspect="16:9" default="true" folder="1080i" />
-		</extension>
-		<extension point="xbmc.addon.metadata">
-			<platform>all</platform>
-			<license>Creative Commons Non Commercial 3.0 License</license>
-			<!-- <forum>https://forum.kodi.tv/showthread.php?tid=337862</forum> -->
-			<source>https://github.com/Nanomani/skin.arctic.zephyr.rounded</source>
-			<assets>
-				<icon>icon.png</icon>
-				<fanart>fanart.jpg</fanart>
-				<screenshot>resources/01.jpg</screenshot>
-				<screenshot>resources/02.jpg</screenshot>
-				<screenshot>resources/03.jpg</screenshot>
-				<screenshot>resources/04.jpg</screenshot>
-				<screenshot>resources/05.jpg</screenshot>
-				<screenshot>resources/06.jpg</screenshot>
-				<screenshot>resources/07.jpg</screenshot>
-				<screenshot>resources/08.jpg</screenshot>
-				<screenshot>resources/09.jpg</screenshot>
-				<screenshot>resources/10.jpg</screenshot>
-				<screenshot>resources/11.jpg</screenshot>
-				<screenshot>resources/12.jpg</screenshot>
-			</assets>
-			<summary lang="de">Basiert auf dem original Arctic: Zephyr Skin von jurialmunkey und Arctic: Zephyr Reloaded Skin von beatmasterrs.</summary>
-			<summary lang="en">Based on the original Arctic: Zephyr skin by jurialmunkey and Arctic: Zephyr Reloaded  skin by beatmasterrs.</summary>
-			<summary lang="es">Basado en el original Arctic: Zephyr skin por jurialmunkey y Arctic: Zephyr Reloaded skin por beatmasterrs.</summary>
-			<summary lang="fr">Basé sur le skin original Arctic: Zephyr par jurialmunkey et Arctic: Zephyr Reloaded par beatmasterrs.</summary>
-
-			<description lang="de">Arctic: Zephyr - Rounded basiert auf dem original Arctic: Zephyr Skin von jurialmunkey und Arctic: Zephyr Reloaded Skin von beatmasterrs.</description>
-			<description lang="en">Arctic: Zephyr - Rounded is based on original Arctic: Zephyr skin, created by jurialmunkey and Arctic: Zephyr Reloaded  skin by beatmasterrs.</description>
-			<description lang="es">Arctic : Zephyr - Rounded se basa en la skin original Arctic : Zephyr, creada por jurialmunkey y Arctic : Zephyr Reloaded por beatmasterrs.</description>
-			<description lang="fr">Arctic: Zephyr - Rounded est basé sur le skin original Arctic: Zephyr, créé par jurialmunkey et Arctic: Zephyr Reloaded par beatmasterrs.</description>
-		</extension>
-	</addon>
-	<addon id="script.arctic.zephyr.rounded.autocolors" name="Arctic: Zephyr - Rounded - Automatic Day and Night Colors" version="2.2.3" provider-name="semool, nanomani">
-		<requires>
-			<import addon="xbmc.gui" version="5.17.0"/>
-			<import addon="script.module.simplecache"/>
-			<import addon="script.module.requests"/>
-			<import addon="script.module.astral" version="3.4"/>
-		</requires>
-		<extension point="xbmc.python.script" library="script.py">
-			<provides>executable</provides>
-		</extension>
-		<extension point="xbmc.service" library="service.py" start="startup"/>
-		<extension point="xbmc.addon.metadata">
-			<summary lang="fr_FR">Changement automatique de la couleur du thème entre Clair et Foncé en fonction de l'heure</summary>	
-			<summary lang="en_GB">Automatic time controlled theme color change between Light and Dark</summary>
-			<summary lang="de_DE">Automatischer Zeitgesteuerter Skin Farbwechsel zwischen Hell und Dunkel</summary>
-			<platform>all</platform>
-			<source>https://github.com/Nanomani/script.arctic.zephyr.rounded.autocolors</source>
-			<license>GNU GENERAL PUBLIC LICENSE Version 2</license>
-			<assets>
-				<icon>resources/images/icon.png</icon>
-				<fanart>resources/images/fanart.jpg</fanart>
-				<screenshot>resources/images/01.jpg</screenshot>
-				<screenshot>resources/images/02.jpg</screenshot>
-				<screenshot>resources/images/03.jpg</screenshot>
-				<screenshot>resources/images/04.jpg</screenshot>
-				<screenshot>resources/images/05.jpg</screenshot>
-				<screenshot>resources/images/06.jpg</screenshot>
-			</assets>
-		</extension>
-	</addon>
-	<addon id="script.module.astral" name="astral" version="3.4" provider-name="semool, nanomani">
-		<requires>
-			<import addon="xbmc.python" version="3.0.0"/>
-			<import addon="script.module.backports.zoneinfo"/>
-		</requires>
-		<extension point="xbmc.python.module" library="lib"/>
-		<extension point="xbmc.addon.metadata">
-			<summary lang="en_GB">Astral for Python</summary>
-			<description lang="en_GB">Astral is a python package for calculating the times of various aspects of the sun and phases of the moon</description>
-			<platform>all</platform>
-			<license>MIT</license>
-			<website>https://pypi.org/project/astral</website>
-			<source>https://github.com/sffjunkie/astral</source>
-			<assets>
-				<icon>icon.png</icon>
-			</assets>
-		</extension>
-	</addon>
-	<addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.5" provider-name="jurialmunkey">
-		<extension point="xbmc.addon.repository" name="jurialmunkey Alpha Repository">
-			<dir>
-				<info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml</info>
-				<checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml.md5</checksum>
-				<datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/</datadir>
-			</dir>
-			<dir minversion="19.9.1" maxversion="20.9.0">
-				<info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml</info>
-				<checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml.md5</checksum>
-				<datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/</datadir>
-			</dir>
-			<dir minversion="20.9.1">
-				<info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/addons.xml</info>
-				<checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/addons.xml.md5</checksum>
-				<datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/</datadir>
-			</dir>
-		</extension>
-		<extension point="xbmc.addon.metadata">
-			<summary>jurialmunkey Alpha Repository</summary>
-			<description>A repository for alpha releases of jurialmunkey's skins.</description>
-			<disclaimer></disclaimer>
-			<platform>all</platform>
-			<assets>
-				<icon>icon.png</icon>
-			</assets>
-		</extension>
-	</addon>
-	<addon id="repository.silvo" name="SiLVO Development Repository" version="1.0.0" provider-name="SiLVO">
-		<extension point="xbmc.addon.repository" name="SiLVO Dev Repo">
-			<dir minversion="21.9.1">
-				<info compressed="false">https://raw.githubusercontent.com/MikeSiLVO/repository.silvo/main/piers/addons.xml</info>
-				<checksum>https://raw.githubusercontent.com/MikeSiLVO/repository.silvo/main/piers/addons.xml.md5</checksum>
-				<datadir zip="true">https://raw.githubusercontent.com/MikeSiLVO/repository.silvo/main/piers/</datadir>
-			</dir>
-		</extension>
-		<extension point="xbmc.addon.metadata">
-			<summary lang="en_GB">SiLVO Development Repository</summary>
-			<description lang="en_GB">Development and pre-release repository for Aeon Nox: SiLVO skin and related addons. Contains beta versions for testing before official Kodi repo releases.</description>
-			<disclaimer lang="en_GB">Pre-release software may contain bugs. Use at your own risk. Stable versions are available in the official Kodi repository.</disclaimer>
-			<platform>all</platform>
-			<assets>
-				<icon>icon.png</icon>
-				<fanart>fanart.jpg</fanart>
-			</assets>
-		</extension>
-	</addon>
-	<addon id="plugin.audio.apple.podcasts" name="Apple Podcasts" version="1.2.1" provider-name="Tristan Fischer, nanomani">
-		<requires>
-			<import addon="xbmc.python" version="3.0.0"/>
-			<import addon="script.module.feedparser" version="3.0.0"/>
-		</requires>
-		<extension point="xbmc.python.pluginsource" library="addon.py">
-			<provides>audio</provides>
-		</extension>
-		<extension point="xbmc.addon.metadata">
-			<language />
-			<assets>
-				<icon>icon.png</icon>
-				<fanart>fanart.jpg</fanart>
-			</assets>
-			<platform>all</platform>
-			<website />
-			<source>https://github.com/dersphere/plugin.video.itunes_podcasts</source>
-			<forum>https://forum.kodi.tv/showthread.php?tid=143064</forum>
-			<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-			<summary lang="be_BY">Apple iTunes Podcast Browser</summary>
-			<summary lang="ca_ES">Buscador de Podcast d'Apple</summary>
-			<summary lang="da_DK">Udforsk Podcasts fra Apple</summary>
-			<summary lang="de_DE">Apple Podcast Browser</summary>
-			<summary lang="el_GR">Περιηγητής Podcast του Apple</summary>
-			<summary lang="en_GB">Apple Podcast Browser</summary>
-			<summary lang="en_US">Apple Podcast Browser</summary>
-			<summary lang="es_ES">Explorador de Apple Podcasts</summary>
-			<summary lang="fr_FR">Navigateur Apple Podcast</summary>
-			<summary lang="fr_CA">Navigateur de balados d'Apple</summary>
-			<summary lang="gl_ES">Buscador de Podscasts de Apple</summary>
-			<summary lang="he_IL">Apple Podcast Browser</summary>
-			<summary lang="hr_HR">Apple podcast preglednik</summary>
-			<summary lang="hu_HU">Apple podcast böngésző</summary>
-			<summary lang="id_ID">Peramban Podcast Apple</summary>
-			<summary lang="it_IT">Browser per Podcast di Apple</summary>
-			<summary lang="ko_KR">애플 팟캐스트 탐색기</summary>
-			<summary lang="lt_LT">Apple Podcast naršyklė</summary>
-			<summary lang="nl_NL">Apple Podcast Browser</summary>
-			<summary lang="pl_PL">Przeglądarka podcastów Apple</summary>
-			<summary lang="pt_PT">Navegador Apple Podcast</summary>
-			<summary lang="pt_BR">Navegador de Podcasts Apple</summary>
-			<summary lang="sk_SK">Prehliadač na Apple Podcast</summary>
-			<summary lang="sv_SE">Apple podcast-utforskare</summary>
-			<summary lang="tr_TR">Apple Podcast Tarayıcısı</summary>
-			<summary lang="zh_CN">苹果播客浏览器</summary>
-			<description lang="be_BY">This add-on lets you browse and search for thousands of free Podcasts.[CR]You can also search for specific podcasts by name.[CR]It is also possible to manage a "My Podcasts" list via context-menu.</description>
-			<description lang="ca_ES">Aquest complement li permet explorar i buscar milers de podcasts gratuïts.[CR]També pot buscar podcasts específics pel seu nom.[CR] També és possible gestionar un llista "Els meus Podcasts" a través del menú contextual.</description>
-			<description lang="da_DK">Dette addon lader dig udforske og søge efter tusinder af gratis Podcasts.[CR]Du kan også søge efter specifikke navne på podcasts.[CR]Det er også muligt at håndtere "Mine Podcasts" via kontekstmenuen.</description>
-			<description lang="de_DE">Dieses Add-on ermöglicht das durchsuchen von tausenden kostenlosen Podcasts.[CR]Auch ist es möglich nach Podcasts zu suchen.[CR]Außerdem ist es möglich eine "Meine Podcasts"-Liste über das Kontext-Menu zu verwalten.</description>
-			<description lang="el_GR">Αυτό το πρόσθετο σας επιτρέπει να περιηγηθείτε και να αναζητήσετε χιλιάδες δωρεάν Podcast.[CR]Μπορείτε να αναζητήσετε συγκεκριμένα podcast με το όνομα.[CR]Είναι, επίσης, δυνατό να διαχειριστείτε μία λίστα "Podcast μου" μέσω του μενού επιλογών.</description>
-			<description lang="en_GB">This add-on lets you browse and search for thousands of free Podcasts.[CR]You can also search for specific podcasts by name.[CR]It is also possible to manage a "My Podcasts" list via context-menu.</description>
-			<description lang="en_US">This add-on lets you browse and search for thousands of free Podcasts.[CR]You can also search for specific podcasts by name.[CR]It is also possible to manage a "My Podcasts" list via context-menu.</description>
-			<description lang="es_ES">Este complemento le permite explorar y buscar entre miles de Podcasts gratuitos.[CR]Incluso puede buscar podcasts por su nombre.[CR]Incluso es posible manejar sus podcasts mediante la lista "Mis Podacsts" del menú contextual.</description>
-			<description lang="fr_FR">Cette extension vous permet de naviguer et trouver des milliers de Podcasts gratuit.[CR]Vous pouvez également cherché un podcast par nom.[CR]Il est possible de gérer une liste de "Mes Podcasts" via le menu contextuel.</description>
-			<description lang="fr_CA">Cet addiciel vous permet de parcourir et de rechercher des milliers de balados gratuits [CR]Vous pouvez également rechercher des balados spécifiques par nom.[CR]Il est également possible de gérer une liste « Mes Balados » avec le menu contextuel.</description>
-			<description lang="gl_ES">Este complemento permítelle navegar e buscar entre milleiros de Podcasts de balde.[CR]Tamén pode buscar un podcasts concreto polo nome.[CR]Tamén é posible xestionar a listaxe dos "Meus Podcasts" mediante un menú contextual.</description>
-			<description lang="he_IL">הרחבה זו מאפשרת לך לעיין ולחפש באלפי פודקאסטים חינמים.[CR]בנוסף ניתן לנהל רשימת "הפודקאסטים שלי" בעזרת תפריט Context.</description>
-			<description lang="hr_HR">Ovaj dodatak vam omogućuje pregledavanje i pretraživanje na tisuće besplatnih Podcasta.[CR]Isto tako možete pretraživati određene podcaste prema nazivu.[CR]Moguće je upravljanje "Moji podcasti" popisom putem kontekstualnog izbornika.</description>
-			<description lang="hu_HU">Ez a kiegészítő lehetővé teszi több ezer ingyenes podcast böngészését és keresését[CR]Név szerint is lehetséges a keresés egy adott podcastra.[CR]A helyi menü segítségével kezelheti "saját" podcastjait.</description>
-			<description lang="id_ID">Addon ini memungkinkan Anda menjelajahi dan mencari ribuat Podcast gratisan.[CR]Tidak perlu iTunes![CR]Anda juga dapat mencari podcast spesifik menurut namanya.[CR]Anda juga dapat mengelola daftar "Podcast Saya" dari menu konteks.</description>
-			<description lang="it_IT">Questo add-on ti permette di sfogliare e cercare centinai di Podcast liberi.[CR]puoi cercare podcast specifici per nome.[CR]E' anche possibile gestire la lista: "I miei Podcast" tramite il menù contestuale</description>
-			<description lang="ko_KR">이 애드온으로 수천개의 무료 팟캐스트를 탐색하고 검색할 수 있습니다.[CR]특정한 팟캐스트를 이름으로 검색할 수 있습니다.[CR]컨텍스트 메뉴를 이용해 "내 팟캐스트" 목록을 관리할 수 있습니다.</description>
-			<description lang="lt_LT">Šis priedas leidžia jums naršyti ir ieškoti tūkstančių nemokamai Podcasts [COLOR=red](toliau verčiama kaip - Transliacijos)[/COLOR].[CR]Taip pat jūs galite ieškoti konkrečių prenumeruojamų transliacijų pagal pavadinimą.[CR]Taip pat galima valdyti "Mano Transliacijos" sąrašą per kontekstinį meniu.</description>
-			<description lang="nl_NL">Deze add-on laat je zoeken naar duizenden gratis Podcasts.[CR]je kan ook zoeken voor specifieke podcasts op naam[CR]Het is ook mogelijk  om via het context-menu ''Mijn podcasts'' te beheren.</description>
-			<description lang="pl_PL">Wtyczka ta umożliwia ci przeglądanie i szukanie w śród tysięcy darmowych Podcastów.[CR]Możesz dodatkowo szukać konkretnych Podcastów po nazwie.[CR]Dodatkowo możesz zarządzać listą swoich ulubionych Podcastów poprzez menu kontekstowe.</description>
-			<description lang="pt_PT">Este add-on permite-lhe navegar e procurar por milhares de Podcasts grátis.[CR]Pode também procurar por nome podcasts específicas.[CR]É também possível gerir uma lista "Minhas Podcasts" através do menu de contexto.</description>
-			<description lang="pt_BR">Este add-on permite que você navegue e pesquise por milhares de Podcasts grátis.[CR]Você pode também pesquisar por podcasts específicos por nome.[CR]É possível gerenciar uma lista de "Meus Podcasts" através do menu de contexto.</description>
-			<description lang="sk_SK">Tento doplnok Vám umožní prehliadať a vyhľadávať v tisícoch voľných Podcast-ov.[CR]Môžete zároveň hľadať konkrétny podcast podľa mena. Zároveň môžete cez kontextové menu spravovať zoznam "Moje Podcast-y".</description>
-			<description lang="sv_SE">Detta tillägg låter dig bläddra och söka efter tusentals podcasts.[CR]Du kan också söka efter specifika podcasts genom namn.[CR]Det är också möjligt att hantera "Mina podcasts"-listan via innehållsmenyn.</description>
-			<description lang="zh_CN">本插件可浏览和查找上千个免费播客。[CR]你可以按名字搜索播客。[CR]还可以通过上下文菜单管理"我的播客"列表。</description>
-		</extension>
-	</addon>
+  <addon id="skin.arctic.zephyr.rounded" version="2.2.18" name="Arctic: Zephyr - Rounded" provider-name="jurialmunkey, beatmasterrs, nanomani">
+    <requires>
+      <import addon="xbmc.gui" version="5.18.0" />
+      <import addon="script.skinshortcuts" version="3.0.0~beta32" />
+      <import addon="script.skinvariables" version="2.1.9" />
+      <import addon="plugin.video.themoviedb.helper" version="5.2.17~nexus" />
+      <import addon="script.wikipedia" version="0.0.5" />
+      <import addon="script.artistslideshow" version="3.3.5" />
+      <import addon="script.globalsearch" version="3.0.0" />
+      <import addon="script.image.resource.select" version="0.0.5" />
+      <import addon="resource.images.recordlabels.white" version="0.0.1" />
+      <import addon="resource.images.studios.coloured" version="0.0.1" />
+      <import addon="resource.images.moviecountryicons.flags" version="0.0.1" />
+      <import addon="resource.images.weathericons.white" version="0.0.6" />
+      <import addon="resource.images.weatherfanart.single" version="0.0.6" />
+    </requires>
+    <extension point="xbmc.gui.skin" defaultthemename="Textures.xbt" debugging="false" effectslowdown="1">
+      <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i" />
+    </extension>
+    <extension point="xbmc.addon.metadata">
+      <platform>all</platform>
+      <license>Creative Commons Non Commercial 3.0 License</license>
+      <!-- <forum>https://forum.kodi.tv/showthread.php?tid=337862</forum> -->
+      <source>https://github.com/Nanomani/skin.arctic.zephyr.rounded</source>
+      <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+        <screenshot>resources/01.jpg</screenshot>
+        <screenshot>resources/02.jpg</screenshot>
+        <screenshot>resources/03.jpg</screenshot>
+        <screenshot>resources/04.jpg</screenshot>
+        <screenshot>resources/05.jpg</screenshot>
+        <screenshot>resources/06.jpg</screenshot>
+        <screenshot>resources/07.jpg</screenshot>
+        <screenshot>resources/08.jpg</screenshot>
+        <screenshot>resources/09.jpg</screenshot>
+        <screenshot>resources/10.jpg</screenshot>
+        <screenshot>resources/11.jpg</screenshot>
+        <screenshot>resources/12.jpg</screenshot>
+      </assets>
+      <summary lang="de">Basiert auf dem original Arctic: Zephyr Skin von jurialmunkey und Arctic: Zephyr Reloaded Skin von beatmasterrs.</summary>
+      <summary lang="en">Based on the original Arctic: Zephyr skin by jurialmunkey and Arctic: Zephyr Reloaded  skin by beatmasterrs.</summary>
+      <summary lang="es">Basado en el original Arctic: Zephyr skin por jurialmunkey y Arctic: Zephyr Reloaded skin por beatmasterrs.</summary>
+      <summary lang="fr">Basé sur le skin original Arctic: Zephyr par jurialmunkey et Arctic: Zephyr Reloaded par beatmasterrs.</summary>
+      <description lang="de">Arctic: Zephyr - Rounded basiert auf dem original Arctic: Zephyr Skin von jurialmunkey und Arctic: Zephyr Reloaded Skin von beatmasterrs.</description>
+      <description lang="en">Arctic: Zephyr - Rounded is based on original Arctic: Zephyr skin, created by jurialmunkey and Arctic: Zephyr Reloaded  skin by beatmasterrs.</description>
+      <description lang="es">Arctic : Zephyr - Rounded se basa en la skin original Arctic : Zephyr, creada por jurialmunkey y Arctic : Zephyr Reloaded por beatmasterrs.</description>
+      <description lang="fr">Arctic: Zephyr - Rounded est basé sur le skin original Arctic: Zephyr, créé par jurialmunkey et Arctic: Zephyr Reloaded par beatmasterrs.</description>
+    </extension>
+  </addon>
+  <addon id="script.arctic.zephyr.rounded.autocolors" name="Arctic: Zephyr - Rounded - Automatic Day and Night Colors" version="2.2.3" provider-name="semool, nanomani">
+    <requires>
+      <import addon="xbmc.gui" version="5.17.0" />
+      <import addon="script.module.simplecache" />
+      <import addon="script.module.requests" />
+      <import addon="script.module.astral" version="3.4" />
+    </requires>
+    <extension point="xbmc.python.script" library="script.py">
+      <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="startup" />
+    <extension point="xbmc.addon.metadata">
+      <summary lang="fr_FR">Changement automatique de la couleur du thème entre Clair et Foncé en fonction de l'heure</summary>
+      <summary lang="en_GB">Automatic time controlled theme color change between Light and Dark</summary>
+      <summary lang="de_DE">Automatischer Zeitgesteuerter Skin Farbwechsel zwischen Hell und Dunkel</summary>
+      <platform>all</platform>
+      <source>https://github.com/Nanomani/script.arctic.zephyr.rounded.autocolors</source>
+      <license>GNU GENERAL PUBLIC LICENSE Version 2</license>
+      <assets>
+        <icon>resources/images/icon.png</icon>
+        <fanart>resources/images/fanart.jpg</fanart>
+        <screenshot>resources/images/01.jpg</screenshot>
+        <screenshot>resources/images/02.jpg</screenshot>
+        <screenshot>resources/images/03.jpg</screenshot>
+        <screenshot>resources/images/04.jpg</screenshot>
+        <screenshot>resources/images/05.jpg</screenshot>
+        <screenshot>resources/images/06.jpg</screenshot>
+      </assets>
+    </extension>
+  </addon>
+  <addon id="script.module.astral" name="astral" version="3.4" provider-name="semool, nanomani">
+    <requires>
+      <import addon="xbmc.python" version="3.0.0" />
+      <import addon="script.module.backports.zoneinfo" />
+    </requires>
+    <extension point="xbmc.python.module" library="lib" />
+    <extension point="xbmc.addon.metadata">
+      <summary lang="en_GB">Astral for Python</summary>
+      <description lang="en_GB">Astral is a python package for calculating the times of various aspects of the sun and phases of the moon</description>
+      <platform>all</platform>
+      <license>MIT</license>
+      <website>https://pypi.org/project/astral</website>
+      <source>https://github.com/sffjunkie/astral</source>
+      <assets>
+        <icon>icon.png</icon>
+      </assets>
+    </extension>
+  </addon>
+  <addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.5" provider-name="jurialmunkey">
+    <extension point="xbmc.addon.repository" name="jurialmunkey Alpha Repository">
+      <dir>
+        <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/</datadir>
+      </dir>
+      <dir minversion="19.9.1" maxversion="20.9.0">
+        <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/</datadir>
+      </dir>
+      <dir minversion="20.9.1">
+        <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/</datadir>
+      </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+      <summary>jurialmunkey Alpha Repository</summary>
+      <description>A repository for alpha releases of jurialmunkey's skins.</description>
+      <disclaimer>
+      </disclaimer>
+      <platform>all</platform>
+      <assets>
+        <icon>icon.png</icon>
+      </assets>
+    </extension>
+  </addon>
+  <addon id="repository.silvo" name="SiLVO Development Repository" version="1.0.0" provider-name="SiLVO">
+    <extension point="xbmc.addon.repository" name="SiLVO Dev Repo">
+      <dir minversion="21.9.1">
+        <info compressed="false">https://raw.githubusercontent.com/MikeSiLVO/repository.silvo/main/piers/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/MikeSiLVO/repository.silvo/main/piers/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/MikeSiLVO/repository.silvo/main/piers/</datadir>
+      </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+      <summary lang="en_GB">SiLVO Development Repository</summary>
+      <description lang="en_GB">Development and pre-release repository for Aeon Nox: SiLVO skin and related addons. Contains beta versions for testing before official Kodi repo releases.</description>
+      <disclaimer lang="en_GB">Pre-release software may contain bugs. Use at your own risk. Stable versions are available in the official Kodi repository.</disclaimer>
+      <platform>all</platform>
+      <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+      </assets>
+    </extension>
+  </addon>
+  <addon id="plugin.audio.apple.podcasts" name="Apple Podcasts" version="1.2.1" provider-name="Tristan Fischer, nanomani">
+    <requires>
+      <import addon="xbmc.python" version="3.0.0" />
+      <import addon="script.module.feedparser" version="3.0.0" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+      <provides>audio</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+      <language />
+      <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+      </assets>
+      <platform>all</platform>
+      <website />
+      <source>https://github.com/dersphere/plugin.video.itunes_podcasts</source>
+      <forum>https://forum.kodi.tv/showthread.php?tid=143064</forum>
+      <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+      <summary lang="be_BY">Apple iTunes Podcast Browser</summary>
+      <summary lang="ca_ES">Buscador de Podcast d'Apple</summary>
+      <summary lang="da_DK">Udforsk Podcasts fra Apple</summary>
+      <summary lang="de_DE">Apple Podcast Browser</summary>
+      <summary lang="el_GR">Περιηγητής Podcast του Apple</summary>
+      <summary lang="en_GB">Apple Podcast Browser</summary>
+      <summary lang="en_US">Apple Podcast Browser</summary>
+      <summary lang="es_ES">Explorador de Apple Podcasts</summary>
+      <summary lang="fr_FR">Navigateur Apple Podcast</summary>
+      <summary lang="fr_CA">Navigateur de balados d'Apple</summary>
+      <summary lang="gl_ES">Buscador de Podscasts de Apple</summary>
+      <summary lang="he_IL">Apple Podcast Browser</summary>
+      <summary lang="hr_HR">Apple podcast preglednik</summary>
+      <summary lang="hu_HU">Apple podcast böngésző</summary>
+      <summary lang="id_ID">Peramban Podcast Apple</summary>
+      <summary lang="it_IT">Browser per Podcast di Apple</summary>
+      <summary lang="ko_KR">애플 팟캐스트 탐색기</summary>
+      <summary lang="lt_LT">Apple Podcast naršyklė</summary>
+      <summary lang="nl_NL">Apple Podcast Browser</summary>
+      <summary lang="pl_PL">Przeglądarka podcastów Apple</summary>
+      <summary lang="pt_PT">Navegador Apple Podcast</summary>
+      <summary lang="pt_BR">Navegador de Podcasts Apple</summary>
+      <summary lang="sk_SK">Prehliadač na Apple Podcast</summary>
+      <summary lang="sv_SE">Apple podcast-utforskare</summary>
+      <summary lang="tr_TR">Apple Podcast Tarayıcısı</summary>
+      <summary lang="zh_CN">苹果播客浏览器</summary>
+      <description lang="be_BY">This add-on lets you browse and search for thousands of free Podcasts.[CR]You can also search for specific podcasts by name.[CR]It is also possible to manage a "My Podcasts" list via context-menu.</description>
+      <description lang="ca_ES">Aquest complement li permet explorar i buscar milers de podcasts gratuïts.[CR]També pot buscar podcasts específics pel seu nom.[CR] També és possible gestionar un llista "Els meus Podcasts" a través del menú contextual.</description>
+      <description lang="da_DK">Dette addon lader dig udforske og søge efter tusinder af gratis Podcasts.[CR]Du kan også søge efter specifikke navne på podcasts.[CR]Det er også muligt at håndtere "Mine Podcasts" via kontekstmenuen.</description>
+      <description lang="de_DE">Dieses Add-on ermöglicht das durchsuchen von tausenden kostenlosen Podcasts.[CR]Auch ist es möglich nach Podcasts zu suchen.[CR]Außerdem ist es möglich eine "Meine Podcasts"-Liste über das Kontext-Menu zu verwalten.</description>
+      <description lang="el_GR">Αυτό το πρόσθετο σας επιτρέπει να περιηγηθείτε και να αναζητήσετε χιλιάδες δωρεάν Podcast.[CR]Μπορείτε να αναζητήσετε συγκεκριμένα podcast με το όνομα.[CR]Είναι, επίσης, δυνατό να διαχειριστείτε μία λίστα "Podcast μου" μέσω του μενού επιλογών.</description>
+      <description lang="en_GB">This add-on lets you browse and search for thousands of free Podcasts.[CR]You can also search for specific podcasts by name.[CR]It is also possible to manage a "My Podcasts" list via context-menu.</description>
+      <description lang="en_US">This add-on lets you browse and search for thousands of free Podcasts.[CR]You can also search for specific podcasts by name.[CR]It is also possible to manage a "My Podcasts" list via context-menu.</description>
+      <description lang="es_ES">Este complemento le permite explorar y buscar entre miles de Podcasts gratuitos.[CR]Incluso puede buscar podcasts por su nombre.[CR]Incluso es posible manejar sus podcasts mediante la lista "Mis Podacsts" del menú contextual.</description>
+      <description lang="fr_FR">Cette extension vous permet de naviguer et trouver des milliers de Podcasts gratuit.[CR]Vous pouvez également cherché un podcast par nom.[CR]Il est possible de gérer une liste de "Mes Podcasts" via le menu contextuel.</description>
+      <description lang="fr_CA">Cet addiciel vous permet de parcourir et de rechercher des milliers de balados gratuits [CR]Vous pouvez également rechercher des balados spécifiques par nom.[CR]Il est également possible de gérer une liste « Mes Balados » avec le menu contextuel.</description>
+      <description lang="gl_ES">Este complemento permítelle navegar e buscar entre milleiros de Podcasts de balde.[CR]Tamén pode buscar un podcasts concreto polo nome.[CR]Tamén é posible xestionar a listaxe dos "Meus Podcasts" mediante un menú contextual.</description>
+      <description lang="he_IL">הרחבה זו מאפשרת לך לעיין ולחפש באלפי פודקאסטים חינמים.[CR]בנוסף ניתן לנהל רשימת "הפודקאסטים שלי" בעזרת תפריט Context.</description>
+      <description lang="hr_HR">Ovaj dodatak vam omogućuje pregledavanje i pretraživanje na tisuće besplatnih Podcasta.[CR]Isto tako možete pretraživati određene podcaste prema nazivu.[CR]Moguće je upravljanje "Moji podcasti" popisom putem kontekstualnog izbornika.</description>
+      <description lang="hu_HU">Ez a kiegészítő lehetővé teszi több ezer ingyenes podcast böngészését és keresését[CR]Név szerint is lehetséges a keresés egy adott podcastra.[CR]A helyi menü segítségével kezelheti "saját" podcastjait.</description>
+      <description lang="id_ID">Addon ini memungkinkan Anda menjelajahi dan mencari ribuat Podcast gratisan.[CR]Tidak perlu iTunes![CR]Anda juga dapat mencari podcast spesifik menurut namanya.[CR]Anda juga dapat mengelola daftar "Podcast Saya" dari menu konteks.</description>
+      <description lang="it_IT">Questo add-on ti permette di sfogliare e cercare centinai di Podcast liberi.[CR]puoi cercare podcast specifici per nome.[CR]E' anche possibile gestire la lista: "I miei Podcast" tramite il menù contestuale</description>
+      <description lang="ko_KR">이 애드온으로 수천개의 무료 팟캐스트를 탐색하고 검색할 수 있습니다.[CR]특정한 팟캐스트를 이름으로 검색할 수 있습니다.[CR]컨텍스트 메뉴를 이용해 "내 팟캐스트" 목록을 관리할 수 있습니다.</description>
+      <description lang="lt_LT">Šis priedas leidžia jums naršyti ir ieškoti tūkstančių nemokamai Podcasts [COLOR=red](toliau verčiama kaip - Transliacijos)[/COLOR].[CR]Taip pat jūs galite ieškoti konkrečių prenumeruojamų transliacijų pagal pavadinimą.[CR]Taip pat galima valdyti "Mano Transliacijos" sąrašą per kontekstinį meniu.</description>
+      <description lang="nl_NL">Deze add-on laat je zoeken naar duizenden gratis Podcasts.[CR]je kan ook zoeken voor specifieke podcasts op naam[CR]Het is ook mogelijk  om via het context-menu ''Mijn podcasts'' te beheren.</description>
+      <description lang="pl_PL">Wtyczka ta umożliwia ci przeglądanie i szukanie w śród tysięcy darmowych Podcastów.[CR]Możesz dodatkowo szukać konkretnych Podcastów po nazwie.[CR]Dodatkowo możesz zarządzać listą swoich ulubionych Podcastów poprzez menu kontekstowe.</description>
+      <description lang="pt_PT">Este add-on permite-lhe navegar e procurar por milhares de Podcasts grátis.[CR]Pode também procurar por nome podcasts específicas.[CR]É também possível gerir uma lista "Minhas Podcasts" através do menu de contexto.</description>
+      <description lang="pt_BR">Este add-on permite que você navegue e pesquise por milhares de Podcasts grátis.[CR]Você pode também pesquisar por podcasts específicos por nome.[CR]É possível gerenciar uma lista de "Meus Podcasts" através do menu de contexto.</description>
+      <description lang="sk_SK">Tento doplnok Vám umožní prehliadať a vyhľadávať v tisícoch voľných Podcast-ov.[CR]Môžete zároveň hľadať konkrétny podcast podľa mena. Zároveň môžete cez kontextové menu spravovať zoznam "Moje Podcast-y".</description>
+      <description lang="sv_SE">Detta tillägg låter dig bläddra och söka efter tusentals podcasts.[CR]Du kan också söka efter specifika podcasts genom namn.[CR]Det är också möjligt att hantera "Mina podcasts"-listan via innehållsmenyn.</description>
+      <description lang="zh_CN">本插件可浏览和查找上千个免费播客。[CR]你可以按名字搜索播客。[CR]还可以通过上下文菜单管理"我的播客"列表。</description>
+    </extension>
+  </addon>
 </addons>
