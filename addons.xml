@@ -22,7 +22,7 @@
     <extension point="xbmc.addon.metadata">
       <platform>all</platform>
       <license>Creative Commons Non Commercial 3.0 License</license>
-      <!-- <forum>https://forum.kodi.tv/showthread.php?tid=337862</forum> -->
+      <forum>https://forum.kodi.tv/showthread.php?tid=387634</forum>
       <source>https://github.com/Nanomani/skin.arctic.zephyr.rounded</source>
       <assets>
         <icon>icon.png</icon>
