@@ -98,6 +98,24 @@
       </assets>
     </extension>
   </addon>
+  <addon id="repository.nanomani" name="Nanomani Repository" version="1.0" provider-name="nanomani">
+    <extension point="xbmc.addon.repository" name="Nanomani Repository">
+      <dir minversion="21.9.1">
+        <info compressed="false">https://github.com/Nanomani/repository.nanomani/raw/main/addons.xml</info>
+        <checksum>https://github.com/Nanomani/repository.nanomani/raw/main/addons.xml.md5</checksum>
+        <datadir zip="true">https://github.com/Nanomani/repository.nanomani/raw/main/</datadir>
+      </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+      <summary>Nanomani Repository</summary>
+      <description>A repository for releases of nanomani's skins.</description>
+      <disclaimer></disclaimer>
+      <platform>all</platform>
+      <assets>
+        <icon>icon.png</icon>
+      </assets>
+    </extension>
+  </addon>
   <addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.5" provider-name="jurialmunkey">
     <extension point="xbmc.addon.repository" name="jurialmunkey Alpha Repository">
       <dir>
