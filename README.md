@@ -1,4 +1,6 @@
-## repository.nanomani
+## Nanomani Repository  
+
+repository for nanomani addons and skins for Kodi Piers (v22+)
 
 #### 👉 Download & install in Kodi Add-on repository : **[repository.nanomani-1.0.zip](https://github.com/Nanomani/repository.nanomani/releases/download/v1.0/repository.nanomani-1.0.zip)**  
 
