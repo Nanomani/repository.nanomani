@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addons>
-  <addon id="skin.arctic.zephyr.rounded" version="2.2.22" name="Arctic: Zephyr - Rounded" provider-name="jurialmunkey, beatmasterrs, nanomani">
+  <addon id="skin.arctic.zephyr.rounded" version="2.2.23" name="Arctic: Zephyr - Rounded" provider-name="jurialmunkey, beatmasterrs, nanomani">
     <requires>
       <import addon="xbmc.gui" version="5.18.0" />
       <import addon="script.skinshortcuts" version="3.0.0~beta32" />
@@ -109,7 +109,8 @@
     <extension point="xbmc.addon.metadata">
       <summary>Nanomani Repository</summary>
       <description>A repository for releases of nanomani's skins.</description>
-      <disclaimer></disclaimer>
+      <disclaimer>
+      </disclaimer>
       <platform>all</platform>
       <assets>
         <icon>icon.png</icon>
