@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colors>
+    <color name="Highlight">FF0385B5</color>
+    <color name="Highlight2">FFFF4081</color>
+    <color name="Selected">FFEDEDED</color>
+    <color name="ColoredStars">FFD402AA</color>
+    <color name="ColoredIcons">FFD402AA</color>
+    <color name="ColorMpaaCertif">FF4E77FE</color>
+    <color name="ColorRatingUserStar">FF2B7FE7</color>
+
+    <color name="Dark1">FF141414</color>
+    <color name="Dark2">B3141414</color>
+    <color name="Dark3">4d141414</color>
+    <color name="Dark4">1F141414</color>
+    <color name="Light1">FFDDDDDD</color>
+    <color name="Light2">B3DDDDDD</color>
+    <color name="Light3">4DDDDDDD</color>
+    <color name="Light4">1FDDDDDD</color>
+
+    <color name="Black100">FF000000</color>
+    <color name="Black70">B3000000</color>
+    <color name="Black30">4D000000</color>
+    <color name="Black12">1F000000</color>
+
+    <color name="White100">FFDDDDDD</color>
+    <color name="ArtPlate">FF5A5A5A</color>
+    <color name="White70">B3DDDDDD</color>
+    <color name="White30">4DDDDDDD</color>
+    <color name="White12">1FDDDDDD</color>
+
+    <color name="Background">FFF0F0F0</color>
+    <color name="BackgroundNew">DEF0F0F0</color>
+    <color name="BackgroundNewBlur">55F0F0F0</color>
+    <color name="BackgroundOverlay">FF808080</color>
+
+    <color name="FanartFade">FFFFFFFF</color>
+    <color name="FanartFadeBlur">FFFFFFFF</color>
+    <color name="FloorFade">EEF0F0F0</color>
+    <color name="FloorFade2">BBF0F0F0</color>
+    <color name="FloorFadeBlur">BBF0F0F0</color>
+
+    <!-- MENU SETTING - COLOR LABEL TITLE FOCUS -->
+
+    <color name="PanelWhiteSetting">FFDDDDDD</color>
+
+    <!-- MENU SKINSETTING - TEXTE NON SÉLÉCTIONNÉ - TITRE -->
+
+    <color name="PanelWhite100">B3141414</color>
+
+
+    <color name="PanelWhite90">E6DDDDDD</color>
+
+    <!-- MENU SKINSETTING - CHEKBOX -->
+
+    <color name="PanelWhite70">B3141414</color>
+
+    <color name="PanelWhite30">4DDDDDDD</color>
+
+    <!-- MENU SKINSETTING - TRAITS DE SÉPARATION -->
+
+    <color name="PanelWhite12">4D141414</color>
+
+    <color name="PanelBlack30">4D000000</color>
+
+    <color name="MenuSlide">FFF0F0F0</color>
+    <color name="InfoBackground">B3FFFFFF</color>
+
+    <color name="Box2">E6202020</color>
+    <color name="BoxNotification">CC202020</color>
+    <color name="BoxWidget">E6202020</color>
+    <color name="BoxHomerow">80202020</color>
+    <color name="BoxBorder">FFA0A0A0</color>
+    <color name="BoxBorderWidget">FFA0A0A0</color>
+    <color name="BoxShadow">FF606060</color>
+    <color name="DialogShadow">FF393939</color>
+
+    <color name="UnWatchedIcons">E600BCD4</color>
+
+    <!-- plate behind non-poster art: dark so light add-on icons stay legible (was FFD4D4D4) -->
+    <color name="Fallback">FF5A5A5A</color>
+    <color name="IconOnFallback">FFE8E8E8</color>
+
+    <color name="OSD_Black">DF000000</color>
+
+    <!-- BACKGROUNG MENU - LOGO ENTETE -->
+
+    <color name="Panel">FFD4D4D4</color>
+
+    <color name="OSDProgressBarColor">0DFFFFFF</color>
+    <color name="ProgressBarCacheColor">FFA0A0A0</color>
+
+    <color name="SliderBarColor">1F0f0f0f</color>
+    <color name="SliderNibColor">4D0f0f0f</color>
+</colors>

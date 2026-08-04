@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colors>
+    <color name="Highlight">FF0385B5</color>
+    <color name="Highlight2">FFFF4081</color>
+    <color name="Selected">FFEDEDED</color>
+    <color name="ColoredStars">FFD402AA</color>
+    <color name="ColoredIcons">FFD402AA</color>
+    <color name="ColorMpaaCertif">FF4E77FE</color>
+    <color name="ColorRatingUserStar">FF2B7FE7</color>
+
+    <color name="Dark1">FFC5C5C5</color>
+    <color name="Dark2">CCC5C5C5</color>
+    <color name="Dark3">4DC5C5C5</color>
+    <color name="Dark4">E62D2E2E</color>
+    <color name="Light1">FF333333</color>
+    <color name="Light2">B3333333</color>
+    <color name="Light3">4D333333</color>
+    <color name="Light4">1F333333</color>
+
+    <color name="Black100">FFBBBBBB</color>
+    <color name="Black70">B3BBBBBB</color>
+    <color name="Black30">4DBBBBBB</color>
+    <color name="Black12">1FBBBBBB</color>
+
+    <color name="White100">FF333333</color>
+    <color name="White70">B3333333</color>
+    <color name="White30">4D333333</color>
+    <color name="White12">1F333333</color>
+
+    <color name="Background">FF181818</color>
+    <color name="BackgroundNew">D9181818</color>
+    <color name="BackgroundNewBlur">B3181818</color>
+    <color name="BackgroundOverlay">FF181818</color>
+
+    <color name="FanartFade">FFFFFFFF</color>
+    <color name="FanartFadeBlur">FFFFFFFF</color>
+    <color name="FloorFade">FF181818</color>
+    <color name="FloorFade2">CC181818</color>
+    <color name="FloorFadeBlur">CC181818</color>
+
+    <color name="PanelWhiteSetting">FFDDDDDD</color>
+    <color name="PanelWhite100">FFDDDDDD</color>
+    <color name="PanelWhite90">E6DDDDDD</color>
+    <color name="PanelWhite70">B3DDDDDD</color>
+    <color name="PanelWhite30">4DDDDDDD</color>
+    <color name="PanelWhite12">1FDDDDDD</color>
+    <color name="PanelBlack30">4D000000</color>
+
+    <color name="MenuSlide">FF2D2E2E</color>
+    <color name="InfoBackground">B3181818</color>
+
+    <color name="Box2">E6202020</color>
+    <color name="BoxNotification">CC202020</color>
+    <color name="BoxWidget">E6202020</color>
+    <color name="BoxHomerow">80202020</color>
+    <color name="BoxBorder">FF404040</color>
+    <color name="BoxBorderWidget">B3141414</color>
+    <color name="BoxShadow">FF040404</color>
+    <color name="DialogShadow">FF020202</color>
+
+    <color name="UnWatchedIcons">E600BCD4</color>
+
+    <color name="Fallback">FF2D2E2E</color>
+
+    <color name="OSD_Black">DF000000</color>
+    <color name="Panel">FF2D2E2E</color>
+
+    <color name="OSDProgressBarColor">0DFFFFFF</color>
+    <color name="ProgressBarCacheColor">FFA0A0A0</color>
+
+    <color name="SliderBarColor">1CFFFFFF</color>
+    <color name="SliderNibColor">FFA0A0A0</color>
+</colors>

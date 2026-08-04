@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1121">
+    <zorder>1</zorder>
+    <defaultcontrol always="true">9000</defaultcontrol>
+
+    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
+    <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Window.IsVisible(VideoOSD.xml)">PlayerControl(Play)</onunload>
+
+    <onunload condition="!Player.PauseEnabled">setfocus(15)</onunload>
+    <onunload condition="Player.PauseEnabled">setfocus(14)</onunload>
+
+    <controls>
+        <include content="Background_Overlay">
+            <param name="colordiffuse" value="$VAR[Color_OSD_Background_Overlay]" />
+        </include>
+
+        <include>Animation_Common_Settings</include>
+
+        <control type="group">
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>255</centerleft>
+
+            <include content="Def_Dialog_Menu_Box">
+                <param name="height" value="1039" />
+                <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" />
+                <param name="colordiffuse_shadow" value="$VAR[Color_OSD_Dialog_Shadow]" />
+                <param name="visible" value="ControlGroup(9000).HasFocus() | Control.HasFocus(1799)" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="14018" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="grouplist" id="9000">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <height>910</height>
+
+                <onup>9000</onup>
+                <ondown>9000</ondown>
+                <onright>1799</onright>
+                <onleft>Dialog.Close(1121)</onleft>
+
+                <itemgap>0</itemgap>
+                <pagecontrol>1799</pagecontrol>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+            <!-- OSD -->
+
+                <control type="button" id="811">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>OSD</label>
+                </control>
+
+                <!-- SHOW OSD ON START X SECONDE -->
+
+                <control type="button" id="831">
+                    <description>Auto close</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31454]</label>
+                    <label2>$VAR[Label_Setting_OSD_Info]</label2>
+                    <onclick>SetProperty(includesetting,Value_Show_OSD_At_Start_Timeout,Home)</onclick>
+                    <onclick>ActivateWindow(1248)</onclick>
+                </control>
+
+                <!-- AUTO HIDE OSD AFTER X SECONDE -->
+
+                <control type="button" id="830">
+                    <description>Auto close</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31232]</label>
+                    <label2>$VAR[Label_Setting_OSD_Timeout]</label2>
+                    <onclick>SetProperty(includesetting,Value_OSD_Auto_Hide_Timeout,Home)</onclick>
+                    <onclick>ActivateWindow(1248)</onclick>
+                </control>
+
+                <!-- PLAY / PAUSE AUTO WITH OPEN OSD -->
+
+                <control type="radiobutton" id="822">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31617]</label>
+                    <selected>Skin.HasSetting(osd.open.auto.pause)</selected>
+                    <onclick>Skin.ToggleSetting(osd.open.auto.pause)</onclick>
+                </control>
+
+                <!-- HIDE OSD ON PAUSE -->
+
+                <control type="radiobutton" id="820">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31488]</label>
+                    <selected>Skin.HasSetting(hide.osd.video.on.pause)</selected>
+                    <onclick>Skin.ToggleSetting(hide.osd.video.on.pause)</onclick>
+                    <onclick condition="!Skin.HasSetting(hide.osd.video.on.pause)">Skin.Reset(show.osd.info.on.pause)</onclick>
+                    <onclick condition="!Skin.HasSetting(hide.osd.video.on.pause)">Skin.Reset(show.osd.video.plot.on.pause)</onclick>
+                </control>
+
+                <!-- SHOW INFO/FLAG ON PAUSE -->
+
+                <control type="radiobutton" id="821">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31150]</label>
+                    <selected>Skin.HasSetting(show.osd.info.on.pause)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.info.on.pause)</onclick>
+                    <onclick condition="!Skin.HasSetting(show.osd.info.on.pause)">Skin.Reset(hide.osd.video.on.pause)</onclick>
+                </control>
+
+                <!-- SHOW PLOT ON PAUSE -->
+
+                <control type="radiobutton" id="823">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31588]</label>
+                    <selected>Skin.HasSetting(show.osd.video.plot.on.pause)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.video.plot.on.pause)</onclick>
+                    <onclick condition="!Skin.HasSetting(show.osd.info.on.pause)">Skin.Reset(hide.osd.video.on.pause)</onclick>
+                    <visible>Skin.HasSetting(show.osd.info.on.pause)</visible>
+                </control>
+
+                <!-- HIDE OSD TIPS -->
+
+                <control type="radiobutton" id="103">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31603]</label>
+                    <selected>Skin.HasSetting(hide.osd.video.tips)</selected>
+                    <onclick>Skin.ToggleSetting(hide.osd.video.tips)</onclick>
+                </control>
+
+            <!-- GLOBAL -->
+
+                <control type="button" id="810">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[31381]</label>
+                </control>
+
+                <!-- REPLACE TITLE WITH CLEARLOGO -->
+
+                <control type="radiobutton" id="120">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31414]</label>
+                    <selected>Skin.HasSetting(show.osd.video.clearlogo)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.video.clearlogo)</onclick>
+                    <visible>!VideoPlayer.Content(livetv)</visible>
+                </control>
+
+                <!-- HIDE HEADER INFO TOP RIGHT -->
+
+                <control type="radiobutton" id="824">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31072]</label>
+                    <selected>!Skin.HasSetting(hide.osd.video.clock)</selected>
+                    <onclick>Skin.ToggleSetting(hide.osd.video.clock)</onclick>
+                </control>
+
+                <!-- SHOW CHAPTER MARKERS -->
+
+                <control type="radiobutton" id="83">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31327]</label>
+                    <selected>Skin.HasSetting(chapter.markers)</selected>
+                    <onclick>Skin.ToggleSetting(chapter.markers)</onclick>
+                </control>
+
+                <!-- SHOW EDL MARKERS -->
+
+                <control type="radiobutton" id="110">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31440]</label>
+                    <selected>Skin.HasSetting(cutlist.markers)</selected>
+                    <onclick>Skin.ToggleSetting(cutlist.markers)</onclick>
+                </control>
+
+            <!-- MEDIA INFO -->
+
+                <control type="button" id="801">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[20060]</label>
+                </control>
+
+                <!-- SHOW MEDIA FLAG -->
+
+                <control type="radiobutton" id="94">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31415]</label>
+                    <selected>Skin.HasSetting(show.osd.video.flags.icons)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.video.flags.icons)</onclick>
+                </control>
+
+                <!-- SHOW MEDIA FLAG COLOR -->
+
+                <control type="button" id="96">
+                    <textwidth>350</textwidth>
+                    <description>Handlung</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[467]:</label>
+                    <label2>$VAR[Label_Setting_OSD_Flag_Color]</label2>
+                    <selected>Skin.HasSetting(show.osd.video.colored.icons)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.video.colored.icons)</onclick>
+                    <enable>Skin.HasSetting(show.osd.video.flags.icons)</enable>
+                </control>
+
+                <!-- SHOW MEDIA FLAG IMDB RATING -->
+
+                <control type="radiobutton" id="112">
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31489]</label>
+                    <selected>Skin.HasSetting(show.osd.video.flags.imdb.rating)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.video.flags.imdb.rating)</onclick>
+                    <visible>!VideoPlayer.Content(livetv)</visible>
+                </control>
+
+                <!-- SHOW MEDIA FLAG RATING -->
+
+                <control type="radiobutton" id="111">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[563]</label>
+                    <selected>Skin.HasSetting(show.osd.video.rating)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.video.rating)</onclick>
+                    <visible>!VideoPlayer.Content(livetv)</visible>
+                </control>
+
+                <!-- SHOW MEDIA RATING NUMERIC -->
+
+                <control type="radiobutton" id="97">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31408]</label>
+                    <selected>Skin.HasSetting(show.osd.video.numeric.rating)</selected>
+                    <onclick>Skin.ToggleSetting(show.osd.video.numeric.rating)</onclick>
+                    <enable>Skin.HasSetting(show.osd.video.rating)</enable>
+                    <visible>!VideoPlayer.Content(livetv)</visible>
+                </control>
+
+            <!-- OTHERS -->
+
+                <control type="button" id="802">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[31052]</label>
+                </control>
+
+                <!-- SHOW PVR INFO -->
+
+                <control type="radiobutton" id="99">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31417]</label>
+                    <selected>Skin.HasSetting(pvr.showtechnicalinfo)</selected>
+                    <onclick>Skin.ToggleSetting(pvr.showtechnicalinfo)</onclick>
+                    <visible>VideoPlayer.Content(livetv) | VideoPlayer.Content(files)</visible>
+                </control>
+
+                <!-- CHOOSE RESOLUTION WHEN MULTI RESOLUTION AVAILABLE -->
+
+                <control type="button" id="101">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[169]/$LOCALIZE[170]</label>
+                    <onclick>PlayerResolutionSelect</onclick>
+                    <visible>Player.HasResolutions</visible>
+                </control>
+
+                <!-- SHOW PROCESS INFO -->
+
+                <control type="button" id="102">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31215]</label>
+                    <onclick>Dialog.Close(1121)</onclick>
+                    <onclick>ActivateWindow(playerprocessinfo)</onclick>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1799" />
+                <param name="onleft" value="9000" />
+                <param name="onright" value="Dialog.Close(1121)" />
+                <param name="height" value="910" />
+                <param name="centerright" value="4" />
+            </include>
+        </control>
+    </controls>
+</window>

@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <onload>ClearProperty(exit_music_visualisation,Home)</onload>
+    <onunload>ClearProperty(Set_User_Rating,Home)</onunload>
+    <onunload>ClearProperty(OSDArtistDetails,Home)</onunload>
+
+    <include condition="!Player.PauseEnabled">Def_OSD_FocusStop</include>
+    <include condition="Player.PauseEnabled">Def_OSD_FocusPause</include>
+
+    <controls>
+        <control type="group" id="6000">
+            <visible>![Window.IsVisible(script-cu-lrclyrics-main.xml) + Skin.HasSetting(HideMusicOSDOnLyrics)] + !Window.IsVisible(DialogSelect.xml)</visible>
+
+            <animation effect="fade" start="0" end="100" time="150" delay="150">Visible</animation>
+            <animation effect="fade" start="0" end="100" time="150" delay="150">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="0" delay="0">Hidden</animation>
+            <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+
+            <!-- LEFT SIDE BUTTONS -->
+
+            <control type="grouplist" id="6001">
+                <left>130</left>
+                <height>48</height>
+                <bottom>118</bottom>
+                <align>left</align>
+
+                <onup>8200</onup>
+                <onup>SetProperty(OSDArtistDetails,1,Home)</onup>
+                <onleft>24</onleft>
+                <onright>12</onright>
+
+                <itemgap>16</itemgap>
+                <orientation>horizontal</orientation>
+
+                <!-- REPEAT -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="$VAR[Image_OSD_Repeat]" />
+                    <param name="flipx" value="false" />
+                    <param name="id" value="1" />
+                    <param name="groupid" value="5899" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>PlayerControl(Repeat)</onclick>
+                    <onfocus>ClearProperty(OSDArtistDetails,Home)</onfocus>
+                </include>
+
+                <!-- SHUTTLE -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="$VAR[Image_OSD_Shuffle]" />
+                    <param name="flipx" value="false" />
+                    <param name="id" value="6" />
+                    <param name="groupid" value="5999" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>PlayerControl(Random)</onclick>
+                    <onfocus>ClearProperty(OSDArtistDetails,Home)</onfocus>
+                    <onleft>1</onleft>
+                    <onright>2</onright>
+                </include>
+
+                <!-- LRC LYRIC -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="$VAR[Image_OSD_Lyric]" />
+                    <param name="flipx" value="false" />
+                    <param name="id" value="2" />
+                    <param name="groupid" value="6099" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick condition="!System.HasAddon(script.cu.lrclyrics)">InstallAddon(script.cu.lrclyrics)</onclick>
+                    <onclick condition="System.HasAddon(script.cu.lrclyrics)">RunScript(script.cu.lrclyrics)</onclick>
+                </include>
+
+                <!-- SHOW INFO -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="$VAR[Image_OSD_Info]" />
+                    <param name="flipx" value="false" />
+                    <param name="id" value="3" />
+                    <param name="groupid" value="7299" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <onclick condition="!Skin.HasSetting(auto.hide.OSD.music.info)">Dialog.Close(musicosd)</onclick>
+                    <onclick condition="!Skin.HasSetting(auto.hide.OSD.music.info)">Skin.SetBool(auto.hide.OSD.music.info)</onclick>
+                    <onclick condition="!Skin.HasSetting(auto.hide.OSD.music.info) + Player.ShowInfo">Action(Info)</onclick>
+                    <onclick condition="Skin.HasSetting(auto.hide.OSD.music.info)">Skin.Reset(auto.hide.OSD.music.info)</onclick>
+                    <onclick condition="Skin.HasSetting(auto.hide.OSD.music.info) + !Player.ShowInfo">Action(Info)</onclick>
+                </include>
+            </control>
+
+            <!-- CENTER BUTTONS -->
+
+            <control type="grouplist" id="6002">
+                <left>0</left>
+                <height>48</height>
+                <bottom>118</bottom>
+                <width>100%</width>
+                <align>center</align>
+
+                <onup>8200</onup>
+                <onleft>3</onleft>
+                <onright>21</onright>
+
+                <itemgap>16</itemgap>
+                <orientation>horizontal</orientation>
+
+                <!-- PREVIOUS -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="osd/next.png" />
+                    <param name="flipx" value="true" />
+                    <param name="id" value="12" />
+                    <param name="groupid" value="6199" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="show_not_enabled" value="true" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>PlayerControl(Previous)</onclick>
+                    <enable>Player.PauseEnabled</enable>
+                    <animation effect="fade" start="100" end="66" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                </include>
+
+                <!-- RAPID RETURN -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="osd/ff.png" />
+                    <param name="flipx" value="true" />
+                    <param name="id" value="13" />
+                    <param name="groupid" value="6299" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="show_not_enabled" value="true" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>PlayerControl(Rewind)</onclick>
+                    <enable>Player.SeekEnabled</enable>
+                    <animation effect="fade" start="100" end="66" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+                </include>
+
+                <!-- PLAY / PAUSE -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="$VAR[Image_OSD_PlayPause]" />
+                    <param name="id" value="14" />
+                    <param name="groupid" value="6399" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="show_not_enabled" value="true" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>PlayerControl(Play)</onclick>
+                    <onfocus>ClearProperty(OSDArtistDetails,Home)</onfocus>
+                    <enable>Player.PauseEnabled</enable>
+                    <animation effect="fade" start="100" end="66" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                </include>
+
+                <!-- STOP -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="osd/stop.png" />
+                    <param name="id" value="15" />
+                    <param name="groupid" value="6499" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>SetProperty(exit_music_visualisation,1,Home)</onclick>
+                    <onclick>Dialog.Close(musicosd)</onclick>
+                    <onclick condition="Player.ShowInfo">AlarmClock(delayCloseInfo,Action(Info),00:01,silent)</onclick>
+                    <onclick>AlarmClock(delayplaylist,PlayerControl(Stop),00:02,silent)</onclick>
+                </include>
+
+                <!-- FAST FORWARD -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="osd/ff.png" />
+                    <param name="id" value="16" />
+                    <param name="groupid" value="6599" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <param name="show_not_enabled" value="true" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>PlayerControl(Forward)</onclick>
+                    <enable>Player.SeekEnabled</enable>
+                    <animation effect="fade" start="100" end="66" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+                </include>
+
+                <!-- NEXT -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="osd/next.png" />
+                    <param name="id" value="17" />
+                    <param name="groupid" value="6699" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>PlayerControl(Next)</onclick>
+                </include>
+            </control>
+
+            <!-- RIGHT SIDE BUTTONS -->
+
+            <control type="grouplist" id="6003">
+                <bottom>118</bottom>
+                <right>112</right>
+                <height>48</height>
+                <align>right</align>
+
+                <onup>8200</onup>
+                <onup>SetProperty(OSDArtistDetails,1,Home)</onup>
+                <onleft>17</onleft>
+                <onright>1</onright>
+
+                <itemgap>16</itemgap>
+                <orientation>horizontal</orientation>
+
+                <!-- MUSIC PLAYLIST -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="Integer.IsGreater(musicplayer.Playlistlength,1)" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="osd/playlist2.png" />
+                    <param name="id" value="21" />
+                    <param name="groupid" value="6899" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>SetProperty(exit_music_visualisation,1,Home)</onclick>
+                    <onclick>Dialog.Close(musicosd)</onclick>
+                    <onclick condition="Player.ShowInfo">AlarmClock(delayCloseInfo,Action(Info),00:01,silent)</onclick>
+                    <onclick>AlarmClock(delayplaylist,ActivateWindow(musicplaylist),00:02,silent)</onclick>
+                </include>
+
+                <!-- VOLUME -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="osd/audio-settings.png" />
+                    <param name="id" value="23" />
+                    <param name="groupid" value="7399" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>Dialog.Close(musicosd)</onclick>
+                    <onclick>ActivateWindow(GameVolume)</onclick>
+                </include>
+
+                <!-- AUDIO PROFILE -->
+
+                <include content="Object_OSD_Button" condition="System.HasAddon(script.audio.profiles) + System.AddonIsEnabled(script.audio.profiles)">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="osd/headphones.png" />
+                    <param name="id" value="25" />
+                    <param name="groupid" value="7199" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>runscript(script.audio.profiles,popup)</onclick>
+                    <disabledcolor>PanelWhite12</disabledcolor>
+                </include>
+
+                <!-- USER RATING -->
+
+                <include content="Object_OSD_Button" condition="!String.IsEmpty(MusicPlayer.DBID)">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="$VAR[Image_OSD_UserRating]" />
+                    <param name="id" value="22" />
+                    <param name="groupid" value="6999" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <include>Def_On_User_Rating</include>
+                    <onclick>SetRating</onclick>
+                </include>
+
+                <!-- SETTINGS -->
+
+                <include content="Object_OSD_Button">
+                    <param name="visible" value="true" />
+                    <param name="left" value="-64" />
+                    <param name="icon" value="osd/preset.png" />
+                    <param name="id" value="24" />
+                    <param name="groupid" value="7099" />
+                    <param name="back_colordiffuse" value="$VAR[Color_OSD_Button_Background]" />
+                    <include>Def_OSD_UpDown_Music_Info</include>
+                    <onclick>ActivateWindow(1120)</onclick>
+                </include>
+            </control>
+
+            <!-- ARTIST BIOGRAPHY -->
+
+            <include content="Object_OSD_Player_Plot">
+                <param name="visible" value="$EXP[OSD_Music_Show_Artiste_Bio] + !Window.IsVisible(script-cu-lrclyrics-main.xml) + Window.IsVisible(musicosd)" />
+                <param name="onleft" value="SetFocus(14)" />
+                <param name="onright" value="SetFocus(14)" />
+                <param name="onback" value="SetFocus(14)" />
+                <param name="scrollid" value="9803" />
+            </include>
+
+            <control type="group">
+                <visible>!Skin.HasSetting(hide.osd.music.tips)</visible>
+
+                <!-- OSD FOOTER INFO TIPS - LEFT - FOCUS - TIPS ON LEFT -->
+
+                <control type="grouplist">
+                    <visible>ControlGroup(6001).HasFocus()</visible>
+                    <visible>!Control.HasFocus(9803)</visible>
+                    <include>Animation_OSD_Fade_Tips</include>
+
+                    <top>958</top>
+                    <left>OSD_SidePad</left>
+                    <width>1400</width>
+                    <height>50</height>
+                    <align>left</align>
+
+                    <itemgap>0</itemgap>
+                    <orientation>horizontal</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+
+                    <control type="image">
+                        <width>50</width>
+                        <height>50</height>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture flipy="true" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-up.png</texture>
+                        <visible>ControlGroup(6002).HasFocus()</visible>
+                    </control>
+                    <control type="image">
+                        <width>50</width>
+                        <height>50</height>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture flipy="false" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-up.png</texture>
+                        <visible>Control.HasFocus(8200)</visible>
+                    </control>
+                    <control type="label">
+                        <height>50</height>
+                        <font>Mini</font>
+                        <scroll>false</scroll>
+                        <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>
+                        <label>$VAR[Label_OSD_Footer_Tip_Music_Left]</label>
+                        <aligny>center</aligny>
+                    </control>
+                </control>
+
+                <!-- OSD FOOTER INFO TIPS - CENTER - FOCUS - TIPS ON LEFT -->
+
+                <control type="grouplist">
+                    <visible>[ControlGroup(6002).HasFocus() + !String.IsEmpty(MusicPlayer.DBID)] | Control.HasFocus(8200)</visible>
+                    <visible>!Control.HasFocus(9803)</visible>
+                    <include>Animation_OSD_Fade_Tips</include>
+
+                    <top>958</top>
+                    <left>OSD_SidePad</left>
+                    <width>1400</width>
+                    <height>50</height>
+                    <align>left</align>
+
+                    <itemgap>0</itemgap>
+                    <orientation>horizontal</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+
+                    <control type="image">
+                        <width>50</width>
+                        <height>50</height>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture flipy="true" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-up.png</texture>
+                        <visible>ControlGroup(6002).HasFocus()</visible>
+                    </control>
+                    <control type="image">
+                        <width>50</width>
+                        <height>50</height>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture flipy="false" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-up.png</texture>
+                        <visible>Control.HasFocus(8200)</visible>
+                    </control>
+                    <control type="label">
+                        <height>50</height>
+                        <font>Mini</font>
+                        <scroll>false</scroll>
+                        <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>
+                        <label>$VAR[Label_OSD_Footer_Tip_Music_Left]</label>
+                        <aligny>center</aligny>
+                    </control>
+                </control>
+
+                <!-- OSD FOOTER INFO TIPS - CENTER - FOCUS - TIPS ON RIGHT -->
+
+                <control type="grouplist">
+                    <visible>ControlGroup(6002).HasFocus() | ControlGroup(6002).HasFocus() | Control.HasFocus(8200)</visible>
+                    <visible>!Control.HasFocus(9803)</visible>
+                    <include>Animation_OSD_Fade_Tips</include>
+
+                    <top>958</top>
+                    <right>OSD_SidePad</right>
+                    <width>1400</width>
+                    <height>50</height>
+                    <align>right</align>
+
+                    <itemgap>0</itemgap>
+                    <orientation>horizontal</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+
+                    <!-- FOCUS SEEK BAR -->
+
+                    <control type="image">
+                        <width>50</width>
+                        <height>50</height>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture flipy="false" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-left.png</texture>
+                        <visible>Control.HasFocus(8200) + Player.SeekEnabled</visible>
+                    </control>
+                    <control type="image">
+                        <width>50</width>
+                        <height>50</height>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture flipy="false" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-right.png</texture>
+                        <visible>Control.HasFocus(8200) + Player.SeekEnabled</visible>
+                    </control>
+                    <control type="image">
+                        <width>50</width>
+                        <height>50</height>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture flipy="false" colordiffuse="$VAR[Color_OSD_Button_Background]">special://skin/extras/icons/angle-up.png</texture>
+                        <visible>ControlGroup(6002).HasFocus()</visible>
+                    </control>
+
+                    <control type="label">
+                        <width min="20">auto</width>
+                        <height>50</height>
+                        <align>right</align>
+                        <font>Mini</font>
+                        <scroll>false</scroll>
+                        <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>
+                        <label>$VAR[Label_OSD_Footer_Tip_Music_Right]</label>
+                        <aligny>center</aligny>
+                    </control>
+                </control>
+
+                <!-- OSD FOOTER INFO TIPS - RIGHT - FOCUS - TIPS ON RIGHT -->
+
+                <control type="grouplist">
+                    <visible>ControlGroup(6003).HasFocus()</visible>
+                    <visible>!Control.HasFocus(9803)</visible>
+                    <include>Animation_OSD_Fade_Tips</include>
+
+                    <top>958</top>
+                    <right>OSD_SidePad</right>
+                    <width>1400</width>
+                    <height>50</height>
+                    <align>right</align>
+
+                    <itemgap>0</itemgap>
+                    <orientation>horizontal</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+
+                    <control type="label">
+                        <width min="20">auto</width>
+                        <height>50</height>
+                        <align>right</align>
+                        <font>Mini</font>
+                        <scroll>false</scroll>
+                        <textcolor>$VAR[Color_OSD_Button_Background]</textcolor>
+                        <label>$VAR[Label_OSD_Footer_Tip_Music_Right]</label>
+                        <aligny>center</aligny>
+                    </control>
+                </control>
+            </control>
+
+            <control type="list" id="997">
+                <include>Def_Hidden_ListControl</include>
+                <onfocus>SetProperty(shownowplayinginfo,1,Home)</onfocus>
+                <content limit="1">$VAR[Def_Dialog_Info_Currently_Playing_Item_MusicOSD]</content>
+            </control>
+
+            <control type="button" id="4000">
+                <onfocus>SetFocus(25)</onfocus>
+            </control>
+        </control>
+
+        <!-- MANUAL SLIDER -->
+
+        <control type="button" id="8210">
+            <include>Def_Hidden_Button</include>
+            <onfocus condition="Control.IsVisible(9803)">AlarmClock(delay_focus_scrollbar,SetFocus(9803),00:01,silent)</onfocus>
+
+            <onleft>ClearProperty(OSDArtistDetails,Home)</onleft>
+            <onleft>CancelAlarm(delay_focus_scrollbar,true)</onleft>
+            <onleft>SetFocus(14)</onleft>
+
+            <onright>ClearProperty(OSDArtistDetails,Home)</onright>
+            <onright>CancelAlarm(delay_focus_scrollbar,true)</onright>
+            <onright>SetFocus(14)</onright>
+
+            <ondown>ClearProperty(OSDArtistDetails,Home)</ondown>
+            <ondown>CancelAlarm(delay_focus_scrollbar,true)</ondown>
+            <ondown>SetFocus(14)</ondown>
+        </control>
+
+        <control type="button" id="8200">
+            <include>Def_Hidden_Button</include>
+            <onup>SetProperty(OSDArtistDetails,1,Home)</onup>
+            <onup>SetFocus(8210)</onup>
+            <ondown>ClearProperty(OSDArtistDetails,Home)</ondown>
+            <ondown>SetFocus(14)</ondown>
+            <onleft>StepBack</onleft>
+            <onright>StepForward</onright>
+            <onclick>SetProperty(exit_music_visualisation,1,Home)</onclick>
+            <onclick>Dialog.Close(musicosd)</onclick>
+            <onclick condition="Player.ShowInfo">AlarmClock(delayCloseInfo,Action(Info),00:01,silent)</onclick>
+            <onclick>AlarmClock(delayplaylist,ActivateWindow(musicplaylist),00:02,silent)</onclick>
+        </control>
+
+        <control type="progress">
+            <left>110</left>
+            <right>110</right>
+            <height>64</height>
+            <bottom>164</bottom>
+            <info>Player.Progress</info>
+            <texturebg colordiffuse="00ffffff">progress/slider_bg.png</texturebg>
+            <righttexture colordiffuse="FFEDEDED">progress/slider_nib.png</righttexture>
+            <lefttexture />
+            <midtexture />
+            <visible>Control.HasFocus(8200)</visible>
+        </control>
+        <control type="slider">
+            <left>130</left>
+            <right>130</right>
+            <height>112</height>
+            <centerbottom>150</centerbottom>
+            <info>Player.Progress</info>
+            <action>seek</action>
+            <texturesliderbar />
+            <textureslidernib />
+            <textureslidernibfocus />
+            <visible>Player.SeekEnabled + Control.HasFocus(8200) + !MusicPlayer.Content(LiveTV)</visible>
+            <action>seek</action>
+        </control>
+    </controls>
+</window>

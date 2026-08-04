@@ -1,0 +1,2318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <!-- VIEWS LAYOUT - LIST -->
+
+    <include name="Def_View_List_Icon">
+        <param name="left" value="$PARAM[left]" default="6" />
+        <param name="centertop" value="$PARAM[centertop]" default="32" />
+        <param name="width" value="$PARAM[width]" default="54" />
+        <param name="height" value="$PARAM[height]" default="54" />
+
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="icon_w60_h60" />
+
+        <param name="texture_icon" value="$PARAM[texture_icon]" default="$VAR[Image_Poster]" />
+        <param name="visible_icon" value="$PARAM[visible_icon]" default="$EXP[View_Artwork_Condition] + $EXP[View_Artwork_Specific] + !ListItem.IsParentFolder" />
+
+        <param name="colordiffuse_background_icon_black" value="$PARAM[colordiffuse_background_icon_black]" default="Black12" />
+        <param name="colordiffuse_icon_black" value="$PARAM[colordiffuse_icon_black]" default="Dark1" />
+        <param name="texture_icon_black" value="$PARAM[texture_icon_black]" default="$VAR[Image_Poster]" />
+        <param name="visible_icon_black" value="$PARAM[visible_icon_black]" default="$EXP[View_Icon_Black]" />
+
+        <definition>
+
+            <!-- BACKGROUND -->
+
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <texture border="8" colordiffuse="$PARAM[colordiffuse_background_icon_black]">diffuse/$PARAM[texture_diffuse].png</texture>
+                <!-- <visible>$PARAM[visible_icon_black]</visible> -->
+            </control>
+
+            <!-- ICON -->
+
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true">$PARAM[texture_icon]</texture>
+                <visible>$PARAM[visible_icon]</visible>
+            </control>
+
+            <!-- Icon black -->
+
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                <texture colordiffuse="$PARAM[colordiffuse_icon_black]">$PARAM[texture_icon_black]</texture>
+                <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Icon_Info">
+        <param name="left" value="$PARAM[left]" default="8" />
+        <param name="centertop" value="$PARAM[centertop]" default="45.7" />
+        <param name="width" value="$PARAM[width]" default="75.4" />
+        <param name="height" value="$PARAM[height]" default="75.4" />
+
+        <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="icon_w80_h80" />
+
+        <param name="texture_icon" value="$PARAM[texture_icon]" default="$VAR[Image_Poster]" />
+        <param name="visible_icon" value="$PARAM[visible_icon]" default="$EXP[View_Artwork_Condition] + $EXP[View_Artwork_Specific] + !ListItem.IsParentFolder" />
+
+        <param name="colordiffuse_background_icon_black" value="$PARAM[colordiffuse_background_icon_black]" default="Black12" />
+        <param name="colordiffuse_icon_black" value="$PARAM[colordiffuse_icon_black]" default="Dark1" />
+        <param name="texture_icon_black" value="$PARAM[texture_icon_black]" default="$VAR[Image_Poster]" />
+        <param name="visible_icon_black" value="$PARAM[visible_icon_black]" default="$EXP[View_Icon_Black]" />
+
+        <definition>
+
+            <!-- BACKGROUND -->
+
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <texture border="8" colordiffuse="$PARAM[colordiffuse_background_icon_black]">diffuse/$PARAM[texture_diffuse].png</texture>
+                <!-- <visible>$PARAM[visible_icon_black]</visible> -->
+            </control>
+
+            <!-- ICON -->
+
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true">$PARAM[texture_icon]</texture>
+                <visible>$PARAM[visible_icon]</visible>
+            </control>
+
+            <!-- ICON BLACK -->
+
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture colordiffuse="$PARAM[colordiffuse_icon_black]">$PARAM[texture_icon_black]</texture>
+                <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_PVR_View_List_Icon_Info">
+        <param name="left" value="$PARAM[left]" default="10" />
+        <param name="centertop" value="$PARAM[centertop]" default="64" />
+        <param name="width" value="$PARAM[width]" default="110" />
+        <param name="height" value="$PARAM[height]" default="110" />
+
+        <param name="aspectratio" value="$PARAM[aspectratio]" default="keep" />
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="icon_w100_h100" />
+        <param name="fallback" value="$PARAM[fallback]" default="defaultpvrchannels" />
+
+        <param name="texture_icon" value="$PARAM[texture_icon]" default="$VAR[Image_PVR_Icon]" />
+        <param name="visible_icon" value="$PARAM[visible_icon]" default="!String.StartsWith(ListItem.Icon,Default)" />
+
+        <param name="colordiffuse_background_icon_black" value="$PARAM[colordiffuse_background_icon_black]" default="Black12" />
+        <param name="colordiffuse_icon_black" value="$PARAM[colordiffuse_icon_black]" default="Dark1" />
+        <param name="texture_icon_black" value="$PARAM[texture_icon_black]" default="$VAR[Image_PVR_Icon]" />
+        <param name="visible_icon_black" value="$PARAM[visible_icon_black]" default="String.StartsWith(ListItem.Icon,Default)" />
+
+        <definition>
+            <!-- background -->
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <texture border="8" colordiffuse="$PARAM[colordiffuse_background_icon_black]">diffuse/$PARAM[texture_diffuse].png</texture>
+                <!-- <visible>$PARAM[visible_icon_black]</visible> -->
+            </control>
+
+            <!-- Icon black -->
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture colordiffuse="$PARAM[colordiffuse_icon_black]" fallback="$PARAM[fallback].png">$PARAM[texture_icon_black]</texture>
+                <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+
+            <!-- ICON -->
+            <control type="image">
+                <centertop>$PARAM[centertop]</centertop>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="$PARAM[fallback].png">$PARAM[texture_icon]</texture>
+                <visible>$PARAM[visible_icon]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Icon_Image_Select">
+        <param name="left" value="$PARAM[left]" default="12" />
+        <param name="top" value="$PARAM[top]" default="12" />
+        <param name="width" value="$PARAM[width]" default="111" />
+        <param name="height" value="$PARAM[height]" default="111" />
+
+        <param name="aspectratio" value="$PARAM[aspectratio]" default="keep" />
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="square_w111_h111" />
+        <param name="colordiffuse_background_icon_black" value="$PARAM[colordiffuse_background_icon_black]" default="Black12" />
+
+        <param name="texture_icon" value="$PARAM[texture_icon]" default="$VAR[Image_Dialog_Select_List]" />
+        <param name="visible_icon" value="$PARAM[visible_icon]" default="!$EXP[View_Icon_Black_Dialog_Select]" />
+
+        <param name="colordiffuse_icon_black" value="$PARAM[colordiffuse_icon_black]" default="PanelWhite100" />
+        <param name="texture_icon_black" value="$PARAM[texture_icon_black]" default="$VAR[Image_Dialog_Select_List]" />
+        <param name="visible_icon_black" value="$PARAM[visible_icon_black]" default="$EXP[View_Icon_Black_Dialog_Select]" />
+
+        <param name="colordiffuse_icon_black_selected" value="$PARAM[colordiffuse_icon_black_selected]" default="$VAR[Color_List_Item_Selected]" />
+        <param name="visible_icon_black_selected" value="$PARAM[visible_icon_black_selected]" default="false" />
+
+        <definition>
+
+            <!-- Background -->
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <texture colordiffuse="$PARAM[colordiffuse_background_icon_black]">diffuse/$PARAM[texture_diffuse].png</texture>
+            </control>
+
+            <!-- ICON -->
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultPicture.png">$PARAM[texture_icon]</texture>
+                <visible>$PARAM[visible_icon]</visible>
+            </control>
+
+            <!-- Icon black -->
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultPicture.png" colordiffuse="$PARAM[colordiffuse_icon_black]">$PARAM[texture_icon_black]</texture>
+                <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+
+            <!-- Icon black selected -->
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true" fallback="DefaultPicture.png" colordiffuse="$PARAM[colordiffuse_icon_black_selected]">$PARAM[texture_icon_black]</texture>
+                <visible>$PARAM[visible_icon_black_selected]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Label">
+        <param name="label_line_1" value="$PARAM[label_line_1]" default="$INFO[ListItem.Label]" />
+        <param name="label_line_2" value="$PARAM[label_line_2]" default="$INFO[ListItem.Label2]" />
+        <param name="textcolor" value="$PARAM[textcolor]" default="PanelWhite100" />
+        <param name="selectedcolor" value="$PARAM[selectedcolor]" default="PanelWhite100" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+
+            <!-- LABEL - LINE 1 -->
+
+            <control type="label">
+                <top>-18</top>
+                <left>150</left>
+                <width>668</width>
+                <height>135</height>
+                <font>InfoNetflix</font>
+                <textcolor>$PARAM[textcolor]</textcolor>
+                <selectedcolor>$PARAM[selectedcolor]</selectedcolor>
+                <label>$PARAM[label_line_1]</label>
+                <animation effect="slide" end="0,18" condition="$EXP[Label2_Dialog_Select_Empty]">Conditional</animation>
+                <visible>$PARAM[visible]</visible>
+            </control>
+
+            <!-- LABEL2 - LINE 2 -->
+
+            <control type="label">
+                <left>150</left>
+                <top>18</top>
+                <width>668</width>
+                <height>135</height>
+                <font>Mini</font>
+                <textcolor>$PARAM[textcolor]</textcolor>
+                <selectedcolor>$PARAM[selectedcolor]</selectedcolor>
+                <label>$PARAM[label_line_2]</label>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Item_IsPlaying">
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="5" />
+        <param name="width" value="$PARAM[width]" default="100%" />
+        <param name="condition_scroll_anim" value="$PARAM[condition_scroll_anim]" default="true" />
+
+        <definition>
+            <control type="group">
+                <width>$PARAM[width]</width>
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                    <texture border="12" colordiffuse="Dark3">$VAR[texture_box12]</texture>
+                    <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+                    <visible>ListItem.IsPlaying</visible>
+                    <visible>$PARAM[visible]</visible>
+                </control>
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                    <aspectratio aligny="top">center</aspectratio>
+                    <texture border="12">common/selected_rounded.png</texture>
+                    <animation effect="fade" start="100" end="15" condition="ListItem.IsPlaying">Conditional</animation>
+                    <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+                    <visible>ListItem.IsPlaying</visible>
+                    <visible>$PARAM[visible]</visible>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Focus_IsPlaying">
+        <param name="pad_image" value="$PARAM[pad_image]" default="5" />
+        <param name="width" value="$PARAM[width]" default="100%" />
+        <param name="list_id" value="$PARAM[list_id]" default="50" />
+        <param name="condition_scroll_anim" value="$PARAM[condition_scroll_anim]" default="true" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <definition>
+            <control type="group">
+                <width>$PARAM[width]</width>
+                <control type="image">
+                    <include>Texture_Layout_Item_Focus</include>
+                    <animation effect="fade" start="100" end="50" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
+                    <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+                    <visible>$PARAM[visible]</visible>
+                </control>
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                    <aspectratio aligny="top">center</aspectratio>
+                    <texture border="12">common/selected_rounded.png</texture>
+                    <animation effect="fade" start="100" end="15" condition="ListItem.IsPlaying">Conditional</animation>
+                    <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+                    <visible>ListItem.IsPlaying</visible>
+                    <visible>$PARAM[visible]</visible>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Item_IsPlaying_square">
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="5" />
+        <param name="condition_scroll_anim" value="$PARAM[condition_scroll_anim]" default="true" />
+
+        <definition>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                <texture colordiffuse="Dark3">common/white.png</texture>
+                <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+                <visible>ListItem.IsPlaying</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                <aspectratio aligny="top">center</aspectratio>
+                <texture>common/selected.png</texture>
+                <animation effect="fade" start="100" end="15" condition="ListItem.IsPlaying">Conditional</animation>
+                <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+                <visible>ListItem.IsPlaying</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_List_Focus_IsPlaying_square">
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="5" />
+        <param name="condition_scroll_anim" value="$PARAM[condition_scroll_anim]" default="true" />
+
+        <definition>
+            <control type="image">
+                <include>Texture_PVR_Item_Focus</include>
+                <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                <aspectratio aligny="top">center</aspectratio>
+                <texture border="12">common/selected.png</texture>
+                <animation effect="fade" start="100" end="15" condition="ListItem.IsPlaying">Conditional</animation>
+                <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+                <visible>ListItem.IsPlaying</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_52_Icon">
+        <param name="left" value="$PARAM[left]" default="8" />
+        <param name="top" value="$PARAM[top]" default="8" />
+        <param name="width" value="$PARAM[width]" default="94" />
+        <param name="height" value="$PARAM[height]" default="94" />
+
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="icon_w100_h100" />
+
+        <param name="texture_icon" value="$PARAM[texture_icon]" default="$VAR[Image_Poster]" />
+        <param name="visible_icon" value="$PARAM[visible_icon]" default="$EXP[View_Artwork_Condition] + $EXP[View_Artwork_Specific] + !ListItem.IsParentFolder" />
+
+        <param name="colordiffuse_background_icon_black" value="$PARAM[colordiffuse_background_icon_black]" default="Black12" />
+        <param name="colordiffuse_icon_black" value="$PARAM[colordiffuse_icon_black]" default="Dark1" />
+        <param name="texture_icon_black" value="$PARAM[texture_icon_black]" default="$VAR[Image_Poster]" />
+        <param name="visible_icon_black" value="$PARAM[visible_icon_black]" default="$EXP[View_Icon_Black]" />
+
+        <definition>
+
+            <!-- BACKGROUND -->
+
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <texture border="8" colordiffuse="$PARAM[colordiffuse_background_icon_black]">diffuse/$PARAM[texture_diffuse].png</texture>
+                <!-- <visible>$PARAM[visible_icon_black]</visible> -->
+            </control>
+
+            <!-- ICON -->
+
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true">$PARAM[texture_icon]</texture>
+                <visible>$PARAM[visible_icon]</visible>
+            </control>
+
+            <!-- ICON BLACK -->
+
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                <texture colordiffuse="$PARAM[colordiffuse_icon_black]">$PARAM[texture_icon_black]</texture>
+                <visible>$PARAM[visible_icon_black]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Layout_Item_Focus">
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <param name="condition_scroll_anim" value="$PARAM[condition_scroll_anim]" default="true" />
+        <param name="fade_condition" value="$PARAM[fade_condition]" default="false" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                <include>Texture_Layout_Item_Focus</include>
+                <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+                <animation effect="fade" start="100" end="33" condition="$PARAM[fade_condition]">Conditional</animation>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <!-- VIEWS LAYOUT - PVR - CONTEXTE MENU - ICONS -->
+
+    <include name="Def_Context_Menu_PVR_Icon">
+        <control type="grouplist" id="995">
+            <include>Animation_Scrolltime_Views_List</include>
+
+            <left>20</left>
+            <width>470</width>
+            <height>64</height>
+
+            <onleft>995</onleft>
+            <onright>995</onright>
+            <onback>50</onback>
+
+            <itemgap>11</itemgap>
+            <orientation>horizontal</orientation>
+
+            <!-- TV CHANNELS -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="40" />
+                <param name="left" value="-51" />
+                <param name="icon" value="special://skin/extras/icons/livetv.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="8151" />
+                <param name="groupid" value="8951" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
+                <onclick>ActivateWindow(TVChannels)</onclick>
+                <enable>!Window.IsActive(TVChannels)</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="Window.IsActive(TVChannels)">Conditional</animation>
+            </include>
+
+            <!-- TV GUIDE -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="40" />
+                <param name="left" value="-51" />
+                <param name="icon" value="special://skin/extras/icons/tvguide.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="8152" />
+                <param name="groupid" value="8952" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
+                <onclick>ActivateWindow(TvGuide)</onclick>
+                <enable>!Window.IsActive(TvGuide)</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="Window.IsActive(TvGuide)">Conditional</animation>
+            </include>
+
+            <!-- TV RECORDING -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="40" />
+                <param name="left" value="-51" />
+                <param name="icon" value="special://skin/extras/icons/folder-closed.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="8153" />
+                <param name="groupid" value="8953" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
+                <onclick>ActivateWindow(TVRecordings)</onclick>
+                <enable>!Window.IsActive(TVRecordings)</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="Window.IsActive(TVRecordings)">Conditional</animation>
+            </include>
+
+            <!-- TV TIMERS -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="40" />
+                <param name="left" value="-51" />
+                <param name="icon" value="special://skin/extras/icons/timer.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="8154" />
+                <param name="groupid" value="8954" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
+                <onclick>ActivateWindow(TVTimers)</onclick>
+                <enable>!Window.IsActive(TVTimers)</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="Window.IsActive(TVTimers)">Conditional</animation>
+            </include>
+
+            <!-- TV TIMERS RULES -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="40" />
+                <param name="left" value="-51" />
+                <param name="icon" value="special://skin/extras/icons/recent.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="8155" />
+                <param name="groupid" value="8955" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
+                <onclick>ActivateWindow(TvTimerRules)</onclick>
+                <enable>!Window.IsActive(TvTimerRules)</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="Window.IsActive(TvTimerRules)">Conditional</animation>
+            </include>
+
+            <!-- TV SEARCH -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="40" />
+                <param name="left" value="-51" />
+                <param name="icon" value="special://skin/extras/icons/search.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="8156" />
+                <param name="groupid" value="8956" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
+                <onclick>ActivateWindow(TVSearch)</onclick>
+                <enable>!Window.IsActive(TVSearch)</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="Window.IsActive(TVSearch)">Conditional</animation>
+            </include>
+
+            <!-- TV PROVIDER -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="40" />
+                <param name="left" value="-51" />
+                <param name="icon" value="special://skin/extras/icons/wifi.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="8157" />
+                <param name="groupid" value="8957" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <include>Def_View_Menu_PVR_Control_Buttons_UpDown_PVR</include>
+                <onclick>ActivateWindow(TVProviders)</onclick>
+                <enable>!Window.IsActive(TVProviders)</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="Window.IsActive(TVProviders)">Conditional</animation>
+            </include>
+        </control>
+    </include>
+
+    <include name="Def_View_Menu_PVR_Control_Buttons_UpDown_PVR">
+
+        <!-- menu list bottom -->
+
+        <onup condition="Window.IsVisible(MyPVRChannels.xml)">SetFocus(4)</onup>
+        <onup condition="Window.IsVisible(MyPVRGuide.xml)">SetFocus(4)</onup>
+        <onup condition="Window.IsVisible(MyPVRRecordings.xml)">SetFocus(4)</onup>
+        <onup condition="Window.IsVisible(MyPVRTimers.xml)">SetFocus(4)</onup>
+        <onup condition="Window.IsVisible(MyPVRSearch.xml)">SetFocus(4)</onup>
+        <onup condition="Window.IsVisible(MyPVRProviders.xml)">SetFocus(4)</onup>
+
+        <!-- menu list top -->
+
+        <ondown condition="Window.IsVisible(MyPVRChannels.xml)">SetFocus(28)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRGuide.xml)">SetFocus(28)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRRecordings.xml)">SetFocus(10)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRTimers.xml)">SetFocus(8)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRSearch.xml)">SetFocus(3)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRProviders.xml)">SetFocus(3)</ondown>
+
+        <!-- mini player -->
+        <ondown condition="$EXP[Display_Views_Menu_MiniPlayer] + Control.IsEnabled(6157)">SetFocus(6157)</ondown>
+    </include>
+
+
+
+    <!-- ===================================== -->
+    <!--            DIALOG - MENU              -->
+    <!-- ===================================== -->
+
+    <include name="Def_View_Focus_Dialog_Menu_On_Right">
+        <param name="id" value="$PARAM[id]" default="9000" />
+        <definition>
+            <onright condition="!Skin.HasSetting(global.kioskmode)">$PARAM[id]</onright>
+            <onright condition="!Skin.HasSetting(global.kioskmode) + [Player.HasMedia | Player.Playing]">AlarmClock(GoToButtonFullScreen,SetFocus(6157),00:00,silent)</onright>
+        </definition>
+    </include>
+
+    <include name="Def_View_Focus_Dialog_Menu_On_Left">
+        <param name="id" value="$PARAM[id]" default="9000" />
+        <definition>
+            <onleft condition="!Skin.HasSetting(global.kioskmode)">$PARAM[id]</onleft>
+            <onleft condition="!Skin.HasSetting(global.kioskmode) + [Player.HasMedia | Player.Playing]">AlarmClock(GoToButtonFullScreen,SetFocus(6157),00:00,silent)</onleft>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Menu_Background_Overlay">
+        <control type="group">
+            <visible>$EXP[View_Context_Menu_Visible]</visible>
+            <include>Animation_Common_Fade_In</include>
+            <include>Animation_Common_Fade_Out</include>
+            <include content="Background_Overlay"><param name="fade_end" value="70" /></include>
+        </control>
+    </include>
+
+    <include name="Def_Dialog_Menu_Box">
+        <param name="height" default="366" />
+        <param name="width" default="470" />
+        <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" default="$VAR[Color_Border]" />
+        <param name="colordiffuse_shadow" value="$PARAM[colordiffuse_shadow]" default="$VAR[Color_Shadow]" />
+        <param name="visible" default="$EXP[View_Context_Menu_Visible]" />
+
+        <definition>
+            <visible allowhiddenfocus="true">$PARAM[visible]</visible>
+
+            <top>184</top>
+            <centerleft>50%</centerleft>
+            <height>$PARAM[height]</height>
+            <width>$PARAM[width]</width>
+
+            <include content="Def_Dialog_Image_Background">
+                <param name="colordiffuse" value="White100" />
+                <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" />
+                <param name="colordiffuse_shadow" value="$PARAM[colordiffuse_shadow]" />
+            </include>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Menu_Button_Title">
+        <height>70</height>
+        <align>left</align>
+        <width>438</width>
+        <textoffsetx>30</textoffsetx>
+        <font>Button</font>
+        <textcolor>$VAR[Color_Label_Settings_Title]</textcolor>
+        <disabledcolor>$VAR[Color_Label_Settings_Title]</disabledcolor>
+        <animation effect="fade" start="100" end="60" condition="true">Conditional</animation>
+        <enable>false</enable>
+    </include>
+
+    <include name="Def_Dialog_Menu_Button_Focus_Select">
+        <left>16</left>
+        <width>438</width>
+        <height>70</height>
+        <align>left</align>
+        <radioposx>384</radioposx>
+        <textwidth>340</textwidth>
+        <textoffsetx>30</textoffsetx>
+        <font>Tiny</font>
+        <textcolor>Black70</textcolor>
+        <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
+        <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
+        <focusedcolor>Selected</focusedcolor>
+        <include>Texture_Highlight_Focus</include>
+        <include condition="true">Animation_View_List_Focus_Scroll</include>
+    </include>
+
+    <include name="Def_Dialog_Menu_GroupList">
+        <param name="height" default="350" />
+        <param name="idlayout" default="50" />
+        <definition>
+            <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
+
+            <onright>$PARAM[idlayout]</onright>
+
+            <onleft condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onleft>
+            <onleft condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onleft>
+
+            <onback condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onback>
+            <onback condition="!String.IsEmpty(Window(Home).Property(reloadskin))">3033</onback>
+
+            <left>0</left>
+            <top>16</top>
+            <width>470</width>
+            <height>$PARAM[height]</height>
+            <itemgap>0</itemgap>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Menu_GroupList_scrollbar">
+        <param name="height" default="350" />
+        <param name="idlayout" default="50" />
+        <param name="scrollid" default="9070" />
+
+        <definition>
+            <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
+
+            <onright>$PARAM[scrollid]</onright>
+
+            <onup>9000</onup>
+            <ondown>9000</ondown>
+
+            <onleft condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onleft>
+            <onleft condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onleft>
+
+            <onback condition="String.IsEmpty(Window(Home).Property(reloadskin))">$PARAM[idlayout]</onback>
+            <onback condition="!String.IsEmpty(Window(Home).Property(reloadskin))">3033</onback>
+
+            <top>112</top>
+            <left>0</left>
+            <width>470</width>
+            <height>$PARAM[height]</height>
+
+            <itemgap>0</itemgap>
+            <orientation>vertical</orientation>
+            <pagecontrol>$PARAM[scrollid]</pagecontrol>
+            <usecontrolcoords>true</usecontrolcoords>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Menu_Button_Playlist">
+        <control type="button" id="6147">
+            <include>Def_Dialog_Menu_Button_Title</include>
+            <label>13350</label>
+            <visible>[!String.IsEqual(Playlist.Length(music),0) + Window.IsVisible(MyMusicNav.xml)] | [!String.IsEqual(Playlist.Length(video),0) + Window.IsVisible(MyVideoNav.xml)]</visible>
+            <visible>!Player.HasMedia + !Player.Playing</visible>
+        </control>
+        <control type="button" id="6148">
+            <description>Music playlist</description>
+            <label>13350</label>
+            <label2>$INFO[Playlist.Length(music)]</label2>
+            <include>Def_Dialog_Menu_Button_Focus_Select</include>
+            <onclick>ActivateWindow(musicplaylist)</onclick>
+            <visible>!String.IsEqual(Playlist.Length(music),0) + Window.IsVisible(MyMusicNav.xml)</visible>
+            <visible>!Player.HasMedia + !Player.Playing</visible>
+        </control>
+        <control type="button" id="6149">
+            <description>Video playlist</description>
+            <label>13350</label>
+            <label2>$INFO[Playlist.Length(video)]</label2>
+            <include>Def_Dialog_Menu_Button_Focus_Select</include>
+            <onclick>ActivateWindow(videoplaylist)</onclick>
+            <visible>!String.IsEqual(Playlist.Length(video),0) + Window.IsVisible(MyVideoNav.xml)</visible>
+            <visible>!Player.HasMedia + !Player.Playing</visible>
+        </control>
+    </include>
+
+    <!-- contexte menu layout - workaround for myvideonav.xml select "sort" for "label" -->
+    <include name="Def_Dialog_Menu_Hidden_Button_id2_id3">
+        <control type="button" id="2">
+            <description>Viewtype Toggle</description>
+            <include>Def_Hidden_ListControl</include>
+        </control>
+
+        <control type="button" id="3">
+            <description>Viewtype Toggle</description>
+            <include>Def_Hidden_ListControl</include>
+        </control>
+    </include>
+
+
+
+    <!-- ===================================== -->
+    <!--  VIEWS - CONTEXTE MENU - MINIPLAYER   -->
+    <!-- ===================================== -->
+
+    <include name="Def_Dialog_Menu_MiniPlayer_Button_UpDown">
+        <ondown condition="Window.IsVisible(Custom_1111_Hub_Movies.xml)">SetFocus(9296)</ondown>
+        <ondown condition="Window.IsVisible(MyPlaylist.xml) + !MusicPartyMode.Enabled">SetFocus(20)</ondown>
+        <ondown condition="Window.IsVisible(MyPlaylist.xml) + MusicPartyMode.Enabled">SetFocus(9011)</ondown>
+        <ondown condition="Window.IsVisible(MyMusicNav.xml)">SetFocus(16)</ondown>
+        <ondown condition="Window.IsVisible(AddonBrowser.xml)">SetFocus(9)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRChannels.xml)">SetFocus(28)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRGuide.xml)">SetFocus(28)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRRecordings.xml)">SetFocus(10)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRTimers.xml)">SetFocus(8)</ondown>
+        <ondown condition="Window.IsVisible(MyPVRSearch.xml)">SetFocus(3)</ondown>
+        <ondown condition="Window.IsVisible(MyFavourites.xml)">SetFocus(19)</ondown>
+        <ondown condition="Window.IsVisible(MyGames.xml)">SetFocus(9011)</ondown>
+        <ondown condition="Window.IsVisible(MyPics.xml) + !Control.IsVisible(7)">SetFocus(6)</ondown>
+        <ondown condition="Window.IsVisible(MyPics.xml) + Control.IsVisible(7)">SetFocus(7)</ondown>
+        <ondown condition="Window.IsVisible(MyPrograms.xml)">SetFocus(9011)</ondown>
+        <ondown condition="Window.IsVisible(MyVideoNav.xml) + Control.IsVisible(10)">SetFocus(10)</ondown>
+        <ondown condition="Window.IsVisible(MyVideoNav.xml) + !Control.IsVisible(10)">SetFocus(19)</ondown>
+        <ondown condition="Window.IsVisible(MyWeather.xml)">SetFocus(9008)</ondown>
+        <ondown condition="Window.IsVisible(MyMusicPlaylistEditor.xml)">SetFocus(6)</ondown>
+        <ondown condition="Window.IsVisible(FileManager.xml)">SetFocus(10)</ondown>
+    </include>
+
+    <include name="Def_Dialog_Menu_MiniPlayer_Button_OnClick">
+        <onclick condition="Window.IsVisible(Custom_1111_Hub_Movies.xml)">SetFocus(9296)</onclick>
+        <onclick condition="Window.IsVisible(MyPlaylist.xml) + !MusicPartyMode.Enabled">SetFocus(20)</onclick>
+        <onclick condition="Window.IsVisible(MyPlaylist.xml) + MusicPartyMode.Enabled">SetFocus(9011)</onclick>
+        <onclick condition="Window.IsVisible(MyMusicNav.xml)">SetFocus(16)</onclick>
+        <onclick condition="Window.IsVisible(AddonBrowser.xml)">SetFocus(9)</onclick>
+        <onclick condition="Window.IsVisible(MyPVRChannels.xml)">SetFocus(28)</onclick>
+        <onclick condition="Window.IsVisible(MyPVRGuide.xml)">SetFocus(28)</onclick>
+        <onclick condition="Window.IsVisible(MyPVRRecordings.xml)">SetFocus(10)</onclick>
+        <onclick condition="Window.IsVisible(MyPVRTimers.xml)">SetFocus(8)</onclick>
+        <onclick condition="Window.IsVisible(MyPVRSearch.xml)">SetFocus(3)</onclick>
+        <onclick condition="Window.IsVisible(MyFavourites.xml)">SetFocus(19)</onclick>
+        <onclick condition="Window.IsVisible(MyGames.xml)">SetFocus(9011)</onclick>
+        <onclick condition="Window.IsVisible(MyPics.xml) + !Control.IsVisible(7)">SetFocus(6)</onclick>
+        <onclick condition="Window.IsVisible(MyPics.xml) + Control.IsVisible(7)">SetFocus(7)</onclick>
+        <onclick condition="Window.IsVisible(MyPrograms.xml)">SetFocus(9011)</onclick>
+        <onclick condition="Window.IsVisible(MyVideoNav.xml)">SetFocus(14)</onclick>
+        <onclick condition="Window.IsVisible(MyWeather.xml)">SetFocus(9008)</onclick>
+        <onclick condition="Window.IsVisible(MyMusicPlaylistEditor.xml)">SetFocus(6)</onclick>
+    </include>
+
+    <include name="Def_Dialog_Menu_MiniPlayer_OSD">
+        <control type="grouplist" id="6150">
+            <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+
+            <top>16</top>
+            <left>25</left>
+            <width>426</width>
+            <height>54</height>
+
+            <itemgap>9</itemgap>
+            <orientation>horizontal</orientation>
+
+            <onleft>6150</onleft>
+            <onright>6150</onright>
+
+            <!-- PREVIOUS -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="36" />
+                <param name="left" value="-45" />
+                <param name="icon" value="osd/next.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="flipx" value="true" />
+                <param name="id" value="6151" />
+                <param name="groupid" value="6199" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <onclick>PlayerControl(Previous)</onclick>
+                <enable>Player.PauseEnabled</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_UpDown</include>
+            </include>
+
+            <!-- REWIND -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="36" />
+                <param name="left" value="-45" />
+                <param name="icon" value="osd/ff.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="flipx" value="true" />
+                <param name="id" value="6152" />
+                <param name="groupid" value="6299" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <onclick>PlayerControl(Rewind)</onclick>
+                <enable>Player.SeekEnabled</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_UpDown</include>
+            </include>
+
+            <!-- PLAY / PAUSE -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="36" />
+                <param name="left" value="-45" />
+                <param name="icon" value="$VAR[Image_OSD_PlayPause]" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6153" />
+                <param name="groupid" value="6399" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <onclick>PlayerControl(Play)</onclick>
+                <enable>Player.PauseEnabled</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_UpDown</include>
+            </include>
+
+            <!-- STOP -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="36" />
+                <param name="left" value="-45" />
+                <param name="icon" value="osd/stop.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6154" />
+                <param name="groupid" value="6499" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick>PlayerControl(Stop)</onclick>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_UpDown</include>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_OnClick</include>
+            </include>
+
+            <!-- FORWARD -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="36" />
+                <param name="left" value="-45" />
+                <param name="icon" value="osd/ff.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6155" />
+                <param name="groupid" value="6599" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <onclick>PlayerControl(Forward)</onclick>
+                <enable>Player.SeekEnabled</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_UpDown</include>
+            </include>
+
+            <!-- NEXT -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="36" />
+                <param name="left" value="-45" />
+                <param name="icon" value="osd/next.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6156" />
+                <param name="groupid" value="6699" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick>PlayerControl(Next)</onclick>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_UpDown</include>
+            </include>
+
+            <!-- PLAY FULL SCREEN  -->
+
+            <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="36" />
+                <param name="left" value="-45" />
+                <param name="icon" value="osd/fullscreen.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6157" />
+                <param name="groupid" value="6799" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick condition="Player.HasVideo">ActivateWindow(fullscreenvideo)</onclick>
+                <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_UpDown</include>
+            </include>
+
+            <!-- PLAYLIST -->
+
+             <include content="Object_OSD_Button">
+                <param name="visible" value="true" />
+                <param name="size" value="36" />
+                <param name="left" value="-45" />
+                <param name="icon" value="osd/playlist2.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6158" />
+                <param name="groupid" value="6899" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <onclick condition="Integer.IsGreater(Playlist.Length(video),0) + [Player.HasVideo | Integer.IsEqual(Playlist.Length(music),0)]">ActivateWindow(videoplaylist)</onclick>
+                <onclick condition="Integer.IsGreater(Playlist.Length(music),0) + !Player.HasVideo">ActivateWindow(musicplaylist)</onclick>
+                <enable>!VideoPlayer.Content(livetv) + !Window.IsVisible(MyPlaylist.xml) + [Integer.IsGreater(Playlist.Length(video),0) | Integer.IsGreater(Playlist.Length(music),0)]</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="VideoPlayer.Content(livetv) | Window.IsVisible(MyPlaylist.xml) | [!Integer.IsGreater(Playlist.Length(video),0) + !Integer.IsGreater(Playlist.Length(music),0)]">Conditional</animation>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_UpDown</include>
+            </include>
+
+            <!-- USER RATING -->
+
+            <include content="Object_OSD_Button" condition="!String.IsEmpty(MusicPlayer.DBID) | Window.IsVisible(MyMusicNav.xml) | String.IsEqual(Container.FolderPath,playlistmusic://)">
+                <param name="visible" value="true" />
+                <param name="size" value="36" />
+                <param name="left" value="-45" />
+                <param name="icon" value="$VAR[Image_OSD_UserRating]" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6159" />
+                <param name="groupid" value="6999" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <include>Def_On_User_Rating</include>
+                <onclick>SetRating</onclick>
+                <enable>!String.IsEmpty(MusicPlayer.DBID) | String.IsEqual(Container.FolderPath,playlistmusic://)</enable>
+                <animation effect="fade" start="100" end="66" time="100" condition="String.IsEmpty(MusicPlayer.DBID)">Conditional</animation>
+                <include>Def_Dialog_Menu_MiniPlayer_Button_UpDown</include>
+            </include>
+        </control>
+    </include>
+
+    <include name="Def_Dialog_Menu_MiniPlayer">
+        <control type="label" id="7979">
+            <left>20</left>
+            <right>20</right>
+            <height>60</height>
+            <font>InfoNetflix</font>
+            <align>left</align>
+            <textcolor>Dark2</textcolor>
+            <scroll>true</scroll>
+            <label fallback="19055">$VAR[Label_Layout_Context_Menu_OSD_Player]</label>
+            <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+        </control>
+        <control type="group" id="7878">
+            <left>20</left>
+            <right>20</right>
+            <height>10</height>
+            <include>Object_OSD_Progress_Bar_Info</include>
+            <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+        </control>
+        <include>Def_Dialog_Menu_MiniPlayer_OSD</include>
+    </include>
+
+    <!-- WIP - NOT USED YET -->
+
+    <include name="Def_Dialog_Menu_MiniPlayer_Background">
+        <control type="group">
+            <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+            <top>178</top>
+            <left>5</left>
+            <width>460</width>
+            <height>150</height>
+            <include content="Def_Art_Full_Background_b24"><param name="colordiffuse" value="White70" /></include>
+        </control>
+    </include>
+
+    <!-- ===================================== -->
+    <!-- ===================================== -->
+
+    <!-- NORMAL LAYOUT -->
+
+    <include name="Def_Normal_Layout_Item">
+        <param name="Banner" default="false" />
+        <param name="Thumbnail" default="false" />
+        <param name="Fanart" default="false" />
+        <param name="FanartSmall" default="false" />
+        <param name="ThumbnailSmall" default="false" />
+        <param name="PosterFanartSmall" default="false" />
+        <param name="Square" default="false" />
+        <param name="SquareMiddle" default="false" />
+        <param name="SquareSmall" default="false" />
+        <param name="aspectratio" default="scale" />
+
+        <definition>
+            <itemlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[PosterFanartSmall] | $PARAM[Square] | $PARAM[SquareMiddle] | $PARAM[SquareSmall]]">
+                <control type="group">
+                    <width>222</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Poster">
+                        <param name="texture" value="$VAR[Image_Poster]" />
+                        <param name="texture_diffuse" value="poster_w202_h305" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="false" />
+                    </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="325" condition="$PARAM[Square]">
+                <control type="group">
+                <width>325</width>
+                <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                <include content="Layout_Widget_Square">
+                    <param name="texture" value="$VAR[Image_Poster]" />
+                    <param name="texture_diffuse" value="square_w305_h305" />
+                    <param name="aspectratio" value="scale" />
+                    <param name="distance" value="$PARAM[distance]" />
+                    <param name="height" value="$PARAM[height]" />
+                    <param name="image_height" value="325" />
+                    <param name="middle" value="false" />
+                    <param name="small" value="false" />
+                </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="260" condition="$PARAM[SquareMiddle]">
+                <control type="group">
+                <width>260</width>
+                <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                <include content="Layout_Widget_Square">
+                    <param name="visible_background_b12" value="true" />
+                    <param name="texture" value="$VAR[Image_Poster]" />
+                    <param name="texture_diffuse" value="square_w240_h240" />
+                    <param name="aspectratio" value="scale" />
+                    <param name="height" value="$PARAM[height]" />
+                    <param name="image_height" value="260" />
+                    <param name="middle" value="true" />
+                    <param name="small" value="false" />
+                </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="222" condition="$PARAM[SquareSmall]">
+                <control type="group">
+                    <width>222</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Square">
+                        <param name="visible_background_b12" value="true" />
+                        <param name="texture" value="$VAR[Image_Poster]" />
+                        <param name="texture_diffuse" value="square_w202_h202" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="height" value="$PARAM[height]" />
+                        <param name="image_height" value="222" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="true" />
+                    </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="562" condition="$PARAM[Fanart]">
+                <control type="group">
+                    <width>562</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Fanart">
+                        <param name="texture" value="$VAR[Image_Widget_Fanart]" />
+                        <param name="texture_diffuse" value="fanart_w570_h305" />
+                        <param name="height" value="$PARAM[height]" />
+                        <param name="image_height" value="325" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="false" />
+                    </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="400" condition="$PARAM[FanartSmall]">
+                <control type="group">
+                    <width>400</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Fanart">
+                        <param name="visible_background_b12" value="true" />
+                        <param name="texture" value="$VAR[Image_Widget_Fanart]" />
+                        <param name="texture_diffuse" value="fanart_w380_h214" />
+                        <param name="height" value="$PARAM[height]" />
+                        <param name="image_height" value="234" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="true" />
+                    </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="562" condition="$PARAM[Thumbnail]">
+                <control type="group">
+                    <width>562</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Thumb">
+                        <param name="texture" value="$VAR[Image_Widget_Thumb]" />
+                        <param name="texture_diffuse" value="fanart_w570_h305" />
+                        <param name="height" value="$PARAM[height]" />
+                        <param name="image_height" value="325" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="false" />
+                    </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="400" condition="$PARAM[ThumbnailSmall]">
+                <control type="group">
+                    <width>400</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Thumb">
+                        <param name="visible_background_b12" value="true" />
+                        <param name="texture" value="$VAR[Image_Widget_Thumb]" />
+                        <param name="texture_diffuse" value="fanart_w380_h214" />
+                        <param name="height" value="$PARAM[height]" />
+                        <param name="image_height" value="234" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="true" />
+                    </include>
+                </control>
+            </itemlayout>
+        </definition>
+    </include>
+
+    <include name="Def_Normal_Layout_Item_Focus">
+        <param name="Banner" default="false" />
+        <param name="Thumbnail" default="false" />
+        <param name="Fanart" default="false" />
+        <param name="FanartSmall" default="false" />
+        <param name="ThumbnailSmall" default="false" />
+        <param name="PosterFanartSmall" default="false" />
+        <param name="Square" default="false" />
+        <param name="SquareMiddle" default="false" />
+        <param name="SquareSmall" default="false" />
+
+        <definition>
+            <focusedlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[PosterFanartSmall] | $PARAM[Square] | $PARAM[SquareMiddle] | $PARAM[SquareSmall]] | $EXP[Home_Is_Horizontal_Clean]">
+                <control type="group">
+                    <width>222</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Poster_Focus">
+                        <param name="texture" value="$VAR[Image_Poster]" />
+                        <param name="texture_diffuse" value="poster_w202_h305" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="false" />
+                    </include>
+                    <include content="Button_Home_Clean_Set_Widget_Container_Position" condition="$EXP[Home_Is_Horizontal_Clean]">
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                    </include>
+                </control>
+                <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix] | $EXP[Home_Is_Horizontal_Clean]]">Button_Auto_Trailer_Control</include>
+                <include>Button_Home_Widget_Set_DBID_FolderPath</include>
+            </focusedlayout>
+            <focusedlayout height="325" width="325" condition="$PARAM[Square] + !$EXP[Home_Is_Horizontal_Clean]">
+                <control type="group">
+                    <width>325</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Square_Focus">
+                        <param name="texture" value="$VAR[Image_Poster]" />
+                        <param name="texture_diffuse" value="square_w305_h305" />
+                        <param name="image_height" value="325" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="glow_left" value="1" />
+                        <param name="glow_right" value="2" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="false" />
+                    </include>
+                </control>
+                <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix] | $EXP[Home_Is_Horizontal_Clean]]">Button_Auto_Trailer_Control</include>
+                <include>Button_Home_Widget_Set_DBID_FolderPath</include>
+            </focusedlayout>
+            <focusedlayout height="325" width="260" condition="$PARAM[SquareMiddle] + !$EXP[Home_Is_Horizontal_Clean]">
+                <control type="group">
+                    <width>260</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Square_Focus">
+                        <param name="visible_background_b12" value="true" />
+                        <param name="texture" value="$VAR[Image_Poster]" />
+                        <param name="texture_diffuse" value="square_w240_h240" />
+                        <param name="image_height" value="260" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="glow_left" value="1" />
+                        <param name="glow_right" value="2" />
+                        <param name="middle" value="true" />
+                        <param name="small" value="false" />
+                    </include>
+                </control>
+                <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix] | $EXP[Home_Is_Horizontal_Clean]]">Button_Auto_Trailer_Control</include>
+                <include>Button_Home_Widget_Set_DBID_FolderPath</include>
+            </focusedlayout>
+            <focusedlayout height="325" width="222" condition="$PARAM[SquareSmall] + !$EXP[Home_Is_Horizontal_Clean]">
+                <control type="group">
+                    <width>222</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Square_Focus">
+                        <param name="visible_background_b12" value="true" />
+                        <param name="texture" value="$VAR[Image_Poster]" />
+                        <param name="texture_diffuse" value="square_w202_h202" />
+                        <param name="image_height" value="222" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="glow_left" value="1" />
+                        <param name="glow_right" value="2" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="true" />
+                    </include>
+                </control>
+                <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix] | $EXP[Home_Is_Horizontal_Clean]]">Button_Auto_Trailer_Control</include>
+                <include>Button_Home_Widget_Set_DBID_FolderPath</include>
+            </focusedlayout>
+            <focusedlayout height="325" width="562" condition="$PARAM[Fanart] + !$EXP[Home_Is_Horizontal_Clean]">
+                <control type="group">
+                    <width>562</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Fanart_Focus">
+                        <param name="texture" value="$VAR[Image_Widget_Fanart]" />
+                        <param name="texture_diffuse" value="fanart_w570_h305" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="image_height" value="325" />
+                        <param name="glow_left" value="10" />
+                        <param name="glow_right" value="11" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="false" />
+                    </include>
+                </control>
+                <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix] | $EXP[Home_Is_Horizontal_Clean]]">Button_Auto_Trailer_Control</include>
+                <include>Button_Home_Widget_Set_DBID_FolderPath</include>
+            </focusedlayout>
+
+            <focusedlayout height="325" width="400" condition="$PARAM[FanartSmall] + !$EXP[Home_Is_Horizontal_Clean]">
+                <control type="group">
+                    <width>400</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Fanart_Focus">
+                        <param name="visible_background_b12" value="true" />
+                        <param name="texture" value="$VAR[Image_Widget_Fanart]" />
+                        <param name="texture_diffuse" value="fanart_w380_h214" />
+                        <param name="image_height" value="234" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="glow_left" value="4" />
+                        <param name="glow_right" value="5" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="true" />
+                    </include>
+                </control>
+                <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix] | $EXP[Home_Is_Horizontal_Clean]]">Button_Auto_Trailer_Control</include>
+                <include>Button_Home_Widget_Set_DBID_FolderPath</include>
+            </focusedlayout>
+
+            <focusedlayout height="325" width="562" condition="$PARAM[Thumbnail] + !$EXP[Home_Is_Horizontal_Clean]">
+                <control type="group">
+                    <width>562</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Thumb_Focus">
+                        <param name="texture" value="$VAR[Image_Widget_Thumb]" />
+                        <param name="texture_diffuse" value="fanart_w570_h305" />
+                        <param name="image_height" value="325" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="glow_left" value="10" />
+                        <param name="glow_right" value="11" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="false" />
+                    </include>
+                </control>
+                <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix] | $EXP[Home_Is_Horizontal_Clean]]">Button_Auto_Trailer_Control</include>
+                <include>Button_Home_Widget_Set_DBID_FolderPath</include>
+            </focusedlayout>
+
+            <focusedlayout height="325" width="400" condition="$PARAM[ThumbnailSmall] + !$EXP[Home_Is_Horizontal_Clean]">
+                <control type="group">
+                    <width>400</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Thumb_Focus">
+                        <param name="visible_background_b12" value="true" />
+                        <param name="texture" value="$VAR[Image_Widget_Thumb]" />
+                        <param name="texture_diffuse" value="fanart_w380_h214" />
+                        <param name="image_height" value="234" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="glow_left" value="4" />
+                        <param name="glow_right" value="5" />
+                        <param name="middle" value="false" />
+                        <param name="small" value="true" />
+                    </include>
+                </control>
+                <include condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + [$EXP[Home_Is_Horizontal_Flix] | $EXP[Home_Is_Vertical_Flix] | $EXP[Home_Is_Horizontal_Clean]]">Button_Auto_Trailer_Control</include>
+                <include>Button_Home_Widget_Set_DBID_FolderPath</include>
+            </focusedlayout>
+        </definition>
+    </include>
+
+    <!-- WEATHER LAYOUT -->
+
+    <include name="Def_Weather_Layout_Item">
+        <param name="Fanart" default="false" />
+        <param name="Square" default="false" />
+
+        <definition>
+            <itemlayout height="325" width="222" condition="![$PARAM[Fanart] | $PARAM[Square]]">
+                <control type="group">
+                   <width>222</width>
+                   <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Weather_Poster">
+                        <param name="texture_diffuse" value="poster_w202_h305" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="height" value="$PARAM[height]" />
+                    </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="325" condition="$PARAM[Square]">
+                <control type="group">
+                    <width>325</width>
+                    <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Weather_Square">
+                        <param name="texture_diffuse" value="square_w305_h305" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="height" value="$PARAM[height]" />
+                    </include>
+                </control>
+            </itemlayout>
+            <itemlayout height="325" width="562" condition="$PARAM[Fanart]">
+                <control type="group">
+                   <width>562</width>
+                   <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                    <include content="Layout_Widget_Weather_Fanart">
+                        <param name="texture_diffuse" value="fanart_w570_h305" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="height" value="$PARAM[height]" />
+                    </include>
+                </control>
+            </itemlayout>
+        </definition>
+    </include>
+
+    <include name="Def_Weather_Layout_Item_Focus">
+        <param name="Square" default="false" />
+        <param name="Fanart" default="false" />
+        <definition>
+            <focusedlayout height="325" width="222" condition="![$PARAM[Square] | $PARAM[Fanart]] | $EXP[Home_Is_Horizontal_Clean]">
+                <control type="group">
+                   <width>222</width>
+                   <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+
+                   <include content="Layout_Widget_Weather_Poster_Focus">
+                        <param name="texture_diffuse" value="poster_w202_h305" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="height" value="$PARAM[height]" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                   </include>
+                </control>
+                <include content="Button_Home_Clean_Set_Widget_Container_Position" condition="$EXP[Home_Is_Horizontal_Clean]">
+                   <param name="id" value="$PARAM[shortcutsid]" />
+                </include>
+            </focusedlayout>
+            <focusedlayout height="325" width="325" condition="$PARAM[Square]">
+                <control type="group">
+                   <width>325</width>
+                   <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                   <include content="Layout_Widget_Weather_Square_Focus">
+                        <param name="texture_diffuse" value="square_w305_h305" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="height" value="$PARAM[height]" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="glow_left" value="2" />
+                        <param name="glow_right" value="3" />
+                   </include>
+                </control>
+            </focusedlayout>
+            <focusedlayout height="325" width="562" condition="$PARAM[Fanart]">
+                <control type="group">
+                   <width>562</width>
+                   <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                   <include content="Layout_Widget_Weather_Fanart_Focus">
+                        <param name="texture_diffuse" value="fanart_w570_h305" />
+                        <param name="aspectratio" value="scale" />
+                        <param name="distance" value="$PARAM[distance]" />
+                        <param name="height" value="$PARAM[height]" />
+                        <param name="id" value="$PARAM[shortcutsid]" />
+                        <param name="glow_left" value="11" />
+                        <param name="glow_right" value="11" />
+                   </include>
+                </control>
+            </focusedlayout>
+        </definition>
+    </include>
+
+    <!-- SYSTEM INFO LAYOUT -->
+
+    <include name="Def_System_Layout_Item">
+        <itemlayout height="325" width="325">
+            <control type="group">
+                <width>325</width>
+                <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                <include>Layout_Widget_Square_System</include>
+            </control>
+        </itemlayout>
+    </include>
+
+    <include name="Def_System_Layout_Item_Focus">
+        <focusedlayout height="325" width="325">
+            <control type="group">
+                <width>325</width>
+                <include content="Def_Left" condition="$EXP[Home_Is_Horizontal] + !Skin.HasSetting(home.style.horizontal.clean)"><param name="left" value="70" /></include>
+                <include content="Layout_Widget_Square_System_Focus">
+                    <param name="texture_diffuse" value="square_w305_h305" />
+                    <param name="id" value="$PARAM[shortcutsid]" />
+                    <param name="glow_left" value="2" />
+                    <param name="glow_right" value="3" />
+                </include>
+            </control>
+            <include content="Button_Home_Clean_Set_Widget_Container_Position" condition="$EXP[Home_Is_Horizontal_Clean]">
+               <param name="id" value="$PARAM[shortcutsid]" />
+            </include>
+        </focusedlayout>
+    </include>
+
+    <!-- VIEW TYPE WALL -->
+
+    <include name="Layout_Viewtype_Wall_Switch">
+        <include content="$PARAM[include]">
+            <param name="id" value="$PARAM[id]" />
+            <param name="onbackid" value="$PARAM[onbackid]" />
+            <param name="viewtype_label" value="$PARAM[viewtype_label]" />
+            <bottom>-80</bottom>
+            <left>-80</left>
+            <right>-80</right>
+            <!-- <visible>!String.IsEqual(Window(Home).Property(WallMode),Container.FolderPath)</visible> -->
+            <!-- <onback>ClearProperty(WallMode,Home)</onback> -->
+            <!-- <visible>!String.Contains(Container.FolderPath,videodb://movies/sets)</visible> -->
+            <nested />
+        </include>
+    </include>
+
+    <include name="Layout_Viewtype_Wall_Furniture">
+        <control type="group">
+            <visible>Control.IsVisible($PARAM[id])</visible>
+            <control type="button" id="1$PARAM[id]">
+                <include>Def_Hidden_Button</include>
+                <onfocus>SetFocus($PARAM[onbackid])</onfocus>
+                <!-- <onfocus>SetProperty(WallMode,$INFO[Container.FolderPath],Home)</onfocus> -->
+            </control>
+            <control type="button" id="2$PARAM[id]">
+                <include>Def_Hidden_Button</include>
+                <onfocus>Container.SetViewMode($PARAM[id])</onfocus>
+                <onfocus condition="!$EXP[JumpbarIfSortMethode]">SetFocus($PARAM[id])</onfocus>
+                <onfocus condition="$EXP[JumpbarIfSortMethode]">SetFocus(390001)</onfocus>
+                <!-- <onfocus>SetProperty(WallMode,$INFO[Container.FolderPath],Home)</onfocus> -->
+            </control>
+        </control>
+    </include>
+
+    <!-- VIEW TYPE WALL - LAYOUT -->
+
+    <include name="Layout_Video_Wall_Poster">
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
+        <param name="focusposition" value="$PARAM[focusposition]" default="0" />
+        <param name="height" value="$PARAM[height]" default="335" />
+        <param name="width" value="$PARAM[width]" default="222" />
+        <param name="orientation" default="vertical" />
+
+        <definition>
+            <control type="panel" id="$PARAM[id]">
+                <visible>String.IsEqual(Window(Home).Property(WallMode),Container.FolderPath) | String.IsEmpty(Window(Home).Property(WallMode))</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>View_Poster_Top</top>
+                <right>View_Poster_Side</right>
+                <left>View_Poster_Side</left>
+                <height>View_Poster_height</height>
+
+                <onup>$PARAM[id]</onup>
+                <ondown>$PARAM[id]</ondown>
+                <onleft>162$PARAM[id]</onleft>
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+                <onback>1$PARAM[id]</onback>
+                <onback>ClearProperty(WallMode,Home)</onback>
+                <onback>Container.SetViewMode($PARAM[onbackid])</onback>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>162$PARAM[id]</pagecontrol>
+                <orientation>$PARAM[orientation]</orientation>
+                <focusposition>$PARAM[focusposition]</focusposition>
+
+                <viewtype label="$PARAM[viewtype_label]">list</viewtype>
+
+                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <include content="Layout_Widget_Poster">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="$PARAM[id]" />
+                            <param name="aspectratio" value="keep" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <control type="group">
+                            <include content="Layout_Widget_Poster_Focus">
+                                <param name="texture_diffuse" value="poster_w202_h305" />
+                                <param name="id" value="$PARAM[id]" />
+                                <param name="aspectratio" value="keep" />
+                            </include>
+                        </control>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="162$PARAM[id]">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="162$PARAM[id]" />
+                    <param name="idlayout" value="$PARAM[id]" />
+                </include>
+            </control>
+
+        </definition>
+    </include>
+
+    <include name="Layout_Video_Wall_Landscape">
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
+        <param name="focusposition" value="$PARAM[focusposition]" default="0" />
+        <param name="height" value="$PARAM[height]" default="337" />
+        <param name="width" value="$PARAM[width]" default="444" />
+
+        <definition>
+            <control type="panel" id="$PARAM[id]">
+                <visible>String.IsEqual(Window(Home).Property(WallMode),Container.FolderPath) | String.IsEmpty(Window(Home).Property(WallMode))</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>View_Poster_Top</top>
+                <left>View_Poster_Side</left>
+                <right>View_Poster_Side</right>
+                <height>674</height>
+
+                <onup>$PARAM[id]</onup>
+                <ondown>$PARAM[id]</ondown>
+                <onleft>160$PARAM[id]</onleft>
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+                <onback>1$PARAM[id]</onback>
+                <onback>ClearProperty(WallMode)</onback>
+                <onback>Container.SetViewMode($PARAM[onbackid])</onback>
+
+                <preloaditems>2</preloaditems>
+                <orientation>vertical</orientation>
+                <pagecontrol>160$PARAM[id]</pagecontrol>
+                <focusposition>$PARAM[focusposition]</focusposition>
+
+                <viewtype label="$PARAM[viewtype_label]">list</viewtype>
+
+                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <control type="group">
+                            <height>325</height>
+                            <include content="Layout_Widget_Landscape">
+                                <param name="texture_diffuse" value="fanart_w424_h225" />
+                                <param name="id" value="$PARAM[id]" />
+                                <param name="height" value="245" />
+                                <param name="image_height" value="245" />
+                            </include>
+                        </control>
+                    </control>
+
+                    <!-- FIRST LINE -->
+
+                    <control type="label">
+                        <font>InfoNetflix</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>center</align>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                    </control>
+
+                    <!-- SECOND LINE -->
+
+                    <control type="label">
+                        <font>Small24</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>center</align>
+                        <textcolor>Dark2</textcolor>
+                        <selectedcolor>Dark2</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <control type="group">
+                            <height>325</height>
+                            <include content="Layout_Widget_Landscape_Focus">
+                                <param name="texture_diffuse" value="fanart_w424_h225" />
+                                <param name="id" value="$PARAM[id]" />
+                                <param name="height" value="245" />
+                                <param name="image_height" value="245" />
+                                <param name="glow_height" value="243" />
+                                <param name="glow_top" value="2" />
+                                <param name="glow_left" value="8" />
+                                <param name="glow_right" value="8" />
+                                <param name="glow_zoom" value="108" />
+                            </include>
+                        </control>
+                    </control>
+
+                    <!-- FIRST LINE -->
+
+                    <control type="label">
+                        <font>InfoNetflix</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>center</align>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                    </control>
+
+                    <!-- SECOND LINE -->
+
+                    <control type="label">
+                        <font>Small24</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>center</align>
+                        <textcolor>Dark2</textcolor>
+                        <selectedcolor>Dark2</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="160$PARAM[id]">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="160$PARAM[id]" />
+                    <param name="idlayout" value="$PARAM[id]" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="$PARAM[id]" /></include>
+        </definition>
+    </include>
+
+    <include name="Layout_Video_Wall_Landscape_Small">
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
+        <param name="focusposition" value="$PARAM[focusposition]" default="0" />
+        <param name="height" value="$PARAM[height]" default="223.33" />
+        <param name="width" value="$PARAM[width]" default="355.66" />
+        <param name="small" value="$PARAM[small]" />
+
+        <definition>
+            <control type="panel" id="$PARAM[id]">
+                <visible>String.IsEqual(Window(Home).Property(WallMode),Container.FolderPath) | String.IsEmpty(Window(Home).Property(WallMode))</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>View_Poster_Top</top>
+                <left>View_Poster_Side</left>
+                <width>1840</width>
+                <height>View_Poster_height</height>
+
+                <onup>$PARAM[id]</onup>
+                <ondown>$PARAM[id]</ondown>
+                <onleft>161$PARAM[id]</onleft>
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+                <onback>1$PARAM[id]</onback>
+                <onback>ClearProperty(WallMode)</onback>
+                <onback>Container.SetViewMode($PARAM[onbackid])</onback>
+
+                <preloaditems>2</preloaditems>
+                <orientation>vertical</orientation>
+                <pagecontrol>161$PARAM[id]</pagecontrol>
+                <focusposition>$PARAM[focusposition]</focusposition>
+
+                <viewtype label="$PARAM[viewtype_label]">list</viewtype>
+
+                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <control type="group">
+                            <include content="Layout_Widget_Landscape">
+                                <param name="texture_diffuse" value="fanart_w335_h207" />
+                                <param name="id" value="$PARAM[id]" />
+                                <param name="height" value="205" />
+                                <param name="image_height" value="205" />
+                                <param name="small" value="true" />
+                            </include>
+                        </control>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <include content="Layout_Widget_Landscape_Focus">
+                            <param name="texture_diffuse" value="fanart_w335_h207" />
+                            <param name="id" value="$PARAM[id]" />
+                            <param name="height" value="205" />
+                            <param name="image_height" value="205" />
+                            <param name="glow_height" value="204" />
+                            <param name="glow_top" value="2" />
+                            <param name="glow_left" value="8" />
+                            <param name="glow_right" value="8" />
+                            <param name="glow_zoom" value="108" />
+                            <param name="small" value="true" />
+                        </include>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="161$PARAM[id]">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="161$PARAM[id]" />
+                    <param name="idlayout" value="$PARAM[id]" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="$PARAM[id]" /></include>
+        </definition>
+    </include>
+
+    <include name="Layout_Video_Wall_Landscape_Big">
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
+        <param name="focusposition" value="$PARAM[focusposition]" default="0" />
+        <param name="height" value="$PARAM[height]" default="335" />
+        <param name="width" value="$PARAM[width]" default="592.33" />
+
+        <definition>
+            <control type="panel" id="$PARAM[id]">
+                <visible>String.IsEqual(Window(Home).Property(WallMode),Container.FolderPath) | String.IsEmpty(Window(Home).Property(WallMode))</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>View_Poster_Top</top>
+                <left>View_Poster_Side</left>
+                <right>View_Poster_Side</right>
+                <height>View_Poster_height</height>
+
+                <onup>$PARAM[id]</onup>
+                <ondown>$PARAM[id]</ondown>
+                <onleft>161$PARAM[id]</onleft>
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+                <onback>1$PARAM[id]</onback>
+                <onback>ClearProperty(WallMode)</onback>
+                <onback>Container.SetViewMode($PARAM[onbackid])</onback>
+
+                <preloaditems>2</preloaditems>
+                <orientation>vertical</orientation>
+                <pagecontrol>161$PARAM[id]</pagecontrol>
+                <focusposition>$PARAM[focusposition]</focusposition>
+
+                <viewtype label="$PARAM[viewtype_label]">list</viewtype>
+
+                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <control type="group">
+                            <height>325</height>
+                            <include content="Layout_Widget_Landscape">
+                                <param name="texture_diffuse" value="fanart_w570_h305" />
+                                <param name="id" value="$PARAM[id]" />
+                                <param name="height" value="325" />
+                                <param name="image_height" value="325" />
+                            </include>
+                        </control>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <control type="group">
+                            <height>325</height>
+                            <include content="Layout_Widget_Landscape_Focus">
+                                <param name="texture_diffuse" value="fanart_w570_h305" />
+                                <param name="id" value="$PARAM[id]" />
+                                <param name="height" value="325" />
+                                <param name="image_height" value="325" />
+                                <param name="glow_left" value="11" />
+                                <param name="glow_right" value="11" />
+                            </include>
+                        </control>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="161$PARAM[id]">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="161$PARAM[id]" />
+                    <param name="idlayout" value="$PARAM[id]" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="$PARAM[id]" /></include>
+        </definition>
+    </include>
+
+    <include name="Layout_Music_Wall_Square">
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
+        <param name="height" value="$PARAM[height]" default="335" />
+        <param name="width" value="$PARAM[width]" default="299.33" />
+        <param name="focusposition" value="$PARAM[focusposition]" default="0" />
+
+        <definition>
+            <control type="panel" id="$PARAM[id]">
+                <visible>String.IsEqual(Window(Home).Property(WallMode),Container.FolderPath) | String.IsEmpty(Window(Home).Property(WallMode))</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>View_Poster_Top</top>
+                <left>View_Poster_Side</left>
+                <width>View_Poster_Width</width>
+                <height>View_Poster_height</height>
+
+                <onup>$PARAM[id]</onup>
+                <ondown>$PARAM[id]</ondown>
+                <onleft>163$PARAM[id]</onleft>
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+                <onback>1$PARAM[id]</onback>
+                <onback>ClearProperty(WallMode)</onback>
+                <onback>Container.SetViewMode($PARAM[onbackid])</onback>
+
+                <preloaditems>2</preloaditems>
+                <orientation>vertical</orientation>
+                <pagecontrol>163$PARAM[id]</pagecontrol>
+                <focusposition>$PARAM[focusposition]</focusposition>
+
+                <viewtype label="$PARAM[viewtype_label]">list</viewtype>
+
+                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <height>280</height>
+                        <width>280</width>
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <include content="Layout_Widget_Square">
+                            <param name="texture_diffuse" value="square_w260_h260" />
+                            <param name="id" value="$PARAM[id]" />
+                            <param name="height" value="280" />
+                            <param name="image_height" value="280" />
+                            <param name="distance" value="10" />
+                            <param name="aspectratio" value="scale" />
+                        </include>
+                    </control>
+
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>24</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>InfoNetflix</font>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                    </control>
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>-10</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>Small24</font>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <height>280</height>
+                        <width>280</width>
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <include content="Layout_Widget_Square_Focus">
+                            <param name="texture_diffuse" value="square_w260_h260" />
+                            <param name="id" value="$PARAM[id]" />
+                            <param name="height" value="280" />
+                            <param name="image_height" value="280" />
+                            <param name="distance" value="10" />
+                            <param name="aspectratio" value="scale" />
+                            <param name="glow_height" value="280" />
+                            <param name="glow_top" value="0" />
+                        </include>
+                    </control>
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>24</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>InfoNetflix</font>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                    </control>
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>-10</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>Small24</font>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="163$PARAM[id]">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="163$PARAM[id]" />
+                    <param name="idlayout" value="$PARAM[id]" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="$PARAM[id]" /></include>
+        </definition>
+    </include>
+
+    <include name="Layout_Music_Wall_Square_Small">
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
+        <param name="height" value="$PARAM[height]" default="222" />
+        <param name="width" value="$PARAM[width]" default="222" />
+        <param name="focusposition" value="$PARAM[focusposition]" default="0" />
+
+        <definition>
+            <control type="panel" id="$PARAM[id]">
+                <visible>String.IsEqual(Window(Home).Property(WallMode),Container.FolderPath) | String.IsEmpty(Window(Home).Property(WallMode))</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>View_Poster_Top</top>
+                <left>View_Poster_Side</left>
+                <width>View_Poster_Width</width>
+                <height>View_Poster_height</height>
+
+                <onup>$PARAM[id]</onup>
+                <ondown>$PARAM[id]</ondown>
+                <onleft>164$PARAM[id]</onleft>
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+                <onback>1$PARAM[id]</onback>
+                <onback>ClearProperty(WallMode)</onback>
+                <onback>Container.SetViewMode($PARAM[onbackid])</onback>
+
+                <preloaditems>2</preloaditems>
+                <orientation>vertical</orientation>
+                <pagecontrol>164$PARAM[id]</pagecontrol>
+                <focusposition>$PARAM[focusposition]</focusposition>
+
+                <viewtype label="$PARAM[viewtype_label]">list</viewtype>
+
+                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <include content="Layout_Widget_Square">
+                            <param name="texture_diffuse" value="square_w202_h202" />
+                            <param name="id" value="$PARAM[id]" />
+                            <param name="height" value="222" />
+                            <param name="image_height" value="222" />
+                            <param name="distance" value="10" />
+                            <param name="aspectratio" value="scale" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <include content="Layout_Widget_Square_Focus">
+                            <param name="texture_diffuse" value="square_w202_h202" />
+                            <param name="id" value="$PARAM[id]" />
+                            <param name="height" value="222" />
+                            <param name="image_height" value="222" />
+                            <param name="distance" value="10" />
+                            <param name="aspectratio" value="scale" />
+                            <param name="glow_height" value="222" />
+                            <param name="glow_top" value="0" />
+                        </include>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="164$PARAM[id]">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="164$PARAM[id]" />
+                    <param name="idlayout" value="$PARAM[id]" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="$PARAM[id]" /></include>
+        </definition>
+    </include>
+
+    <include name="Layout_Music_Wall_Square_Big">
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png" />
+        <param name="height" value="$PARAM[height]" default="335" />
+        <param name="width" value="$PARAM[width]" default="364" />
+        <param name="focusposition" value="$PARAM[focusposition]" default="0" />
+
+        <definition>
+            <control type="panel" id="$PARAM[id]">
+                <visible>String.IsEqual(Window(Home).Property(WallMode),Container.FolderPath) | String.IsEmpty(Window(Home).Property(WallMode))</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>View_Poster_Top</top>
+                <left>View_Poster_Side</left>
+                <width>1840</width>
+                <height>View_Poster_height</height>
+
+                <onup>$PARAM[id]</onup>
+                <ondown>$PARAM[id]</ondown>
+                <onleft>164$PARAM[id]</onleft>
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+                <onback>1$PARAM[id]</onback>
+                <onback>ClearProperty(WallMode)</onback>
+                <onback>Container.SetViewMode($PARAM[onbackid])</onback>
+
+                <preloaditems>2</preloaditems>
+                <orientation>vertical</orientation>
+                <pagecontrol>164$PARAM[id]</pagecontrol>
+                <focusposition>$PARAM[focusposition]</focusposition>
+
+                <viewtype label="$PARAM[viewtype_label]">list</viewtype>
+
+                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <height>325</height>
+                        <width>325</width>
+                        <control type="group">
+                            <include content="Layout_Widget_Square">
+                                <param name="texture_diffuse" value="square_w305_h305" />
+                                <param name="id" value="$PARAM[id]" />
+                                <param name="height" value="325" />
+                                <param name="image_height" value="325" />
+                                <param name="distance" value="10" />
+                                <param name="aspectratio" value="scale" />
+                            </include>
+                        </control>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                    <control type="group">
+                        <animation effect="fade" start="0" end="100" time="0" delay="200">Visible</animation>
+                        <height>325</height>
+                        <width>325</width>
+                        <control type="group">
+                            <include content="Layout_Widget_Square_Focus">
+                                <param name="texture_diffuse" value="square_w305_h305" />
+                                <param name="id" value="$PARAM[id]" />
+                                <param name="height" value="325" />
+                                <param name="image_height" value="325" />
+                                <param name="distance" value="10" />
+                                <param name="aspectratio" value="scale" />
+                                <param name="glow_height" value="317" />
+                                <param name="glow_top" value="4" />
+                                <param name="glow_left" value="4" />
+                                <param name="glow_right" value="4" />
+                            </include>
+                        </control>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="164$PARAM[id]">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="164$PARAM[id]" />
+                    <param name="idlayout" value="$PARAM[id]" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="$PARAM[id]" /></include>
+        </definition>
+    </include>
+
+    <!-- FILEMANAGER - LAYOUT -->
+
+    <include name="layout_list_item_filemanager">
+        <param name="aspectratio" value="$PARAM[aspectratio]" default="keep" />
+        <param name="textcolor" value="$PARAM[textcolor]" default="PanelWhite70" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="PanelWhite70" />
+        <param name="colordiffuse_selected" value="$PARAM[colordiffuse_selected]" default="$VAR[Color_List_Item_Selected]" />
+
+        <definition>
+
+            <!-- BACKGROUND -->
+
+            <control type="image">
+                <centertop>35</centertop>
+                <left>16</left>
+                <width>54</width>
+                <height>54</height>
+                <texture border="8" colordiffuse="Black12">diffuse/icon_w54_h54.png</texture>
+                <!-- <visible>$PARAM[visible_icon_black]</visible> -->
+            </control>
+
+            <control type="image">
+                <left>8</left>
+                <width>70</width>
+                <height>70</height>
+                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture fallback="DefaultAddonNone.png" colordiffuse="$PARAM[colordiffuse]">$INFO[Listitem.Icon]</texture>
+                <visible>!ListItem.IsSelected</visible>
+            </control>
+            <control type="image">
+                <left>8</left>
+                <width>70</width>
+                <height>70</height>
+                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture fallback="DefaultAddonNone.png" colordiffuse="$PARAM[colordiffuse_selected]">$INFO[Listitem.Icon]</texture>
+                <visible>ListItem.IsSelected</visible>
+            </control>
+            <control type="label">
+                <left>84</left>
+                <width>640</width>
+                <align>left</align>
+                <textcolor>$PARAM[textcolor]</textcolor>
+                <label>$INFO[ListItem.Label]</label>
+            </control>
+            <control type="label">
+                <right>80</right>
+                <width>200</width>
+                <align>right</align>
+                <font>Tiny</font>
+                <textcolor>$PARAM[textcolor]</textcolor>
+                <label>$INFO[ListItem.Label2]</label>
+            </control>
+            <include content="Def_Button_Radio">
+                <param name="colordiffuse_off" value="$PARAM[textcolor]" />
+                <param name="colordiffuse_on" value="$PARAM[colordiffuse_selected]" />
+                <param name="visible" value="ListItem.IsSelected" />
+            </include>
+        </definition>
+    </include>
+
+    <include name="layout_list_focus_filemanager">
+        <param name="aspectratio" value="$PARAM[aspectratio]" default="keep" />
+        <param name="color_focus" value="$PARAM[color_focus]" default="Selected" />
+        <param name="fade_condition" value="$PARAM[fade_condition]" default="false" />
+        <param name="condition_scroll_anim" value="$PARAM[condition_scroll_anim]" default="true" />
+
+        <definition>
+            <control type="image">
+                <width>100%</width>
+                <height>100%</height>
+                <include>Texture_Layout_Item_Focus</include>
+                <animation effect="fade" start="100" end="33" condition="$PARAM[fade_condition]">Conditional</animation>
+                <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+            </control>
+
+            <!-- BACKGROUND -->
+
+            <control type="image">
+                <centertop>35</centertop>
+                <left>16</left>
+                <width>54</width>
+                <height>54</height>
+                <texture border="8" colordiffuse="Dark3">diffuse/icon_w54_h54.png</texture>
+                <!-- <visible>$PARAM[visible_icon_black]</visible> -->
+            </control>
+
+            <control type="image">
+                <left>8</left>
+                <width>70</width>
+                <height>70</height>
+                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture fallback="DefaultAddonNone.png" colordiffuse="$PARAM[color_focus]">$INFO[Listitem.Icon]</texture>
+            </control>
+            <control type="label">
+                <left>84</left>
+                <width>640</width>
+                <align>left</align>
+                <textcolor>$PARAM[color_focus]</textcolor>
+                <selectedcolor>$PARAM[color_focus]</selectedcolor>
+                <label>$INFO[ListItem.Label]</label>
+            </control>
+            <control type="label">
+                <right>80</right>
+                <width>200</width>
+                <align>right</align>
+                <textcolor>$PARAM[color_focus]</textcolor>
+                <selectedcolor>$PARAM[color_focus]</selectedcolor>
+                <font>Tiny</font>
+                <label>$INFO[ListItem.Label2]</label>
+            </control>
+            <include content="Def_Button_Radio">
+                <param name="colordiffuse_off" value="$PARAM[color_focus]" />
+                <param name="colordiffuse_on" value="$PARAM[color_focus]" />
+                <param name="visible" value="ListItem.IsSelected" />
+            </include>
+        </definition>
+    </include>
+</includes>

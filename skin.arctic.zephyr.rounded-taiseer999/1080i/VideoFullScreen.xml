@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+
+    <!-- WORKAROUND TO DISPLAY INFO AT STARTUP FOR LIVE TV -->
+
+    <onload condition="Skin.HasSetting(show.osd.video.info.at.start) + String.IsEmpty(Window(Home).Property(OSDVideo_Show_AT_START_INFO)) + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + VideoPlayer.Content(livetv)">SetProperty(OSDVideo_Show_AT_START_INFO,1,Home)</onload>
+
+    <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + String.IsEmpty(Window(Home).Property(Last_Trailer_Path))">SetProperty(Last_Trailer_Path,$INFO[Window(Home).Property(Current_Trailer_Path)],Home)</onunload>
+
+    <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing]">SetProperty(Trailer_Is_Fullscreen_Playing,1,Home)</onunload>
+
+    <onunload condition="Skin.HasSetting(show.osd.video.info.at.start)">ClearProperty(OSDVideo_Show_AT_START_INFO,Home)</onunload>
+
+    <onunload condition="!Player.HasMedia | String.IsEmpty(VideoPlayer.DBID)">AlarmClock(ResetValue,ClearProperty(OSDVideo_DIALOG_VIDEO_INFO,Home),00:00,silent)</onunload>
+
+    <controls>
+        <control type="group" id="0">
+            <visible>Control.IsVisible(10) | Control.IsVisible(11) | Control.IsVisible(12)</visible>
+
+            <include>Animation_Common_Fade_In</include>
+            <include>Animation_Common_Fade_Out</include>
+
+            <top>360</top>
+            <centerleft>50%</centerleft>
+
+            <width>1400</width>
+            <height>198</height>
+
+            <include>Def_OSD_Dialog_InfoPanel</include>
+
+            <control type="grouplist">
+                <top>30</top>
+                <left>40</left>
+
+                <orientation>vertical</orientation>
+
+                <control type="label" id="10">
+                    <description>row 1 label</description>
+                    <width>1680</width>
+                    <height>46</height>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <textcolor>$VAR[Color_OSD_Label_Line1]</textcolor>
+                </control>
+                <control type="label" id="11">
+                    <description>row 2 label</description>
+                    <height>46</height>
+                    <width>1680</width>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <textcolor>$VAR[Color_OSD_Label_Line1]</textcolor>
+                </control>
+                <control type="label" id="12">
+                    <description>row 3 label</description>
+                    <width>1680</width>
+                    <height>46</height>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <textcolor>$VAR[Color_OSD_Label_Line1]</textcolor>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

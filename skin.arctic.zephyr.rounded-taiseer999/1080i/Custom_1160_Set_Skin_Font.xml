@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1160">
+    <defaultcontrol always="true">11</defaultcontrol>
+
+    <onload>ClearProperty(reloadsetupwizard,Home)</onload>
+    <onload>ClearProperty(SetupWizardDirection,Home)</onload>
+
+    <onunload condition="!String.IsEmpty(Window(Home).Property(reloadsetupwizard))">SetFocus(3099)</onunload>
+    <onunload condition="String.IsEmpty(Window(Home).Property(reloadsetupwizard)) + String.IsEmpty(Window(Home).Property(SetupWizardDirection)) + Window.IsVisible(Custom_1100_Startup.xml) + !Window.IsVisible(1153) + !Window.IsVisible(1154) + !Window.IsVisible(1155) + !Window.IsVisible(1156) + !Window.IsVisible(1160)">AlarmClock(DelayFocus3615,SetFocus(3615),00:00,silent)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background">
+                <param name="height" value="882" />
+                <param name="width" value="1722" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$LOCALIZE[288]" />
+                <param name="icon" value="skinsettings" />
+            </include>
+
+            <control type="list" id="11">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>16</left>
+                <width>418</width>
+                <height>210</height>
+
+                <onup>11</onup>
+                <ondown>11</ondown>
+
+                <onleft>close</onleft>
+                <onright>11</onright>
+
+                <usecontrolcoords>true</usecontrolcoords>
+                <itemgap>0</itemgap>
+
+                <itemlayout width="418" height="70">
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>Black70</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.IsEmpty(ListItem.Property(ItemSelected))</visible>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>!String.IsEmpty(ListItem.Property(ItemSelected))</visible>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Black70" />
+                        <param name="colordiffuse_on" value="$VAR[Color_List_Item_Selected]" />
+                        <param name="visible" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
+                    </include>
+                </itemlayout>
+                <focusedlayout width="418" height="70">
+
+                    <!-- ITEM FOCUS -->
+
+                    <include content="Def_Layout_Item_Focus">
+                        <param name="fade_condition" value="!Control.HasFocus(11)" />
+                    </include>
+
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>Selected</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Selected" />
+                        <param name="colordiffuse_on" value="Selected" />
+                        <param name="visible" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
+                    </include>
+                </focusedlayout>
+
+                <content>
+
+                    <!-- DEFAULT (monadit) -->
+
+                    <item id="1">
+                        <label>Default ($LOCALIZE[571])</label>
+                        <onclick condition="!System.HasAddon(script.skin.info.service)">InstallAddon(script.skin.info.service)</onclick>
+                        <onclick>Skin.SetString(settingskinfont,1)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1160,Home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+                        <include condition="String.IsEqual(Skin.String(settingskinfont),1)">Def_Item_Selected</include>
+                        <onclick>AlarmClock(DelaySkinFont1,RunScript(script.skin.info.service,action=set_setting,setting=lookandfeel.font,value=Default,noconfirm=true),00:01,silent)</onclick>
+                        <onclick>Close</onclick>
+                    </item>
+
+                    <!-- ايفون -->
+
+                    <item id="2">
+                        <label>ايفون</label>
+                        <onclick condition="!System.HasAddon(script.skin.info.service)">InstallAddon(script.skin.info.service)</onclick>
+                        <onclick>Skin.SetString(settingskinfont,2)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1160,Home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+                        <include condition="String.IsEqual(Skin.String(settingskinfont),2)">Def_Item_Selected</include>
+                        <onclick>AlarmClock(DelaySkinFont1,RunScript(script.skin.info.service,action=set_setting,setting=lookandfeel.font,value=ايفون,noconfirm=true),00:01,silent)</onclick>
+                        <onclick>Close</onclick>
+                    </item>
+
+                    <!-- تونس -->
+
+                    <item id="3">
+                        <label>تونس</label>
+                        <onclick condition="!System.HasAddon(script.skin.info.service)">InstallAddon(script.skin.info.service)</onclick>
+                        <onclick>Skin.SetString(settingskinfont,3)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1160,Home)</onclick>
+                        <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+                        <include condition="String.IsEqual(Skin.String(settingskinfont),3)">Def_Item_Selected</include>
+                        <onclick>AlarmClock(DelaySkinFont1,RunScript(script.skin.info.service,action=set_setting,setting=lookandfeel.font,value=تونس,noconfirm=true),00:01,silent)</onclick>
+                        <onclick>Close</onclick>
+                    </item>
+                </content>
+            </control>
+
+            <!-- LINE VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="right" value="1272" /></include>
+
+            <!-- BUTTON OK / PREV / NEXT -->
+
+            <include condition="$EXP[Condition_Show_Button_Setup_Wizard]">Def_Button_Setup_Wizard</include>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </controls>
+</window>

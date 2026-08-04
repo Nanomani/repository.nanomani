@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">2</defaultcontrol>
+
+    <!-- AUTO PLAY / PAUSE -->
+
+    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
+
+    <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Window.IsVisible(VideoOSD.xml)">PlayerControl(Play)</onunload>
+
+    <!-- FOCUS BUTTON PLAY / PAUSE -->
+
+    <!-- <onunload condition="!Player.PauseEnabled">setfocus(15)</onunload> -->
+    <!-- <onunload condition="Player.PauseEnabled">setfocus(14)</onunload> -->
+
+    <!-- FOCUS BUTTON BOOKMARK -->
+
+    <onunload>setfocus(6)</onunload>
+
+    <controls>
+        <!-- <include content="Background_Overlay"><param name="colordiffuse" value="$VAR[Color_OSD_Background_Overlay]" /></include> -->
+
+        <control type="group">
+            <height>580</height>
+            <width>1810</width>
+
+            <include>Def_OSD_Dialog_InfoPanel</include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$LOCALIZE[298]: $INFO[Container(11).CurrentItem] / $INFO[Container(11).NumItems]" />
+                <param name="label_color" value="$VAR[Color_OSD_Dialog_Header]" />
+                <param name="icon" value="bookmarks" />
+                <param name="icon_color" value="$VAR[Color_OSD_Dialog_Header]" />
+                <param name="line_color" value="$VAR[Color_OSD_Dialog_Line]" />
+            </include>
+
+            <control type="panel" id="11">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <centerleft>50%</centerleft>
+                <top>110</top>
+                <left>30</left>
+                <width>1750</width>
+                <height>310</height>
+
+                <onleft>11</onleft>
+                <onright>11</onright>
+                <ondown>1723</ondown>
+                <onup>2</onup>
+
+                <pagecontrol>1723</pagecontrol>
+                <orientation>horizontal</orientation>
+
+                <itemlayout height="310" width="350">
+                    <include content="Layout_Widget_Fanart">
+                        <param name="texture" value="$INFO[ListItem.Icon]" />
+                        <param name="texture_diffuse" value="fanart_w330_h225" />
+                        <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" />
+                        <param name="colordiffuse_shadow" value="$VAR[Color_OSD_Dialog_Shadow]" />
+                        <param name="colordiffuse" value="$VAR[Color_OSD_Dialog_Shadow]" />
+                        <param name="id" value="11" />
+                        <param name="height" value="245" />
+                        <param name="image_height" value="245" />
+                    </include>
+                    <control type="label">
+                        <centerleft>50%</centerleft>
+                        <top>251</top>
+                        <width>330</width>
+                        <height>23</height>
+                        <align>center</align>
+                        <font>InfoNetflix</font>
+                        <textcolor>$VAR[Color_OSD_Label_Line1]</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <centerleft>50%</centerleft>
+                        <top>285</top>
+                        <width>330</width>
+                        <height>23</height>
+                        <align>center</align>
+                        <font>Tiny</font>
+                        <textcolor>$VAR[Color_OSD_Label_Line2]</textcolor>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="310" width="350">
+                    <include content="Layout_Widget_Fanart_Focus">
+                        <param name="texture" value="$INFO[ListItem.Icon]" />
+                        <param name="texture_diffuse" value="fanart_w330_h225" />
+                        <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" />
+                        <param name="colordiffuse_shadow" value="$VAR[Color_OSD_Dialog_Shadow]" />
+                        <param name="colordiffuse" value="$VAR[Color_OSD_Dialog_Shadow]" />
+                        <param name="id" value="11" />
+                        <param name="height" value="245" />
+                        <param name="image_height" value="245" />
+                        <param name="glow_height" value="245" />
+                        <param name="glow_left" value="2" />
+                        <param name="glow_right" value="2" />
+                        <param name="glow_top" value="0" />
+                    </include>
+                    <control type="label">
+                        <centerleft>50%</centerleft>
+                        <top>251</top>
+                        <width>330</width>
+                        <height>23</height>
+                        <align>center</align>
+                        <font>InfoNetflix</font>
+                        <textcolor>$VAR[Color_OSD_Label_Line1]</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <centerleft>50%</centerleft>
+                        <top>285</top>
+                        <width>330</width>
+                        <height>23</height>
+                        <align>center</align>
+                        <font>Tiny</font>
+                        <textcolor>$VAR[Color_OSD_Label_Line2]</textcolor>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR  -->
+
+            <include content="Object_Scrollbar_Dialog_Horizontal">
+                <param name="scrollid" value="1723" />
+                <param name="onup" value="11" />
+                <param name="ondown" value="2" />
+                <param name="width" value="1732" />
+                <param name="bottom" value="130" />
+                <param name="right" value="39" />
+                <param name="colordiffuse_texturesliderbar" value="4d141414" />
+                <param name="colordiffuse_texturesliderbackground" value="$VAR[Color_OSD_Dialog_Line]" />
+            </include>
+
+            <!-- BUTTON ON BOTTOM -->
+
+            <control type="grouplist" id="9002">
+                <bottom>30</bottom>
+                <height>66</height>
+                <align>center</align>
+                <centerleft>50%</centerleft>
+
+                <onup>11</onup>
+                <ondown>11</ondown>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="2" />
+                    <param name="label" value="$LOCALIZE[294]" />
+                    <param name="textcolor" value="B3BBBBBB" />
+                    <param name="colordiffuse_texturenofocus" value="1FBBBBBB" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="3" />
+                    <param name="label" value="$LOCALIZE[296]" />
+                    <param name="textcolor" value="B3BBBBBB" />
+                    <param name="colordiffuse_texturenofocus" value="1FBBBBBB" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="4" />
+                    <param name="label" value="$LOCALIZE[20406]" />
+                    <param name="visible" value="videoplayer.content(episodes)" />
+                    <param name="textcolor" value="B3BBBBBB" />
+                    <param name="colordiffuse_texturenofocus" value="1FBBBBBB" />
+                </include>
+            </control>
+        </control>
+    </controls>
+</window>

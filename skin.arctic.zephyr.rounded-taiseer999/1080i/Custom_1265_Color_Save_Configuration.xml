@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1265">
+    <defaultcontrol>11</defaultcontrol>
+    <controls>
+        <include>Background_Overlay</include>
+        <control type="group">
+            <include content="Def_Dialog_Background"><param name="height" value="433" /><param name="width" value="900" /><param name="colordiffuse" value="Panel" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$LOCALIZE[31456]$INFO[Skin.String(color.preset.name.own), - ,]" />
+                <param name="icon" value="files" />
+            </include>
+
+            <control type="textbox">
+                <height>230</height>
+                <align>left</align>
+                <left>30</left>
+                <font>Tiny</font>
+                <top>112</top>
+                <label>$VAR[Label_Color_Save]</label>
+            </control>
+
+            <control type="grouplist">
+                <top>310</top>
+                <height>66</height>
+                <width>100%</width>
+                <align>center</align>
+                <orientation>horizontal</orientation>
+                <itemgap>14</itemgap>
+                <control type="button" id="11">
+                    <description>Yes</description>
+                    <width>320</width>
+                    <label>107</label>
+                    <font>Button</font>
+                    <include>Texture_Button_Dialog_Settings</include>
+
+                    <!-- RESET OLD CONFIG VALUES -->
+
+                    <onclick>Skin.Reset(ColorHighlight.name.own)</onclick>
+                    <onclick>Skin.Reset(ColorFocus.name.own)</onclick>
+
+                    <onclick>Skin.Reset(UserRatingStarColor.name.own)</onclick>
+                    <onclick>Skin.Reset(MpaaCertifColor.name.own)</onclick>
+                    <onclick>Skin.Reset(KodiRatingStarColor.name.own)</onclick>
+
+                    <onclick>Skin.Reset(IndicatorColorBackgroundNew.name.own)</onclick>
+                    <onclick>Skin.Reset(IndicatorColorBackgroundInProgress.name.own)</onclick>
+                    <onclick>Skin.Reset(IndicatorColorBackgroundUnWatched.name.own)</onclick>
+                    <onclick>Skin.Reset(IndicatorColorBackgroundWatched.name.own)</onclick>
+                    <onclick>Skin.Reset(IndicatorColorBackgroundIsPlaying.name.own)</onclick>
+                    <onclick>Skin.Reset(IndicatorColorBackgroundLabel.name.own)</onclick>
+                    <onclick>Skin.Reset(IndicatorColorBackgroundIsPlayingicon.name.own)</onclick>
+
+                    <!-- SET NEW CONFIG VALUES -->
+
+                    <onclick condition="!String.IsEmpty(Skin.String(ColorHighlight.name))">Skin.SetString(ColorHighlight.name.own,$INFO[Skin.String(ColorHighlight.name)])</onclick>
+                    <onclick condition="!String.IsEmpty(Skin.String(ColorFocus.name))">Skin.SetString(ColorFocus.name.own,$INFO[Skin.String(ColorFocus.name)])</onclick>
+
+                    <onclick condition="!String.IsEmpty(Skin.String(UserRatingStarColor.name))">Skin.SetString(UserRatingStarColor.name.own,$INFO[Skin.String(UserRatingStarColor.name)])</onclick>
+                    <onclick condition="!String.IsEmpty(Skin.String(MpaaCertifColor.name))">Skin.SetString(MpaaCertifColor.name.own,$INFO[Skin.String(MpaaCertifColor.name)])</onclick>
+                    <onclick condition="!String.IsEmpty(Skin.String(KodiRatingStarColor.name))">Skin.SetString(KodiRatingStarColor.name.own,$INFO[Skin.String(KodiRatingStarColor.name)])</onclick>
+
+                    <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundNew.name))">Skin.SetString(IndicatorColorBackgroundNew.name.own,$INFO[Skin.String(IndicatorColorBackgroundNew.name)])</onclick>
+                    <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundInProgress.name))">Skin.SetString(IndicatorColorBackgroundInProgress.name.own,$INFO[Skin.String(IndicatorColorBackgroundInProgress.name)])</onclick>
+                    <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundUnWatched.name))">Skin.SetString(IndicatorColorBackgroundUnWatched.name.own,$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name)])</onclick>
+                    <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundWatched.name))">Skin.SetString(IndicatorColorBackgroundWatched.name.own,$INFO[Skin.String(IndicatorColorBackgroundWatched.name)])</onclick>
+                    <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundIsPlaying.name))">Skin.SetString(IndicatorColorBackgroundIsPlaying.name.own,$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name)])</onclick>
+                    <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundLabel.name))">Skin.SetString(IndicatorColorBackgroundLabel.name.own,$INFO[Skin.String(IndicatorColorBackgroundLabel.name)])</onclick>
+                    <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundIsPlayingicon.name))">Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name.own,$INFO[Skin.String(IndicatorColorBackgroundIsPlayingicon.name)])</onclick>
+
+                    <onclick condition="Skin.HasSetting(DisableColourTitleMenuSetting)">Skin.SetString(DisableColourTitleMenuSetting.name.own,true)</onclick>
+                    <onclick condition="!Skin.HasSetting(DisableColourTitleMenuSetting)">Skin.Reset(DisableColourTitleMenuSetting.name.own)</onclick>
+
+                    <!-- SET CONFIG NAME -->
+
+                    <onclick>Skin.SetString(color.preset.name.own)</onclick>
+                    <onclick>Skin.SetString(settingpresetcolor,8)</onclick>
+                    <onclick>close</onclick>
+                </control>
+
+                <!-- BUTTON -->
+
+                <control type="button" id="10">
+                    <description>No</description>
+                    <width>300</width>
+                    <label>106</label>
+                    <font>Button</font>
+                    <include>Texture_Button_Dialog_Settings</include>
+
+                    <onclick>close</onclick>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

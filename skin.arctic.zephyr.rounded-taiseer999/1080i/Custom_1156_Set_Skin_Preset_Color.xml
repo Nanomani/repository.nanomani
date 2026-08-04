@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1156">
+    <defaultcontrol always="true">11</defaultcontrol>
+
+    <onload>ClearProperty(reloadsetupwizard,Home)</onload>
+    <onload>ClearProperty(SetupWizardDirection,Home)</onload>
+
+    <onload>ClearProperty(autocolors_enable,Home)</onload>
+
+    <onunload condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onunload>
+    <onunload condition="!String.IsEmpty(Window(Home).Property(reloadsetupwizard))">SetFocus(3099)</onunload>
+    <onunload condition="String.IsEmpty(Window(Home).Property(reloadsetupwizard)) + String.IsEmpty(Window(Home).Property(SetupWizardDirection)) + Window.IsVisible(Custom_1100_Startup.xml) + !Window.IsVisible(1153) + !Window.IsVisible(1154) + !Window.IsVisible(1155) + !Window.IsVisible(1156)">AlarmClock(DelayFocus3615,SetFocus(3615),00:00,silent)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background">
+                <param name="height" value="882" />
+                <param name="width" value="1722" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$LOCALIZE[31456]" />
+                <param name="icon" value="skinsettings" />
+            </include>
+
+            <control type="list" id="11">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>16</left>
+                <width>418</width>
+                <height>560</height>
+
+                <onleft condition="!$EXP[Condition_Show_Button_Setup_Wizard]">close</onleft>
+                <onleft condition="$EXP[Condition_Show_Button_Setup_Wizard]">9010</onleft>
+
+                <onright condition="!$EXP[Condition_Show_Button_Setup_Wizard]">11</onright>
+                <onright condition="$EXP[Condition_Show_Button_Setup_Wizard]">9030</onright>
+
+                <usecontrolcoords>true</usecontrolcoords>
+                <itemgap>0</itemgap>
+
+                <itemlayout width="418" height="70">
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>Black70</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.IsEmpty(ListItem.Property(ItemSelected))</visible>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>!String.IsEmpty(ListItem.Property(ItemSelected))</visible>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Black70" />
+                        <param name="colordiffuse_on" value="$VAR[Color_List_Item_Selected]" />
+                        <param name="visible" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
+                    </include>
+                </itemlayout>
+                <focusedlayout width="418" height="70">
+
+                    <!-- ITEM FOCUS -->
+
+                    <include content="Def_Layout_Item_Focus">
+                        <param name="fade_condition" value="!Control.HasFocus(11)" />
+                    </include>
+
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>Selected</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Selected" />
+                        <param name="colordiffuse_on" value="Selected" />
+                        <param name="visible" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
+                    </include>
+
+                    <control type="button">
+                        <label />
+                        <include>Def_Hidden_Button</include>
+
+                        <onfocus>ClearProperty(ColorHighlight.button,Home)</onfocus>
+                        <onfocus>ClearProperty(ColorFocus.button,Home)</onfocus>
+
+                        <onfocus>ClearProperty(UserRatingStarColor.button,Home)</onfocus>
+                        <onfocus>ClearProperty(MpaaCertifColor.button,Home)</onfocus>
+                        <onfocus>ClearProperty(KodiRatingStarColor.button,Home)</onfocus>
+
+                        <onfocus>ClearProperty(IndicatorColorBackgroundNew.button,Home)</onfocus>
+                        <onfocus>ClearProperty(IndicatorColorBackgroundInProgress.button,Home)</onfocus>
+                        <onfocus>ClearProperty(IndicatorColorBackgroundUnWatched.button,Home)</onfocus>
+                        <onfocus>ClearProperty(IndicatorColorBackgroundWatched.button,Home)</onfocus>
+                        <onfocus>ClearProperty(IndicatorColorBackgroundIsPlaying.button,Home)</onfocus>
+                        <onfocus>ClearProperty(IndicatorColorBackgroundLabel.button,Home)</onfocus>
+                        <onfocus>ClearProperty(IndicatorColorBackgroundIsPlayingicon.button,Home)</onfocus>
+
+                        <onfocus>SetProperty(ColorHighlight.button,$INFO[ListItem.Property(ColorHighlight.name)],Home)</onfocus>
+                        <onfocus>SetProperty(ColorFocus.button,$INFO[ListItem.Property(ColorFocus.name)],Home)</onfocus>
+
+                        <onfocus>SetProperty(UserRatingStarColor.button,$INFO[ListItem.Property(UserRatingStarColor.name)],Home)</onfocus>
+                        <onfocus>SetProperty(MpaaCertifColor.button,$INFO[ListItem.Property(MpaaCertifColor.name)],Home)</onfocus>
+                        <onfocus>SetProperty(KodiRatingStarColor.button,$INFO[ListItem.Property(KodiRatingStarColor.name)],Home)</onfocus>
+
+                        <onfocus>SetProperty(IndicatorColorBackgroundNew.button,$INFO[ListItem.Property(IndicatorColorBackgroundNew.name)],Home)</onfocus>
+                        <onfocus>SetProperty(IndicatorColorBackgroundInProgress.button,$INFO[ListItem.Property(IndicatorColorBackgroundInProgress.name)],Home)</onfocus>
+                        <onfocus>SetProperty(IndicatorColorBackgroundUnWatched.button,$INFO[ListItem.Property(IndicatorColorBackgroundUnWatched.name)],Home)</onfocus>
+                        <onfocus>SetProperty(IndicatorColorBackgroundWatched.button,$INFO[ListItem.Property(IndicatorColorBackgroundWatched.name)],Home)</onfocus>
+                        <onfocus>SetProperty(IndicatorColorBackgroundIsPlaying.button,$INFO[ListItem.Property(IndicatorColorBackgroundIsPlaying.name)],Home)</onfocus>
+                        <onfocus>SetProperty(IndicatorColorBackgroundLabel.button,$INFO[ListItem.Property(IndicatorColorBackgroundLabel.name)],Home)</onfocus>
+                        <onfocus>SetProperty(IndicatorColorBackgroundIsPlayingicon.button,$INFO[ListItem.Property(IndicatorColorBackgroundIsPlayingicon.name)],Home)</onfocus>
+                    </control>
+                </focusedlayout>
+
+                <!-- LIGHT -->
+
+                <content>
+                    <include>Set_Color_Preset_Item</include>
+                </content>
+            </control>
+
+            <!-- LINE VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="right" value="1272" /></include>
+
+            <!-- VIEW TYPE ON RIGHT -->
+
+            <include content="Def_Dialog_View_Type">
+                <param name="fadetime" value="0" />
+                <param name="texture" value="special://skin/extras/presetcolor/$VAR[Def_Image_Skin_Preset_Color].jpg" />
+            </include>
+
+            <!-- TIPS - FOOTER -->
+
+            <include content="Object_Footer_Tips">
+                <param name="top" value="818" />
+                <param name="left" value="478" />
+                <param name="label" value="$LOCALIZE[31618]" />
+                <param name="textcolor" value="Black70" />
+                <param name="visible" value="Container(11).HasFocus(8)" />
+            </include>
+
+            <!-- BUTTON OK / PREV / NEXT -->
+
+            <include condition="$EXP[Condition_Show_Button_Setup_Wizard]">Def_Button_Setup_Wizard</include>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </controls>
+</window>

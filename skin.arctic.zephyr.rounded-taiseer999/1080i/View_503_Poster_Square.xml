@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <include name="View_503_Poster_Square">
+        <description>List View (id=503)</description>
+        <control type="group">
+            <visible>Control.IsVisible(503)</visible>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+            <include>Animation_Common_Global</include>
+
+            <control type="fixedlist" id="503">
+                <visible>$EXP[Exp_View_503]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>200</top>
+                <left>-220</left>
+                <width>2300</width>
+
+                <onup condition="!Skin.HasSetting(global.kioskmode)">9000</onup>
+                <onup condition="!Skin.HasSetting(global.kioskmode) + [Player.HasMedia | Player.Playing]">AlarmClock(GoToButtonFullScreen,SetFocus(6157),00:00,silent)</onup>
+                <ondown>1636</ondown>
+                <onleft>503</onleft>
+                <onright>503</onright>
+
+                <focusposition>1</focusposition>
+                <preloaditems>0</preloaditems>
+                <pagecontrol>1636</pagecontrol>
+                <orientation>horizontal</orientation>
+
+                <viewtype label="31319">list</viewtype>
+
+                <itemlayout width="270">
+                    <control type="group">
+                        <animation effect="Conditional" condition="true">
+                            <effect type="zoom" end="60" time="0" center="213,452" />
+                        </animation>
+                        <control type="group">
+                            <left>-8</left>
+                            <top>1</top>
+                            <width>448</width>
+                            <height>448</height>
+
+                            <!-- POSTER SQUARE -->
+
+                            <control type="group">
+                                <top>41</top>
+                                <left>41</left>
+                                <width>PosterW</width>
+                                <height>PosterW</height>
+
+                                <include>Def_Art_Full_Background_b24</include>
+
+                                <include content="Def_Art_Image">
+                                    <param name="colordiffuse" value="White100" />
+                                    <param name="texture" value="$VAR[Image_Poster]" />
+                                    <param name="texture_diffuse" value="square_w428_h428_b24" />
+                                    <param name="aspectratio" value="scale" />
+                                    <param name="fallback" value="DefaultAlbumCover" />
+                                </include>
+                            </control>
+                        </control>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="300">
+                    <control type="group">
+                        <top>120</top>
+                        <animation condition="Container(503).OnNext | Container(503).OnPrevious" effect="zoom" start="60" end="100" delay="0" time="350" tween="sine" easing="out" center="213,276">Focus</animation>
+                        <animation condition="Container(503).OnNext | Container(503).OnPrevious" effect="zoom" start="100" end="60" delay="0" time="250" tween="sine" easing="out" center="213,276">UnFocus</animation>
+                        <control type="group">
+                            <left>-8</left>
+                            <top>-8</top>
+                            <width>448</width>
+                            <height>448</height>
+
+                            <!-- POSTER SQUARE -->
+
+                            <control type="group">
+                                <top>41</top>
+                                <left>41</left>
+                                <width>PosterW</width>
+                                <height>PosterW</height>
+
+                                <include>Def_Art_Full_Background_b24</include>
+
+                                <include content="Def_Art_Image">
+                                    <param name="colordiffuse" value="White100" />
+                                    <param name="texture" value="$VAR[Image_Poster]" />
+                                    <param name="texture_diffuse" value="square_w428_h428_b24" />
+                                    <param name="aspectratio" value="scale" />
+                                    <param name="fallback" value="DefaultAlbumCover" />
+                                </include>
+                            </control>
+                        </control>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1636">
+                <include content="Object_Scrollbar_Views_Horizontal">
+                    <param name="scrollid" value="1636" />
+                    <param name="bottom" value="266" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="503" /></include>
+
+            <control type="grouplist">
+                <visible>![Container(503).OnNext | Container(503).OnPrevious]</visible>
+                <animation effect="fade" start="0" end="100" delay="450" time="250" reversible="false">Visible</animation>
+
+                <top>700</top>
+                <left>540</left>
+                <right>View_List_Side</right>
+
+                <orientation>vertical</orientation>
+
+                <control type="label">
+                    <font>SmallBold</font>
+                    <label>$VAR[Label_View_Flix_Main_Title]</label>
+                    <textcolor>Dark1</textcolor>
+                    <height>35</height>
+                    <aligny>top</aligny>
+                </control>
+                <control type="label">
+                    <font>Tiny</font>
+                    <textcolor>Dark1</textcolor>
+                    <height>42</height>
+                    <aligny>top</aligny>
+                    <label>$VAR[Label_View_Flix_Sub_Title_Music]</label>
+                </control>
+            </control>
+        </control>
+    </include>
+</includes>

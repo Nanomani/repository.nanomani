@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">95</defaultcontrol>
+
+    <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
+
+    <controls>
+        <include>Background_Global</include>
+
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        <include>Furniture_Header_Info</include>
+        <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
+
+        <control type="group">
+            <include>Animation_Common_Settings</include>
+            <include>Def_Dialog_Settings</include>
+
+            <!-- LEFT - HEADER -->
+
+            <control type="label">
+                <top>18</top>
+                <left>30</left>
+                <width>390</width>
+                <font>MediumBold</font>
+                <label>5</label>
+                <textcolor>PanelWhite100</textcolor>
+            </control>
+            <control type="label">
+                <top>77</top>
+                <left>30</left>
+                <right>30</right>
+                <height>30</height>
+                <font>Tiny</font>
+                <textcolor>PanelWhite70</textcolor>
+                <label>$INFO[System.FriendlyName]</label>
+                <scroll>true</scroll>
+            </control>
+
+            <!-- LEFT - GROUP -->
+
+            <control type="grouplist" id="9101">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>140</top>
+                <left>16</left>
+                <width>418</width>
+                <height>490</height>
+
+                <onup>9101</onup>
+                <ondown>9101</ondown>
+                <onright>1773</onright>
+
+                <itemgap>0</itemgap>
+
+                <control type="button" id="95">
+                    <description>General</description>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>20037</label>
+                </control>
+                <control type="button" id="94">
+                    <description>Storage</description>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>13277</label>
+                </control>
+                <control type="button" id="96">
+                    <description>Network</description>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>13279</label>
+                </control>
+                <control type="button" id="97">
+                    <description>Video</description>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>13280</label>
+                </control>
+                <control type="button" id="98">
+                    <description>Hardware</description>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>13281</label>
+                </control>
+                <control type="button" id="99">
+                    <description>Live TV</description>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>19012</label>
+                </control>
+                <control type="button" id="100">
+                    <description>Button Privacy policy</description>
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>12389</label>
+                </control>
+                <control type="button" id="101">
+                    <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+                    <label>31007</label>
+                </control>
+            </control>
+
+            <!-- LINES - VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="top" value="17" /><param name="right" value="1310" /></include>
+
+            <!-- RIGHT - HEADER -->
+
+            <control type="label" description="Header">
+                <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                <left>480</left>
+                <width>900</width>
+                <top>18</top>
+                <font>MediumBold</font>
+                <label>130</label>
+                <textcolor>PanelWhite100</textcolor>
+            </control>
+            <control type="label" id="52" description="XBMC Build Version">
+                <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                <left>480</left>
+                <right>30</right>
+                <top>77</top>
+                <height>30</height>
+                <font>Tiny</font>
+                <height>40</height>
+                <textcolor>PanelWhite70</textcolor>
+                <scroll>true</scroll>
+            </control>
+
+            <!-- RIGHT - LINE -->
+
+            <include content="Def_Dialog_Header_Line">
+                <param name="top" value="123" />
+                <param name="left" value="480" />
+                <param name="visible" value="!ControlGroup(9101).HasFocus(101)" />
+            </include>
+
+            <!-- RIGHT GROUP -->
+
+            <control type="grouplist">
+                <top>140</top>
+                <height>490</height>
+                <left>480</left>
+                <right>30</right>
+                <bottom>16</bottom>
+
+                <itemgap>0</itemgap>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="label">
+                    <description>CPU Text</description>
+                    <font>Tiny</font>
+                    <width>750</width>
+                    <height>60</height>
+                    <label>$LOCALIZE[13271]</label>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label">
+                    <description>CPU Text</description>
+                    <font>Tiny</font>
+                    <top>-60</top>
+                    <right>500</right>
+                    <align>right</align>
+                    <width>450</width>
+                    <height>60</height>
+                    <label>$INFO[System.CPUUsage]</label>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+
+                <!-- PROGRESS BAR - CPU -->
+
+                <control type="group">
+                    <height>8</height>
+                    <width>750</width>
+                    <control type="progress" id="22">
+                        <description>Progressbar</description>
+                        <info>System.CPUUsage</info>
+                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
+                        <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-nib.png</texturebg>
+                    </control>
+                    <control type="progress">
+                        <info>System.CPUUsage</info>
+                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
+                        <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-bg.png</texturebg>
+                        <midtexture colordiffuse="$VAR[Color_Focus]" border="8,0,8,0">progress/progress-bg.png</midtexture>
+                    </control>
+                </control>
+                <control type="label">
+                    <description>Memory Text</description>
+                    <top>-70</top>
+                    <left>800</left>
+                    <font>Tiny</font>
+                    <height>60</height>
+                    <label>$LOCALIZE[31076]:</label>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label">
+                    <description>Memory Text</description>
+                    <top>-60</top>
+                    <align>right</align>
+                    <left>800</left>
+                    <font>Tiny</font>
+                    <height>60</height>
+                    <label>$INFO[system.memory(used.percent)]</label>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+
+                <!-- PROGRESS BAR - MEMORY -->
+
+                <control type="group">
+                    <height>8</height>
+                    <left>800</left>
+                    <control type="progress" id="24">
+                        <description>Progressbar</description>
+                        <info>system.memory(used)</info>
+                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
+                        <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-nib.png</texturebg>
+                    </control>
+                    <control type="progress">
+                        <info>system.memory(used)</info>
+                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
+                        <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-bg.png</texturebg>
+                        <midtexture colordiffuse="$VAR[Color_Focus]" border="8,0,8,0">progress/progress-bg.png</midtexture>
+                    </control>
+                </control>
+                <control type="label" id="25">
+                    <description>Spacer</description>
+                    <visible>!ControlGroup(9101).HasFocus(100)</visible>
+                    <font />
+                    <font>Tiny</font>
+                    <height>20</height>
+                </control>
+                <control type="label" id="2">
+                    <description>Label 2</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="3">
+                    <description>Label 3</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="4">
+                    <description>Label 4</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="5">
+                    <description>Label 5</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="6">
+                    <description>Label 6</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="7">
+                    <description>Label 7</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="8">
+                    <description>Label 8</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="9">
+                    <description>Label 9</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="10">
+                    <description>Label 10</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="11">
+                    <description>Label 11</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+                <control type="label" id="12">
+                    <description>Label 12</description>
+                    <font>Tiny</font>
+                    <height>40</height>
+                    <include>Def_Settings_System_Info_Label_Left_Side</include>
+                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                </control>
+
+            <!-- RIGHT GROUP - IF FOCUS MENU "ARTIC ZEPHYR - ROUNDED" -->
+
+                <control type="label">
+                    <animation effect="slide" start="0" end="0,-50" time="0" condition="true">Conditional</animation>
+                    <visible>ControlGroup(9101).HasFocus(101)</visible>
+                    <description>Loading</description>
+                    <width>100%</width>
+                    <height>75</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>Arctic [COLOR=$VAR[Color_Label_AZR]]Zephyr[/COLOR]</label>
+                    <font>EpisodeNumber</font>
+                    <textcolor>PanelWhite100</textcolor>
+                </control>
+                <control type="label" id="9905">
+                    <visible>ControlGroup(9101).HasFocus(101)</visible>
+                    <height>20</height>
+                    <include>Def_Settings_Label_Info_Left_Side</include>
+                    <label></label>
+                </control>
+                <control type="image" id="9902">
+                    <animation effect="slide" start="0" end="0,-50" time="0" condition="true">Conditional</animation>
+                    <visible>ControlGroup(9101).HasFocus(101)</visible>
+                    <aspectratio scalediffuse="false">keep</aspectratio>
+                    <height>47</height>
+                    <left>385</left>
+                    <texture>logo/logo_rounded.png</texture>
+                </control>
+                <control type="label" id="9907">
+                    <animation effect="slide" start="0" end="0,-50" time="0" condition="true">Conditional</animation>
+                    <visible>ControlGroup(9101).HasFocus(101)</visible>
+                    <include>Def_Settings_Label_Info_Left_Side</include>
+                    <label>31099</label>
+                </control>
+                <control type="label">
+                    <width>300</width>
+                    <height>1</height>
+                    <left>955</left>
+                    <font>Tiny</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <disabledcolor>PanelWhite70</disabledcolor>
+                    <visible>ControlGroup(9101).HasFocus(101)</visible>
+                    <animation effect="slide" start="0" end="0,-348" time="0" condition="true">Conditional</animation>
+                    <align>left</align>
+                    <label>v$INFO[System.AddonVersion(skin.arctic.zephyr.rounded)]</label>
+                </control>
+            </control>
+
+            <!-- PRIVACY POLICY -->
+
+            <control type="textbox" id="30">
+                <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                <left>480</left>
+                <top>157</top>
+                <bottom>17</bottom>
+                <right>30</right>
+                <font>Tiny</font>
+                <textcolor>PanelWhite100</textcolor>
+                <pagecontrol>1773</pagecontrol>
+                <autoscroll delay="5000" repeat="7500" time="5000">!Control.HasFocus(1773)</autoscroll>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1773" />
+                <param name="top" value="140" />
+                <param name="onleft" value="9101" />
+                <param name="onright" value="9101" />
+                <param name="height" value="490" />
+                <param name="centerright" value="4" />
+                <param name="visible" value="Control.IsVisible(30)" />
+            </include>
+        </control>
+    </controls>
+</window>

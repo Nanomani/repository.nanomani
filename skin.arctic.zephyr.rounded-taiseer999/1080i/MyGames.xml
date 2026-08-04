@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <include>View_MediaWindows_ID</include>
+    <defaultcontrol always="true">50</defaultcontrol>
+    <menucontrol>9000</menucontrol>
+    <include condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Action_Blur_Onload</include>
+
+    <onload>RunScript(script.skinvariables,action=buildviews)</onload>
+    <onload>ClearProperty(WallMode,Home)</onload>
+    <onload condition="Control.HasFocus(5218)">Container.SetViewMode(521)</onload>
+    <onload condition="Control.HasFocus(5228)">Container.SetViewMode(522)</onload>
+
+    <onunload condition="Control.HasFocus(5218)">Container.SetViewMode(521)</onunload>
+    <onunload condition="Control.HasFocus(5228)">Container.SetViewMode(522)</onunload>
+
+    <controls>
+        <include>Background_Global</include>
+
+        <include condition="$EXP[Exp_View_50_Include]">View_50_List</include>
+        <include condition="$EXP[Exp_View_550_Include]">View_550_List_Square_Video</include>
+        <include condition="$EXP[Exp_View_52_Include]">View_52_BigList_Pane</include>
+        <include condition="$EXP[Exp_View_555_Include]">View_555_Wall_Episodes</include>
+        <include condition="$EXP[Exp_View_557_Include]">View_557_Wall_Small_Episodes</include>
+        <include condition="$EXP[Exp_View_517_Include]">View_517_WallSmall</include>
+        <include condition="$EXP[Exp_View_55_Include] + Skin.HasSetting(55wall.showinfo)">View_55_Wall_Info</include>
+        <include condition="$EXP[Exp_View_55_Include] + Skin.HasSetting(55wall.showposter)">View_55_Wall_Poster</include>
+        <include condition="$EXP[Exp_View_55_Include] + !Skin.HasSetting(55wall.showinfo) + !Skin.HasSetting(55wall.showposter)">View_55_Wall</include>
+        <include condition="$EXP[Exp_View_56_Include]">View_56_List_MediaInfo</include>
+        <include condition="$EXP[Exp_View_57_Include]">View_57_List_Info_Video</include>
+        <include condition="$EXP[Exp_View_500_Include]">View_500_Thumbnails</include>
+        <include condition="$EXP[Exp_View_547_Include]">View_547_ThumbnailsSmall</include>
+        <include condition="$EXP[Exp_View_501_Include]">View_501_Fanart</include>
+        <include condition="$EXP[Exp_View_507_Include]">View_507_Fanart</include>
+        <include condition="$EXP[Exp_View_512_Include]">View_512_Double_Banner</include>
+        <include condition="$EXP[Exp_View_511_Include]">View_511_Double</include>
+        <include condition="$EXP[Exp_View_509_Include]">View_509_Shift</include>
+        <include condition="$EXP[Exp_View_519_Include]">View_519_Shift_Horizontal</include>
+        <include condition="$EXP[Exp_View_521_Include]">View_521_Flix_Poster</include>
+        <include condition="$EXP[Exp_View_58_Include]">View_58_Cards</include>
+        <include condition="$EXP[Exp_View_515_Include]">View_515_SideCards</include>
+        <include condition="$EXP[Exp_View_53_Include]">View_53_Poster</include>
+        <include condition="$EXP[Exp_View_516_Include]">View_516_SeasonsInfo</include>
+        <include condition="$EXP[Exp_View_526_Include]">View_526_SeasonsInfo_V2</include>
+        <include condition="$EXP[Exp_View_524_Include]">View_524_Flix_List</include>
+        <include condition="$EXP[Exp_View_522_Include]">View_522_Flix_Fanart</include>
+        <include condition="$EXP[Exp_View_527_Include]">View_527_List_V2</include>
+        <include condition="$EXP[Exp_View_523_Include]">View_523_Flix_Square</include>
+        <include condition="$EXP[Exp_View_505_Include]">View_505_506_Wall</include>
+        <include condition="$EXP[Exp_View_508_Include]">View_508_Square_Wall</include>
+        <include condition="$EXP[Exp_View_514_Include]">View_514_Albums</include>
+        <include condition="$EXP[Exp_View_503_Include]">View_503_Poster_Square</include>
+
+        <include>Furniture_Header_Info</include>
+
+        <control type="group">
+            <visible>!$EXP[View_Info_Dialog]</visible>
+            <include>Animation_Feature_NowPlaying</include>
+            <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        </control>
+
+        <include>Furniture_Jumpbar_Horizontal</include>
+
+        <include>Furniture_Header_Clock_Right</include>
+        <include condition="Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Info</include>
+        <include>Furniture_Games_Flags</include>
+
+        <include>Hidden_Button_ReloadSkin</include>
+
+        <include>Def_Dialog_Menu_Background_Overlay</include>
+
+        <control type="group">
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>255</centerleft>
+
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="14018" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <!-- WORKAROUND FOR MYVIDEONAV.XML SELECT "SORT" FOR "LABAEL" -->
+            <!-- <include>Def_Dialog_Menu_Hidden_Button_id2_id3</include> -->
+
+            <control type="grouplist" id="9000">
+                <include>Animation_Scrolltime_Views_List</include>
+                <include content="Def_Dialog_Menu_GroupList_scrollbar"><param name="height" value="910" /><param name="scrollid" value="9070" /></include>
+
+                <!-- NOW PLAYING -->
+
+                <control type="button" id="55555">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31448</label>
+                    <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+                </control>
+
+                <include>Def_Dialog_Menu_Button_Playlist</include>
+
+                <!-- MINI PLAYER -->
+
+                <include>Def_Dialog_Menu_MiniPlayer</include>
+
+                <!-- FILTER -->
+
+                <control type="button" id="55553">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>587</label>
+                </control>
+                <control type="radiobutton" id="11">
+                    <description>Unlock Shares</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>20336</label>
+                    <onclick>mastermode</onclick>
+                    <selected>system.ismaster</selected>
+                    <visible>system.haslocks</visible>
+                </control>
+                <control type="edit" id="19">
+                    <label>587</label>
+                    <description>Filter (hidden)</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                </control>
+                <control type="radiobutton" id="98">
+                    <visible>Container.CanFilterAdvanced</visible>
+                    <description>Filter</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>587</label>
+                    <onclick>SetFocus(50)</onclick>
+                    <onclick>Filter</onclick>
+                    <selected>Container.Filtered</selected>
+                </control>
+
+                <!-- OPEN CUSTOM_SETVIEWTYPE -->
+
+                <control type="button" id="55550">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31226</label>
+                </control>
+
+                <control type="button" id="9011">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[582]:</label>
+                    <label2>$INFO[Container.Viewmode]</label2>
+                    <onclick>Runscript(script.skinvariables,action=buildviews,contentid=$VAR[Items_ViewMode_Switch],pluginname=$INFO[Container.PluginName])</onclick>
+                </control>
+
+                <control type="button" id="3">
+                    <description>Sort</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                </control>
+                <control type="togglebutton" id="4">
+                    <description>Ascending</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>584</label>
+                    <altlabel>585</altlabel>
+                </control>
+
+                <!-- THIS VIEW  -->
+
+                <control type="button" id="55551">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31051</label>
+                    <visible>!Control.IsVisible(500) + !Control.IsVisible(58) + !Control.IsVisible(52) + !Control.IsVisible(547) + ![Control.IsVisible(557) + $EXP[IsYoutube]] + ![Control.IsVisible(555) + $EXP[IsYoutube]] + !Control.IsVisible(5218) + !Control.IsVisible(5228)</visible>
+                </control>
+                <control type="radiobutton" id="90445">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31503</label>
+                    <selected>Skin.HasSetting(enable.view.flix.scroll.wall.video)</selected>
+                    <onclick>Skin.ToggleSetting(enable.view.flix.scroll.wall.video)</onclick>
+                    <visible>Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)</visible>
+                </control>
+                <control type="radiobutton" id="90444">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31071</label>
+                    <selected>Skin.HasSetting(view.526.switch.plot.poster)</selected>
+                    <onclick>Skin.ToggleSetting(view.526.switch.plot.poster)</onclick>
+                    <visible>Control.IsVisible(526)</visible>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="button" id="90449">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31424]:</label>
+                    <label2>$VAR[Label_527_Type_List]</label2>
+                    <onclick condition="!Skin.HasSetting(527.fixedlist) + !Skin.HasSetting(527.wraplist)">Skin.SetBool(527.fixedlist)</onclick>
+                    <onclick condition="Skin.HasSetting(527.fixedlist)">Skin.SetBool(527.wraplist)</onclick>
+                    <onclick condition="Skin.HasSetting(527.fixedlist)">Skin.Reset(527.fixedlist)</onclick>
+                    <onclick condition="Skin.HasSetting(527.wraplist)">Skin.Reset(527.wraplist)</onclick>
+                    <visible>Control.IsVisible(527)</visible>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9025788">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31414</label>
+                    <selected>Skin.HasSetting(show.view.netflix.title.clearlogo.video)</selected>
+                    <onclick>Skin.ToggleSetting(show.view.netflix.title.clearlogo.video)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524)</visible>
+                </control>
+                <control type="button" id="90701" description="522 Landscape Size">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31285]:</label>
+                    <label2>$VAR[Label_522_Landscape_Size]</label2>
+                    <onclick>SetProperty(ViewArtworkStyle,videolandscape,Home)</onclick>
+                    <onclick>ActivateWindow(1150)</onclick>
+                    <visible>Control.IsVisible(522)</visible>
+                </control>
+                <control type="button" id="90708" description="522 Landscape Size">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31285]:</label>
+                    <label2>$VAR[Label_523_Square_Size]</label2>
+                    <onclick>SetProperty(ViewArtworkStyle,musicsquare,Home)</onclick>
+                    <onclick>ActivateWindow(1150)</onclick>
+                    <visible>Control.IsVisible(523)</visible>
+                </control>
+                <control type="radiobutton" id="90348" description="SELECT LISTTYPE">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31258</label>
+                    <selected>Skin.HasSetting(523.square.control.list)</selected>
+                    <onclick>Skin.ToggleSetting(523.square.control.list)</onclick>
+                    <onclick>Skin.Reset(523poster.fixedlist)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(523)</visible>
+                </control>
+
+                <control type="radiobutton" id="9025">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31414</label>
+                    <selected>Skin.HasSetting(show.view.514.title.clearlogo)</selected>
+                    <onclick>Skin.ToggleSetting(show.view.514.title.clearlogo)</onclick>
+                    <visible>Control.IsVisible(514)</visible>
+                </control>
+                <control type="radiobutton" id="9073">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31414</label>
+                    <selected>Skin.HasSetting(show.view.511.title.clearlogo)</selected>
+                    <onclick>Skin.ToggleSetting(show.view.511.title.clearlogo)</onclick>
+                    <visible>Control.IsVisible(511) | Control.IsVisible(512)</visible>
+                </control>
+                <control type="radiobutton" id="9027" description="Liste anzeigen">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31058</label>
+                    <selected>Skin.HasSetting(ListView511)</selected>
+                    <onclick>Skin.ToggleSetting(ListView511)</onclick>
+                    <visible>Control.IsVisible(511) | Control.IsVisible(512)</visible>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9028">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31192</label>
+                    <selected>Skin.HasSetting(enable.view.5x.51x.extended.list)</selected>
+                    <onclick>Skin.ToggleSetting(enable.view.5x.51x.extended.list)</onclick>
+                    <visible>[Control.IsVisible(511) + Skin.HasSetting(ListView511)] | [Control.IsVisible(512) + Skin.HasSetting(ListView511)] | Control.IsVisible(56) | Control.IsVisible(50) | Control.IsVisible(516) | Control.IsVisible(57)</visible>
+                </control>
+                <control type="radiobutton" id="90281">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31192</label>
+                    <selected>!Skin.HasSetting(disable.view.550.extended.list.video)</selected>
+                    <onclick>Skin.ToggleSetting(disable.view.550.extended.list.video)</onclick>
+                    <visible>Control.IsVisible(550)</visible>
+                </control>
+                <control type="radiobutton" id="90282">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31192</label>
+                    <selected>!Skin.HasSetting(disable.view.524.extended.list.info)</selected>
+                    <onclick>Skin.ToggleSetting(disable.view.524.extended.list.info)</onclick>
+                    <visible>Control.IsVisible(524)</visible>
+                </control>
+                <control type="radiobutton" id="9030">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31190</label>
+                    <selected>!Skin.HasSetting(hide.poster.view.50)</selected>
+                    <onclick>Skin.ToggleSetting(hide.poster.view.50)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(50)</visible>
+                </control>
+                <control type="radiobutton" id="9031">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31453</label>
+                    <selected>!Skin.HasSetting(hide.video.ratings)</selected>
+                    <onclick>Skin.ToggleSetting(hide.video.ratings)</onclick>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
+                    <visible>!$EXP[IsYoutube]</visible>
+                </control>
+                <control type="radiobutton" id="9034" description="Info Wall (55)">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31106</label>
+                    <selected>Skin.HasSetting(55wall.showinfo)</selected>
+                    <onclick>Skin.Reset(55wall.showposter)</onclick>
+                    <onclick>Skin.ToggleSetting(55wall.showinfo)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(55)</visible>
+                </control>
+                <control type="radiobutton" id="9035" description="Poster Wall (55)">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31140</label>
+                    <selected>Skin.HasSetting(55wall.showposter)</selected>
+                    <onclick>Skin.Reset(55wall.showinfo)</onclick>
+                    <onclick>Skin.ToggleSetting(55wall.showposter)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(55)</visible>
+                </control>
+                <control type="radiobutton" id="9039">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31140</label>
+                    <selected>Skin.HasSetting(ShowPoster517)</selected>
+                    <onclick>Skin.ToggleSetting(ShowPoster517)</onclick>
+                    <visible>Control.IsVisible(517)</visible>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9041" description="Big Wide Info (51)">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31106</label>
+                    <selected>Skin.HasSetting(51bigwide.showinfo)</selected>
+                    <onclick>Skin.ToggleSetting(51bigwide.showinfo)</onclick>
+                    <onclick>Skin.Reset(51bigwide.showclassic)</onclick>
+                    <onclick>Skin.Reset(51bigwide.showinfo.alternative)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(51)</visible>
+                </control>
+                <control type="radiobutton" id="9043" description="Big Wide Info (51)">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31322</label>
+                    <selected>Skin.HasSetting(51bigwide.showinfo.alternative)</selected>
+                    <onclick>Skin.ToggleSetting(51bigwide.showinfo.alternative)</onclick>
+                    <onclick>Skin.Reset(51bigwide.showclassic)</onclick>
+                    <onclick>Skin.Reset(51bigwide.showinfo)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(51)</visible>
+                </control>
+
+                <control type="radiobutton" id="9033" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31107</label>
+                    <selected>!Skin.HasSetting(disable.wrap.view.53)</selected>
+                    <onclick>Skin.ToggleSetting(disable.wrap.view.53)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(53)</visible>
+                </control>
+
+                <!-- WRAP, LIST, FIXEDLIST -->
+
+                <control type="radiobutton" id="90340" description="SELECT LISTTYPE">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31258</label>
+                    <selected>Skin.HasSetting(521.poster.control.list)</selected>
+                    <onclick>Skin.ToggleSetting(521.poster.control.list)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(521)</visible>
+                </control>
+                <control type="radiobutton" id="90341" description="SELECT LISTTYPE">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31258</label>
+                    <selected>Skin.HasSetting(522.landscape.control.list)</selected>
+                    <onclick>Skin.ToggleSetting(522.landscape.control.list)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(522)</visible>
+                </control>
+                <!-- <control type="radiobutton" id="90342" description="SELECT LISTTYPE"> -->
+                    <!-- <include>Def_Dialog_Menu_Button_Focus_Select</include> -->
+                    <!-- <align>left</align> -->
+                    <!-- <label>31258</label> -->
+                    <!-- <selected>Skin.HasSetting(524.landscape.control.list)</selected> -->
+                    <!-- <onclick>Skin.ToggleSetting(524.landscape.control.list)</onclick> -->
+                    <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
+                    <!-- <visible>Control.IsVisible(524)</visible> -->
+                <!-- </control> -->
+
+                <control type="radiobutton" id="9044" description="Plot 51">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31161</label>
+                    <selected>Skin.HasSetting(51.showplot)</selected>
+                    <onclick>Skin.ToggleSetting(51.showplot)</onclick>
+                    <visible>Control.IsVisible(51) + !Skin.HasSetting(51bigwide.showinfo) + !Skin.HasSetting(51bigwide.showinfo.alternative)</visible>
+                </control>
+                <control type="radiobutton" id="9049">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31414</label>
+                    <selected>Skin.HasSetting(show.view.509.title.clearlogo)</selected>
+                    <onclick>Skin.ToggleSetting(show.view.509.title.clearlogo)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(509)</visible>
+                </control>
+                <control type="radiobutton" id="9047">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31049</label>
+                    <selected>Skin.HasSetting(509fanart)</selected>
+                    <onclick>Skin.ToggleSetting(509fanart)</onclick>
+                    <visible>Control.IsVisible(509)</visible>
+                </control>
+                <control type="radiobutton" id="90338" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31555]</label>
+                    <selected>Skin.HasSetting(show.view.524.poster.movies)</selected>
+                    <onclick>Skin.ToggleSetting(show.view.524.poster.movies)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <!-- <visible>Container.Content(movies)</visible> -->
+                    <visible>Control.IsVisible(524)</visible>
+                </control>
+                <!-- <control type="radiobutton" id="90339" description="No Wrap"> -->
+                    <!-- <include>Def_Dialog_Menu_Button_Focus_Select</include> -->
+                    <!-- <align>left</align> -->
+                    <!-- <label>$LOCALIZE[31555]</label> -->
+                    <!-- <selected>Skin.HasSetting(show.view.524.poster.tvshows)</selected> -->
+                    <!-- <onclick>Skin.ToggleSetting(show.view.524.poster.tvshows)</onclick> -->
+                    <!-- <onclick>SetProperty(reloadskin,1,Home)</onclick> -->
+                    <!-- <visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible> -->
+                    <!-- <visible>Control.IsVisible(524)</visible> -->
+                <!-- </control> -->
+                <control type="radiobutton" id="90331" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31015</label>
+                    <selected>Skin.HasSetting(dont.use.landscape.tvshows)</selected>
+                    <onclick>Skin.ToggleSetting(dont.use.landscape.tvshows)</onclick>
+                    <visible>Container.Content(tvshows)</visible>
+                    <visible>Control.IsVisible(56) | Control.IsVisible(57) | [Control.IsVisible(509) + Skin.HasSetting(509fanart)] | Control.IsVisible(515) | Control.IsVisible(522) | [Control.IsVisible(524) + !Skin.HasSetting(show.view.524.poster.movies)] | Control.IsVisible(555) | Control.IsVisible(557)</visible>
+                </control>
+                <control type="radiobutton" id="90332" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31219]$LOCALIZE[31289]</label>
+                    <selected>Skin.HasSetting(use.clearlogo.on.fanart.tvshows)</selected>
+                    <onclick>Skin.ToggleSetting(use.clearlogo.on.fanart.tvshows)</onclick>
+                    <visible>Skin.HasSetting(dont.use.landscape.tvshows)</visible>
+                    <visible>Container.Content(tvshows)</visible>
+                    <visible>Control.IsVisible(56) | Control.IsVisible(57) | [Control.IsVisible(509) + Skin.HasSetting(509fanart)] | Control.IsVisible(515) | Control.IsVisible(522) | [Control.IsVisible(524) + !Skin.HasSetting(show.view.524.poster.movies)] | Control.IsVisible(555) | Control.IsVisible(557)</visible>
+                </control>
+                <control type="radiobutton" id="90333" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31017]</label>
+                    <selected>Skin.HasSetting(dont.use.landscape.seasons)</selected>
+                    <onclick>Skin.ToggleSetting(dont.use.landscape.seasons)</onclick>
+                    <visible>Container.Content(seasons)</visible>
+                    <visible>Control.IsVisible(56) | Control.IsVisible(57) | [Control.IsVisible(509) + Skin.HasSetting(509fanart)] | Control.IsVisible(515) | Control.IsVisible(522) | [Control.IsVisible(524) + !Skin.HasSetting(show.view.524.poster.movies)] | Control.IsVisible(555) | Control.IsVisible(557)</visible>
+                </control>
+                <control type="radiobutton" id="90336" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31219]$LOCALIZE[31289]</label>
+                    <selected>Skin.HasSetting(use.clearlogo.on.fanart.seasons)</selected>
+                    <onclick>Skin.ToggleSetting(use.clearlogo.on.fanart.seasons)</onclick>
+                    <visible>Skin.HasSetting(dont.use.landscape.seasons)</visible>
+                    <visible>Container.Content(seasons)</visible>
+                    <visible>Control.IsVisible(56) | Control.IsVisible(57) | [Control.IsVisible(509) + Skin.HasSetting(509fanart)] | Control.IsVisible(515) | Control.IsVisible(522) | [Control.IsVisible(524) + !Skin.HasSetting(show.view.524.poster.movies)] | Control.IsVisible(555) | Control.IsVisible(557)</visible>
+                </control>
+                <control type="radiobutton" id="90334" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31473]</label>
+                    <selected>Skin.HasSetting(use.thumbnail.episodes)</selected>
+                    <onclick>Skin.ToggleSetting(use.thumbnail.episodes)</onclick>
+                    <visible>Container.Content(episodes)</visible>
+                    <visible>Control.IsVisible(56) | Control.IsVisible(57) | [Control.IsVisible(509) + Skin.HasSetting(509fanart)] | Control.IsVisible(515) | Control.IsVisible(522) | [Control.IsVisible(524) + !Skin.HasSetting(show.view.524.poster.movies)] | Control.IsVisible(555) | Control.IsVisible(557)</visible>
+                </control>
+                <control type="radiobutton" id="90335" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31016]</label>
+                    <selected>Skin.HasSetting(dont.use.landscape.movies)</selected>
+                    <onclick>Skin.ToggleSetting(dont.use.landscape.movies)</onclick>
+                    <visible>Container.Content(movies)</visible>
+                    <visible>Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | [Control.IsVisible(509) + Skin.HasSetting(509fanart)] | Control.IsVisible(515) | Control.IsVisible(522) | [Control.IsVisible(524) + !Skin.HasSetting(show.view.524.poster.movies)] | Control.IsVisible(555) | Control.IsVisible(557) | Control.IsVisible(550)</visible>
+                </control>
+                <control type="radiobutton" id="90337" description="No Wrap">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31219]$LOCALIZE[31289]</label>
+                    <selected>Skin.HasSetting(use.clearlogo.on.fanart.movies)</selected>
+                    <onclick>Skin.ToggleSetting(use.clearlogo.on.fanart.movies)</onclick>
+                    <visible>Skin.HasSetting(dont.use.landscape.movies)</visible>
+                    <visible>Container.Content(movies)</visible>
+                    <visible>Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | [Control.IsVisible(509) + Skin.HasSetting(509fanart)] | Control.IsVisible(515) | Control.IsVisible(522) | [Control.IsVisible(524) + !Skin.HasSetting(show.view.524.poster.movies)] | Control.IsVisible(555) | Control.IsVisible(557) | Control.IsVisible(550)</visible>
+                </control>
+                <control type="button" id="9050">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31286]:</label>
+                    <label2>$VAR[Label_509_Align]</label2>
+                    <selected>Skin.HasSetting(509NoCenter)</selected>
+                    <onclick>Skin.ToggleSetting(509NoCenter)</onclick>
+                    <visible>Control.IsVisible(509)</visible>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="button" id="9051">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31286]:</label>
+                    <label2>$VAR[Label_514_Align]</label2>
+                    <selected>Skin.HasSetting(514NoCenter)</selected>
+                    <onclick>Skin.ToggleSetting(514NoCenter)</onclick>
+                    <visible>Control.IsVisible(514)</visible>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="90321">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31356]</label>
+                    <selected>!Skin.HasSetting(hide.markers)</selected>
+                    <onclick>Skin.ToggleSetting(hide.markers)</onclick>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(57)</visible>
+                </control>
+                <control type="radiobutton" id="9029" description="list.show.filename">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31411</label>
+                    <selected>Skin.HasSetting(list.show.filename)</selected>
+                    <onclick>Skin.ToggleSetting(list.show.filename)</onclick>
+                    <visible>Skin.HasSetting(enable.view.5x.51x.extended.list)</visible>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56) | Control.IsVisible(550)</visible>
+                    <visible>!$EXP[IsYoutube]</visible>
+                </control>
+                <control type="radiobutton" id="9059" description="Slider Info">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31401</label>
+                    <selected>Skin.HasSetting(55wall.slideinfo)</selected>
+                    <onclick>Skin.ToggleSetting(55wall.slideinfo)</onclick>
+                    <visible>Control.IsVisible(55) + !Skin.HasSetting(55wall.showinfo) + !Skin.HasSetting(55wall.showposter)</visible>
+                </control>
+                <control type="radiobutton" id="9060" description="Show progress">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31418</label>
+                    <selected>Skin.HasSetting(show.furniture.progress.circle)</selected>
+                    <onclick>Skin.ToggleSetting(show.furniture.progress.circle)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <visible>Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(501) | Control.IsVisible(507) | Control.IsVisible(516) | Control.IsVisible(526)</visible>
+                    <visible>!$EXP[IsYoutube]</visible>
+                </control>
+                <control type="radiobutton" id="9061" description="Show progress">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31453] $LOCALIZE[205]</label>
+                    <selected>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</selected>
+                    <onclick>Skin.ToggleSetting(hide.501.507.flags.numeric.rating)</onclick>
+                    <visible>Control.IsVisible(501) | Control.IsVisible(507)</visible>
+                </control>
+                <control type="radiobutton" id="9072">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31289</label>
+                    <selected>!Skin.HasSetting(hide.clearart.view.511)</selected>
+                    <onclick>Skin.ToggleSetting(hide.clearart.view.511)</onclick>
+                    <visible>Control.IsVisible(511)</visible>
+                    <visible>Skin.HasSetting(FullscreenFanart511)</visible>
+                </control>
+                <control type="radiobutton" id="9074">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31059</label>
+                    <selected>Skin.HasSetting(511fanartposter)</selected>
+                    <onclick>Skin.ToggleSetting(511fanartposter)</onclick>
+                    <onclick>Skin.Reset(FullscreenFanart511)</onclick>
+                    <visible>Control.IsVisible(511)</visible>
+                </control>
+                <control type="radiobutton" id="9075">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31065</label>
+                    <selected>Skin.HasSetting(Flip512)</selected>
+                    <onclick>Skin.ToggleSetting(Flip512)</onclick>
+                    <visible>Control.IsVisible(512)</visible>
+                </control>
+                <control type="radiobutton" id="9076">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31057</label>
+                    <selected>Skin.HasSetting(Flip511)</selected>
+                    <onclick>Skin.ToggleSetting(Flip511)</onclick>
+                    <visible>Control.IsVisible(511)</visible>
+                    <visible>!Skin.HasSetting(FullscreenFanart511)</visible>
+                </control>
+                <control type="radiobutton" id="9077">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31071</label>
+                    <selected>Skin.HasSetting(flip511rightleft)</selected>
+                    <onclick>Skin.ToggleSetting(flip511rightleft)</onclick>
+                    <visible>Control.IsVisible(511)</visible>
+                </control>
+                <control type="radiobutton" id="9078">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31055</label>
+                    <selected>Skin.HasSetting(FullscreenFanart511)</selected>
+                    <onclick>Skin.ToggleSetting(FullscreenFanart511)</onclick>
+                    <onclick>Skin.Reset(511fanartposter)</onclick>
+                    <visible>Control.IsVisible(511)</visible>
+                </control>
+                <control type="radiobutton" id="9079">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31071</label>
+                    <selected>Skin.HasSetting(flip512rightleft)</selected>
+                    <onclick>Skin.ToggleSetting(flip512rightleft)</onclick>
+                    <visible>Control.IsVisible(512)</visible>
+                </control>
+
+                <!-- ACTION -->
+
+                <control type="button" id="666">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>14230</label>
+                    <visible>Container.Content(addons) | !String.IsEmpty(Container.PluginName)</visible>
+                </control>
+                <control type="button" id="621">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>21452</label>
+                    <onclick>Dialog.Close(all)</onclick>
+                    <onclick>ActivateWindow(addonbrowser,return)</onclick>
+                    <onclick>SetFocus(6000,2,absolute)</onclick>
+                    <onclick>SetFocus(50)</onclick>
+                    <onclick>Container.Update(addons://more/game/,return)</onclick>
+                    <visible>Container.Content(addons)</visible>
+                </control>
+                <control type="button" id="624">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>10140</label>
+                    <onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
+                    <visible>!String.IsEmpty(Container.PluginName)</visible>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="9070" />
+                <param name="top" value="112" />
+                <param name="onleft" value="9000" />
+                <param name="onright" value="9001" />
+                <param name="onback" value="9000" />
+                <param name="height" value="910" />
+                <param name="centerright" value="4" />
+            </include>
+        </control>
+
+        <!-- GLOBAL SETTINGS -->
+
+        <include>Def_Views_Global_Settings</include>
+
+        <control type="group">
+            <!-- Hidden labels for Game VAR's string checks -->
+            <!-- Label ids follow 66xx, starting with 6601 -->
+            <visible>false</visible>
+            <control type="label" id="6601">
+                <label>$VAR[Flag_Game_Resolution]</label>
+            </control>
+            <control type="label" id="6602">
+                <label>$VAR[Flag_Game_Audio]</label>
+            </control>
+            <control type="label" id="6603">
+                <label>$VAR[Label_Game_Year]</label>
+            </control>
+        </control>
+    </controls>
+</window>

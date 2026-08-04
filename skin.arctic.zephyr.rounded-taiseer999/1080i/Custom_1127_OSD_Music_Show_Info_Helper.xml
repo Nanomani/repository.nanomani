@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1127">
+    <visible>Window.IsVisible(MusicVisualisation.xml) + !Window.IsVisible(musicosd) + !Player.ShowInfo + !Skin.HasSetting(auto.hide.OSD.music.info) + String.IsEmpty(Window(Home).Property(exit_music_visualisation))</visible>
+
+    <!-- DISPLAY INFO -->
+
+    <onload condition="!Skin.HasSetting(auto.hide.OSD.music.info) + !Player.ShowInfo">Action(Info)</onload>
+</window>

@@ -1,0 +1,1216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <!-- VIEW - TYPE ID -->
+
+    <variable name="Items_ViewMode_Switch">
+        <value condition="String.IsEqual(Container.Content,genres) + Window.IsVisible(MyMusicNav.xml)">genres-music</value>
+        <value condition="String.IsEqual(Container.Content,years) + Window.IsVisible(MyMusicNav.xml)">years-music</value>
+        <value condition="String.IsEmpty(Container.Content) + Window.IsVisible(MyGames.xml)">none-games</value>
+        <value condition="Container.Content(games)">games</value>
+        <value condition="Window.IsVisible(MyPlaylist.xml)">playlist</value>
+        <value condition="Window.IsVisible(MyFavourites.xml)">favourites</value>
+        <value condition="Window.IsVisible(AddonBrowser.xml) | Container.Content(addons)">addons</value>
+        <value condition="Container.Content(images)">images</value>
+        <value condition="Window.IsVisible(MyPics.xml)">pics</value>
+        <value condition="Window.IsVisible(EventLog.xml)">events</value>
+        <value condition="!String.IsEmpty(Container.Content)">$INFO[Container.Content]</value>
+        <value>none</value>
+    </variable>
+
+    <include name="View_MediaWindows_ID">
+        <views>50,550,57,59,501,500,507,509,511,512,56,53,55,555,557,54,58,52,515,516,517,519,521,522,523,524,526,527,547,514,503,505,508,5048,5218,5228,5238</views>
+    </include>
+
+    <!-- VIEW - FLIX / INFO -->
+
+    <include name="Def_View_Flix_Minimal_Content">
+        <param name="def_label_sub_title" value="$PARAM[def_label_sub_title]" default="Def_Label_View_Flix_Sub_Title" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+
+                <top>185</top>
+                <left>View_List_Side</left>
+                <width>NetflixPlotWidth</width>
+
+                <!-- CLERALOGO ENABLE - CLEARLOGO NOT AVAILABLE / DISABLE -->
+
+                <control type="group">
+
+                    <!-- MAIN TITLE -->
+
+                    <include content="Def_Label_View_Flix_Main_Title">
+                        <param name="top" value="0" />
+                    </include>
+
+                    <!-- SUB TITLE -->
+
+                    <include content="$PARAM[def_label_sub_title]">
+                        <param name="visible" value="!$EXP[View_Flix_Show_Clearlogo_Enable]" />
+                        <param name="top" value="45" />
+                    </include>
+                    <include content="$PARAM[def_label_sub_title]">
+                        <param name="visible" value="$EXP[View_Flix_Show_Clearlogo_Enable]" />
+                        <param name="top" value="105" />
+                    </include>
+
+                    <!-- PLOT -->
+
+                    <include content="Def_Label_View_Flix_Plot">
+                        <param name="visible" value="!$EXP[View_Flix_Show_Clearlogo_Enable]" />
+                        <param name="top" value="120" />
+                        <param name="height" value="176" />
+                    </include>
+                    <include content="Def_Label_View_Flix_Plot">
+                        <param name="visible" value="$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Exp_View_524]" />
+                        <param name="top" value="180" />
+                        <param name="height" value="140" />
+                    </include>
+                    <include content="Def_Label_View_Flix_Plot">
+                        <param name="visible" value="$EXP[View_Flix_Show_Clearlogo_Enable] + $EXP[Exp_View_524]" />
+                        <param name="top" value="180" />
+                        <param name="height" value="112" />
+                    </include>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Label_View_Flix_Main_Title">
+        <param name="height" value="$PARAM[height]" default="46" />
+        <param name="width" value="$PARAM[width]" default="100%" />
+        <param name="show_clearlogo" value="$PARAM[show_clearlogo]" default="true" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <!-- <height>$PARAM[height]</height> -->
+                <width>$PARAM[width]</width>
+
+                <!-- CLERALOGO -->
+
+                <control type="image" description="clearlogo">
+                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable]</visible>
+                    <visible>$EXP[Title_Clearlogo_Available]</visible>
+                    <visible>$PARAM[show_clearlogo]</visible>
+                    <height>ClearLogoTitleMaxHeight</height>
+                    <width>ClearLogoTitleMaxWidth</width>
+                    <aspectratio scalediffuse="true" align="left">keep</aspectratio>
+                    <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
+                </control>
+
+                <!-- MAIN TITLE - TEXT - SHOW CLEARLOGO - DISABLE -->
+
+                <control type="label">
+                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]</visible>
+                    <visible>![$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]]</visible>
+                    <top>0</top>
+                    <height>40</height>
+                    <textcolor>Dark1</textcolor>
+                    <font>LargeNetflix</font>
+                    <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+                    <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
+                </control>
+
+                <!-- MAIN TITLE - TEXT - SHOW CLEARLOGO - ENABLE -->
+
+                <control type="label">
+                    <visible>[$EXP[View_Flix_Show_Clearlogo_Enable] + !$EXP[Title_Clearlogo_Available]] | !$EXP[View_Flix_Show_Clearlogo_Enable] | !$PARAM[show_clearlogo]</visible>
+                    <visible>$EXP[View_Flix_Show_Clearlogo_Enable] + $PARAM[show_clearlogo]</visible>
+                    <top>32</top>
+                    <height>ClearLogoTitleMaxHeight</height>
+                    <textcolor>Dark1</textcolor>
+                    <font>LargeNetflix</font>
+                    <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+                    <label fallback="19055">$VAR[Label_View_Flix_Main_Title]</label>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Label_View_Flix_Sub_Title">
+        <param name="height" value="$PARAM[height]" default="46" />
+        <param name="width" value="$PARAM[width]" default="100%" />
+        <param name="width_condition" value="$PARAM[width_condition]" default="false" />
+        <param name="align" value="$PARAM[align]" default="left" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[height]</height>
+
+                <include content="Def_Width" condition="$PARAM[width_condition]">
+                    <param name="width" value="520" />
+                </include>
+
+                <width>$PARAM[width]</width>
+
+                <!-- SUB TITLE - FILES -->
+
+                <control type="label">
+                    <visible>Container.Content(files) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]] | Container.Content(images)</visible>
+                    <visible>Integer.IsGreater(Container(44025).NumItems,0)</visible>
+                    <visible>ListItem.IsFolder</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$LOCALIZE[19076] $INFO[Container(44025).NumItems,  •  , $LOCALIZE[31073]]</label>
+                </control>
+                <control type="label">
+                    <visible>Container.Content(files) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType) + !$EXP[IsAnPlugin]] | Container.Content(images)</visible>
+                    <visible>Integer.IsEqual(Container(44025).NumItems,0)</visible>
+                    <visible>ListItem.IsFolder</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$LOCALIZE[19076]</label>
+                </control>
+
+                <!-- SUB TITLE - PVR -->
+
+                <control type="label">
+                    <visible>String.StartsWith(ListItem.Path,pvr://channels)</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title_PVR]</label>
+                </control>
+
+                <!-- SUB TITLE - PLUGIN -->
+
+                <control type="label">
+                    <visible>[$EXP[IsAnPlugin] + Container.Content()] | $EXP[IsJlomFolder]</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$LOCALIZE[20094]$INFO[System.AddonVersion(Container.PluginName),  •  v ]</label>
+                </control>
+
+                <!-- SUB TITLE - ADDONS -->
+
+                <control type="label">
+                    <visible>Container.Content(addons)</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$INFO[ListItem.AddonType]$INFO[ListItem.AddonVersion,  •  v ]</label>
+                </control>
+
+                <!-- SUB TITLE - ALBUMS / SONGS -->
+
+                <control type="label">
+                    <visible>Container.Content(albums) | Container.Content(songs) | container.content(artists)</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title_Music]</label>
+                </control>
+
+                <!-- SUB TITLE - IMAGES -->
+
+                <control type="label">
+                    <visible>Container.Content(images) + !ListItem.IsFolder</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_Picture]</label>
+                </control>
+
+                <!-- SUB TITLE - OTHERS -->
+
+                <control type="label">
+                    <visible>![Container.Content(albums) | Container.Content(songs) | container.content(artists) | Container.Content(images) | String.StartsWith(ListItem.Path,pvr://channels)]</visible>
+                    <visible>!container.content(files) | String.IsEqual(Container.FolderPath,playlistvideo://)</visible>
+                    <visible>![Container.Content(addons) | [$EXP[IsAnPlugin] + Container.Content()]]</visible>
+                    <visible>!$EXP[IsJlomFolder]</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title]</label>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Label_View_Flix_Playlist_Sub_Title">
+        <param name="height" value="$PARAM[height]" default="46" />
+        <param name="width" value="$PARAM[width]" default="100%" />
+        <param name="width_condition" value="$PARAM[width_condition]" default="false" />
+        <param name="align" value="$PARAM[align]" default="left" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[height]</height>
+
+                <include content="Def_Width" condition="$PARAM[width_condition]">
+                    <param name="width" value="520" />
+                </include>
+
+                <width>$PARAM[width]</width>
+
+                <!-- SUB TITLE - ALBUMS / SONGS -->
+
+                <control type="label">
+                    <visible>String.IsEqual(ListItem.DBType,song) | $EXP[IsApplePodcastsItem]</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title_Music]</label>
+                </control>
+
+                <!-- SUB TITLE - OTHERS -->
+
+                <control type="label">
+                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,episode)</visible>
+                    <aligny>center</aligny>
+                    <align>$PARAM[align]</align>
+                    <width>$PARAM[width]</width>
+                    <font>InfoNetflix</font>
+                    <textcolor>PanelWhite70</textcolor>
+                    <selectedcolor>PanelWhite70</selectedcolor>
+                    <label>$VAR[Label_View_Flix_Sub_Title]</label>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Label_View_Flix_Plot">
+        <param name="top" value="$PARAM[top]" default="100" />
+        <param name="width" value="$PARAM[width]" default="100%" />
+        <param name="align" value="$PARAM[align]" default="left" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <top>$PARAM[top]</top>
+                <width>$PARAM[width]</width>
+                <control type="textbox">
+                    <font>Tiny</font>
+                    <height>$PARAM[height]</height>
+                    <align>$PARAM[align]</align>
+                    <textcolor>Dark2</textcolor>
+                    <selectedcolor>Dark2</selectedcolor>
+                    <label>$VAR[Label_Plot_Box_Video_Music]</label>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_View_Info_Circle_Progress">
+        <param name="top" value="$PARAM[top]" default="360" />
+        <param name="left" value="$PARAM[left]" default="530" />
+        <param name="width" value="$PARAM[width]" default="155" />
+        <param name="height" value="$PARAM[height]" default="155" />
+        <param name="texture_progress" value="$PARAM[texture_progress]" default="155" />
+        <param name="visible" value="$PARAM[visible]" default="Skin.HasSetting(show.furniture.progress.circle)" />
+
+        <definition>
+            <control type="group">
+                <visible>$EXP[ShowCircleProgress]</visible>
+                <visible>!$EXP[IsJlomItem]</visible>
+                <visible>$PARAM[visible]</visible>
+
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+
+                <!-- CIRCLE BACKGROUND -->
+
+                <control type="image">
+                    <visible>!String.IsEmpty(ListItem.DBType)</visible>
+                    <centertop>44%</centertop>
+                    <width>139</width>
+                    <height>139</height>
+                    <texture diffuse="diffuse/circle_progress_w139_h139.png" border="0">dialog/loading-back.png</texture>
+                </control>
+
+                <!-- MOVIES / EPISODE -->
+
+                <control type="group">
+                    <control type="group">
+                        <visible>!ListItem.IsParentFolder</visible>
+                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | [Control.HasFocus(5161) + String.IsEqual(Container(5161).ListItem.DBType,episode)] | [Control.HasFocus(5261) + String.IsEqual(Container(5261).ListItem.DBType,episode)]</visible>
+
+                        <include>Animation_Switch_Text</include>
+
+                        <!-- % PERCENT WATCHED -->
+
+                        <control type="image">
+                            <visible>[ListItem.IsResumable + ![Control.HasFocus(5161) | Control.HasFocus(5261)]] | [Control.HasFocus(5161) + Container(5161).ListItem.IsResumable] | [Control.HasFocus(5261) + Container(5261).ListItem.IsResumable]</visible>
+                            <centertop>44%</centertop>
+                            <width>139</width>
+                            <height>139</height>
+                            <texture diffuse="diffuse/circle_progress_w139_h139.png" colordiffuse="$VAR[Color_Loading_Spinner]">$VAR[Value_Item_PercentPlayed,progress/circle_views/p,.png]</texture>
+                        </control>
+
+                        <!-- 100% WATCHED -->
+
+                        <control type="image">
+                            <visible>[String.Contains(ListItem.Overlay,OverlayWatched.png) + !ListItem.IsResumable + ![Control.HasFocus(5161) | Control.HasFocus(5261)]] | [String.Contains(Container(5161).ListItem.Overlay,OverlayWatched.png) + !Container(5161).ListItem.IsResumable + Control.HasFocus(5161)] | [String.Contains(Container(5261).ListItem.Overlay,OverlayWatched.png) + !Container(5261).ListItem.IsResumable + Control.HasFocus(5261)]</visible>
+                            <centertop>44%</centertop>
+                            <width>139</width>
+                            <height>139</height>
+                            <texture diffuse="diffuse/circle_progress_w139_h139.png" colordiffuse="$VAR[Color_Loading_Spinner]">progress/circle_views/p100.png</texture>
+                        </control>
+                    </control>
+                </control>
+
+                <!-- TVSHOW / SEASON -->
+
+                <control type="image">
+                    <visible>![Control.HasFocus(5161) | Control.HasFocus(5261)]</visible>
+                    <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)</visible>
+                    <width>139</width>
+                    <height>139</height>
+                    <centertop>44%</centertop>
+                    <texture diffuse="diffuse/circle_progress_w139_h139.png" colordiffuse="$VAR[Color_Loading_Spinner]">$INFO[ListItem.Property(WatchedEpisodePercent),progress/circle_views/p,.png]</texture>
+                    <include>Animation_Switch_Text</include>
+                </control>
+
+                <!-- LABEL -->
+
+                <control type="label">
+                    <include>Animation_Switch_Text</include>
+                    <width>140</width>
+                    <centertop>43%</centertop>
+                    <align>center</align>
+                    <label>$VAR[Label_Progress_Circle]</label>
+                    <font>WatchedLabel</font>
+                    <textcolor>Dark2</textcolor>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <!-- VIEW - TYPE SETTINGS -->
+
+    <include name="Def_Dialog_View_Type">
+        <param name="texture" value="$PARAM[texture]" />
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="viewtype_w1210_h680_b24" />
+        <param name="top" value="$PARAM[top]" default="112" />
+        <param name="right" value="$PARAM[right]" default="30" />
+        <param name="width" value="$PARAM[width]" default="1210" />
+        <param name="height" value="$PARAM[height]" default="680" />
+        <param name="fadetime" value="$PARAM[fadetime]" default="300" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+
+                <top>$PARAM[top]</top>
+                <right>$PARAM[right]</right>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+
+                <control type="group">
+                    <include>Def_Art_Full_Background_b24</include>
+                </control>
+
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <fadetime>$PARAM[fadetime]</fadetime>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">stretch</aspectratio>
+                    <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="true">$PARAM[texture]</texture>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Reset_View_types">
+        <onclick>Skin.Reset(home.vertical)</onclick>
+        <onclick>Skin.Reset(home.horizontal)</onclick>
+        <onclick>Skin.Reset(home.style.flix)</onclick>
+        <onclick>Skin.Reset(home.style.horizontal.clean)</onclick>
+    </include>
+
+    <variable name="Def_Image_Settings_Performance">
+        <value condition="Container(11).HasFocus(1)">1</value>
+        <value condition="Container(11).HasFocus(2)">2</value>
+        <value condition="Container(11).HasFocus(3)">3</value>
+    </variable>
+
+    <variable name="Def_Image_Skin_Theme_Color">
+        <value condition="Container(11).HasFocus(1)">1</value>
+        <value condition="Container(11).HasFocus(2)">2</value>
+        <value condition="Container(11).HasFocus(3)">3</value>
+    </variable>
+
+    <variable name="Def_Image_Skin_Preset_Color">
+        <value condition="Container(11).HasFocus(1)">1</value>
+        <value condition="Container(11).HasFocus(2)">2</value>
+        <value condition="Container(11).HasFocus(3)">3</value>
+        <value condition="Container(11).HasFocus(4)">4</value>
+        <value condition="Container(11).HasFocus(5)">5</value>
+        <value condition="Container(11).HasFocus(6)">6</value>
+        <value condition="Container(11).HasFocus(7)">7</value>
+        <value condition="Container(11).HasFocus(8)">8</value>
+    </variable>
+
+    <variable name="Def_Image_Skin_Brightness_Views">
+        <value condition="Container(11).HasFocus(1)">10</value>
+        <value condition="Container(11).HasFocus(2)">20</value>
+        <value condition="Container(11).HasFocus(3)">30</value>
+        <value condition="Container(11).HasFocus(4)">40</value>
+        <value condition="Container(11).HasFocus(5)">50</value>
+        <value condition="Container(11).HasFocus(6)">60</value>
+        <value condition="Container(11).HasFocus(7)">70</value>
+        <value condition="Container(11).HasFocus(8)">80</value>
+        <value condition="Container(11).HasFocus(9)">90</value>
+        <value condition="Container(11).HasFocus(10)">100</value>
+    </variable>
+
+    <variable name="Def_Image_Skin_Brightness_Flix">
+        <value condition="Container(11).HasFocus(1)">10</value>
+        <value condition="Container(11).HasFocus(2)">20</value>
+        <value condition="Container(11).HasFocus(3)">30</value>
+        <value condition="Container(11).HasFocus(4)">40</value>
+        <value condition="Container(11).HasFocus(5)">50</value>
+        <value condition="Container(11).HasFocus(6)">60</value>
+        <value condition="Container(11).HasFocus(7)">70</value>
+        <value condition="Container(11).HasFocus(8)">80</value>
+        <value condition="Container(11).HasFocus(9)">90</value>
+        <value condition="Container(11).HasFocus(10)">100</value>
+    </variable>
+
+    <variable name="Def_Image_Home_Menu_View_type">
+        <value condition="Container(11).HasFocus(1)">1</value>
+        <value condition="Container(11).HasFocus(2)">2</value>
+        <value condition="Container(11).HasFocus(3)">3</value>
+        <value condition="Container(11).HasFocus(4)">4</value>
+        <value condition="Container(11).HasFocus(5)">5</value>
+    </variable>
+
+    <variable name="Def_Image_PVR_Channel_View_Type">
+        <value condition="Container(11).HasFocus(1)">50</value>
+        <value condition="Container(11).HasFocus(2)">55</value>
+        <value condition="Container(11).HasFocus(3)">54</value>
+        <value condition="Container(11).HasFocus(4)">51</value>
+        <value condition="Container(11).HasFocus(5)">52</value>
+        <value condition="Container(11).HasFocus(6)">526</value>
+    </variable>
+
+    <variable name="Def_Image_View_size">
+        <value condition="Container(11).HasFocus(1) + String.IsEqual(Window(Home).Property(ViewArtworkStyle),videolandscape)">video_landscape_small</value>
+        <value condition="Container(11).HasFocus(2) + String.IsEqual(Window(Home).Property(ViewArtworkStyle),videolandscape)">video_landscape_middle</value>
+        <value condition="Container(11).HasFocus(3) + String.IsEqual(Window(Home).Property(ViewArtworkStyle),videolandscape)">video_landscape_big</value>
+        <value condition="Container(11).HasFocus(1) + String.IsEqual(Window(Home).Property(ViewArtworkStyle),musiclandscape)">music_landscape_small</value>
+        <value condition="Container(11).HasFocus(2) + String.IsEqual(Window(Home).Property(ViewArtworkStyle),musiclandscape)">music_landscape_middle</value>
+        <value condition="Container(11).HasFocus(3) + String.IsEqual(Window(Home).Property(ViewArtworkStyle),musiclandscape)">music_landscape_big</value>
+        <value condition="Container(11).HasFocus(1) + String.IsEqual(Window(Home).Property(ViewArtworkStyle),musicsquare)">music_square_small</value>
+        <value condition="Container(11).HasFocus(2) + String.IsEqual(Window(Home).Property(ViewArtworkStyle),musicsquare)">music_square_middle</value>
+        <value condition="Container(11).HasFocus(3) + String.IsEqual(Window(Home).Property(ViewArtworkStyle),musicsquare)">music_square_big</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--            VIEW - HUB               -->
+    <!-- =================================== -->
+
+    <include name="Def_Hub_Window">
+        <include>Background_Global</include>
+        <include>Furniture_Header_Info</include>
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
+        <include>Furniture_Header_Clock_Right</include>
+        <include content="Furniture_DialogInfo_Extended_Video_Flags" condition="!Skin.HasSetting(hide.furniture.flags)"><param name="controlid" value="9500" /></include>
+        <include>Furniture_Footer_Info</include>
+
+        <control type="group">
+            <include>Animation_Common_Global</include>
+
+            <control type="group">
+                <top>View_List_Top</top>
+                <left>View_List_Side</left>
+                <height>PosterH</height>
+                <width>1122</width>
+
+                <!-- FANART -->
+
+                <control type="group">
+                    <include content="Def_Art_Full_Background_b24">
+                        <param name="colordiffuse" value="White100" />
+                    </include>
+
+                    <control type="image">
+                        <include content="Def_Padding"><param name="pad" value="-8" /></include>
+                        <texture border="24" colordiffuse="$VAR[Color_Focus]">$VAR[texture_box24]</texture>
+                        <animation condition="Control.HasFocus(9500)" effect="fade" end="100" start="0" time="150">Conditional</animation>
+                        <animation condition="!Control.HasFocus(9500)" effect="fade" end="0" start="100" time="100">Conditional</animation>
+                    </control>
+
+                    <control type="image">
+                        <width>100%</width>
+                        <height>100%</height>
+                        <texture background="true" diffuse="diffuse/fanart_w1122_h640_b24.png">$INFO[Skin.String(fanart.fallback.movie)]</texture>
+                        <visible>!Integer.IsGreater(Container(9500).NumItems,0)</visible>
+                    </control>
+
+                    <control type="wraplist" id="9500">
+                        <description>Widget</description>
+                        <include>Animation_Scrolltime_Views_List</include>
+                        <include>Animation_Common_Fade_In</include>
+                        <include>Animation_Common_Fade_Out</include>
+
+                        <top>0</top>
+                        <left>0</left>
+                        <width>1122</width>
+                        <height>PosterH</height>
+
+                        <onup>9500</onup>
+                        <ondown>9500</ondown>
+                        <onright>60</onright>
+                        <onleft>9501</onleft>
+
+                        <preloaditems>0</preloaditems>
+                        <orientation>vertical</orientation>
+                        <autoscroll time="10000">!Control.HasFocus(9500)</autoscroll>
+
+                        <itemlayout>
+                            <control type="image">
+                                <width>100%</width>
+                                <height>100%</height>
+                                <texture background="true" diffuse="diffuse/fanart_w1122_h640_b24.png">$VAR[Image_Fanart]</texture>
+                            </control>
+                        </itemlayout>
+                        <focusedlayout>
+                            <control type="image">
+                                <width>100%</width>
+                                <height>100%</height>
+                                <texture background="true" diffuse="diffuse/fanart_w1122_h640_b24.png">$VAR[Image_Fanart]</texture>
+                            </control>
+                        </focusedlayout>
+
+                        <content limit="$VAR[Def_Hub_Limit]" target="$VAR[Def_Hub_Widget_Target]" browse="never">$VAR[Def_Hub_Widget_Ref]</content>
+                    </control>
+
+                    <!-- FANART INFO - WITH PLOT -->
+
+                    <control type="group">
+                        <visible>Skin.HasSetting(hub.showplot)</visible>
+                        <visible>Integer.IsGreater(Container(9500).NumItems,0)</visible>
+
+                        <animation effect="fade" start="0" end="100" time="500">Visible</animation>
+                        <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
+
+                        <left>0</left>
+                        <bottom>0</bottom>
+                        <width>1122</width>
+                        <height>70</height>
+
+                        <control type="image">
+                            <left>0</left>
+                            <right>0</right>
+                            <bottom>0</bottom>
+                            <height>160</height>
+                            <texture border="24" colordiffuse="B3333333">$VAR[texture_box24]</texture>
+                        </control>
+
+                        <control type="label">
+                            <left>30</left>
+                            <top>-80</top>
+                            <width>200</width>
+                            <font>SmallNavi</font>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$INFO[Container(9500).ListItem.Year]</label>
+                        </control>
+                        <control type="label">
+                            <left>120</left>
+                            <top>-80</top>
+                            <width max="730">auto</width>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>InfoNetflix</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$INFO[Container(9500).ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <top>-80</top>
+                            <right>154</right>
+                            <width>500</width>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <align>right</align>
+                            <font>SmallNavi</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$VAR[Label_Duration_Time_Check_9500]</label>
+                            <visible>!String.IsEqual(Container(9500).ListItem.DBType,tvshow)</visible>
+                        </control>
+                        <control type="label">
+                            <centerright>96</centerright>
+                            <width>50</width>
+                            <top>-72</top>
+                            <height>50</height>
+                            <textcolor>$VAR[Value_Color_Watched_Poster]</textcolor>
+                            <font>SymbolPoster</font>
+                            <label>$VAR[Label_Image_Indicator_Status_9500]</label>
+                            <visible>!ListItem.IsParentFolder</visible>
+                        </control>
+                        <control type="label">
+                            <right>30</right>
+                            <width>500</width>
+                            <top>-80</top>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <align>right</align>
+                            <font>SmallNavi</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$VAR[Label_Rating_9500]</label>
+                        </control>
+                        <control type="textbox">
+                            <top>-20</top>
+                            <left>30</left>
+                            <right>30</right>
+                            <height>67</height>
+                            <align>justify</align>
+                            <font>Tiny</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$INFO[Container(9500).ListItem.Plot]</label>
+                        </control>
+                    </control>
+
+                    <!-- FANART INFO - WITHOUT PLOT -->
+
+                    <control type="group">
+                        <visible>!Skin.HasSetting(hub.showplot)</visible>
+                        <visible>Integer.IsGreater(Container(9500).NumItems,0)</visible>
+
+                        <animation effect="fade" start="0" end="100" time="500">Visible</animation>
+                        <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
+
+                        <left>0</left>
+                        <bottom>0</bottom>
+                        <height>70</height>
+                        <width>1122</width>
+
+                        <control type="image">
+                            <left>0</left>
+                            <right>0</right>
+                            <bottom>0</bottom>
+                            <height>80</height>
+                            <texture border="24" colordiffuse="B3333333">$VAR[texture_box24]</texture>
+                        </control>
+                        <control type="label">
+                            <left>30</left>
+                            <width>200</width>
+                            <font>SmallNavi</font>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$INFO[Container(9500).ListItem.Year]</label>
+                        </control>
+                        <control type="label">
+                            <left>120</left>
+                            <width max="730">auto</width>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>InfoNetflix</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$INFO[Container(9500).ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <right>154</right>
+                            <width>500</width>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <align>right</align>
+                            <font>SmallNavi</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$VAR[Label_Duration_Time_Check_9500]</label>
+                            <visible>!String.IsEqual(Container(9500).ListItem.DBType,tvshow)</visible>
+                        </control>
+                        <control type="label">
+                            <centerright>96</centerright>
+                            <width>50</width>
+                            <top>7</top>
+                            <height>50</height>
+                            <textcolor>$VAR[Value_Color_Watched_Poster]</textcolor>
+                            <font>SymbolPoster</font>
+                            <label>$VAR[Label_Image_Indicator_Status_9500]</label>
+                            <visible>!ListItem.IsParentFolder</visible>
+                        </control>
+                        <control type="label">
+                            <right>30</right>
+                            <width>500</width>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <align>right</align>
+                            <font>SmallNavi</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$VAR[Label_Rating_9500]</label>
+                        </control>
+                    </control>
+                </control>
+
+                <!-- MENU -->
+
+                <control type="group">
+                    <control type="list" id="9501">
+                       <include>Animation_Scrolltime_Views_List</include>
+
+                       <include>Animation_Common_Fade_In</include>
+                       <include>Animation_Common_Fade_Out</include>
+
+                       <top>0</top>
+                       <left>1160</left>
+                       <width>600</width>
+                       <height>PosterH</height>
+
+                       <onleft>60</onleft>
+                       <onright>9000</onright>
+                       <onup>9501</onup>
+                       <ondown>9501</ondown>
+
+                       <pagecontrol>60</pagecontrol>
+                       <preloaditems>2</preloaditems>
+                       <orientation>vertical</orientation>
+
+                       <itemlayout height="80">
+                            <control type="label">
+                                <left>30</left>
+                                <right>View_List_Side</right>
+                                <height>100%</height>
+                                <font>SmallNavi</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                            <control type="image">
+                                <right>16</right>
+                                <top>5</top>
+                                <bottom>0</bottom>
+                                <width>70</width>
+                                <height>70</height>
+                                <texture colordiffuse="Dark2">$INFO[ListItem.Icon]</texture>
+                            </control>
+                       </itemlayout>
+                       <focusedlayout height="80">
+                            <control type="group">
+                                <visible>Control.HasFocus(9501)</visible>
+
+                                <include content="Def_Layout_Item_Focus"><param name="condition_scroll_anim" value="true" /></include>
+
+                                <control type="label">
+                                    <left>30</left>
+                                    <right>View_List_Side</right>
+                                    <height>100%</height>
+                                    <font>SmallNavi</font>
+                                    <textcolor>Selected</textcolor>
+                                    <label>$INFO[ListItem.Label]</label>
+                                </control>
+                                <control type="image">
+                                    <right>16</right>
+                                    <top>5</top>
+                                    <bottom>0</bottom>
+                                    <width>70</width>
+                                    <height>70</height>
+                                    <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
+                                </control>
+                            </control>
+                            <control type="group">
+                                <visible>!Control.HasFocus(9501)</visible>
+                                <control type="label">
+                                    <left>30</left>
+                                    <right>View_List_Side</right>
+                                    <height>100%</height>
+                                    <font>SmallNavi</font>
+                                    <textcolor>Dark2</textcolor>
+                                    <label>$INFO[ListItem.Label]</label>
+                                </control>
+                                <control type="image">
+                                    <right>16</right>
+                                    <top>0</top>
+                                    <bottom>0</bottom>
+                                    <width>80</width>
+                                    <texture colordiffuse="Dark1">$INFO[ListItem.Icon]</texture>
+                                </control>
+                            </control>
+                       </focusedlayout>
+
+                       <content>
+                            <include>$PARAM[list]</include>
+                       </content>
+                    </control>
+               </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="60">
+                <onleft>9500</onleft>
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="60" />
+                    <param name="idlayout" value="9501" />
+                    <param name="centerleft" value="1222" />
+                </include>
+            </control>
+        </control>
+
+        <!-- CONTEXT MENU -->
+
+        <include>Def_Dialog_Menu_Background_Overlay</include>
+
+        <control type="group">
+            <visible allowhiddenfocus="true">$EXP[View_Context_Menu_Visible]</visible>
+
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>255</centerleft>
+
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="14018" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="grouplist" id="9000">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+
+                <pagecontrol>9070</pagecontrol>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="9501" /></include>
+
+                <!-- NOW PLAYING -->
+
+                <control type="button" id="55555">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[31448]</label>
+                    <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+                </control>
+
+                <include>Def_Dialog_Menu_Button_Playlist</include>
+
+                <!-- MINI PLAYER -->
+
+                <include>Def_Dialog_Menu_MiniPlayer</include>
+
+                <!-- FILTER -->
+
+                <control type="button" id="55551">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[31051]</label>
+                </control>
+                <control type="button" id="9842">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31134]</label>
+                    <label2>$VAR[Def_Hub_Limit]</label2>
+                    <onclick>SetProperty(includesetting,Value_Hub_Limit,Home)</onclick>
+                    <onclick>ActivateWindow(1248)</onclick>
+                </control>
+                <control type="radiobutton" id="9296">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31221]</label>
+                    <selected>Skin.HasSetting(hub.showplot)</selected>
+                    <onclick>Skin.ToggleSetting(hub.showplot)</onclick>
+                </control>
+                <control type="button" id="9584">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[467]:</label>
+                    <label2>$VAR[Label_Setting_View_Flag_Color]</label2>
+                    <selected>Skin.HasSetting(enable.furniture.flags.colored)</selected>
+                    <onclick>Skin.ToggleSetting(enable.furniture.flags.colored)</onclick>
+                    <visible>!Skin.HasSetting(hide.furniture.flags) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                </control>
+                <control type="togglebutton" id="20">
+                    <description>Update</description>
+                    <label>$LOCALIZE[653]</label>
+                    <altlabel>13353</altlabel>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <usealttexture>Library.IsScanningVideo</usealttexture>
+                </control>
+            </control>
+        </control>
+    </include>
+
+    <variable name="Def_Hub_Limit">
+        <value condition="!String.IsEmpty(Skin.String(HubLimit))">$INFO[Skin.String(HubLimit)]</value>
+        <value>$NUMBER[25]</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--       VIEW - GLOBAL SETTINGS        -->
+    <!-- =================================== -->
+
+    <include name="Def_Views_Global_Settings">
+        <control type="group">
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>745</centerleft>
+
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /><param name="visible" value="ControlGroup(9001).HasFocus() | Control.HasFocus(9071)" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="31053" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="grouplist" id="9001">
+                <visible allowhiddenfocus="true">ControlGroup(9001).HasFocus() | Control.HasFocus(9071)</visible>
+
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <onup>9001</onup>
+                <ondown>9001</ondown>
+                <onback>9000</onback>
+
+                <top>112</top>
+                <left>0</left>
+                <width>470</width>
+                <height>910</height>
+
+                <itemgap>0</itemgap>
+                <pagecontrol>9071</pagecontrol>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <onright>9071</onright>
+                <onleft>9000</onleft>
+
+            <!-- VIEW -->
+
+                <control type="button" id="55524">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[31226]</label>
+                </control>
+
+                <control type="radiobutton" id="9084">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31496]</label>
+                    <selected>Skin.HasSetting(hide.global.shadows)</selected>
+                    <onclick>Skin.ToggleSetting(hide.global.shadows)</onclick>
+                </control>
+                <control type="radiobutton" id="9586">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31011]</label>
+                    <selected>Skin.HasSetting(show.header.clearlogo)</selected>
+                    <onclick>Skin.ToggleSetting(show.header.clearlogo)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="90872">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31504]</label>
+                    <selected>Skin.HasSetting(show.furniture.footer)</selected>
+                    <onclick>Skin.ToggleSetting(show.furniture.footer)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+
+            <!-- DISPLAY MEDIA FLAG -->
+
+                <control type="button" id="55529">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[31229]</label>
+                </control>
+                <control type="radiobutton" id="9260">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31112]</label>
+                    <selected>!Skin.HasSetting(hide.furniture.flags)</selected>
+                    <onclick>Skin.ToggleSetting(hide.furniture.flags)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="button" id="9584">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[467]:</label>
+                    <label2>$VAR[Label_Setting_View_Flag_Color]</label2>
+                    <selected>Skin.HasSetting(enable.furniture.flags.colored)</selected>
+                    <onclick>Skin.ToggleSetting(enable.furniture.flags.colored)</onclick>
+                    <visible>!Skin.HasSetting(hide.furniture.flags) + Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                </control>
+                <control type="button" id="9263">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31329]</label>
+                    <onclick>ActivateWindow(1149)</onclick>
+                    <enable>!Skin.HasSetting(hide.furniture.flags)</enable>
+                </control>
+
+            <!-- POSTER / FOCUS -->
+
+                <control type="button" id="55526">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[20021]</label>
+                </control>
+
+                <control type="radiobutton" id="9585">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31163]</label>
+                    <selected>Skin.HasSetting(show.furniture.video.rating.num.set.version)</selected>
+                    <onclick>Skin.ToggleSetting(show.furniture.video.rating.num.set.version)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="button" id="9590">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31356]</label>
+                    <label2>$VAR[Label_Setting_Type_Marker]</label2>
+                    <onclick condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Skin.ToggleSetting(furniture.markers.alternative)</onclick>
+                    <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.ToggleSetting(hide.markers)</onclick>
+                    <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.Reset(furniture.markers.alternative)</onclick>
+                    <onclick condition="Skin.HasSetting(hide.markers)">Skin.Reset(hide.markers)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9082">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31421]</label>
+                    <selected>Skin.HasSetting(items.focus.zoom)</selected>
+                    <onclick>Skin.ToggleSetting(items.focus.zoom)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9083">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31423]:</label>
+                    <selected>Skin.HasSetting(enable.items.focus.glow)</selected>
+                    <onclick>Skin.ToggleSetting(enable.items.focus.glow)</onclick>
+                </control>
+
+            <!-- BACKGROUND -->
+
+                <control type="button" id="55525">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[31081]</label>
+                </control>
+
+                <!-- DISABLE BLUR EFFECT -->
+
+                <control type="radiobutton" id="9085">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31050]</label>
+                    <selected>Skin.HasSetting(enabled.tmdb.helper.blur)</selected>
+                    <onclick>Skin.ToggleSetting(enabled.tmdb.helper.blur)</onclick>
+                    <onclick condition="Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.Reset(TMDbHelper.EnableBlur)</onclick>
+                    <onclick condition="!Skin.HasSetting(enabled.tmdb.helper.blur)">Skin.SetBool(TMDbHelper.EnableBlur)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+
+                <!-- SHOW FANART -->
+
+                <control type="radiobutton" id="9714" description="Show fanart">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31090]</label>
+                    <selected>!Skin.HasSetting(hide.global.fanart)</selected>
+                    <onclick>Skin.ToggleSetting(hide.global.fanart)</onclick>
+                    <onclick condition="Skin.HasSetting(hide.global.fanart)">Skin.Reset(home.show.only.menu.background)</onclick>
+                    <onclick condition="Skin.HasSetting(hide.global.fanart)">Skin.Reset(show.fallback.background)</onclick>
+                </control>
+
+                <!-- SHOW EXTRA FANART -->
+
+                <control type="radiobutton" id="9088" description="Enable Extra Fanart">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31187]</label>
+                    <selected>Skin.HasSetting(enable.extra.fanart)</selected>
+                    <onclick>Skin.ToggleSetting(enable.extra.fanart)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <onclick condition="Skin.HasSetting(enable.extra.fanart)">Skin.SetBool(enabled.tmdb.helper.blur)</onclick>
+                    <onclick condition="!Skin.HasSetting(enable.extra.fanart)">Skin.Reset(enabled.tmdb.helper.blur)</onclick>
+                    <enable>!Skin.HasSetting(hide.global.fanart)</enable>
+                </control>
+
+                <!-- SHOW ONLY FALLBACK -->
+
+                <control type="radiobutton" id="98053" description="Show vis in background">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31560]</label>
+                    <selected>Skin.HasSetting(global.show.fallback.only)</selected>
+                    <onclick>Skin.ToggleSetting(global.show.fallback.only)</onclick>
+                </control>
+
+            <!-- MENU - NOW PLAYING -->
+
+                <control type="button" id="55528">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[31447]</label>
+                </control>
+                <control type="radiobutton" id="9089">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31113]</label>
+                    <selected>!Skin.HasSetting(hide.furniture.nowplaying.views)</selected>
+                    <onclick>Skin.ToggleSetting(hide.furniture.nowplaying.views)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9743">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31564]</label>
+                    <selected>Skin.HasSetting(show.nowplaying.video.view.flix)</selected>
+                    <onclick>Skin.ToggleSetting(show.nowplaying.video.view.flix)</onclick>
+                </control>
+                <control type="button" id="97429">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31426]</label>
+                    <label2>$VAR[Label_Setting_Flix_Trailer_Black_Bars]</label2>
+                    <onclick condition="!Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window) + !Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window.force)">Skin.SetBool(home.views.flix.autoplay.trailer.custom.window)</onclick>
+                    <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window)">Skin.SetBool(home.views.flix.autoplay.trailer.custom.window.force)</onclick>
+                    <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window)">Skin.Reset(home.views.flix.autoplay.trailer.custom.window)</onclick>
+                    <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer.custom.window.force)">Skin.Reset(home.views.flix.autoplay.trailer.custom.window.force)</onclick>
+                    <enable>Skin.HasSetting(show.nowplaying.video.view.flix)</enable>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="9071" />
+                <param name="top" value="112" />
+                <param name="onleft" value="9001" />
+                <param name="onright" value="9001" />
+                <param name="onback" value="9001" />
+                <param name="height" value="910" />
+                <param name="centerright" value="4" />
+            </include>
+        </control>
+    </include>
+</includes>

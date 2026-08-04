@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+
+    <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
+    <onload condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">CancelAlarm(slide_out_setfocus_2011,true)</onload>
+
+    <onunload condition="Window.IsVisible(script-globalsearch.xml)">ClearProperty(GlobalSearchWindowOpen,Home)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background">
+                <param name="height" value="442" />
+                <param name="width" value="1320" />
+                <param name="colordiffuse" value="Panel" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="" />
+                <param name="label_id" value="1" />
+                <param name="icon" value="kodi" />
+            </include>
+
+            <!-- INFO -->
+
+            <control type="textbox" id="9">
+                <top>112</top>
+                <height>180</height>
+                <left>30</left>
+                <right>30</right>
+                <font>Tiny</font>
+            </control>
+
+            <!-- PROGRESS BAR -->
+
+            <control type="group">
+                <visible>Window.IsActive(progressdialog)</visible>
+
+                <bottom>126</bottom>
+                <left>30</left>
+                <right>30</right>
+                <height>8</height>
+                <control type="progress" id="20">
+                    <description>Progressbar</description>
+                    <info>System.Progressbar</info>
+                    <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-nib.png</texturebg>
+                </control>
+                <control type="progress">
+                    <description>Progressbar</description>
+                    <info>System.Progressbar</info>
+                    <texturebg colordiffuse="Black12" border="8,0,8,0">progress/progress-bg.png</texturebg>
+                    <midtexture colordiffuse="$VAR[Color_Focus]" border="8,0,8,0">progress/progress-bg.png</midtexture>
+                </control>
+            </control>
+
+            <!-- BUTTON -->
+
+            <control type="grouplist" id="9000">
+                <bottom>30</bottom>
+                <height>66</height>
+                <width>100%</width>
+                <align>center</align>
+                <centerleft>50%</centerleft>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+                <include content="Def_Dialog_Button_Confirm">
+                    <param name="id" value="11" />
+                </include>
+                <include content="Def_Dialog_Button_Confirm">
+                    <param name="id" value="10" />
+                </include>
+                <include content="Def_Dialog_Button_Confirm">
+                    <param name="id" value="12" />
+                </include>
+            </control>
+        </control>
+    </controls>
+</window>

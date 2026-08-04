@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">9100</defaultcontrol>
+
+    <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
+    <onload>SetFocus(9100,0,absolute)</onload>
+
+    <!-- TMDBHELPER.WIDGETCONTAINER -->
+
+    <include>Def_Clear_TMDbHelper_WidgetContainer_On_Load</include>
+
+    <controls>
+        <include>Background_Global</include>
+
+        <include>Furniture_Header_Info</include>
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
+
+        <control type="group">
+            <include>Animation_Common_Settings</include>
+            <include>Def_Dialog_Settings</include>
+
+            <!-- MENU SETTINGS -->
+
+            <control type="panel" id="9100">
+                <top>0</top>
+                <left>0</left>
+                <width>1216</width>
+                <height>646</height>
+
+                <orientation>horizontal</orientation>
+
+                <itemlayout width="300,5" height="210">
+                    <control type="image">
+                        <top>16</top>
+                        <left>16</left>
+                        <width>284,5</width>
+                        <bottom>0</bottom>
+                        <texture colordiffuse="$VAR[Value_Color_Settings]" border="12">$VAR[texture_box12]</texture>
+                    </control>
+                    <control type="label">
+                        <top>129</top>
+                        <left>30</left>
+                        <right>25</right>
+                        <height>50</height>
+                        <aligny>center</aligny>
+                        <align>center</align>
+                        <font>Small</font>
+                        <textcolor>PanelWhite100</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="image">
+                        <top>42</top>
+                        <left>100</left>
+                        <width>106.7</width>
+                        <height>106.7</height>
+                        <texture colordiffuse="PanelWhite100">$INFO[ListItem.Icon]</texture>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="300,5" height="210">
+                    <control type="image">
+                        <top>16</top>
+                        <left>16</left>
+                        <width>284,5</width>
+                        <bottom>0</bottom>
+                        <include>Texture_Layout_Item_Focus</include>
+                        <include condition="true">Animation_View_List_Focus_Scroll</include>
+                    </control>
+                    <control type="label">
+                        <top>129</top>
+                        <left>30</left>
+                        <right>25</right>
+                        <height>50</height>
+                        <aligny>center</aligny>
+                        <align>center</align>
+                        <font>Small</font>
+                        <textcolor>PanelWhiteSetting</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="image">
+                        <top>42</top>
+                        <left>100</left>
+                        <width>106.7</width>
+                        <height>106.7</height>
+                        <texture colordiffuse="PanelWhiteSetting">$INFO[ListItem.Icon]</texture>
+                    </control>
+                </focusedlayout>
+                <content>
+                    <item id="1">
+                        <label>14206</label>
+                        <label2>31202</label2>
+                        <icon>special://skin/extras/icons/paintbrush.png</icon>
+                        <onclick>ActivateWindow(InterfaceSettings)</onclick>
+                    </item>
+                    <item id="2">
+                        <label>14211</label>
+                        <label2>31203</label2>
+                        <icon>special://skin/extras/icons/database.png</icon>
+                        <onclick>ActivateWindow(MediaSettings)</onclick>
+                    </item>
+                    <item id="3">
+                        <label>14200</label>
+                        <label2>31204</label2>
+                        <icon>special://skin/extras/icons/equalizer.png</icon>
+                        <onclick>ActivateWindow(PlayerSettings)</onclick>
+                    </item>
+                    <item id="12">
+                        <label>166</label>
+                        <label2>31123</label2>
+                        <icon>special://skin/extras/icons/skinsettings.png</icon>
+                        <onclick>ActivateWindow(SkinSettings)</onclick>
+                    </item>
+                    <item id="8">
+                        <label>13000</label>
+                        <label2>31118</label2>
+                        <icon>special://skin/extras/icons/sysinfo.png</icon>
+                        <onclick>ActivateWindow(SystemSettings)</onclick>
+                    </item>
+                    <item id="7">
+                        <label>14036</label>
+                        <label2>31121</label2>
+                        <icon>special://skin/extras/icons/networkinfo.png</icon>
+                        <onclick>ActivateWindow(servicesettings)</onclick>
+                    </item>
+                    <item id="9">
+                        <label>13200</label>
+                        <label2>31122</label2>
+                        <icon>special://skin/extras/icons/actor.png</icon>
+                        <onclick>ActivateWindow(Profiles)</onclick>
+                    </item>
+                    <item id="4">
+                        <label>24001</label>
+                        <label2>31119</label2>
+                        <icon>special://skin/extras/icons/addon.png</icon>
+                        <onclick>ActivateWindow(AddonBrowser)</onclick>
+                    </item>
+                    <item id="10">
+                        <label>130</label>
+                        <label2>31124</label2>
+                        <icon>special://skin/extras/icons/info.png</icon>
+                        <onclick>ActivateWindow(7)</onclick>
+                    </item>
+                    <item id="11">
+                        <label>14204</label>
+                        <label2>31120</label2>
+                        <icon>special://skin/extras/icons/livetv.png</icon>
+                        <onclick>ActivateWindow(pvrsettings)</onclick>
+                    </item>
+                    <item id="14">
+                        <label>$LOCALIZE[7]</label>
+                        <label2>31487</label2>
+                        <icon>special://skin/extras/icons/filebox.png</icon>
+                        <onclick>ActivateWindow(filemanager)</onclick>
+                    </item>
+                    <item id="5">
+                        <label>LibreELEC</label>
+                        <label2>31279</label2>
+                        <icon>special://skin/extras/icons/libreelec.png</icon>
+                        <onclick>RunScript(service.libreelec.settings)</onclick>
+                        <visible>System.HasAddon(service.libreelec.settings)</visible>
+                    </item>
+                    <item id="6">
+                        <label>CoreELEC</label>
+                        <label2>31280</label2>
+                        <icon>special://skin/extras/icons/coreelec.png</icon>
+                        <onclick>RunScript(service.coreelec.settings)</onclick>
+                        <visible>System.HasAddon(service.coreelec.settings)</visible>
+                    </item>
+                    <item id="15">
+                        <label>31549</label>
+                        <label2>31550</label2>
+                        <icon>special://skin/extras/icons/rectangle-list.png</icon>
+                        <onclick>ActivateWindow(eventlog)</onclick>
+                    </item>
+                    <item id="16">
+                        <label>15016</label>
+                        <label2></label2>
+                        <icon>special://skin/extras/icons/gamepad.png</icon>
+                        <onclick>ActivateWindow(GameSettings)</onclick>
+                        <visible>System.GetBool(gamesgeneral.enable)</visible>
+                    </item>
+                </content>
+            </control>
+
+            <!-- LINE VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="top" value="17" /><param name="right" value="542" /></include>
+
+            <!-- DESCRIPTION ON RIGHT-->
+
+            <control type="group">
+                <top>10</top>
+                <bottom>10</bottom>
+                <right>10</right>
+                <left>1220</left>
+                <control type="textbox">
+                    <top>30</top>
+                    <bottom>30</bottom>
+                    <right>30</right>
+                    <left>30</left>
+                    <align>left</align>
+                    <font>Tiny</font>
+                    <textcolor>PanelWhite100</textcolor>
+                    <label>$INFO[Container(9100).ListItem.Label2]</label>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

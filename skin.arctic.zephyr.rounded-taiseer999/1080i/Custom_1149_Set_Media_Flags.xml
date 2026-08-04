@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1149">
+    <defaultcontrol>11</defaultcontrol>
+
+    <onload>SetFocus(127)</onload>
+    <onload>SetFocus(100)</onload>
+    <onunload condition="!String.IsEmpty(Window(Home).Property(reloadskin)) + Window.IsVisible(SkinSettings.xml)">SetFocus(3033)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background"><param name="height" value="842" /><param name="width" value="1760" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="31329" />
+                <param name="icon" value="skinsettings" />
+            </include>
+
+            <!-- MENU LEFT -->
+
+            <control type="grouplist" id="11">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>16</left>
+                <width>668</width>
+                <height>660</height>
+
+                <onleft>12</onleft>
+                <onright>1600</onright>
+
+                <itemgap>0</itemgap>
+                <pagecontrol>1600</pagecontrol>
+                <usecontrolcoords>true</usecontrolcoords>
+
+    <!-- TITLE -  VIDEOS -->
+
+                <control type="label" id="140">
+                    <include>Def_Custom_Settings_Label_Title_Left_Side</include>
+                    <label>$LOCALIZE[3]</label>
+                </control>
+
+                <!-- VIDEO -->
+
+                <control type="radiobutton" id="100">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[21443]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.resolution)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.resolution)</onclick>
+                </control>
+                <control type="radiobutton" id="101">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[21445]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.videocodec)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.videocodec)</onclick>
+                </control>
+                <control type="radiobutton" id="102">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[21374]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.aspectratio)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.aspectratio)</onclick>
+                </control>
+                <control type="radiobutton" id="105">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31357]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.hdr)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.hdr)</onclick>
+                </control>
+
+                <!-- AUDIO -->
+
+                <control type="radiobutton" id="130">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[2050]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.videoduration)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.videoduration)</onclick>
+                </control>
+                <control type="radiobutton" id="103">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[21446]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.audiocodec)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.audiocodec)</onclick>
+                </control>
+                <control type="radiobutton" id="104">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31360]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.audiochannels)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.audiochannels)</onclick>
+                </control>
+
+                <!-- LANGUAGE AUDIO / CC -->
+
+                <control type="radiobutton" id="116">
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31400]</label>
+                    <selected>Skin.HasSetting(show.flags.audio.country)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.audio.country)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="114">
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31330]</label>
+                    <selected>Skin.HasSetting(show.flags.subtitles)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.subtitles)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="115">
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31219]$LOCALIZE[31331]</label>
+                    <selected>Skin.HasSetting(show.flags.subtitles.country)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.subtitles.country)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <enable>Skin.HasSetting(show.flags.subtitles)</enable>
+                </control>
+
+                <!-- MISC -->
+
+                <control type="radiobutton" id="106">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[20074]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.mpaa)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.mpaa)</onclick>
+                </control>
+                <control type="radiobutton" id="107">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31358]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.bluray)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.bluray)</onclick>
+                </control>
+                <control type="radiobutton" id="109">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31164]</label>
+                    <selected>!Skin.HasSetting(hide.flags.nextaired)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.nextaired)</onclick>
+                </control>
+            </control>
+
+            <control type="grouplist" id="12">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>716</left>
+                <width>668</width>
+                <height>660</height>
+
+                <onleft>11</onleft>
+                <onright>1601</onright>
+
+                <itemgap>0</itemgap>
+                <pagecontrol>1601</pagecontrol>
+                <usecontrolcoords>true</usecontrolcoords>
+
+    <!-- TITLE -  VIDEOS - RATING -->
+
+                <control type="label" id="141">
+                    <include>Def_Custom_Settings_Label_Title_Left_Side</include>
+                    <label>$LOCALIZE[3] - $LOCALIZE[563]</label>
+                </control>
+
+                <!-- LETTERBOXD -->
+
+                <control type="radiobutton" id="127">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31091]</label>
+                    <selected>Skin.HasSetting(show.flags.rating.letterboxd)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.rating.letterboxd)</onclick>
+                </control>
+
+                <!-- MDBLIST -->
+
+                <control type="radiobutton" id="129">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31251]</label>
+                    <selected>Skin.HasSetting(show.flags.rating.mdblist)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.rating.mdblist)</onclick>
+                </control>
+
+                <!-- METACRITICS -->
+
+                <control type="radiobutton" id="112">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31008]</label>
+                    <selected>Skin.HasSetting(show.flags.rating.metacritics)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.rating.metacritics)</onclick>
+                </control>
+
+                <!-- ROTTEN TOMATOES -->
+
+                <control type="radiobutton" id="126">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31328]</label>
+                    <selected>Skin.HasSetting(show.flags.rating.tomatoes)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.rating.tomatoes)</onclick>
+                </control>
+
+                <!-- TRAKT -->
+
+                <control type="radiobutton" id="128">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31096]</label>
+                    <selected>Skin.HasSetting(show.flags.rating.trakt)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.rating.trakt)</onclick>
+                </control>
+
+                <!-- TMDB -->
+
+                <control type="radiobutton" id="123">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31173]</label>
+                    <selected>Skin.HasSetting(show.flags.rating.tmdb)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.rating.tmdb)</onclick>
+                </control>
+
+                <!-- IMDB -->
+
+                <control type="radiobutton" id="122">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31149]</label>
+                    <selected>Skin.HasSetting(show.flags.rating.imdb)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.rating.imdb)</onclick>
+                </control>
+                <control type="radiobutton" id="108">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31359]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.top250)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.top250)</onclick>
+                </control>
+                <control type="radiobutton" id="1081">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31219]$LOCALIZE[31393]</label>
+                    <selected>Skin.HasSetting(show.flags.top250.classement)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.top250.classement)</onclick>
+                    <enable>!Skin.HasSetting(hide.flags.top250)</enable>
+                </control>
+
+                <!-- KODI RATING -->
+
+                <control type="radiobutton" id="110">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[563]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.rating)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.rating)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="111">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31219]$LOCALIZE[31163]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>Skin.HasSetting(enable.flags.rating.numeric)</selected>
+                    <onclick>Skin.ToggleSetting(enable.flags.rating.numeric)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <enable>!Skin.HasSetting(hide.flags.rating)</enable>
+                </control>
+
+                <!-- USER RATING -->
+
+                <control type="radiobutton" id="113">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[38018]</label>
+                    <selected>Skin.HasSetting(show.flags.rating.user)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.rating.user)</onclick>
+                </control>
+
+    <!-- TITLE -  MUSIC -->
+
+                <control type="label" id="150">
+                    <include>Def_Custom_Settings_Label_Title_Left_Side</include>
+                    <label>$LOCALIZE[2]</label>
+                </control>
+
+                <!-- FLUX AUDIO -->
+
+                <control type="radiobutton" id="118">
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[21446]</label>
+                    <selected>!Skin.HasSetting(hide.flags.music.codec)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.music.codec)</onclick>
+                </control>
+                <control type="radiobutton" id="119">
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[623]</label>
+                    <selected>!Skin.HasSetting(hide.flags.music.bitrate)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.music.bitrate)</onclick>
+                </control>
+                <control type="radiobutton" id="120">
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[613]</label>
+                    <selected>Skin.HasSetting(show.flags.music.samplerate)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.music.samplerate)</onclick>
+                </control>
+                <control type="radiobutton" id="121">
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[38080]</label>
+                    <selected>Skin.HasSetting(show.flags.music.bpm)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.music.bpm)</onclick>
+                </control>
+
+                <!-- RATING -->
+
+                <control type="radiobutton" id="117">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[563]</label>
+                    <visible>Skin.HasSetting(enable.furniture.flags.icons)</visible>
+                    <selected>!Skin.HasSetting(hide.flags.music.rating)</selected>
+                    <onclick>Skin.ToggleSetting(hide.flags.music.rating)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="125">
+                    <align>left</align>
+                    <include>Def_Custom_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[38018]</label>
+                    <selected>Skin.HasSetting(show.flags.music.rating.user)</selected>
+                    <onclick>Skin.ToggleSetting(show.flags.music.rating.user)</onclick>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1600" />
+                <param name="onleft" value="11" />
+                <param name="onright" value="12" />
+                <param name="height" value="660" />
+                <param name="centerright" value="1060" />
+            </include>
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1601" />
+                <param name="onleft" value="12" />
+                <param name="onright" value="5" />
+                <param name="height" value="660" />
+                <param name="centerright" value="360" />
+            </include>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+                <onleft>12</onleft>
+                <onright>11</onright>
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+                <control type="button" id="25">
+                    <label>13007</label>
+                    <include>Def_Dialog_Standard_Button</include>
+                    <include>Def_Onclick_Flag_Video_Reset</include>
+                </control>
+                <control type="button" id="26">
+                    <label>571</label>
+                    <include>Def_Dialog_Standard_Button</include>
+                    <include>Def_Onclick_Flag_Video_Default</include>
+                </control>
+                <control type="button" id="27">
+                    <label>33029</label>
+                    <include>Def_Dialog_Standard_Button</include>
+                    <include>Def_Onclick_Flag_Video_Detail</include>
+                </control>
+                <control type="button" id="28">
+                    <label>563</label>
+                    <include>Def_Dialog_Standard_Button</include>
+                    <include>Def_Onclick_Flag_Video_Rating</include>
+                </control>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="5" />
+                    <param name="label" value="15067" />
+                    <param name="onclick1" value="Close" />
+                </include>
+            </control>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>1060</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1600) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1601) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- NUM ITEM -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </controls>
+</window>

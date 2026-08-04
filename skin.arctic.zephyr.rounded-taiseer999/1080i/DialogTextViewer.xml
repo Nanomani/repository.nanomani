@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol>61</defaultcontrol>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+
+            <include content="Def_Dialog_Background"><param name="height" value="882" /><param name="width" value="1722" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="1026" />
+                <param name="label_id" value="1" />
+                <param name="icon" value="rectangle-list" />
+            </include>
+
+            <!-- TEXTBOX -->
+
+            <control type="textbox" id="5">
+                <description>textarea</description>
+                <include>Animation_Scrolltime_Views_List</include>
+                <left>60</left>
+                <right>86</right>
+                <top>112</top>
+                <bottom>90</bottom>
+                <align>justify</align>
+                <pagecontrol>61</pagecontrol>
+            </control>
+
+            <!-- SCROLLBAR  -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="61" />
+                <param name="onleft" value="Close" />
+                <param name="onright" value="Close" />
+                <param name="onup" value="61" />
+                <param name="ondown" value="61" />
+                <param name="centerright" value="31" />
+                <param name="height" value="680" />
+            </include>
+
+            <!-- NUM ITEMS -->
+
+            <control type="label">
+                <right>30</right>
+                <font>Tiny</font>
+                <height>44</height>
+                <bottom>20</bottom>
+                <align>right</align>
+                <textcolor>Black70</textcolor>
+                <label>$INFO[Container(5).CurrentPage]/$INFO[Container(5).NumPages]</label>
+                <visible>Integer.IsGreater(Container(5).NumPages,1)</visible>
+            </control>
+        </control>
+    </controls>
+</window>

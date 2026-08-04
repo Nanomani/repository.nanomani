@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="Def_Hidden_Button">
+        <nested />
+        <top>-1000</top>
+        <left>-1000</left>
+        <width>1</width>
+        <height>1</height>
+        <texturefocus />
+        <texturenofocus />
+        <font />
+    </include>
+
+    <include name="Def_Hidden_ListControl">
+        <top>-1000</top>
+        <left>-1000</left>
+        <width>1</width>
+        <height>1</height>
+        <itemlayout/>
+        <focusedlayout/>
+    </include>
+
+    <include name="Def_Hidden_Label">
+        <top>-1000</top>
+        <left>-1000</left>
+        <width>1</width>
+        <height>1</height>
+    </include>
+
+    <include name="Object_Control">
+        <control type="$PARAM[control]" id="$PARAM[id]">
+            <nested />
+        </control>
+    </include>
+
+    <include name="Object_OnDirection_Action">
+        <onleft>$PARAM[ondirection]</onleft>
+        <onright>$PARAM[ondirection]</onright>
+        <onup>$PARAM[ondirection]</onup>
+        <ondown>$PARAM[ondirection]</ondown>
+        <onback>$PARAM[ondirection]</onback>
+    </include>
+
+    <!-- ARROWS -->
+
+    <include name="Object_Arrows_View_ContextMenu">
+        <param name="arrow_top" default="-24" />
+        <param name="arrow_bottom" default="699" />
+        <param name="arrow_centerleft" default="50%" />
+        <param name="colordiffuse" default="White100" />
+
+        <definition>
+            <control type="group">
+                <control type="image">
+                    <top>$PARAM[arrow_top]</top>
+                    <centerleft>$PARAM[arrow_centerleft]</centerleft>
+                    <include>Def_Arrow_Size</include>
+                    <include content="Texture_Arrow_Up"><param name="colordiffuse" value="$PARAM[colordiffuse]" /></include>
+                </control>
+                <control type="image">
+                    <top>$PARAM[arrow_bottom]</top>
+                    <centerleft>$PARAM[arrow_centerleft]</centerleft>
+                    <include>Def_Arrow_Size</include>
+                    <include content="Texture_Arrow_Down"><param name="colordiffuse" value="$PARAM[colordiffuse]" /></include>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Arrows_Dialog_Vertical">
+        <param name="arrow_top" default="-24" />
+        <param name="arrow_bottom" default="839" />
+        <param name="arrow_centerleft" default="50%" />
+
+        <param name="colordiffuse" default="White100" />
+        <param name="container_id" default="$PARAM[container_id]" />
+
+        <param name="visible" default="true" />
+
+        <definition>
+            <control type="group">
+                <visible>Integer.IsGreater(Container($PARAM[container_id]).NumItems,10)</visible>
+
+                <control type="image">
+                    <top>$PARAM[arrow_top]</top>
+                    <centerleft>$PARAM[arrow_centerleft]</centerleft>
+                    <include>Def_Arrow_Size</include>
+                    <include content="Texture_Arrow_Up"><param name="colordiffuse" value="$PARAM[colordiffuse]" /></include>
+                </control>
+                <control type="image">
+                    <top>$PARAM[arrow_bottom]</top>
+                    <centerleft>$PARAM[arrow_centerleft]</centerleft>
+                    <include>Def_Arrow_Size</include>
+                    <include content="Texture_Arrow_Down"><param name="colordiffuse" value="$PARAM[colordiffuse]" /></include>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Arrows_DialogInfo_Navigation">
+        <param name="centerbottom" value="$PARAM[centerbottom]" default="257" />
+        <param name="centerleft" value="$PARAM[centerleft]" default="550" />
+        <param name="visible" value="$PARAM[visible]" default="false" />
+
+        <definition>
+            <control type="group">
+                <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+                <visible>$PARAM[visible]</visible>
+                <centerbottom>$PARAM[centerbottom]</centerbottom>
+                <height>16</height>
+                <control type="image">
+                   <centerleft>$PARAM[centerleft]</centerleft>
+                   <include>Def_Arrow_Size</include>
+                   <texture colordiffuse="Dark2" flipx="true">common/arrow_small_right.png</texture>
+                </control>
+                <control type="image">
+                   <centerright>61</centerright>
+                   <include>Def_Arrow_Size</include>
+                   <texture colordiffuse="Dark2" flipx="false">common/arrow_small_right.png</texture>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Arrows_Textbox_Navigation">
+        <param name="top" value="$PARAM[top]" />
+        <param name="bottom" value="$PARAM[bottom]" />
+        <param name="left" value="$PARAM[left]" />
+        <param name="idtextbox" default="$PARAM[idtextbox]" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="Dark2" />
+        <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" default="Dark4" />
+
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="group">
+                <visible>Container($PARAM[idtextbox]).HasPrevious + $PARAM[visible]</visible>
+                <include>Animation_Common_Fade_In</include>
+                <include>Animation_Common_Fade_Out</include>
+
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+
+                <include content="Object_Arrows_Up">
+                    <param name="colordiffuse" value="$PARAM[colordiffuse]" />
+                    <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" />
+                </include>
+            </control>
+            <control type="group">
+                <visible>Container($PARAM[idtextbox]).HasNext + $PARAM[visible]</visible>
+                <include>Animation_Common_Fade_In</include>
+                <include>Animation_Common_Fade_Out</include>
+
+                <top>$PARAM[bottom]</top>
+                <left>$PARAM[left]</left>
+
+                <include content="Object_Arrows_Down">
+                    <param name="colordiffuse" value="$PARAM[colordiffuse]" />
+                    <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" />
+                </include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Arrows_Up">
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="Dark2" />
+        <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" default="Dark4" />
+
+        <definition>
+            <control type="image" description="button back">
+                <top>-6</top>
+                <left>-12</left>
+                <width>40</width>
+                <height>40</height>
+                <texture border="0" colordiffuse="$PARAM[colordiffuse_background]">common/circle80.png</texture>
+            </control>
+            <control type="image">
+                <top>0</top>
+                <include>Def_Arrow_Size</include>
+                <include content="Texture_Arrow_Up"><param name="colordiffuse" value="$PARAM[colordiffuse]" /></include>
+            </control>
+            <control type="image">
+                <top>12</top>
+                <include>Def_Arrow_Size</include>
+                <include content="Texture_Arrow_Up"><param name="colordiffuse" value="$PARAM[colordiffuse]" /></include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Arrows_Down">
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="Dark2" />
+        <param name="colordiffuse_background" value="$PARAM[colordiffuse_background]" default="Dark4" />
+
+        <definition>
+            <control type="image" description="button back">
+                <top>-7</top>
+                <left>-12</left>
+                <width>40</width>
+                <height>40</height>
+                <texture border="0" colordiffuse="$PARAM[colordiffuse_background]">common/circle80.png</texture>
+            </control>
+            <control type="image">
+                <top>0</top>
+                <include>Def_Arrow_Size</include>
+                <include content="Texture_Arrow_Down"><param name="colordiffuse" value="$PARAM[colordiffuse]" /></include>
+            </control>
+            <control type="image">
+                <top>12</top>
+                <include>Def_Arrow_Size</include>
+                <include content="Texture_Arrow_Down"><param name="colordiffuse" value="$PARAM[colordiffuse]" /></include>
+            </control>
+        </definition>
+    </include>
+
+    <!-- SPINNER -->
+
+    <include name="Object_Spinner_Busy">
+        <param name="show_label_spinner" value="$PARAM[show_label_spinner]" default="true" />
+        <param name="label_spinner" value="$PARAM[label_spinner]" default="$LOCALIZE[31546]..." />
+
+        <param name="textcolor"  value="$PARAM[textcolor]" default="Dark2" />
+        <param name="centertop" value="$PARAM[centertop]" default="54" />
+        <param name="centerleft" value="$PARAM[centerleft]" default="54" />
+
+        <param name="size" default="100" />
+        <param name="texture_circle" default="dialog/loading-back.png" />
+        <param name="colordiffuse_circle" default="PanelWhite100" />
+
+        <param name="icon" default="special://skin/extras/icons/kodi.png" />
+        <param name="colordiffuse_icon" default="PanelWhite70" />
+
+        <param name="has_spinner" default="true" />
+        <param name="spin_spinner" default="true" />
+        <param name="has_progress" default="false" />
+        <param name="spin_progress" default="false" />
+
+        <param name="progress" default="Control.GetLabel(32)" />
+        <param name="progress_id" default="32" />
+
+        <param name="visible" default="true" />
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <nested />
+
+                <centertop>$PARAM[centertop]</centertop>
+                <centerleft>$PARAM[centerleft]</centerleft>
+                <width>$PARAM[size]</width>
+                <height>$PARAM[size]</height>
+
+                <!-- CIRCLE -->
+
+                <control type="image" description="Back">
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+                    <texture>$PARAM[texture_circle]</texture>
+                    <colordiffuse>$PARAM[colordiffuse_circle]</colordiffuse>
+                </control>
+
+                <!-- ICON -->
+
+                <control type="image" description="Icon">
+                    <bordersize>30</bordersize>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+                    <texture>$PARAM[icon]</texture>
+                    <colordiffuse>$PARAM[colordiffuse_icon]</colordiffuse>
+                </control>
+
+                <!-- SPINNER -->
+
+                <include content="Object_Control" condition="$PARAM[has_spinner]">
+                    <param name="control" value="group" />
+                    <description>Busy animation</description>
+                    <animation effect="rotate" condition="$PARAM[spin_spinner]" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
+                    <control type="image">
+                        <texture colordiffuse="$VAR[Color_Focus]">dialog/loading-spinner.png</texture>
+                        <aspectratio>keep</aspectratio>
+                    </control>
+                    <control type="image">
+                        <texture colordiffuse="$VAR[Color_Focus]">dialog/loading-spinner.png</texture>
+                        <aspectratio>keep</aspectratio>
+                        <animation effect="fade" condition="$PARAM[spin_spinner]" start="0" end="100" pulse="true" time="1000">Conditional</animation>
+                    </control>
+                </include>
+
+                <!-- PROGRESS -->
+
+                <include content="Object_Control" condition="$PARAM[has_progress]">
+                    <param name="control" value="group" />
+                    <description>Busy animation</description>
+                    <animation effect="rotate" condition="$PARAM[spin_progress]" start="360" end="0" loop="true" time="2000" center="auto">Conditional</animation>
+                    <control type="image">
+                        <texture colordiffuse="$VAR[Color_Focus]">$INFO[$PARAM[progress],progress/circle_info/p,.png]</texture>
+                        <aspectratio align="center" aligny="center">keep</aspectratio>
+                    </control>
+                    <control type="image">
+                        <texture colordiffuse="$VAR[Color_Focus]">$INFO[$PARAM[progress],progress/circle_info/p,.png]</texture>
+                        <animation effect="fade" end="66" condition="true">Conditional</animation>
+                        <aspectratio align="center" aligny="center">keep</aspectratio>
+                    </control>
+                </include>
+
+                <!-- LABEL -->
+
+                <include content="Object_Control" condition="$PARAM[show_label_spinner]">
+                    <param name="control" value="label" />
+                    <bottom>-40</bottom>
+                    <height>40</height>
+                    <width>600</width>
+                    <centerleft>50%</centerleft>
+                    <align>center</align>
+                    <label>$PARAM[label_spinner]</label>
+                    <font>Tiny</font>
+                    <textcolor>$PARAM[textcolor]</textcolor>
+                </include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Spinner_Pause">
+        <param name="visible" default="Player.Paused" />
+        <param name="centerleft" default="54" />
+        <param name="centertop" default="54" />
+        <param name="size" default="100" />
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+
+                <centertop>$PARAM[centertop]</centertop>
+                <centerleft>$PARAM[centerleft]</centerleft>
+
+                <width>$PARAM[size]</width>
+                <height>$PARAM[size]</height>
+
+                <!-- BACKGROUND -->
+
+                <control type="image" description="Back">
+                    <left>0</left>
+                    <centertop>50%</centertop>
+                    <width>100</width>
+                    <height>100</height>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+                    <texture>dialog/loading-back.png</texture>
+                    <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
+                </control>
+
+                <!-- PAUSED -->
+
+                <control type="image" description="Pause">
+                    <left>0</left>
+                    <centertop>50%</centertop>
+                    <width>100</width>
+                    <height>100</height>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+                    <texture colordiffuse="FFFFFFFF">nowplaying/pause.png</texture>
+                    <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
+                    <visible>Player.Paused</visible>
+                </control>
+
+                <!-- PLAYING -->
+
+                <control type="image" description="Pause">
+                    <left>0</left>
+                    <centertop>50%</centertop>
+                    <width>100</width>
+                    <height>100</height>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+                    <texture colordiffuse="FFFFFFFF">nowplaying/play.png</texture>
+                    <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
+                    <include>Animation_Rotate_Icon_Play</include>
+                    <visible>Player.Playing</visible>
+                </control>
+
+                <!-- PROGRESS -->
+
+                <control type="progress" id="933">
+                    <texturebg />
+                    <lefttexture />
+                    <midtexture />
+                    <righttexture />
+                    <info>Player.Progress</info>
+                    <visible>false</visible>
+                </control>
+                <control type="image">
+                    <left>0</left>
+                    <centertop>50%</centertop>
+                    <width>100</width>
+                    <height>100</height>
+                    <texture colordiffuse="$VAR[Color_Loading_Spinner]">$INFO[Control.GetLabel(933),progress/circle_info/p,.png]</texture>
+                    <aspectratio align="center">keep</aspectratio>
+                    <visible>!String.IsEmpty(Player.Duration)</visible>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Spinner_Progress">
+        <visible>$PARAM[visible]</visible>
+        <control type="image" description="Back">
+            <left>0</left>
+            <centertop>50%</centertop>
+            <width>100</width>
+            <height>100</height>
+            <aspectratio align="center" aligny="center">keep</aspectratio>
+            <texture colordiffuse="Dark2">dialog/loading-back.png</texture>
+            <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
+        </control>
+        <control type="image" description="Play">
+            <left>0</left>
+            <centertop>50%</centertop>
+            <width>100</width>
+            <height>100</height>
+            <aspectratio align="center" aligny="center">keep</aspectratio>
+            <texture colordiffuse="Dark1">nowplaying/play.png</texture>
+            <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
+            <visible>!Player.Paused + !Player.Forwarding + !Player.Forwarding</visible>
+            <include>$PARAM[animation]</include>
+        </control>
+        <control type="image" description="Pause">
+            <left>0</left>
+            <centertop>50%</centertop>
+            <width>100</width>
+            <height>100</height>
+            <aspectratio align="center" aligny="center">keep</aspectratio>
+            <texture colordiffuse="Dark1">nowplaying/pause.png</texture>
+            <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
+            <visible>Player.Paused</visible>
+        </control>
+        <control type="image" description="Forwarding">
+            <left>-3</left>
+            <centertop>50%</centertop>
+            <width>100</width>
+            <height>100</height>
+            <aspectratio align="center" aligny="center">keep</aspectratio>
+            <texture colordiffuse="Dark1">nowplaying/ff.png</texture>
+            <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
+            <visible>Player.Forwarding</visible>
+        </control>
+        <control type="image" description="Rewinding">
+            <left>-3</left>
+            <centertop>50%</centertop>
+            <width>100</width>
+            <height>100</height>
+            <aspectratio align="center" aligny="center">keep</aspectratio>
+            <texture colordiffuse="Dark1">nowplaying/rw.png</texture>
+            <animation effect="fade" start="0" end="100" time="150">VisibleChange</animation>
+            <visible>Player.Rewinding</visible>
+        </control>
+        <control type="progress" id="$PARAM[id]">
+            <texturebg />
+            <lefttexture />
+            <midtexture />
+            <righttexture />
+            <info>$PARAM[info]</info>
+            <visible>false</visible>
+        </control>
+        <control type="image">
+            <left>0</left>
+            <centertop>50%</centertop>
+            <width>100</width>
+            <height>100</height>
+            <texture colordiffuse="$VAR[Color_Loading_Spinner]">$INFO[Control.GetLabel($PARAM[id]),progress/circle_info/p,.png]</texture>
+            <aspectratio align="center">keep</aspectratio>
+        </control>
+    </include>
+
+    <!-- SCROLLBAR -->
+
+    <include name="Object_Scrollbar_Dialog_Vertical">
+        <param name="height" value="$PARAM[height]" default="700" />
+        <param name="top" value="$PARAM[top]" default="112" />
+        <param name="centerright" value="$PARAM[centerright]" default="360" />
+        <param name="colordiffuse_texturesliderbackground" value="$PARAM[colordiffuse_texturesliderbackground]" default="Dark4" />
+        <param name="colordiffuse_texturesliderbar" default="Dark3" />
+        <param name="texturesliderbarfocus_colordiffuse" value="$PARAM[texturesliderbarfocus_colordiffuse]" default="$VAR[Color_Focus]" />
+        <param name="animation_fade_hide" value="$PARAM[animation_fade_hide]" default="true" />
+        <param name="condition_on_left" value="$PARAM[condition_on_left]" default="true" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="scrollbar" id="$PARAM[scrollid]">
+                <visible>$PARAM[visible]</visible>
+
+                <top>$PARAM[top]</top>
+                <height>$PARAM[height]</height>
+                <centerright>$PARAM[centerright]</centerright>
+                <width>8</width>
+
+                <onleft condition="$PARAM[condition_on_left]">$PARAM[onleft]</onleft>
+                <onleft condition="!$PARAM[condition_on_left]">$PARAM[onleft2]</onleft>
+                <onright>$PARAM[onright]</onright>
+                <onback>$PARAM[onback]</onback>
+
+                <orientation>vertical</orientation>
+                <showonepage>false</showonepage>
+
+                <texturesliderbackground border="4" colordiffuse="$PARAM[colordiffuse_texturesliderbackground]">scrollbar/scrollv.png</texturesliderbackground>
+                <texturesliderbar border="4" colordiffuse="$PARAM[colordiffuse_texturesliderbar]">scrollbar/scrollv.png</texturesliderbar>
+                <texturesliderbarfocus border="4" colordiffuse="$PARAM[texturesliderbarfocus_colordiffuse]">scrollbar/scrollv.png</texturesliderbarfocus>
+
+                <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling + $PARAM[animation_fade_hide]">Conditional</animation>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Scrollbar_Dialog_Horizontal">
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <param name="width" default="View_List_Width" />
+        <param name="bottom" default="200" />
+        <param name="right" default="View_List_Side" />
+        <param name="colordiffuse_texturesliderbackground" value="$PARAM[colordiffuse_texturesliderbackground]" default="Dark4" />
+        <param name="colordiffuse_texturesliderbar" default="Dark3" />
+        <param name="animation_fade_hide" value="$PARAM[animation_fade_hide]" default="true" />
+
+        <definition>
+            <control type="scrollbar" id="$PARAM[scrollid]">
+                <visible>$PARAM[visible]</visible>
+
+                <height>8</height>
+                <right>$PARAM[right]</right>
+                <width>$PARAM[width]</width>
+                <bottom>$PARAM[bottom]</bottom>
+
+                <onup>$PARAM[onup]</onup>
+                <ondown>$PARAM[ondown]</ondown>
+                <onback>$PARAM[onback]</onback>
+
+                <orientation>horizontal</orientation>
+
+                <texturesliderbackground border="4" colordiffuse="$PARAM[colordiffuse_texturesliderbackground]">scrollbar/scrollh.png</texturesliderbackground>
+                <texturesliderbar border="4" colordiffuse="$PARAM[colordiffuse_texturesliderbar]">scrollbar/scrollh.png</texturesliderbar>
+                <texturesliderbarfocus border="4" colordiffuse="$VAR[Color_Focus]">scrollbar/scrollh.png</texturesliderbarfocus>
+                <animation effect="fade" start="100" end="0" time="100" condition="!Control.HasFocus($PARAM[scrollid]) + $PARAM[animation_fade_hide]">Conditional</animation>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Scrollbar_Filemanager">
+        <param name="left" value="$PARAM[left]" default="870" />
+        <param name="height" value="$PARAM[height]" default="490" />
+        <param name="colordiffuse_texturesliderbackground" value="$PARAM[colordiffuse_texturesliderbackground]" default="Dark4" />
+        <param name="texturesliderbarfocus_colordiffuse" value="$PARAM[texturesliderbarfocus_colordiffuse]" default="$VAR[Color_Focus]" />
+        <param name="animation_fade_hide" value="$PARAM[animation_fade_hide]" default="true" />
+
+        <definition>
+            <control type="scrollbar" id="$PARAM[scrollid]">
+                <top>112</top>
+                <left>$PARAM[left]</left>
+                <width>8</width>
+                <height>$PARAM[height]</height>
+                <onleft>$PARAM[onleft]</onleft>
+                <onright>$PARAM[onright]</onright>
+                <texturesliderbackground border="4" colordiffuse="$PARAM[colordiffuse_texturesliderbackground]">scrollbar/scrollv.png</texturesliderbackground>
+                <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
+                <texturesliderbarfocus border="4" colordiffuse="$PARAM[texturesliderbarfocus_colordiffuse]">scrollbar/scrollv.png</texturesliderbarfocus>
+                <orientation>vertical</orientation>
+                <showonepage>false</showonepage>
+                <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling + $PARAM[animation_fade_hide]">Conditional</animation>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Object_Scrollbar_Views_Vertical">
+        <param name="top" default="View_List_Top" />
+        <param name="height" default="PosterH" />
+        <param name="centerleft" default="60" />
+        <param name="jumpbar" default="true" />
+        <param name="idlayout" default="50" />
+        <param name="onleft" default="390001" />
+        <param name="onleft2" default="" />
+        <param name="animation_fade_hide" value="$PARAM[animation_fade_hide]" default="true" />
+
+        <definition>
+            <centerleft>$PARAM[centerleft]</centerleft>
+            <top>$PARAM[top]</top>
+            <height>$PARAM[height]</height>
+            <width>8</width>
+            <onright>$PARAM[idlayout]</onright>
+            <onback>$PARAM[idlayout]</onback>
+            <onleft condition="$PARAM[jumpbar] + $EXP[JumpbarIfSortMethode]">$PARAM[onleft]</onleft>
+            <onleft>$PARAM[onleft2]</onleft>
+            <include>Texture_Scrollbar_V</include>
+            <orientation>vertical</orientation>
+            <showonepage>false</showonepage>
+            <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling + $PARAM[animation_fade_hide]">Conditional</animation>
+        </definition>
+    </include>
+
+    <include name="Object_Scrollbar_Views_Horizontal">
+        <param name="jumpbar" default="true" />
+        <param name="idlayout" default="50" />
+        <param name="bottom" default="200" />
+        <param name="left" default="View_List_Side" />
+        <param name="width" default="View_List_Width" />
+        <param name="scrollid" default="" />
+        <param name="animation_fade_hide" value="$PARAM[animation_fade_hide]" default="true" />
+
+        <definition>
+            <left>$PARAM[left]</left>
+            <width>$PARAM[width]</width>
+            <bottom>$PARAM[bottom]</bottom>
+            <orientation>horizontal</orientation>
+            <height>8</height>
+            <onup>$PARAM[idlayout]</onup>
+            <onback>$PARAM[idlayout]</onback>
+
+            <ondown condition="![Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPlaylist.xml) | Window.IsVisible(MyPics.xml)] + Skin.HasSetting(enable.view.flix.scroll.wall.video) + $EXP[View_Video_Flix] + [Container($PARAM[idlayout]).HasNext | Container($PARAM[idlayout]).HasPrevious]">SetProperty(WallMode,$INFO[Container.FolderPath],Home)</ondown>
+
+            <ondown condition="![Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPlaylist.xml) | Window.IsVisible(MyPics.xml)] + Skin.HasSetting(enable.view.flix.scroll.wall.video) + $EXP[View_Video_Flix] + [Container($PARAM[idlayout]).HasNext | Container($PARAM[idlayout]).HasPrevious]">Container.SetViewMode($PARAM[idlayout]8)</ondown>
+            <ondown condition="![Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPlaylist.xml) | Window.IsVisible(MyPics.xml)] + Skin.HasSetting(enable.view.flix.scroll.wall.video) + $EXP[View_Video_Flix] + [Container($PARAM[idlayout]).HasNext | Container($PARAM[idlayout]).HasPrevious]">SetFocus(2$PARAM[idlayout]8)</ondown>
+
+            <ondown condition="$EXP[JumpbarIfSortMethode] + Control.IsVisible($PARAM[scrollid]) + ![Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPlaylist.xml) | Window.IsVisible(MyPics.xml)] + [[Skin.HasSetting(enable.view.flix.scroll.wall.video) + $EXP[View_Video_Flix_Wall]] | !$EXP[View_Video_Flix_Wall]] + $PARAM[jumpbar]">SetFocus(390001)</ondown>
+
+
+            <ondown condition="[Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPlaylist.xml) | Window.IsVisible(MyPics.xml)] + Skin.HasSetting(enable.view.flix.scroll.wall.music) + $EXP[View_Music_Flix] + [Container($PARAM[idlayout]).HasNext | Container($PARAM[idlayout]).HasPrevious]">SetProperty(WallMode,$INFO[Container.FolderPath],Home)</ondown>
+
+            <ondown condition="[Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPlaylist.xml) | Window.IsVisible(MyPics.xml)] + Skin.HasSetting(enable.view.flix.scroll.wall.music) + $EXP[View_Music_Flix] + [Container($PARAM[idlayout]).HasNext | Container($PARAM[idlayout]).HasPrevious]">Container.SetViewMode($PARAM[idlayout]8)</ondown>
+            <ondown condition="[Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPlaylist.xml) | Window.IsVisible(MyPics.xml) | Window.IsVisible(MyGames.xml)] + Skin.HasSetting(enable.view.flix.scroll.wall.music) + $EXP[View_Music_Flix] + [Container($PARAM[idlayout]).HasNext | Container($PARAM[idlayout]).HasPrevious]">SetFocus(2$PARAM[idlayout]8)</ondown>
+
+            <ondown condition="$EXP[JumpbarIfSortMethode] + Control.IsVisible($PARAM[scrollid]) + [Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPlaylist.xml) | Window.IsVisible(MyPics.xml)] + [[Skin.HasSetting(enable.view.flix.scroll.wall.music) + $EXP[View_Music_Flix_Wall]] | !$EXP[View_Music_Flix_Wall]] + $PARAM[jumpbar]">SetFocus(390001)</ondown>
+
+            <include>Texture_Scrollbar_H</include>
+            <animation effect="fade" start="0" end="100" time="400" condition="[Container.Scrolling | Control.HasFocus($PARAM[scrollid])] + $PARAM[animation_fade_hide]">Conditional</animation>
+            <animation effect="fade" start="100" end="0" time="400" condition="[!Container.Scrolling + !Control.HasFocus($PARAM[scrollid])] + $PARAM[animation_fade_hide]">Conditional</animation>
+        </definition>
+    </include>
+
+    <!-- JUMBAR - HORIZONTALE -->
+
+    <!-- Code (modified) from jurialmunkey and arctic zephyr 2 skin -->
+    <include name="AlphabetLetter">
+        <control type="label">
+            <width>$PARAM[width]</width>
+            <height>$PARAM[height]</height>
+            <label>$PARAM[label]</label>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>Dark2</textcolor>
+            <font>Tiny</font>
+            <visible>!String.IsEqual(ListItem.SortLetter,$PARAM[label])</visible>
+        </control>
+        <control type="label">
+            <width>$PARAM[width]</width>
+            <height>28</height>
+            <label>[B]$PARAM[label][/B]</label>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>$VAR[Color_Focus]</textcolor>
+            <font>InfoNetflix</font>
+            <visible>String.IsEqual(ListItem.SortLetter,$PARAM[label])</visible>
+        </control>
+    </include>
+
+    <include name="AlphabetNumber">
+        <control type="label">
+            <width>$PARAM[width]</width>
+            <height>$PARAM[height]</height>
+            <label>#</label>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>Dark1</textcolor>
+            <font>Tiny</font>
+            <visible>$EXP[SortLetterIsAlphabet]</visible>
+        </control>
+        <control type="label">
+            <width>$PARAM[width]</width>
+            <height>28</height>
+            <label>[B]#[/B]</label>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>$VAR[Color_Focus]</textcolor>
+            <font>InfoNetflix</font>
+            <visible>!$EXP[SortLetterIsAlphabet]</visible>
+        </control>
+    </include>
+
+    <include name="Furniture_Jumpbar_Horizontal">
+        <control type="group">
+            <animation effect="slide" start="0,0" end="0,-162" time="600" tween="quadratic" condition="Control.HasFocus(390001)" reversible="false">Conditional</animation>
+            <animation effect="slide" start="0,-162" end="0,0" time="300" tween="quadratic" condition="!Control.HasFocus(390001)" reversible="false">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,162" time="300" tween="quadratic">WindowClose</animation>
+
+            <right>40</right>
+            <bottom>-129</bottom>
+            <width>1840</width>
+            <height>160</height>
+
+            <include content="Def_Dialog_Notification_Background">
+                <param name="texture" value="$VAR[Image_Jumpbar_Background]" />
+                <param name="colordiffuse" value="White70" />
+            </include>
+
+            <control type="grouplist">
+
+                <left>64</left>
+                <top>68</top>
+                <width>1818</width>
+                <height>26</height>
+                <itemgap>-9</itemgap>
+                <orientation>horizontal</orientation>
+
+                <include content="AlphabetNumber"><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="A" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="B" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="C" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="D" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="E" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="F" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="G" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="H" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="I" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="J" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="K" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="L" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="M" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="N" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="O" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="P" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="Q" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="R" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="S" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="T" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="U" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="V" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="W" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="X" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="Y" /><param name="width" value="72" /><param name="height" value="26" /></include>
+                <include content="AlphabetLetter"><param name="label" value="Z" /><param name="width" value="72" /><param name="height" value="26" /></include>
+            </control>
+
+            <control type="button" id="390001">
+                <include>Def_Hidden_Button</include>
+                <onup>50</onup>
+                <ondown>50</ondown>
+                <onback>50</onback>
+                <onclick>SetFocus(50)</onclick>
+                <onright>SetFocus(50)</onright>
+                <onright>Action(nextletter)</onright>
+                <onright condition="!Container.HasNext | String.IsEqual(ListItem.SortLetter,Z)">Action(jumpsms2)</onright>
+                <onright condition="!Container.HasNext | String.IsEqual(ListItem.SortLetter,Z)">Action(prevletter)</onright>
+                <onright condition="!Container.HasNext | String.IsEqual(ListItem.SortLetter,Z)">Action(prevletter)</onright>
+                <onright condition="!Container.HasNext | String.IsEqual(ListItem.SortLetter,Z)">Action(prevletter)</onright>
+                <onright>SetFocus(390001)</onright>
+                <onleft>SetFocus(50)</onleft>
+                <onleft>Action(prevletter)</onleft>
+                <onleft condition="!Container.HasPrevious | !$EXP[SortLetterIsAlphabet]">Action(jumpsms9)</onleft>
+                <onleft condition="!Container.HasPrevious | !$EXP[SortLetterIsAlphabet]">Action(nextletter)</onleft>
+                <onleft condition="!Container.HasPrevious | !$EXP[SortLetterIsAlphabet]">Action(nextletter)</onleft>
+                <onleft condition="!Container.HasPrevious | !$EXP[SortLetterIsAlphabet]">Action(nextletter)</onleft>
+                <onleft>SetFocus(390001)</onleft>
+            </control>
+        </control>
+    </include>
+
+    <variable name="Set_On_Up_Down">
+        <value condition="Control.IsVisible(50)">SetFocus(50)</value>
+        <value condition="Control.IsVisible(51)">SetFocus(51)</value>
+        <value condition="Control.IsVisible(52)">SetFocus(52)</value>
+        <value condition="Control.IsVisible(53)">SetFocus(53)</value>
+        <value condition="Control.IsVisible(56)">SetFocus(56)</value>
+        <value condition="Control.IsVisible(57)">SetFocus(57)</value>
+        <value condition="Control.IsVisible(58)">SetFocus(58)</value>
+        <value condition="Control.IsVisible(55)">SetFocus(55)</value>
+        <value condition="Control.IsVisible(500)">SetFocus(500)</value>
+        <value condition="Control.IsVisible(501)">SetFocus(501)</value>
+        <value condition="Control.IsVisible(505)">SetFocus(505)</value>
+        <value condition="Control.IsVisible(507)">SetFocus(507)</value>
+        <value condition="Control.IsVisible(509)">SetFocus(509)</value>
+        <value condition="Control.IsVisible(511)">SetFocus(511)</value>
+        <value condition="Control.IsVisible(512)">SetFocus(512)</value>
+        <value condition="Control.IsVisible(514)">SetFocus(514)</value>
+        <value condition="Control.IsVisible(515)">SetFocus(515)</value>
+        <value condition="Control.IsVisible(516)">SetFocus(516)</value>
+        <value condition="Control.IsVisible(517)">SetFocus(517)</value>
+        <value condition="Control.IsVisible(519)">SetFocus(519)</value>
+        <value condition="Control.IsVisible(521)">SetFocus(521)</value>
+        <value condition="Control.IsVisible(522)">SetFocus(522)</value>
+        <value condition="Control.IsVisible(523)">SetFocus(523)</value>
+        <value condition="Control.IsVisible(524)">SetFocus(524)</value>
+        <value condition="Control.IsVisible(547)">SetFocus(547)</value>
+        <value condition="Control.IsVisible(550)">SetFocus(550)</value>
+        <value condition="Control.IsVisible(555)">SetFocus(555)</value>
+        <value condition="Control.IsVisible(557)">SetFocus(557)</value>
+        <value condition="Control.IsVisible(5161)">SetFocus(5161)</value>
+        <value condition="Control.IsVisible(5218)">SetFocus(5218)</value>
+        <value condition="Control.IsVisible(5228)">SetFocus(5228)</value>
+        <value condition="Control.IsVisible(5238)">SetFocus(5238)</value>
+        <value condition="Control.IsVisible(5248)">SetFocus(5248)</value>
+    </variable>
+
+    <variable name="Set_On_Back">
+        <value condition="Control.IsVisible(50)">50</value>
+        <value condition="Control.IsVisible(51)">51</value>
+        <value condition="Control.IsVisible(52)">52</value>
+        <value condition="Control.IsVisible(53)">53</value>
+        <value condition="Control.IsVisible(56)">56</value>
+        <value condition="Control.IsVisible(57)">57</value>
+        <value condition="Control.IsVisible(58)">58</value>
+        <value condition="Control.IsVisible(55)">55</value>
+        <value condition="Control.IsVisible(500)">500</value>
+        <value condition="Control.IsVisible(501)">501</value>
+        <value condition="Control.IsVisible(505)">505</value>
+        <value condition="Control.IsVisible(507)">507</value>
+        <value condition="Control.IsVisible(509)">509</value>
+        <value condition="Control.IsVisible(511)">511</value>
+        <value condition="Control.IsVisible(512)">512</value>
+        <value condition="Control.IsVisible(514)">514</value>
+        <value condition="Control.IsVisible(515)">515</value>
+        <value condition="Control.IsVisible(516)">516</value>
+        <value condition="Control.IsVisible(517)">517</value>
+        <value condition="Control.IsVisible(519)">519</value>
+        <value condition="Control.IsVisible(521)">521</value>
+        <value condition="Control.IsVisible(522)">522</value>
+        <value condition="Control.IsVisible(523)">523</value>
+        <value condition="Control.IsVisible(524)">524</value>
+        <value condition="Control.IsVisible(547)">547</value>
+        <value condition="Control.IsVisible(550)">550</value>
+        <value condition="Control.IsVisible(555)">555</value>
+        <value condition="Control.IsVisible(557)">557</value>
+        <value condition="Control.IsVisible(5161)">5161</value>
+        <value condition="Control.IsVisible(5218)">5218</value>
+        <value condition="Control.IsVisible(5228)">5228</value>
+        <value condition="Control.IsVisible(5238)">5238</value>
+        <value condition="Control.IsVisible(5248)">5248</value>
+    </variable>
+
+    <!-- DEF BASIC -->
+
+    <include name="Def_DefaultControl">
+        <defaultcontrol always="$PARAM[always]">$PARAM[defaultcontrol]</defaultcontrol>
+    </include>
+
+    <include name="Def_Top">
+        <top>$PARAM[top]</top>
+    </include>
+
+    <include name="Def_Bottom">
+        <bottom>$PARAM[bottom]</bottom>
+    </include>
+
+    <include name="Def_Height">
+        <height>$PARAM[height]</height>
+    </include>
+
+    <include name="Def_Width">
+        <width>$PARAM[width]</width>
+    </include>
+
+    <include name="Def_Left">
+        <left>$PARAM[left]</left>
+    </include>
+
+    <include name="Def_Right">
+        <right>$PARAM[right]</right>
+    </include>
+
+    <include name="Def_Focus_Position">
+        <focusposition>$PARAM[focusposition]</focusposition>
+    </include>
+
+    <include name="Def_Movement">
+        <movement>$PARAM[movement]</movement>
+    </include>
+
+    <include name="Def_Movement_2">
+        <movement>$PARAM[movement2]</movement>
+    </include>
+
+    <include name="Def_Font">
+        <font>$PARAM[font]</font>
+    </include>
+
+    <include name="Def_Padding">
+        <left>$PARAM[pad]</left>
+        <right>$PARAM[pad]</right>
+        <top>$PARAM[pad]</top>
+        <bottom>$PARAM[pad]</bottom>
+    </include>
+
+    <include name="Def_Progress_Texture">
+        <progresstexture border="5" colordiffuse="bf777777">$PARAM[progresstexture]</progresstexture>
+    </include>
+
+    <include name="Def_Label_Headers">
+        <control type="label">
+            <height>36</height>
+            <font>TinyBold2</font>
+            <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
+            <label>$LOCALIZE[2050]:</label>
+        </control>
+        <control type="label">
+            <height>36</height>
+            <font>TinyBold2</font>
+            <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
+            <label>$LOCALIZE[21446]:</label>
+        </control>
+        <control type="label">
+            <height>36</height>
+            <font>TinyBold2</font>
+            <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
+            <label>$LOCALIZE[623]:</label>
+        </control>
+        <control type="label">
+            <height>36</height>
+            <font>TinyBold2</font>
+            <textcolor>$VAR[Color_OSD_Panel_White70Music]</textcolor>
+            <label>$LOCALIZE[613]:</label>
+        </control>
+    </include>
+
+    <include name="Def_Fadetime">
+        <fadetime>$PARAM[fadetime]</fadetime>
+    </include>
+
+    <!-- TIPS FOOTER -->
+
+    <include name="Object_Footer_Tips">
+        <param name="top" value="$PARAM[top]" default="618" />
+        <param name="left" value="$PARAM[left]" default="40" />
+        <param name="width" value="$PARAM[width]" default="1400" />
+        <param name="height" value="$PARAM[height]" default="50" />
+        <param name="align" value="$PARAM[align]" default="left" />
+
+        <param name="label" value="$PARAM[label]" default="" />
+        <param name="textcolor" value="$PARAM[textcolor]" default="Dark3" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="grouplist">
+                <visible>$PARAM[visible]</visible>
+
+                <include>Animation_OSD_Fade_Tips</include>
+
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <align>$PARAM[align]</align>
+
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <!-- FOCUS SEEK BAR -->
+
+                <control type="image">
+                    <top>5</top>
+                    <width>40</width>
+                    <height>40</height>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                    <texture flipy="false" colordiffuse="$PARAM[textcolor]">special://skin/extras/icons/lightbulb.png</texture>
+                </control>
+                <control type="label">
+                    <height>50</height>
+                    <font>Mini</font>
+                    <scroll>true</scroll>
+                    <scrollspeed>40</scrollspeed>
+                    <scrollsuffix>  ••  </scrollsuffix>
+                    <textcolor>$PARAM[textcolor]</textcolor>
+                    <label>$PARAM[label]</label>
+                    <!-- <label>31540</label> -->
+                    <aligny>center</aligny>
+                    <align>left</align>
+                </control>
+            </control>
+        </definition>
+    </include>
+</includes>

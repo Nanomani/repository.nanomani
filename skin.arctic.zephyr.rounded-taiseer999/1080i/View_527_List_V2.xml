@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="527Content">
+        <visible>$EXP[Exp_View_527]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <top>541</top>
+        <width>1500</width>
+        <height>PosterH</height>
+        <left>518</left>
+
+        <onleft>527</onleft>
+        <onright>527</onright>
+        <ondown>1727</ondown>
+        <onup condition="!Skin.HasSetting(global.kioskmode)">9000</onup>
+        <onup condition="!Skin.HasSetting(global.kioskmode) + [Player.HasMedia | Player.Playing]">AlarmClock(GoToButtonFullScreen,SetFocus(6157),00:00,silent)</onup>
+
+        <orientation>horizontal</orientation>
+        <pagecontrol>1727</pagecontrol>
+
+        <viewtype label="31581">list</viewtype>
+
+        <itemlayout height="325" width="222">
+            <include content="Layout_Widget_Poster">
+                <param name="texture_diffuse" value="poster_w202_h305" />
+                <param name="id" value="527" />
+            </include>
+        </itemlayout>
+        <focusedlayout height="325" width="222">
+            <include content="Layout_Widget_Poster_Focus">
+                <param name="texture_diffuse" value="poster_w202_h305" />
+                <param name="id" value="527" />
+                <param name="glow_height" value="318" />
+                <param name="glow_top" value="3" />
+                <param name="glow_left" value="-1" />
+            </include>
+        </focusedlayout>
+    </include>
+
+    <include name="527List">
+        <control type="list" id="527">
+            <include>527Content</include>
+        </control>
+    </include>
+
+    <include name="527Fixed">
+        <control type="fixedlist" id="527">
+            <include>527Content</include>
+        </control>
+    </include>
+
+    <include name="View_527_List_V2">
+        <control type="group">
+            <visible>Control.IsVisible(527)</visible>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(527.fixedlist) + !Skin.HasSetting(527.wraplist)">527List</include>
+            <include condition="Skin.HasSetting(527.wraplist)">527List</include>
+            <include condition="Skin.HasSetting(527.fixedlist)">527Fixed</include>
+
+            <!-- INFORMATION -->
+
+            <control type="group">
+                <top>230</top>
+                <left>540</left>
+                <width>1300</width>
+
+                <orientation>vertical</orientation>
+                <itemgap>3</itemgap>
+
+                <!-- MAIN TITLE -->
+
+                <include content="Def_Label_View_Flix_Main_Title">
+                    <param name="top" value="0" />
+                    <param name="show_clearlogo" value="false" />
+                </include>
+
+                <!-- SUB TITLE -->
+
+                <include content="Def_Label_View_Flix_Sub_Title">
+                    <param name="top" value="45" />
+                </include>
+
+                <!-- PLOT -->
+
+                <include content="Def_Label_View_Flix_Plot">
+                    <param name="top" value="120" />
+                    <param name="height" value="140" />
+                </include>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1727">
+                <include content="Object_Scrollbar_Views_Horizontal">
+                    <param name="scrollid" value="1727" />
+                    <param name="jumpbar" value="true" />
+                    <param name="left" value="524" />
+                    <param name="width" value="1316" />
+                </include>
+            </control>
+
+            <!-- POSTER -->
+
+            <include>View_50_Side_Poster</include>
+        </control>
+    </include>
+</includes>

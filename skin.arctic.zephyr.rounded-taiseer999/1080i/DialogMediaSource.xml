@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">10</defaultcontrol>
+
+    <controls>
+        <include>Background_Overlay</include>
+        <control type="group">
+
+            <include content="Def_Dialog_Background"><param name="height" value="572" /><param name="width" value="1260" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="" />
+                <param name="label_id" value="2" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <include content="Def_Dialog_Line_Vertical"><param name="bottom" value="234" /></include>
+
+            <control type="list" id="10">
+                <left>30</left>
+                <top>112</top>
+                <width>870</width>
+                <height>483</height>
+
+                <onup>19</onup>
+                <ondown>12</ondown>
+                <onleft>9001</onleft>
+                <onright>9001</onright>
+
+                <itemlayout height="69" width="870">
+                    <control type="label">
+                        <left>30</left>
+                        <right>30</right>
+                        <height>66</height>
+                        <font>Small</font>
+                        <aligny>center</aligny>
+                        <textcolor>Black70</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <right>30</right>
+                        <textcolor>Black70</textcolor>
+                        <align>right</align>
+                        <height>66</height>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="69" width="870">
+                    <control type="image">
+                        <left>0</left>
+                        <width>840</width>
+                        <height>66</height>
+                        <include>Texture_Layout_Item_Focus</include>
+                        <animation effect="fade" start="100" end="50" condition="!Control.HasFocus(10)">Conditional</animation>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <right>30</right>
+                        <height>66</height>
+                        <font>Small</font>
+                        <aligny>center</aligny>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <right>30</right>
+                        <align>right</align>
+                        <height>66</height>
+                        <aligny>center</aligny>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+
+                <onleft>10</onleft>
+                <onright>19</onright>
+                <ondown>12</ondown>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="11" />
+                    <param name="label" value="$LOCALIZE[1024]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="13" />
+                    <param name="label" value="$LOCALIZE[15019]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="14" />
+                    <param name="label" value="$LOCALIZE[1210]" />
+                </include>
+            </control>
+
+            <!-- EDIT LABEL SOURCE -->
+
+            <control type="label" id="0">
+                <description>Name Label</description>
+                <left>30</left>
+                <top>320</top>
+                <width>1190</width>
+                <label>1022</label>
+            </control>
+            <control type="image">
+                <left>30</left>
+                <top>382</top>
+                <width>1204</width>
+                <align>left</align>
+                <height>66</height>
+                <include>Texture_Layout_Item_Focus</include>
+                <visible>Control.HasFocus(12)</visible>
+            </control>
+            <control type="edit" id="12">
+                <description>Name</description>
+                <left>30</left>
+                <top>382</top>
+                <label />
+                <width>1204</width>
+                <align>left</align>
+                <textoffsetx>30</textoffsetx>
+                <onup>10</onup>
+                <onleft>12</onleft>
+                <onright>9002</onright>
+                <ondown>9002</ondown>
+                <include>Texture_Button_Dialog_Settings</include>
+                <width>300</width>
+                <font>Button</font>
+                <textcolor>Black70</textcolor>
+            </control>
+
+            <!-- BUTTON ON BOTTOM -->
+
+            <control type="grouplist" id="9002">
+                <bottom>30</bottom>
+                <height>66</height>
+                <width>100%</width>
+                <align>center</align>
+                <centerleft>50%</centerleft>
+
+                <onup>12</onup>
+                <ondown>10</ondown>
+                <onleft>9002</onleft>
+                <onright>9002</onright>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="18" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="19" />
+                    <param name="label" value="$LOCALIZE[222]" />
+                </include>
+            </control>
+        </control>
+    </controls>
+</window>

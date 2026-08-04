@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1150">
+    <defaultcontrol>11</defaultcontrol>
+
+    <onload condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),musicsquare)">SetProperty(SetViewSizeSelected,$VAR[Label_523_Square_Size],Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),videolandscape)">SetProperty(SetViewSizeSelected,$VAR[Label_522_Landscape_Size],Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),musiclandscape)">SetProperty(SetViewSizeSelected,$VAR[Label_522_Landscape_Size],Home)</onload>
+
+    <onunload>ClearProperty(SetViewSizeSelected,Home)</onunload>
+    <onunload>ClearProperty(ViewArtworkStyle,Home)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background">
+                <param name="height" value="882" />
+                <param name="width" value="1722" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="31285" />
+                <param name="icon" value="skinsettings" />
+            </include>
+
+            <control type="list" id="11">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>16</left>
+                <width>418</width>
+                <height>700</height>
+
+                <onup>11</onup>
+                <ondown>11</ondown>
+                <onleft>close</onleft>
+                <onright>1773</onright>
+
+                <usecontrolcoords>true</usecontrolcoords>
+                <itemgap>0</itemgap>
+
+                <itemlayout width="418" height="70">
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>Black70</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>!String.IsEqual(Window(Home).property(SetViewSizeSelected),ListItem.Label)</visible>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.IsEqual(Window(Home).property(SetViewSizeSelected),ListItem.Label)</visible>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Black70" />
+                        <param name="colordiffuse_on" value="$VAR[Color_List_Item_Selected]" />
+                        <param name="visible" value="String.IsEqual(Window(Home).property(SetViewSizeSelected),ListItem.Label)" />
+                    </include>
+                </itemlayout>
+                <focusedlayout width="418" height="70">
+
+                    <!-- ITEM FOCUS -->
+
+                    <include>Def_Layout_Item_Focus</include>
+
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>Selected</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Selected" />
+                        <param name="colordiffuse_on" value="Selected" />
+                        <param name="visible" value="String.IsEqual(Window(Home).property(SetViewSizeSelected),ListItem.Label)" />
+                    </include>
+                </focusedlayout>
+
+                <content>
+
+                    <!-- LITTLE -->
+
+                    <item id="1">
+                        <label>$LOCALIZE[1438]</label>
+                        <onclick condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),videolandscape)">Skin.SetString(522.landscape.size,2)</onclick>
+                        <onclick condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),musiclandscape)">Skin.SetString(522.landscape.size,2)</onclick>
+                        <onclick condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),musicsquare)">Skin.SetString(523.square.size,2)</onclick>
+                        <onclick>close</onclick>
+                        <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    </item>
+
+                    <!-- MIDDLE -->
+
+                    <item id="2">
+                        <label>$LOCALIZE[13507]</label>
+                        <onclick condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),videolandscape)">Skin.SetString(522.landscape.size,1)</onclick>
+                        <onclick condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),musiclandscape)">Skin.SetString(522.landscape.size,1)</onclick>
+                        <onclick condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),musicsquare)">Skin.SetString(523.square.size,1)</onclick>
+                        <onclick>close</onclick>
+                        <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    </item>
+
+                    <!-- BIG -->
+
+                    <item id="3">
+                        <label>$LOCALIZE[539]</label>
+                        <onclick condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),videolandscape)">Skin.Reset(522.landscape.size)</onclick>
+                        <onclick condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),musiclandscape)">Skin.Reset(522.landscape.size)</onclick>
+                        <onclick condition="String.IsEqual(Window(Home).Property(ViewArtworkStyle),musicsquare)">Skin.Reset(523.square.size)</onclick>
+                        <onclick>close</onclick>
+                        <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    </item>
+                </content>
+            </control>
+
+            <!-- LINE VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="right" value="1272" /></include>
+
+            <!-- VIEW TYPE ON RIGHT -->
+
+            <include content="Def_Dialog_View_Type">
+                <param name="texture" value="special://skin/extras/viewsizes/$VAR[Def_Image_View_size].jpg" />
+            </include>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+
+        </control>
+    </controls>
+</window>

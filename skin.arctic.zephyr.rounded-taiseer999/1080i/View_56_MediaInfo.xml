@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <!-- VIDEO -->
+
+    <include name="Control_56_List_MediaInfo_List">
+        <control type="list" id="56">
+            <include>Layout_56_List_MediaInfo</include>
+        </control>
+    </include>
+
+    <include name="Control_56_List_MediaInfo_Fixed_List">
+        <control type="fixedlist" id="56">
+            <include>Layout_56_List_MediaInfo</include>
+        </control>
+    </include>
+
+    <include name="Layout_56_List_MediaInfo">
+        <visible>$EXP[Exp_View_56]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <include>Def_On_Info</include>
+
+        <top>View_List_Top</top>
+        <right>752</right>
+        <width>628</width>
+        <height>PosterH</height>
+
+        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+        <onleft>1609</onleft>
+        <onup>56</onup>
+        <ondown>56</ondown>
+
+        <pagecontrol>1609</pagecontrol>
+
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(5x.list.control.list)">
+            <param name="focusposition" value="1" />
+        </include>
+        <include content="Def_Movement" condition="!Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
+            <param name="movement" value="8" />
+        </include>
+        <include content="Def_Movement" condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
+            <param name="movement" value="5" />
+        </include>
+
+        <viewtype label="544">list</viewtype>
+
+        <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="628" height="64">
+            <include>layout_list_item_56</include>
+        </itemlayout>
+        <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="628" height="64">
+            <include content="layout_list_focus_56"><param name="list_id" value="56" /></include>
+        </focusedlayout>
+        <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="628" height="91.4">
+            <include>layout_list_item_56_info</include>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="628" height="91.4">
+            <include content="layout_list_focus_56_info"><param name="list_id" value="56" /></include>
+        </focusedlayout>
+    </include>
+
+    <include name="View_56_List_MediaInfo">
+        <description>List View (id=56)</description>
+        <control type="group">
+            <visible>Control.IsVisible(56)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <include condition="!Skin.HasSetting(5x.list.control.list)">Control_56_List_MediaInfo_Fixed_List</include>
+                <include condition="Skin.HasSetting(5x.list.control.list)">Control_56_List_MediaInfo_List</include>
+
+                <!-- SCROLLBAR -->
+
+                <control type="scrollbar" id="1609">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1609" />
+                        <param name="idlayout" value="56" />
+                        <param name="centerleft" value="526" />
+                    </include>
+                </control>
+            </control>
+
+            <!-- POSTER -->
+
+            <include>View_50_Side_Poster</include>
+
+            <!-- FANART -->
+
+            <include content="524_Fanart">
+                <param name="left" value="1200" />
+                <param name="top" value="216" />
+            </include>
+
+            <include content="57_List_Info">
+                <param name="left" value="1200" />
+            </include>
+        </control>
+    </include>
+
+    <!-- LAYOUT -->
+
+    <include name="layout_list_item_56">
+
+        <!-- IS PLAYING -->
+
+        <include>Def_View_List_Item_IsPlaying</include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <left>25</left>
+            <width max="560">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Label]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>55</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched]</label>
+            <visible>!ListItem.IsParentFolder</visible>
+            <visible>!String.IsEmpty(ListItem.DBType)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <right>70</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_56_List_Extended_Right]</label>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <visible>!Skin.HasSetting(hide.video.ratings) + !$EXP[IsGameMode]</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_56">
+
+        <!-- IS PLAYING -->
+
+        <include content="Def_View_List_Focus_IsPlaying"><param name="list_id" value="$PARAM[list_id]" /></include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <left>25</left>
+            <width max="560">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>55</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched_Focus]</label>
+            <visible>!ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <right>70</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_56_List_Extended_Right]</label>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <visible>!Skin.HasSetting(hide.video.ratings) + !$EXP[IsGameMode]</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_item_56_info">
+
+        <!-- IS PLAYING -->
+
+        <include>Def_View_List_Item_IsPlaying</include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <left>25</left>
+            <top>-5</top>
+            <width max="560">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Label]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <top>-5</top>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>55</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched]</label>
+            <visible>!ListItem.IsParentFolder</visible>
+            <visible>!String.IsEmpty(ListItem.DBType)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <top>-5</top>
+            <right>70</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_56_List_Extended_Right]</label>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <visible>!Skin.HasSetting(hide.video.ratings) + !$EXP[IsGameMode]</visible>
+        </control>
+
+        <!-- SECOND LINE - LABEL -->
+
+        <control type="label">
+            <visible>!Skin.HasSetting(list.show.filename) | [Skin.HasSetting(list.show.filename) + ![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)]]</visible>
+            <top>28</top>
+            <left>25</left>
+            <width max="560">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$VAR[Label_View_56_List_Extended_Left]</label>
+            <textcolor>Dark2</textcolor>
+            <selectedcolor>Dark2</selectedcolor>
+        </control>
+
+        <!-- SECOND LINE - FILE PATH -->
+
+        <control type="label">
+            <visible>Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)]</visible>
+            <top>28</top>
+            <left>25</left>
+            <width max="560">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Dark2</textcolor>
+            <selectedcolor>Dark2</selectedcolor>
+            <label>$VAR[Label_View_List_FolderPath_File]</label>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_56_info">
+
+        <!-- IS PLAYING -->
+
+        <include content="Def_View_List_Focus_IsPlaying"><param name="list_id" value="$PARAM[list_id]" /></include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <top>-5</top>
+            <left>25</left>
+            <width max="560">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <top>-5</top>
+            <centerright>55</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched_Focus]</label>
+            <visible>!ListItem.IsParentFolder</visible>
+            <visible>!String.IsEmpty(ListItem.DBType)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <top>-5</top>
+            <right>70</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_56_List_Extended_Right]</label>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <visible>!Skin.HasSetting(hide.video.ratings) + !$EXP[IsGameMode]</visible>
+        </control>
+
+        <!-- SECOND LINE - LABEL -->
+
+        <control type="label">
+            <visible>!Skin.HasSetting(list.show.filename) | [Skin.HasSetting(list.show.filename) + ![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)]]</visible>
+            <top>28</top>
+            <left>25</left>
+            <width max="560">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>Small24</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_56_List_Extended_Left]</label>
+        </control>
+
+        <!-- SECOND LINE - FILE PATH -->
+
+        <control type="label">
+            <visible>Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)]</visible>
+            <top>28</top>
+            <left>25</left>
+            <width max="560">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_FolderPath_File]</label>
+        </control>
+    </include>
+</includes>

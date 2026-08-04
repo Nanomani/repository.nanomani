@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <!-- DIALOG - SETTINGS - STANDARD -->
+
+    <include name="Def_Dialog_Settings_standard">
+        <control type="group">
+            <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(SliderDialog) | Window.IsVisible(DialogSubtitles.xml)">Conditional</animation>
+
+            <include content="Def_Dialog_Background">
+                <param name="height" value="789" />
+                <param name="width" value="1460" />
+                <param name="colordiffuse" value="White100" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="" />
+                <param name="label_id" value="2" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="grouplist" id="5">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>16</left>
+                <width>1068</width>
+                <height>660</height>
+
+                <onright>1799</onright>
+                <onup>5</onup>
+                <ondown>5</ondown>
+
+                <usecontrolcoords>true</usecontrolcoords>
+                <orientation>vertical</orientation>
+                <pagecontrol>1799</pagecontrol>
+                <itemgap>0</itemgap>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1799" />
+                <param name="onleft" value="5" />
+                <param name="onright" value="9000" />
+                <param name="height" value="660" />
+                <param name="centerright" value="360" />
+            </include>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1799) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9000">
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+
+                <onleft>5</onleft>
+                <onright>5</onright>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="28" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="29" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="30" />
+                </include>
+            </control>
+
+            <!-- PICTURE GAME CONTROLLER ON RIGHT -->
+
+            <control type="gamecontroller" id="100">
+                <top>414</top>
+                <right>30</right>
+                <height>300</height>
+                <width>300</width>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </include>
+
+    <!-- DIALOG - SETTINGS - VIDEO OSD -->
+
+    <include name="Def_Dialog_Settings_video_OSD">
+        <control type="group">
+            <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(SliderDialog) | Window.IsVisible(DialogSubtitles.xml)">Conditional</animation>
+
+            <top>200</top>
+            <centerleft>50%</centerleft>
+
+            <include content="Def_Dialog_Background">
+                <param name="height" value="548" />
+                <param name="width" value="1460" />
+                <param name="colordiffuse" value="White100" />
+                <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" />
+                <param name="colordiffuse_shadow" value="$VAR[Color_OSD_Dialog_Shadow]" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="" />
+                <param name="label_id" value="2" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="grouplist" id="5">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>16</left>
+                <width>1068</width>
+                <height>396</height>
+
+                <onright>1799</onright>
+                <onup>5</onup>
+                <ondown>5</ondown>
+
+                <usecontrolcoords>true</usecontrolcoords>
+                <orientation>vertical</orientation>
+                <pagecontrol>1799</pagecontrol>
+                <itemgap>0</itemgap>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1799" />
+                <param name="onleft" value="5" />
+                <param name="onright" value="9000" />
+                <param name="height" value="396" />
+                <param name="centerright" value="360" />
+            </include>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1799) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9000">
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+                <onleft>5</onleft>
+                <onright>5</onright>
+
+                <itemgap>14</itemgap>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="28" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="29" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="30" />
+                </include>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </include>
+</includes>

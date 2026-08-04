@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="View_55_Wall">
+        <control type="group">
+            <visible>Control.IsVisible(55)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="[!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)] | Window.IsVisible(MyFavourites.xml)">Furniture_Footer_Clock_Right</include>
+
+            <control type="panel" id="55">
+                <visible>$EXP[Exp_View_55]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>View_Poster_Top</top>
+                <left>View_Poster_Side</left>
+                <right>View_Poster_Side</right>
+                <height>View_Poster_height</height>
+
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                <onleft>1606</onleft>
+                <onup>55</onup>
+                <ondown>55</ondown>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1606</pagecontrol>
+
+                <viewtype label="31391">list</viewtype>
+
+                <itemlayout height="335" width="222">
+                    <control type="group">
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="55" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="335" width="222">
+                    <control type="group">
+                        <visible>Skin.HasSetting(55wall.slideinfo) + !ListItem.IsParentFolder</visible>
+                        <visible>Container(55).Column(0) | Container(55).Column(1) | Container(55).Column(2) | Container(55).Column(3)</visible>
+
+                        <animation effect="fade" start="0" end="0" delay="0" time="50" tween="cubic" easing="inout" reversible="false">UnFocus</animation>
+                        <animation effect="fade" start="0" end="0" delay="0" time="50" tween="cubic" easing="inout" reversible="false">Hidden</animation>
+
+                        <top>5</top>
+                        <left>10</left>
+                        <width>880</width>
+                        <height>315</height>
+
+                        <control type="group">
+                            <visible>Control.HasFocus(55)</visible>
+
+                            <animation type="Focus">
+                                <effect type="zoom" start="10,0,202,315" end="10,0,874,315" tween="cubic" easing="inout" delay="1000" time="400" />
+                                <effect type="fade" start="0" end="100" tween="cubic" easing="inout" delay="200" time="150" />
+                            </animation>
+
+                            <include content="Def_Art_Full_Background_b12">
+                                <param name="colordiffuse" value="Panel" />
+                            </include>
+                        </control>
+
+                        <include>Def_55_Info_Right</include>
+                    </control>
+
+                    <!-- SLIDE INFO ON FOCUS -->
+
+                    <control type="group">
+                        <visible>Skin.HasSetting(55wall.slideinfo) + !ListItem.IsParentFolder</visible>
+                        <visible>Container(55).Column(4) | Container(55).Column(5) | Container(55).Column(6) | Container(55).Column(7)</visible>
+
+                        <animation effect="fade" start="0" end="0" delay="0" time="50" tween="cubic" easing="inout" reversible="false">UnFocus</animation>
+                        <animation effect="fade" start="0" end="0" delay="0" time="50" tween="cubic" easing="inout" reversible="false">Hidden</animation>
+
+                        <top>5</top>
+                        <right>10</right>
+                        <left>-668</left>
+                        <width>880</width>
+                        <height>315</height>
+
+                        <control type="group">
+                            <animation type="Focus">
+                                <effect type="zoom" start="675,0,202,315" end="0,0,874,315" tween="cubic" easing="inout" delay="1000" time="400" />
+                                <effect type="fade" start="0" end="100" delay="200" time="150" tween="cubic" easing="inout" />
+                            </animation>
+
+                            <include content="Def_Art_Full_Background_b12">
+                                <param name="colordiffuse" value="Panel" />
+                            </include>
+                        </control>
+
+                        <include>Def_55_Info_Left</include>
+                    </control>
+                    <control type="group">
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster_Focus">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="55" />
+                        </include>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1606">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1606" />
+                    <param name="idlayout" value="55" />
+                </include>
+            </control>
+        </control>
+    </include>
+
+    <include name="View_55_Wall_Poster">
+        <control type="group">
+            <visible>Control.IsVisible(55)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="panel" id="55">
+                <visible>$EXP[Exp_View_55]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>View_Poster_Top</top>
+                <right>View_Poster_Side</right>
+                <width>1332</width>
+                <height>View_Poster_height</height>
+
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                <onleft>1604</onleft>
+                <onup>55</onup>
+                <ondown>55</ondown>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1604</pagecontrol>
+
+                <viewtype label="31391">list</viewtype>
+
+                <itemlayout height="335" width="222">
+                    <control type="group">
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="55" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="335" width="222">
+                    <control type="group">
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster_Focus">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="55" />
+                        </include>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1604">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1604" />
+                    <param name="idlayout" value="55" />
+                </include>
+            </control>
+
+            <include>View_50_Side_Poster</include>
+        </control>
+    </include>
+
+    <include name="View_55_Wall_Info">
+        <control type="group">
+            <visible>Control.IsVisible(55)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="panel" id="55">
+                <visible>$EXP[Exp_View_55]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>View_Poster_Top</top>
+                <right>View_Poster_Side</right>
+                <width>1110</width>
+                <height>View_Poster_height</height>
+
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                <onleft>1605</onleft>
+                <onup>55</onup>
+                <ondown>55</ondown>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1605</pagecontrol>
+
+                <viewtype label="31391">list</viewtype>
+
+                <itemlayout height="335" width="222">
+                    <control type="group">
+                        <height>330</height>
+                        <include content="Layout_Widget_Poster">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="55" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="335" width="222">
+                    <control type="group">
+                        <control type="group">
+                            <height>330</height>
+                            <include content="Layout_Widget_Poster_Focus">
+                                <param name="texture_diffuse" value="poster_w202_h305" />
+                                <param name="id" value="55" />
+                            </include>
+                        </control>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1605">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1605" />
+                    <param name="idlayout" value="55" />
+                </include>
+            </control>
+
+            <include content="524_Fanart"><param name="top" value="216" /></include>
+            <include content="57_List_Info"></include>
+        </control>
+    </include>
+
+    <include name="View_555_Wall_Episodes">
+        <control type="group">
+            <visible>Control.IsVisible(555)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="[!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)] | Window.IsVisible(MyFavourites.xml)">Furniture_Footer_Clock_Right</include>
+
+            <control type="panel" id="555">
+                <visible>$EXP[Exp_View_555]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>View_Poster_Top</top>
+                <right>View_Poster_Side</right>
+                <left>View_Poster_Side</left>
+                <height>674</height>
+
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                <onleft>1607</onleft>
+                <onup>555</onup>
+                <ondown>555</ondown>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1607</pagecontrol>
+
+                <viewtype label="31186">list</viewtype>
+
+                <itemlayout height="337" width="444">
+                    <control type="group">
+                        <height>245</height>
+                        <include content="Layout_Widget_Landscape">
+                            <param name="texture_diffuse" value="fanart_w424_h225" />
+                            <param name="id" value="555" />
+                            <param name="height" value="245" />
+                            <param name="image_height" value="245" />
+                        </include>
+                    </control>
+
+                    <!-- FIRST LINE -->
+
+                    <control type="label">
+                        <font>InfoNetflix</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>center</align>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                    </control>
+
+                    <!-- SECOND LINE -->
+
+                    <control type="label">
+                        <font>Small24</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>center</align>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="337" width="444">
+                    <control type="group">
+                        <height>245</height>
+                        <include content="Layout_Widget_Landscape_Focus">
+                            <param name="texture_diffuse" value="fanart_w424_h225" />
+                            <param name="id" value="555" />
+                            <param name="height" value="245" />
+                            <param name="image_height" value="245" />
+                            <param name="glow_height" value="243" />
+                            <param name="glow_top" value="2" />
+                            <param name="glow_left" value="8" />
+                            <param name="glow_right" value="8" />
+                            <param name="glow_zoom" value="108" />
+                        </include>
+                    </control>
+
+                    <!-- FIRST LINE -->
+
+                    <control type="label">
+                        <font>InfoNetflix</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>center</align>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                    </control>
+
+                    <!-- SECOND LINE -->
+
+                    <control type="label">
+                        <font>Small24</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>center</align>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1607">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1607" />
+                    <param name="idlayout" value="555" />
+                </include>
+            </control>
+        </control>
+    </include>
+
+    <include name="View_557_Wall_Small_Episodes">
+        <control type="group">
+            <visible>Control.IsVisible(557)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="[!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)] | Window.IsVisible(MyFavourites.xml)">Furniture_Footer_Clock_Right</include>
+
+            <control type="panel" id="557">
+                <visible>$EXP[Exp_View_557]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>View_Poster_Top</top>
+                <left>View_Poster_Side</left>
+                <width>1840</width>
+                <height>View_Poster_height</height>
+
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                <onleft>1617</onleft>
+                <onup>557</onup>
+                <ondown>557</ondown>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1617</pagecontrol>
+
+                <viewtype label="31510">list</viewtype>
+
+                <itemlayout height="223.33" width="355.66">
+                    <control type="group">
+                        <height>223.33</height>
+                        <include content="Layout_Widget_Landscape">
+                            <param name="texture_diffuse" value="fanart_w335_h207" />
+                            <param name="id" value="557" />
+                            <param name="height" value="205" />
+                            <param name="image_height" value="205" />
+                            <param name="small" value="true" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="223.33" width="355.66">
+                    <control type="group">
+                        <height>223.33</height>
+                        <include content="Layout_Widget_Landscape_Focus">
+                            <param name="texture_diffuse" value="fanart_w335_h207" />
+                            <param name="id" value="557" />
+                            <param name="height" value="205" />
+                            <param name="image_height" value="205" />
+                            <param name="glow_height" value="204" />
+                            <param name="glow_top" value="2" />
+                            <param name="glow_left" value="8" />
+                            <param name="glow_right" value="8" />
+                            <param name="glow_zoom" value="108" />
+                            <param name="small" value="true" />
+                        </include>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1617">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1617" />
+                    <param name="idlayout" value="557" />
+                </include>
+            </control>
+        </control>
+
+        <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="557" /></include>
+    </include>
+
+    <!-- PLOT SLIDER -->
+
+    <include name="Def_55_Slider_Info">
+        <animation effect="fade" start="0" end="100" delay="1300" time="200" reversible="false">Focus</animation>
+
+        <!-- TITLE -->
+
+        <control type="label">
+            <width>610</width>
+            <height>50</height>
+            <font>SmallBold</font>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[ListItem.Label]</label>
+        </control>
+
+        <!-- PLOT -->
+
+        <control type="textbox">
+            <top>70</top>
+            <width>610</width>
+            <height>150</height>
+            <font>Tiny</font>
+            <textcolor>PanelWhite70</textcolor>
+            <align>justify</align>
+            <label>$VAR[Label_Plot_Box_Video_Music]</label>
+        </control>
+
+        <!-- SUB TILE -->
+
+        <control type="label">
+            <top>230</top>
+            <width>610</width>
+            <height>50</height>
+            <font>InfoNetflix</font>
+            <align>right</align>
+            <textcolor>PanelWhite70</textcolor>
+            <label>$VAR[Label_55_Slider_Sub_Title]</label>
+        </control>
+    </include>
+
+    <include name="Def_55_Info_Left">
+        <control type="group">
+            <left>35</left>
+            <top>20</top>
+            <include>Def_55_Slider_Info</include>
+        </control>
+    </include>
+
+    <include name="Def_55_Info_Right">
+        <control type="group">
+            <left>242</left>
+            <top>20</top>
+            <include>Def_55_Slider_Info</include>
+        </control>
+    </include>
+</includes>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol>450</defaultcontrol>
+
+    <onunload>ClearProperty(SetIcon,Home)</onunload>
+
+    <controls>
+        <control type="group">
+            <include>Background_Overlay</include>
+        </control>
+
+        <include condition="!Window.IsVisible(script-skinshortcuts.xml)">Def_FileBrowser_Default</include>
+        <include condition="Window.IsVisible(script-skinshortcuts.xml) | !String.IsEmpty(Window(Home).Property(SetIcon))">Def_FileBrowser_Skinshortcuts_Icon</include>
+    </controls>
+</window>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">5</defaultcontrol>
+
+    <controls>
+        <include>Background_Overlay</include>
+        <control type="group">
+            <include content="Def_Dialog_Background"><param name="height" value="902" /><param name="width" value="900" /><param name="colordiffuse" value="White100" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="13406" />
+                <param name="icon" value="rectangle-list" />
+            </include>
+
+            <control type="list" id="5">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>30</left>
+                <width>838</width>
+                <height>690</height>
+
+                <onleft>Close</onleft>
+                <onright>Close</onright>
+                <onup>5</onup>
+                <ondown>5</ondown>
+
+                <itemlayout height="69" width="838">
+                    <control type="image">
+                        <width>838</width>
+                        <height>66</height>
+                        <texture border="12" colordiffuse="Black12">$VAR[texture_box12]</texture>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <width>405</width>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <right>30</right>
+                        <width>405</width>
+                        <align>right</align>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="69" width="838">
+                    <control type="image">
+                        <width>838</width>
+                        <height>66</height>
+                        <include>Texture_Layout_Item_Focus</include>
+                        <include condition="true">Animation_View_List_Focus_Scroll</include>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <width>405</width>
+                        <textcolor>Selected</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <right>30</right>
+                        <width>405</width>
+                        <align>right</align>
+                        <font>Tiny</font>
+                        <textcolor>Selected</textcolor>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </controls>
+</window>

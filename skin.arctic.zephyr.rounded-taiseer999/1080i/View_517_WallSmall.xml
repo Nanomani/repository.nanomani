@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="View_517_WallSmall">
+        <control type="group">
+            <visible>Control.IsVisible(517)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="panel" id="517">
+                <visible>$EXP[Exp_View_517]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include condition="!Skin.HasSetting(ShowPoster517)">Def_517_WallSmall_Dimensions_Normal</include>
+                <include condition="Skin.HasSetting(ShowPoster517)">Def_517_WallSmall_Dimensions_Poster</include>
+
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+
+                <top>View_Poster_Top</top>
+                <height>672</height>
+
+                <onleft>1664</onleft>
+                <onup>517</onup>
+                <ondown>517</ondown>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1664</pagecontrol>
+
+                <viewtype label="31250">list</viewtype>
+
+                <itemlayout height="224" width="148">
+                    <control type="group">
+                        <height>212</height>
+                        <include content="Layout_Widget_Poster">
+                            <param name="texture_diffuse" value="poster_w128_h192" />
+                            <param name="id" value="517" />
+                            <param name="height" value="212" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="224" width="148">
+                    <control type="group">
+                        <height>212</height>
+                        <include content="Layout_Widget_Poster_Focus">
+                            <param name="texture_diffuse" value="poster_w128_h192" />
+                            <param name="id" value="517" />
+                            <param name="height" value="212" />
+                            <param name="glow_top" value="0" />
+                            <param name="glow_height" value="212" />
+                            <param name="glow_left" value="-2" />
+                            <param name="glow_right" value="-1" />
+                            <param name="glow_zoom" value="108" />
+                        </include>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1664">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1664" />
+                    <param name="idlayout" value="517" />
+                </include>
+            </control>
+
+
+            <include condition="Skin.HasSetting(ShowPoster517)">View_50_Side_Poster</include>
+        </control>
+    </include>
+
+    <include name="Def_517_WallSmall_Dimensions_Normal">
+        <right>44</right>
+        <width>1806</width>
+    </include>
+
+    <include name="Def_517_WallSmall_Dimensions_Poster">
+        <right>0</right>
+        <width>1406</width>
+    </include>
+</includes>

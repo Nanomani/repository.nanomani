@@ -1,0 +1,1110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <!-- GAMES - FLAGS -->
+
+    <variable name="Flag_Game_Audio">
+        <value condition="String.Contains(ListItem.Property(tags),atmos)">atmos</value>
+        <value condition="String.Contains(ListItem.Property(tags),dtsx) | String.Contains(ListItem.Property(tags),dts-x)">dtsx</value>
+        <value condition="String.Contains(ListItem.Property(tags),dts) | String.Contains(ListItem.Property(tags),dca)">dts</value>
+        <value condition="String.Contains(ListItem.Property(tags),dolby hd)">dtshd_hra</value>
+        <value condition="String.Contains(ListItem.Property(tags),dolby digital)">eac3</value>
+    </variable>
+
+    <variable name="Flag_Game_Resolution">
+        <value condition="String.Contains(ListItem.Property(tags),480)">480</value>
+        <value condition="String.Contains(ListItem.Property(tags),720)">720</value>
+        <value condition="String.Contains(ListItem.Property(tags),1080)">1080</value>
+        <value condition="String.Contains(ListItem.Property(tags),4K)">4K</value>
+    </variable>
+
+    <variable name="Flag_Game_Studio">
+        <value condition="!String.IsEmpty(Skin.String(game.logos.path))">$INFO[Skin.String(game.logos.path)]$INFO[ListItem.Studio,,.png]</value>
+    </variable>
+
+    <variable name="Flag_Game_ESRB">
+        <value condition="!String.IsEmpty(Skin.String(game.logos.path))">$INFO[Skin.String(game.logos.path),,esrb/]$INFO[ListItem.Property(esrb),,.png]</value>
+    </variable>
+
+    <variable name="Flag_Game_Multi_Player_Type">
+        <value condition="!String.IsEmpty(Skin.String(game.logos.path)) + String.Contains(ListItem.Property(tags),vs)">$INFO[Skin.String(game.logos.path),,flags/vs.png]</value>
+        <value condition="!String.IsEmpty(Skin.String(game.logos.path)) + String.Contains(ListItem.Property(tags),co-op)">$INFO[Skin.String(game.logos.path),,flags/co-op.png]</value>
+        <value condition="!String.IsEmpty(Skin.String(game.logos.path)) + String.Contains(ListItem.Property(tags),coop)">$INFO[Skin.String(game.logos.path),,flags/co-op.png]</value>
+    </variable>
+
+    <!-- GAME - IMAGE -->
+
+    <variable name="Image_Game_Thumb">
+        <value condition="!String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(boxfront))">$INFO[ListItem.Art(boxfront)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
+        <value>DefaultAddonGame.png</value>
+    </variable>
+
+    <!-- GAME - DEF -->
+
+    <include name="Def_Game_Image_Background">
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="7" />
+        <param name="border_shadow" value="$PARAM[border_shadow]" default="22" />
+        <param name="texture_shadow" value="$PARAM[texture_shadow]" default="$VAR[shadow12]" />
+        <param name="colordiffuse_shadow" value="$PARAM[colordiffuse_shadow]" default="$VAR[Color_Shadow]" />
+        <param name="visible_shadow" value="$PARAM[visible_shadow]" default="true" />
+
+        <param name="pad_border" value="$PARAM[pad_border]" default="7" />
+        <param name="border_border" value="$PARAM[border_border]" default="20" />
+        <param name="texture_border" value="$PARAM[texture_border]" default="$VAR[border12]" />
+        <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" default="$VAR[Color_Border_Widget]" />
+        <param name="visible_border" value="$PARAM[visible_border]" default="true" />
+
+
+        <param name="pad_image" value="$PARAM[pad_image]" default="16" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
+        <param name="condition_fade" value="$PARAM[condition_fade]" default="false" />
+
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_shadow]" /></include>
+                <texture border="$PARAM[border_shadow]" colordiffuse="$PARAM[colordiffuse_shadow]" infill="false">$PARAM[texture_shadow]</texture>
+                <visible>!Skin.HasSetting(hide.global.shadows)</visible>
+                <visible>$PARAM[visible_shadow]</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_border]" /></include>
+                <texture border="$PARAM[border_border]" colordiffuse="$PARAM[colordiffuse_border]" infill="false">$PARAM[texture_border]</texture>
+                <visible>Skin.HasSetting(hide.global.shadows)</visible>
+                <visible>$PARAM[visible_border]</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                <texture border="12" colordiffuse="black">$VAR[texture_box12]</texture>
+                <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
+                <visible>!String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                <texture border="12" colordiffuse="$PARAM[colordiffuse]">$VAR[texture_box12]</texture>
+                <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
+                <visible>String.IsEqual(ListItem.Icon,DefaultAddSource.png)</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Game_Image_Glow">
+        <param name="id" value="$PARAM[id]" default="10811" />
+
+        <definition>
+            <control type="group">
+                <top>6</top>
+                <left>6</left>
+                <right>6</right>
+                <height>276</height>
+                <include content="Layout_Widget_Focus">
+                    <param name="id" value="$PARAM[id]" />
+                    <param name="glow_height" value="272" />
+                    <param name="glow_top" value="2" />
+                    <param name="glow_zoom" value="108" />
+                    <param name="glow_left" value="6" />
+                    <param name="glow_right" value="8" />
+                </include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Game_Label">
+        <control type="label">
+            <top>296</top>
+            <left>16</left>
+            <right>10</right>
+            <height>20</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <scroll>true</scroll>
+            <font>InfoNetflix</font>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[ListItem.Label]</label>
+        </control>
+        <control type="label">
+            <top>333</top>
+            <left>16</left>
+            <right>10</right>
+            <height>20</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <scroll>true</scroll>
+            <font>Small24</font>
+            <textcolor>PanelWhite70</textcolor>
+            <label>$INFO[ListItem.Label2]</label>
+        </control>
+    </include>
+
+    <include name="Def_Game_Number_Of_Players">
+        <control type="group" description="NumberOfPlayers">
+            <visible>!String.IsEmpty(ListItem.Property($PARAM[nplayerfield]))</visible>
+
+            <top>9</top>
+            <width>320</width>
+            <height>64</height>
+
+            <control type="image" description="button back">
+                <top>16</top>
+                <width>300</width>
+                <height>64</height>
+                <left>0</left>
+                <align>left</align>
+                <texture border="0" colordiffuse="$VAR[Color_Background]">common/circle4.png</texture>
+            </control>
+
+            <!-- <control type="image"> -->
+                <!-- <left>0</left> -->
+                <!-- <top>18</top> -->
+                <!-- <height>64</height> -->
+                <!-- <width>300</width> -->
+                <!-- <texture border="12" colordiffuse="$VAR[Color_Background]">$VAR[texture_box12]</texture> -->
+            <!-- </control> -->
+
+            <control type="grouplist">
+                <top>14</top>
+                <width>300</width>
+
+                <itemgap>6</itemgap>
+                <orientation>horizontal</orientation>
+
+                <control type="image">
+                    <top>-4</top>
+                    <width>70</width>
+                    <height>68</height>
+                    <aspectratio aligny="center" align="center">keep</aspectratio>
+                    <texture colordiffuse="Dark1">special://skin/extras/icons/gamepad.png</texture>
+                </control>
+                <control type="label">
+                    <left>60</left>
+                    <height>64</height>
+                    <width>auto</width>
+                    <label>$INFO[ListItem.Property($PARAM[nplayerfield])]</label>
+                    <aligny>center</aligny>
+                    <align>left</align>
+                    <font>Flag</font>
+                    <textcolor>Dark1</textcolor>
+                </control>
+                <control type="label">
+                    <height>64</height>
+                    <left>20</left>
+                    <width min="50">auto</width>
+                    <aligny>center</aligny>
+                    <font>Flag</font>
+                    <textcolor>Dark1</textcolor>
+                    <label>$VAR[$PARAM[playersTextId]]</label>
+                </control>
+                <control type="label">
+                    <width min="50">auto</width>
+                    <height>64</height>
+                    <aligny>center</aligny>
+                    <font>Flag</font>
+                    <textcolor>Dark1</textcolor>
+                    <label>$LOCALIZE[$PARAM[textid]]</label>
+                </control>
+            </control>
+        </control>
+    </include>
+
+    <include name="Def_Agents_Controller_List">
+        <control type="gamecontrollerlist">
+            <description>Controller list which indicates the port a player's controller is connected to. Length should fit 13 listitems (12 controller items and one "input disabled" item).</description>
+
+            <!-- <right>50</right> -->
+
+            <width>900</width>
+            <orientation>horizontal</orientation>
+            <align>left</align>
+            <left>970</left>
+            <enable>false</enable>
+
+            <itemlayout width="96" height="100">
+                <control type="gamecontroller">
+                    <texture>$INFO[ListItem.Icon]</texture>
+                    <controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+                    <peripherallocation>$INFO[ListItem.FilenameAndPath]</peripherallocation>
+                    <controllerdiffuse>button_focus</controllerdiffuse>
+                </control>
+            </itemlayout>
+            <focusedlayout width="96" height="100">
+                <control type="gamecontroller">
+                    <texture>$INFO[ListItem.Icon]</texture>
+                    <controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+                    <peripherallocation>$INFO[ListItem.FilenameAndPath]</peripherallocation>
+                    <controllerdiffuse>button_focus</controllerdiffuse>
+                </control>
+            </focusedlayout>
+            <!--
+                Note to skinners: this control can be populated
+                with static content for testing.
+            <content>
+                <item>
+                    <icon>DefaultAddonNone.png</icon>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+                <item>
+                    <property name="game.controllerid">game.controller.default</property>
+                </item>
+            </content>
+            -->
+        </control>
+    </include>
+
+    <!-- GAME - DIALOG -->
+
+    <include name="Def_Dialog_Game_Controllers">
+        <control type="group">
+            <include content="Def_Dialog_Background">
+                <param name="height" value="959" />
+                <param name="width" value="1844" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="35058" />
+                <param name="label_id" value="2" />
+                <param name="icon" value="gamepad" />
+            </include>
+
+            <!-- LEFT - BUTTON -->
+
+            <control type="label">
+                <left>30</left>
+                <width>390</width>
+                <top>112</top>
+                <height>66</height>
+                <align>center</align>
+                <aligny>center</aligny>
+                <font>Small</font>
+                <textcolor>Dark2</textcolor>
+                <label>$LOCALIZE[35050]</label>
+            </control>
+            <control type="grouplist" id="3">
+                <left>30</left>
+                <width>390</width>
+                <top>192</top>
+                <height>PosterH</height>
+                <onright>5</onright>
+                <onleft>8000</onleft>
+                <ondown>8000</ondown>
+                <itemgap>14</itemgap>
+                <include>Animation_Scrolltime_Views_List</include>
+            </control>
+
+            <!-- LEFT - LINE VERTICAL -->
+
+            <control type="image">
+                <left>450</left>
+                <top>112</top>
+                <height>706</height>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+            </control>
+
+            <!-- MIDDLE - GAME CONTROLLER -->
+
+            <control type="gamecontroller" id="31">
+                <centerleft>50%</centerleft>
+                <top>112</top>
+                <width>650</width>
+                <height>610</height>
+            </control>
+            <control type="textbox" id="32">
+                <centerleft>50%</centerleft>
+                <bottom>140</bottom>
+                <width>870</width>
+                <height>117</height>
+                <font>Tiny</font>
+                <align>center</align>
+                <textcolor>Dark2</textcolor>
+                <selectedcolor>Dark2</selectedcolor>
+            </control>
+
+            <!-- LINE VERTICAL RIGHT -->
+
+            <control type="image">
+                <right>450</right>
+                <top>112</top>
+                <height>706</height>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+            </control>
+
+            <!-- RIGHT - KEY LIST -->
+
+            <control type="grouplist" id="5">
+                <width>390</width>
+                <right>30</right>
+                <top>98</top>
+                <height>720</height>
+                <onleft>3</onleft>
+                <onright>8000</onright>
+                <!-- <ondown>8000</ondown> -->
+                <itemgap>14</itemgap>
+                <include>Animation_Scrolltime_Views_List</include>
+            </control>
+
+            <!-- BOTTOM BUTTON -->
+
+            <control type="grouplist" id="8000">
+                <bottom>30</bottom>
+                <height>66</height>
+                <right>30</right>
+                <left>30</left>
+                <align>center</align>
+                <centerleft>50%</centerleft>
+
+                <onup>5</onup>
+                <onleft>3</onleft>
+                <onright>5</onright>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="18" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                    <param name="width" value="284" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="19" />
+                    <param name="label" value="$LOCALIZE[13007]" />
+                    <param name="width" value="284" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="20" />
+                    <param name="label" value="$LOCALIZE[21452]" />
+                    <param name="width" value="284" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="22" />
+                    <param name="label" value="$LOCALIZE[35021]" />
+                    <param name="width" value="284" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="17" />
+                    <param name="label" value="$LOCALIZE[10043]" />
+                    <param name="width" value="284" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="21" />
+                    <param name="label" value="$LOCALIZE[35019]" />
+                    <param name="width" value="284" />
+                </include>
+            </control>
+        </control>
+
+        <!-- BUTTON LEFT -->
+
+        <control type="label" id="8">
+            <description>Default Controller Types Label</description>
+            <width>390</width>
+            <height>66</height>
+            <align>center</align>
+            <font>Small</font>
+            <textcolor>Dark2</textcolor>
+            <aligny>center</aligny>
+        </control>
+        <control type="button" id="7">
+            <align>center</align>
+            <width>390</width>
+            <include>Texture_Button_Dialog_Settings</include>
+            <font>Button</font>
+            <textcolor>Black70</textcolor>
+        </control>
+        <control type="button" id="10">
+            <align>center</align>
+            <width>390</width>
+            <include>Texture_Button_Dialog_Settings</include>
+            <font>Button</font>
+            <textcolor>Black70</textcolor>
+        </control>
+	</include>
+
+	<include name="Def_Dialog_Game_Agents">
+		<control type="group">
+            <include content="Def_Dialog_Background">
+                <param name="height" value="820" />
+                <param name="width" value="1480" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$LOCALIZE[35172]" />
+                <param name="label_id" value="2" />
+                <param name="icon" value="gamepad" />
+            </include>
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="61" />
+                <param name="onleft" value="3" />
+                <param name="onright" value="18" />
+                <param name="centerright" value="360" />
+            </include>
+
+            <control type="button" id="3">
+                <description>Ports button</description>
+
+                <top>112</top>
+                <left>16</left>
+                <width>1088</width>
+                <height>100</height>
+                <ondown>7</ondown>
+                <onright>61</onright>
+
+                <label>$LOCALIZE[35110]</label>
+                <font>InfoNetflix</font>
+                <textcolor>PanelWhite100</textcolor>
+                <selectedcolor>PanelWhite100</selectedcolor>
+                <textoffsetx>36</textoffsetx>
+                <textwidth>136</textwidth>
+                <align>left</align>
+                <aligny>center</aligny>
+                <include>Texture_Button_Dialog_Settings</include>
+                <onclick>ActivateWindow(GamePorts)</onclick>
+            </control>
+
+            <control type="gamecontrollerlist" id="4">
+                <description>Active port list. Length should fit 13 listitems (12 controllers and one "controller disconnected" indicator).</description>
+
+                <top>112</top>
+                <left>210</left>
+                <right>30</right>
+                <width>920</width>
+                <height>100</height>
+                <orientation>horizontal</orientation>
+                <align>left</align>
+                <enable>false</enable>
+
+                <itemlayout width="96" height="100">
+                    <control type="gamecontroller">
+                        <texture>$INFO[ListItem.Icon]</texture>
+                        <controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+                        <controlleraddress>$INFO[ListItem.FilenameAndPath]</controlleraddress>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="96" height="100">
+                    <control type="gamecontroller">
+                        <texture>$INFO[ListItem.Icon]</texture>
+                        <controllerid>$INFO[ListItem.Property(game.controllerid)]</controllerid>
+                        <controlleraddress>$INFO[ListItem.FilenameAndPath]</controlleraddress>
+                    </control>
+                </focusedlayout>
+
+                <!-- <content> -->
+                    <!-- <item> -->
+                        <!-- <icon>DefaultAddonNone.png</icon> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                    <!-- <item> -->
+                        <!-- <property name="game.controllerid">game.controller.snes</property> -->
+                    <!-- </item> -->
+                <!-- </content> -->
+            </control>
+
+            <control type="list" id="7">
+                <description>Area of the dialog for player controllers</description>
+                <top>222</top>
+                <left>16</left>
+                <width>1088</width>
+                <height>600</height>
+
+                <onright>61</onright>
+                <onup>3</onup>
+                <ondown>10</ondown>
+                <pagecontrol>61</pagecontrol>
+                <scrolltime tween="sine">200</scrolltime>
+                <orientation>vertical</orientation>
+
+                <itemlayout width="1088" height="100">
+                    <control type="label">
+                        <description>Controller name as reported by the driver</description>
+                        <top>20</top>
+                        <left>30</left>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>PanelWhite100</textcolor>
+                        <selectedcolor>PanelWhite100</selectedcolor>
+                        <font>InfoNetflix</font>
+                        <align>left</align>
+                    </control>
+                    <include>Def_Agents_Controller_List</include>
+                </itemlayout>
+                <focusedlayout width="1088" height="100">
+
+                    <!-- ITEM FOCUS -->
+
+                    <include content="Def_Layout_Item_Focus">
+                        <param name="visible" value="Control.HasFocus(7)" />
+                    </include>
+
+                    <control type="label">
+                        <description>Controller name as reported by the driver</description>
+                        <top>20</top>
+                        <left>30</left>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <font>InfoNetflix</font>
+                        <align>left</align>
+                        <visible>Control.HasFocus(7)</visible>
+                    </control>
+                    <control type="label">
+                        <description>Controller name as reported by the driver</description>
+                        <top>20</top>
+                        <left>30</left>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>PanelWhite100</textcolor>
+                        <selectedcolor>PanelWhite100</selectedcolor>
+                        <font>InfoNetflix</font>
+                        <align>left</align>
+                        <visible>!Control.HasFocus(7)</visible>
+                    </control>
+                    <include>Def_Agents_Controller_List</include>
+                </focusedlayout>
+                <!--
+                    Note to skinners: this control can be populated
+                    with static content for testing.
+                <content>
+                    <item>
+                        <label>Player 1</label>
+                    </item>
+                    <item>
+                        <label>Player 2</label>
+                    </item>
+                    <item>
+                        <label>Player 3</label>
+                    </item>
+                    <item>
+                        <label>Player 4</label>
+                    </item>
+                    <item>
+                        <label>Player 5</label>
+                    </item>
+                    <item>
+                        <label>Player 6</label>
+                    </item>
+                    <item>
+                        <label>Player 7</label>
+                    </item>
+                    <item>
+                        <label>Player 8</label>
+                    </item>
+                    <item>
+                        <label>Player 9</label>
+                    </item>
+                    <item>
+                        <label>Player 10</label>
+                    </item>
+                    <item>
+                        <label>Player 11</label>
+                    </item>
+                    <item>
+                        <label>Player 12</label>
+                    </item>
+                </content>
+                -->
+            </control>
+
+            <!-- LINE VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="right" value="360" /><param name="bottom" value="17" /></include>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <right>30</right>
+                <top>112</top>
+                <width>300</width>
+                <height>490</height>
+                <onleft>3</onleft>
+                <onright>3</onright>
+                <itemgap>14</itemgap>
+                <include>Animation_Scrolltime_Views_List</include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="18" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+		</control>
+	</include>
+
+    <include name="Def_Dialog_Game_Ports">
+		<control type="group">
+            <include content="Def_Dialog_Background">
+                <param name="height" value="820" />
+                <param name="width" value="1480" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="" />
+                <param name="label_id" value="2" />
+                <param name="icon" value="gamepad" />
+            </include>
+
+			<control type="list" id="3">
+				<description>Port item list</description>
+				<top>112</top>
+				<left>16</left>
+				<width>1088</width>
+				<height>600</height>
+				<onright>62</onright>
+				<onup>3</onup>
+				<ondown>3</ondown>
+				<pagecontrol>62</pagecontrol>
+				<scrolltime tween="sine">200</scrolltime>
+
+				<orientation>vertical</orientation>
+
+				<itemlayout width="1088" height="100">
+					<control type="group">
+						<control type="label">
+							<top>20</top>
+							<left>30</left>
+							<label>$INFO[ListItem.Label]</label>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+							<align>left</align>
+						</control>
+						<control type="label">
+							<top>20</top>
+							<right>155</right>
+							<label>$INFO[ListItem.Label2]</label>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+							<align>right</align>
+						</control>
+						<control type="gamecontroller">
+							<right>20</right>
+							<width>100</width>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<portaddress>$INFO[ListItem.FilenameAndPath]</portaddress>
+							<controllerdiffuse>button_focus</controllerdiffuse>
+						</control>
+					</control>
+				</itemlayout>
+				<focusedlayout width="1088" height="100">
+					<control type="group">
+                        <visible>Control.HasFocus(3)</visible>
+
+                        <!-- ITEM FOCUS -->
+
+                        <include content="Def_Layout_Item_Focus">
+                            <param name="visible" value="Control.HasFocus(3)" />
+                        </include>
+
+						<control type="label">
+							<top>20</top>
+							<left>30</left>
+							<label>$INFO[ListItem.Label]</label>
+							<font>InfoNetflix</font>
+                            <textcolor>Selected</textcolor>
+							<align>left</align>
+						</control>
+						<control type="label">
+							<top>20</top>
+							<right>155</right>
+							<label>$INFO[ListItem.Label2]</label>
+							<font>InfoNetflix</font>
+                            <textcolor>Selected</textcolor>
+							<align>right</align>
+                            <visible>Control.HasFocus(3)</visible>
+						</control>
+						<control type="gamecontroller">
+							<right>20</right>
+							<width>100</width>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<portaddress>$INFO[ListItem.FilenameAndPath]</portaddress>
+							<controllerdiffuse>button_focus</controllerdiffuse>
+						</control>
+					</control>
+					<control type="group">
+                        <visible>!Control.HasFocus(3)</visible>
+						<control type="label">
+							<top>20</top>
+							<left>20</left>
+							<label>$INFO[ListItem.Label]</label>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+							<align>left</align>
+						</control>
+						<control type="label">
+							<top>20</top>
+							<right>155</right>
+							<label>$INFO[ListItem.Label2]</label>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+							<align>right</align>
+						</control>
+						<control type="gamecontroller">
+							<right>20</right>
+							<width>100</width>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<portaddress>$INFO[ListItem.FilenameAndPath]</portaddress>
+							<controllerdiffuse>button_focus</controllerdiffuse>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="62" />
+                <param name="onleft" value="3" />
+                <param name="onright" value="9001" />
+                <param name="centerright" value="360" />
+                <param name="height" value="600" />
+            </include>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(62) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <right>30</right>
+                <top>112</top>
+                <width>300</width>
+                <height>490</height>
+                <onleft>3</onleft>
+                <itemgap>14</itemgap>
+                <include>Animation_Scrolltime_Views_List</include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="18" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="19" />
+                    <param name="label" value="$LOCALIZE[13007]" />
+                </include>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+		</control>
+	</include>
+
+    <include name="Def_Dialog_Game_DiscManager">
+        <control type="group">
+            <visible>!Window.IsActive(GameDiscChanger)</visible>
+
+            <include content="Def_Dialog_Background">
+                <param name="height" value="479" />
+                <param name="width" value="966" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$LOCALIZE[35272]" />
+                <param name="label_id" value="" />
+                <param name="icon" value="cd" />
+            </include>
+
+            <control type="group">
+                <description>Content area</description>
+
+                <top>112</top>
+                <left>16</left>
+                <width>934</width>
+                <bottom>17</bottom>
+
+                <control type="group">
+                    <description>Visibility group for main menu</description>
+                    <visible>String.IsEqual(Window.Property(GameDiscManager.ShowMenu),true)</visible>
+
+                    <control type="list" id="3">
+                        <description>Disc manager menu. The content is a template from which the menu items are generated.</description>
+
+                        <onup>3</onup>
+                        <ondown>3</ondown>
+                        <scrolltime tween="sine">200</scrolltime>
+
+                        <orientation>vertical</orientation>
+
+                        <itemlayout width="934" height="70">
+                            <control type="group">
+                                <visible>!String.IsEqual(ListItem.Property(EnableOnEject),true)</visible>
+                                <control type="image">
+                                    <top>8</top>
+                                    <left>16</left>
+                                    <width>56</width>
+                                    <height>56</height>
+                                    <texture colordiffuse="Dark2">$INFO[ListItem.Icon]</texture>
+                                </control>
+                                <control type="label">
+                                    <left>84</left>
+                                    <align>left</align>
+                                    <aligny>center</aligny>
+                                    <width>40%</width>
+                                    <height>100%</height>
+                                    <textcolor>Dark2</textcolor>
+                                    <font>Tiny</font>
+                                    <label>$INFO[ListItem.Label]</label>
+                                </control>
+                                <control type="label">
+                                    <right>30</right>
+                                    <align>right</align>
+                                    <aligny>center</aligny>
+                                    <width>550</width>
+                                    <height>100%</height>
+                                    <textcolor>Dark2</textcolor>
+                                    <font>Tiny</font>
+                                    <label>$INFO[ListItem.Label2]</label>
+                                </control>
+                            </control>
+                            <control type="group">
+                                <visible>String.IsEqual(ListItem.Property(EnableOnEject),true)</visible>
+                                <control type="image">
+                                    <top>8</top>
+                                    <left>16</left>
+                                    <width>56</width>
+                                    <height>56</height>
+                                    <texture colordiffuse="$VAR[Color_Item_DiscEjected]">$INFO[ListItem.Icon]</texture>
+                                </control>
+                                <control type="label">
+                                    <left>84</left>
+                                    <align>left</align>
+                                    <aligny>center</aligny>
+                                    <width>40%</width>
+                                    <height>100%</height>
+                                    <textcolor>$VAR[Color_Item_DiscEjected]</textcolor>
+                                    <font>Tiny</font>
+                                    <label>$INFO[ListItem.Label]</label>
+                                </control>
+                                <control type="label">
+                                    <right>30</right>
+                                    <align>right</align>
+                                    <aligny>center</aligny>
+                                    <width>550</width>
+                                    <height>100%</height>
+                                    <textcolor>$VAR[Color_Item_DiscEjected]</textcolor>
+                                    <font>Tiny</font>
+                                    <label>$INFO[ListItem.Label2]</label>
+                                </control>
+                            </control>
+                        </itemlayout>
+                        <focusedlayout width="934" height="70">
+                            <include content="Def_Layout_Item_Focus">
+                                <param name="visible" value="Control.HasFocus(3)" />
+                            </include>
+                            <control type="image">
+                                <top>8</top>
+                                <left>16</left>
+                                <width>56</width>
+                                <height>56</height>
+                                <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
+                            </control>
+                            <control type="label">
+                                <left>84</left>
+                                <align>left</align>
+                                <aligny>center</aligny>
+                                <width>40%</width>
+                                <height>100%</height>
+                                <textcolor>Selected</textcolor>
+                                <font>Tiny</font>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                            <control type="label">
+                                <right>30</right>
+                                <align>right</align>
+                                <aligny>center</aligny>
+                                <width>550</width>
+                                <height>100%</height>
+                                <textcolor>Selected</textcolor>
+                                <font>Tiny</font>
+                                <label>$INFO[ListItem.Label2]</label>
+                            </control>
+                        </focusedlayout>
+                        <content>
+                            <item>
+                                <description>"Selected disc" item. Label2 is the inserted disc's label (or "No disc" if no disc is inserted).</description>
+                                <label>$LOCALIZE[35273]</label>
+                                <label2>$LOCALIZE[35274]</label2>
+                                <icon>special://skin/extras/icons/compact-disc.png</icon>
+                                <property name="EnableOnEject">true</property>
+                            </item>
+                            <item>
+                                <description>"Eject"/"Insert" item. Label2 is the tray status (only "Tray open" is shown).</description>
+                                <label>$LOCALIZE[35275]</label>
+                                <icon>special://skin/extras/icons/vcd_eject.png</icon>
+                            </item>
+                            <item>
+                                <description>"Add" item for adding another disc to the game</description>
+                                <label>$LOCALIZE[15019]</label>
+                                <icon>special://skin/extras/icons/addtile.png</icon>
+                                <property name="EnableOnEject">true</property>
+                            </item>
+                            <item>
+                                <description>"Remove" item for removing a disc from the game</description>
+                                <label>$LOCALIZE[1210]</label>
+                                <icon>special://skin/extras/icons/undo.png</icon>
+                                <property name="EnableOnEject">true</property>
+                            </item>
+                            <item>
+                                <description>"Resume game" item for resuming the game</description>
+                                <label>$LOCALIZE[35277]</label>
+                                <icon>special://skin/extras/icons/play2.png</icon>
+                            </item>
+                        </content>
+                    </control>
+                </control>
+
+                <control type="group">
+                    <description>Visibility group for disc list</description>
+                    <visible>String.IsEqual(Window.Property(GameDiscManager.ShowDiscList),true)</visible>
+
+                    <control type="list" id="108321">
+                        <description>Disc list</description>
+
+                        <include>Animation_Scrolltime_Views_List</include>
+
+                        <onright>108322</onright>
+                        <onleft>108322</onleft>
+
+                        <pagecontrol>108322</pagecontrol>
+                        <orientation>vertical</orientation>
+
+                        <itemlayout width="934" height="70">
+                            <control type="image">
+                                <top>8</top>
+                                <left>16</left>
+                                <width>56</width>
+                                <height>56</height>
+                                <texture colordiffuse="Dark2">$VAR[Image_Game_Disc_List_Icon_Black]</texture>
+                            </control>
+                            <control type="label">
+                                <left>84</left>
+                                <right>32</right>
+                                <align>left</align>
+                                <aligny>center</aligny>
+                                <height>100%</height>
+                                <centertop>50%</centertop>
+                                <textcolor>Dark2</textcolor>
+                                <font>Tiny</font>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                        </itemlayout>
+                        <focusedlayout width="934" height="70">
+                            <include content="Def_Layout_Item_Focus">
+                                <param name="fade_condition" value="!Control.HasFocus(108321)" />
+                            </include>
+                            <control type="image">
+                                <top>8</top>
+                                <left>16</left>
+                                <width>56</width>
+                                <height>56</height>
+                                <texture colordiffuse="Selected">$VAR[Image_Game_Disc_List_Icon_Black]</texture>
+                            </control>
+                            <control type="label">
+                                <left>84</left>
+                                <right>32</right>
+                                <align>left</align>
+                                <aligny>center</aligny>
+                                <height>100%</height>
+                                <centertop>50%</centertop>
+                                <textcolor>Selected</textcolor>
+                                <selectedcolor>Selected</selectedcolor>
+                                <font>Tiny</font>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                        </focusedlayout>
+                    </control>
+
+                    <!-- SCROLLBAR -->
+
+                    <include content="Object_Scrollbar_Dialog_Vertical">
+                        <param name="scrollid" value="108322" />
+                        <param name="onleft" value="108321" />
+                        <param name="onright" value="108321" />
+                        <param name="height" value="350" />
+                        <param name="centerright" value="-12" />
+                        <param name="top" value="0" />
+                    </include>
+                </control>
+            </control>
+        </control>
+    </include>
+</includes>

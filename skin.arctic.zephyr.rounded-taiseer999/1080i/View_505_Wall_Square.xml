@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <include name="View_505_506_Wall">
+        <control type="group">
+            <visible>Control.IsVisible(505)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="panel" id="505">
+                <visible>$EXP[Exp_View_505]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>View_Poster_Top</top>
+                <left>ListSquareX</left>
+                <height>660</height>
+
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                <onleft>1652</onleft>
+                <onup>505</onup>
+                <ondown>505</ondown>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1652</pagecontrol>
+
+                <viewtype label="31178">list</viewtype>
+
+                <itemlayout height="330" width="217.6">
+                    <control type="group">
+                        <height>217.6</height>
+                        <include content="Layout_Widget_Square">
+                            <param name="texture_diffuse" value="square_w202_h202" />
+                            <param name="id" value="505" />
+                            <param name="height" value="217" />
+                            <param name="image_height" value="217" />
+                            <param name="distance" value="10" />
+                        </include>
+                    </control>
+                    <control type="textbox">
+                        <top>218</top>
+                        <left>20</left>
+                        <right>20</right>
+                        <height>110</height>
+                        <textcolor>Dark1</textcolor>
+                        <font>Tiny</font>
+                        <align>center</align>
+                        <autoscroll>false</autoscroll>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="330" width="217.6">
+                    <control type="group">
+                        <height>222</height>
+                        <include content="Layout_Widget_Square_Focus">
+                            <param name="texture_diffuse" value="square_w202_h202" />
+                            <param name="id" value="505" />
+                            <param name="height" value="217" />
+                            <param name="image_height" value="217" />
+                            <param name="distance" value="10" />
+                            <param name="glow_height" value="219" />
+                            <param name="glow_top" value="-1" />
+                            <param name="glow_left" value="-1" />
+                        </include>
+                    </control>
+                    <control type="textbox">
+                        <top>218</top>
+                        <left>20</left>
+                        <right>20</right>
+                        <height>110</height>
+                        <textcolor>Dark1</textcolor>
+                        <font>Tiny</font>
+                        <align>center</align>
+                        <autoscroll>false</autoscroll>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1652">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1652" />
+                    <param name="idlayout" value="505" />
+                    <param name="centerleft" value="ScrollSquareX" />
+                </include>
+            </control>
+
+            <!-- INFO -->
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="505" /></include>
+            <include content="524_Fanart"><param name="top" value="216" /></include>
+            <include content="57_List_Info"></include>
+        </control>
+
+        <control type="group">
+            <visible>Control.IsVisible(506)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="panel" id="506">
+                <visible>$EXP[Exp_View_506]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>View_Poster_Top</top>
+                <right>View_Poster_Side</right>
+                <width>1110</width>
+                <height>660</height>
+
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                <onleft>1657</onleft>
+                <onup>506</onup>
+                <ondown>506</ondown>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1657</pagecontrol>
+
+                <viewtype label="536">list</viewtype>
+
+                <itemlayout height="220" width="224">
+                    <include content="Layout_Widget_Square">
+                        <param name="texture_diffuse" value="square_w202_h202" />
+                        <param name="id" value="506" />
+                        <param name="height" value="220" />
+                        <param name="distance" value="10" />
+                    </include>
+                </itemlayout>
+                <focusedlayout height="220" width="224">
+                    <include content="Layout_Widget_Square_Focus">
+                        <param name="texture_diffuse" value="square_w202_h202" />
+                        <param name="id" value="506" />
+                        <param name="height" value="220" />
+                        <param name="distance" value="10" />
+                        <param name="glow_height" value="222" />
+                        <param name="glow_top" value="-1" />
+                        <param name="glow_left" value="-1" />
+                    </include>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1657">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1657" />
+                    <param name="idlayout" value="506" />
+                </include>
+            </control>
+
+            <!-- POSTER SQUARE -->
+
+            <control type="group">
+                <top>View_List_Top</top>
+                <left>View_List_Side</left>
+                <width>PosterH</width>
+                <height>PosterH</height>
+
+                <include>Def_Art_Full_Background_b24</include>
+
+                <include content="Def_Art_Image">
+                    <param name="colordiffuse_background" value="Fallback" />
+                    <param name="texture" value="$VAR[Image_Poster]" />
+                    <param name="texture_diffuse" value="square_w640_h640_b24" />
+                    <param name="aspectratio" value="scale" />
+                    <param name="fallback" value="DefaultMovies" />
+                </include>
+            </control>
+        </control>
+    </include>
+
+    <include name="View_508_Square_Wall">
+        <control type="group">
+            <visible>Control.IsVisible(508)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="panel" id="508">
+                <visible>$EXP[Exp_View_508]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>View_Poster_Top</top>
+                <right>View_Poster_Side</right>
+                <left>View_Poster_Side</left>
+                <height>674</height>
+
+                <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                <onleft>1656</onleft>
+                <onup>508</onup>
+                <ondown>508</ondown>
+
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1656</pagecontrol>
+
+                <viewtype label="536">list</viewtype>
+
+                <itemlayout height="337" width="222">
+                    <control type="group">
+                        <include content="Layout_Widget_Square">
+                            <param name="texture_diffuse" value="square_w202_h202" />
+                            <param name="id" value="508" />
+                            <param name="height" value="222" />
+                            <param name="image_height" value="222" />
+                            <param name="distance" value="10" />
+                        </include>
+                    </control>
+                    <control type="textbox">
+                        <top>222</top>
+                        <left>20</left>
+                        <right>20</right>
+                        <height>106</height>
+                        <textcolor>Dark1</textcolor>
+                        <font>Tiny</font>
+                        <align>center</align>
+                        <autoscroll>false</autoscroll>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="337" width="222">
+                    <control type="group">
+                        <include content="Layout_Widget_Square_Focus">
+                            <param name="texture_diffuse" value="square_w202_h202" />
+                            <param name="id" value="508" />
+                            <param name="height" value="222" />
+                            <param name="image_height" value="222" />
+                            <param name="distance" value="10" />
+                            <param name="glow_height" value="225" />
+                            <param name="glow_top" value="-1" />
+                            <param name="glow_left" value="-1" />
+                        </include>
+                    </control>
+                    <control type="textbox">
+                        <top>222</top>
+                        <left>20</left>
+                        <right>20</right>
+                        <height>106</height>
+                        <textcolor>Dark1</textcolor>
+                        <font>Tiny</font>
+                        <align>center</align>
+                        <autoscroll>false</autoscroll>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1656">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1656" />
+                    <param name="idlayout" value="508" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="508" /></include>
+        </control>
+    </include>
+</includes>

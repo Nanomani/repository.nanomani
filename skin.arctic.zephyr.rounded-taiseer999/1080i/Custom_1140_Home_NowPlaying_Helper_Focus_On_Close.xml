@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1140">
+    <visible>$EXP[Extended_Now_Playing_Helper_AutoClose]</visible>
+
+    <!-- CLOSE NOW PLAYING -->
+
+    <onload>Dialog.Close(all,true)</onload>
+
+    <!-- SET FOCUS -->
+
+    <onload condition="!$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">SetFocus(300)</onload>
+    <onload condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation]">SetFocus(2011)</onload>
+    <onload>ClearProperty(controls_nowplaying_visible,Home)</onload>
+
+    <controls />
+</window>

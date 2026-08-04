@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">50</defaultcontrol>
+
+    <onload condition="!String.IsEmpty(Container(50).ListItem.Art(poster))">SetProperty(poster,$ESCINFO[Container(50).ListItem.Art(poster)],Home)</onload>
+    <onload condition="String.IsEmpty(Container(50).ListItem.Art(poster))">SetProperty(thumb,$ESCINFO[Container(50).ListItem.Art(thumb)],Home)</onload>
+
+    <onunload>ClearProperty(poster,Home)</onunload>
+    <onunload>ClearProperty(thumb,Home)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background"><param name="height" value="852" /><param name="width" value="1484" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="5" />
+                <param name="label_id" value="2" />
+                <param name="icon" value="kodi" />
+            </include>
+
+            <!-- POSTER ON LEFT -->
+
+            <control type="group">
+                <top>112</top>
+                <left>40</left>
+                <width>PosterW</width>
+                <height>PosterH</height>
+
+                <include>Def_Art_Full_Background_b24</include>
+
+                <include content="Def_Art_Image">
+                    <param name="colordiffuse" value="Fallback" />
+                    <param name="texture" value="$VAR[Image_VideoVersion_Poster]" />
+                    <param name="texture_diffuse" value="poster_w428_h640_b24" />
+                    <param name="aspectratio" value="scale" />
+                    <param name="fallback" value="DefaultMovies" />
+                </include>
+            </control>
+
+            <!-- VERSION -->
+
+            <control type="list" id="50">
+                <description>version list</description>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>508</left>
+                <width>600</width>
+                <height>PosterH</height>
+
+                <onup>50</onup>
+                <ondown>50</ondown>
+                <onleft>9001</onleft>
+                <onright>60</onright>
+
+                <scrolltime>200</scrolltime>
+                <pagecontrol>60</pagecontrol>
+
+                <itemlayout height="128" width="598">
+                    <control type="label">
+                        <left>30</left>
+                        <top>0</top>
+                        <right>20</right>
+                        <height>60</height>
+                        <font>InfoNetflix</font>
+                        <textcolor>Black70</textcolor>
+                        <selectedcolor>Black70</selectedcolor>
+                        <aligny>center</aligny>
+                        <label>$VAR[Label_Video_Name_Version]</label>
+                        <visible>!ListItem.IsSelected</visible>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <top>50</top>
+                        <right>20</right>
+                        <height>35</height>
+                        <font>Mini</font>
+                        <textcolor>Black70</textcolor>
+                        <selectedcolor>Black70</selectedcolor>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Duration,$LOCALIZE[180]: ]</label>
+                        <visible>!ListItem.IsSelected</visible>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <top>85</top>
+                        <right>20</right>
+                        <height>30</height>
+                        <font>Mini</font>
+                        <textcolor>Black70</textcolor>
+                        <selectedcolor>Black70</selectedcolor>
+                        <aligny>center</aligny>
+                        <label>$VAR[Label_Video_Version_Media_Info]</label>
+                        <visible>!ListItem.IsSelected</visible>
+                    </control>
+
+                    <control type="label">
+                        <left>30</left>
+                        <top>0</top>
+                        <right>20</right>
+                        <height>60</height>
+                        <font>InfoNetflix</font>
+                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
+                        <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
+                        <aligny>center</aligny>
+                        <label>$VAR[Label_Video_Name_Version]</label>
+                        <visible>ListItem.IsSelected</visible>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <top>50</top>
+                        <right>20</right>
+                        <height>35</height>
+                        <font>Mini</font>
+                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
+                        <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Duration,$LOCALIZE[180]: ]</label>
+                        <visible>ListItem.IsSelected</visible>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <top>85</top>
+                        <right>20</right>
+                        <height>30</height>
+                        <font>Mini</font>
+                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
+                        <selectedcolor>$VAR[Color_List_Item_Selected]</selectedcolor>
+                        <aligny>center</aligny>
+                        <label>$VAR[Label_Video_Version_Media_Info]</label>
+                        <visible>ListItem.IsSelected</visible>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Black70" />
+                        <param name="colordiffuse_on" value="$VAR[Color_List_Item_Selected]" />
+                        <param name="visible" value="ListItem.IsSelected" />
+                    </include>
+                </itemlayout>
+                <focusedlayout height="128" width="598">
+                    <control type="image">
+                        <width>100%</width>
+                        <height>100%</height>
+                        <include>Texture_Layout_Item_Focus</include>
+                        <animation effect="fade" start="100" end="50">UnFocus</animation>
+                        <include condition="true">Animation_View_List_Focus_Scroll</include>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <top>0</top>
+                        <right>20</right>
+                        <height>60</height>
+                        <aligny>center</aligny>
+                        <scroll>true</scroll>
+                        <font>InfoNetflix</font>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <label>$VAR[Label_Video_Name_Version]</label>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <top>50</top>
+                        <right>20</right>
+                        <height>35</height>
+                        <font>Mini</font>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Duration,$LOCALIZE[180]: ]</label>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <top>85</top>
+                        <right>20</right>
+                        <height>30</height>
+                        <font>Mini</font>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <aligny>center</aligny>
+                        <label>$VAR[Label_Video_Version_Media_Info]</label>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Selected" />
+                        <param name="colordiffuse_on" value="Selected" />
+                        <param name="visible" value="ListItem.IsSelected" />
+                    </include>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="60" />
+                <param name="onleft" value="50" />
+                <param name="onright" value="9001" />
+                <param name="height" value="PosterH" />
+                <param name="centerright" value="360" />
+            </include>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <bottom>100</bottom>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+
+                <onleft condition="Integer.IsGreater(Container(50).NumItems,0)">50</onleft>
+                <onright>50</onright>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <control type="button" id="921">
+                    <label>208</label>
+                    <include>Def_Dialog_Standard_Button</include>
+                    <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[Container(50).ListItem.FileNameAndPath]")</onclick>
+                    <onclick condition="!Window.IsVisible(1190)">SendClick(21)</onclick>
+                    <onclick>Dialog.Close(all)</onclick>
+                </control>
+
+                <!-- <include content="Def_Dialog_Button_Action"> -->
+                    <!-- <param name="id" value="21" /> -->
+                    <!-- <param name="label" value="$LOCALIZE[208]" /> -->
+                <!-- </include> -->
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="22" />
+                    <param name="label" value="$LOCALIZE[40014]" />
+                    <param name="visible" value="Window.IsVisible(managevideoversions)" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="23" />
+                    <param name="label" value="$LOCALIZE[40015]" />
+                    <param name="visible" value="Window.IsVisible(managevideoextras)" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="27" />
+                    <param name="label" value="$LOCALIZE[13511]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="24" />
+                    <param name="label" value="$LOCALIZE[118]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="26" />
+                    <param name="label" value="$LOCALIZE[15015]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="25" />
+                    <param name="label" value="$LOCALIZE[40023]" />
+                    <param name="visible" value="Window.IsVisible(managevideoversions)" />
+                </include>
+            </control>
+
+            <!-- PATH ITEM -->
+
+            <control type="label">
+                <align>left</align>
+                <bottom>20</bottom>
+                <left>30</left>
+                <right>30</right>
+                <height>44</height>
+                <scroll>true</scroll>
+                <font>Tiny</font>
+                <haspath>false</haspath>
+                <label>$INFO[Container(50).ListItem.FileNameAndPath]</label>
+                <visible>Control.HasFocus(50)</visible>
+                <animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
+                <animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+                <animation effect="fade" start="0" end="100" time="300">Visible</animation>
+                <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+            </control>
+        </control>
+
+        <!-- DEFAULT BUTTON KODI - PLAY -->
+
+        <control type="button" id="21">
+            <include>Def_Hidden_Button</include>
+            <onfocus>SetFocus(921)</onfocus>
+        </control>
+    </controls>
+</window>

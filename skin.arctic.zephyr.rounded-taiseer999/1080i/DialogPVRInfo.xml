@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">9000</defaultcontrol>
+    <menucontrol>9000</menucontrol>
+
+    <!-- TMDBHELPER.WIDGETCONTAINER -->
+
+    <onload condition="Window.IsVisible(Home) + !String.IsEmpty(Window(Home).Property(TMDBHelper.WidgetContainer))">SetProperty(TMDB_LastWidgetContainer,$INFO[Window(Home).Property(TMDBHelper.WidgetContainer)],Home)</onload>
+
+    <include>Def_Clear_TMDbHelper_WidgetContainer_On_Load</include>
+
+    <!-- SET LAST TMDBHELPER.WIDGETCONTAINER IN BACK HOME -->
+
+    <onunload condition="Window.IsVisible(Home) + !String.IsEmpty(Window(home).Property(TMDB_LastWidgetContainer))">SetProperty(TMDbHelper.WidgetContainer,$INFO[Window(home).Property(TMDB_LastWidgetContainer)],Home)</onunload>
+
+    <controls>
+        <control type="group">
+            <include>Animation_Dialog_Info_Background_Delay_400</include>
+            <include>Background_Global</include>
+        </control>
+
+        <control type="group">
+            <include>Animation_Dialog_Info_Right_Side_Delay_400</include>
+            <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        </control>
+
+        <include>Dialog_PVR_Info</include>
+
+        <include content="Def_Dialog_Info_Overlay">
+            <param name="headerinfo" value="$INFO[ListItem.Label]" />
+            <param name="plotinfo" value="$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$INFO[ListItem.Plot]" />
+        </include>
+    </controls>
+</window>

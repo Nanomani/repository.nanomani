@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="View_507_Fanart">
+        <description>List View (id=507)</description>
+        <control type="group">
+            <visible>Control.IsVisible(507)</visible>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <visible>Control.IsVisible(507)</visible>
+                <include>Animation_Common_Global</include>
+
+                <control type="group">
+                    <top>View_List_Top</top>
+                    <left>View_List_Side</left>
+                    <width>View_List_Width</width>
+                    <height>646</height>
+
+                    <include content="Def_Art_Full_Background_b24">
+                        <param name="colordiffuse" value="White100" />
+                    </include>
+
+                    <control type="wraplist" id="507">
+                        <visible>$EXP[Exp_View_507]</visible>
+                        <include>Animation_Scrolltime_Views_List</include>
+
+                        <top>0</top>
+                        <left>0</left>
+                        <width>View_List_Width</width>
+                        <align>left</align>
+
+                        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                        <onleft>1600</onleft>
+                        <onup>500</onup>
+                        <ondown>500</ondown>
+
+                        <preloaditems>2</preloaditems>
+                        <pagecontrol>1600</pagecontrol>
+                        <orientation>vertical</orientation>
+
+                        <viewtype label="31193">wraplist</viewtype>
+
+                        <itemlayout height="646" width="View_List_Width">
+                            <include>507_Item_Layout</include>
+                        </itemlayout>
+                        <focusedlayout height="646" width="View_List_Width">
+                            <include>507_Item_Layout</include>
+                        </focusedlayout>
+                    </control>
+                </control>
+
+                <control type="group">
+                    <visible>Control.IsVisible(507)</visible>
+
+                    <!-- WATCHED STATUS -->
+
+                    <include content="Layout_Poster_Indicator_Status_Icon" condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">
+                        <param name="right" value="71" />
+                        <param name="top" value="207" />
+                    </include>
+                    <include content="Layout_Poster_Indicator_Status_Banner" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">
+                        <param name="right" value="71" />
+                        <param name="top" value="207" />
+                    </include>
+
+                    <!-- INFO -->
+
+                    <control type="group">
+                        <top>View_List_Top</top>
+                        <left>110</left>
+                        <height>646</height>
+                        <width>540</width>
+
+                        <control type="label">
+                            <top>14</top>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>SmallBold</font>
+                            <textcolor>Dark1</textcolor>
+                            <selectedcolor>Dark1</selectedcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                            <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+                        </control>
+                        <control type="label">
+                            <top>56</top>
+                            <height>64</height>
+                            <aligny>center</aligny>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite70</textcolor>
+                            <selectedcolor>PanelWhite70</selectedcolor>
+                            <label>$VAR[Label_View_Flix_Sub_Title]</label>
+                        </control>
+                        <control type="textbox">
+                            <top>136</top>
+                            <bottom>17</bottom>
+                            <font>TinyPlot</font>
+                            <height>360</height>
+                            <textcolor>Dark2</textcolor>
+                            <selectedcolor>Dark2</selectedcolor>
+                            <label>$VAR[Label_Plot_Box_Video_Music]</label>
+                            <align>justify</align>
+                            <autoscroll>false</autoscroll>
+                        </control>
+
+                        <!-- FLAG STAR RATING -->
+
+                        <control type="group">
+                            <visible>!Skin.HasSetting(hide.501.507.flags.numeric.rating)</visible>
+                            <visible>!ListItem.IsParentFolder</visible>
+
+                            <control type="group">
+                                <top>480</top>
+                                <width>450</width>
+
+                                <include content="Def_Flag">
+                                    <param name="Star" value="Flagstar1" />
+                                </include>
+                                <include content="Def_Flag">
+                                    <param name="Star" value="Flagstar2" />
+                                    <param name="left" value="40" />
+                                </include>
+                                <include content="Def_Flag">
+                                    <param name="Star" value="Flagstar3" />
+                                    <param name="left" value="80" />
+                                </include>
+                                <include content="Def_Flag">
+                                    <param name="Star" value="Flagstar4" />
+                                    <param name="left" value="120" />
+                                </include>
+                                <include content="Def_Flag">
+                                    <param name="Star" value="Flagstar5" />
+                                    <param name="left" value="160" />
+                                </include>
+                            </control>
+
+                            <!-- RATING / VOTES -->
+
+                            <control type="label">
+                                <top>570</top>
+                                <width>450</width>
+                                <font>Small333</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$VAR[Label_Rating_IMDb_Votes_Top250]</label>
+                                <selectedcolor>Dark2</selectedcolor>
+                            </control>
+                        </control>
+
+                        <!-- PROGRESS -->
+
+                        <include content="Def_View_Info_Circle_Progress">
+                            <param name="top" value="510" />
+                            <param name="left" value="425" />
+                        </include>
+                    </control>
+
+                    <!-- ARROW -->
+
+                    <control type="image">
+                        <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+                        <top>190</top>
+                        <left>930</left>
+                        <include>Def_Arrow_Size</include>
+                        <include content="Texture_Arrow_Up"><param name="colordiffuse" value="Dark1" /></include>
+                        <animation effect="zoom" center="auto" pulse="true" start="100" end="170" time="200" delay="2000" condition="String.IsEqual(ListItem.Label,..)">Conditional</animation>
+                    </control>
+                    <control type="image">
+                        <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+                        <top>875</top>
+                        <left>930</left>
+                        <include>Def_Arrow_Size</include>
+                        <include content="Texture_Arrow_Down"><param name="colordiffuse" value="Dark1" /></include>
+                        <animation effect="zoom" center="auto" pulse="true" start="100" end="170" time="200" delay="2000" condition="String.IsEqual(ListItem.Label,..)">Conditional</animation>
+                    </control>
+                </control>
+
+                <!-- SCROLLBAR -->
+
+                <control type="scrollbar" id="1600">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1600" />
+                        <param name="height" value="648" />
+                        <param name="idlayout" value="507" />
+                    </include>
+                </control>
+            </control>
+        </control>
+    </include>
+
+    <include name="507_Item_Layout">
+
+        <!-- FANART -->
+
+        <control type="group">
+            <right>0</right>
+            <width>1160</width>
+            <height>646</height>
+            <align>right</align>
+            <control type="image">
+                <width>100%</width>
+                <height>100%</height>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture background="true" diffuse="diffuse/fanart_w1160_h646_b24.png">$VAR[Image_Fanart_View_50x]</texture>
+                <visible>true</visible>
+            </control>
+        </control>
+
+        <!-- CLEARLOGO -->
+
+        <control type="image">
+            <bottom>30</bottom>
+            <width>500</width>
+            <height>150</height>
+            <right>30</right>
+
+            <fadetime>PosterFanartFadetime</fadetime>
+            <aspectratio align="right" aligny="bottom">keep</aspectratio>
+            <texture background="true">$VAR[Image_ClearLogo]</texture>
+            <visible>Skin.HasSetting(show.view.501.507.fanart.clearlogo)</visible>
+        </control>
+    </include>
+</includes>

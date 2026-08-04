@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1202">
+    <defaultcontrol always="true">9300</defaultcontrol>
+
+    <onload>ClearProperty(dialog_color_reload,Home)</onload>
+    <onunload condition="String.IsEmpty(Window(Home).Property(dialog_color_reload))">ClearProperty(ColorSettingSelected,Home)</onunload>
+
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEmpty(Window(Home).Property(ColorSettingSelected))">SetProperty(colorstring,$INFO[Skin.String(ColorFocus.name)],Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEmpty(Window(Home).Property(ColorSettingSelected))">SetProperty(colordesc,ColorFocus.name,Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEmpty(Window(Home).Property(ColorSettingSelected))">SetProperty(ColorSettingSelected,ColorFocus,Home)</onload>
+
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),2) + String.IsEmpty(Window(Home).Property(ColorSettingSelected))">SetProperty(ColorSettingSelected,IndicatorColorBackgroundWatched,Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),2) + String.IsEmpty(Window(Home).Property(ColorSettingSelected))">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundWatched.name)],Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),2) + String.IsEmpty(Window(Home).Property(ColorSettingSelected))">SetProperty(colordesc,IndicatorColorBackgroundWatched.name,Home)</onload>
+
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),3) + String.IsEmpty(Window(Home).Property(ColorSettingSelected))">SetProperty(ColorSettingSelected,KodiRatingStarColor,Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),3) + String.IsEmpty(Window(Home).Property(ColorSettingSelected))">SetProperty(colorstring,$INFO[Skin.String(KodiRatingStarColor.name)],Home)</onload>
+    <onload condition="String.IsEqual(Window(Home).Property(colorfilter),3) + String.IsEmpty(Window(Home).Property(ColorSettingSelected))">SetProperty(colordesc,KodiRatingStarColor.name,Home)</onload>
+
+    <onunload condition="!String.IsEmpty(Window(Home).Property(reloadskin))">SetFocus(3033)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+
+            <include content="Def_Dialog_Background"><param name="height" value="820" /><param name="width" value="1480" /></include>
+
+            <!-- HEADER -->
+
+            <control type="label" id="1">
+                <include>Def_Dialog_Header_Title</include>
+                <label>31472</label>
+            </control>
+
+            <include content="Def_Dialog_Header_Logo"><param name="texture" value="paintbrush" /></include>
+
+            <control type="image">
+                <top>95</top>
+                <left>30</left>
+                <width>538</width>
+                <height>1</height>
+                <include>Texture_Dialog_Line</include>
+            </control>
+
+            <!-- LINE VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical"><param name="top" value="17" /><param name="right" value="880" /></include>
+
+            <!-- COLOR PICKER PANEL -->
+
+           <control type="group">
+
+                <right>20</right>
+                <top>20</top>
+                <width>840</width>
+                <height>780</height>
+                <orientation>vertical</orientation>
+                <onleft>3100</onleft>
+                <onback>3100</onback>
+
+                <control type="panel" id="3000">
+                    <pagecontrol>61</pagecontrol>
+                    <onleft>9300</onleft>
+                    <onback>9300</onback>
+
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">Skin.SetString(ColorHighlight.name,$INFO[ListItem.Label])</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorFocus)">Skin.SetString(ColorFocus.name,$INFO[ListItem.Label])</onclick>
+
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),KodiRatingStarColor)">Skin.SetString(KodiRatingStarColor.name,$INFO[ListItem.Label])</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),UserRatingStarColor)">Skin.SetString(UserRatingStarColor.name,$INFO[ListItem.Label])</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),MpaaCertifColor)">Skin.SetString(MpaaCertifColor.name,$INFO[ListItem.Label])</onclick>
+
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlaying)">Skin.SetString(IndicatorColorBackgroundIsPlaying.name,$INFO[ListItem.Label])</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundInProgress)">Skin.SetString(IndicatorColorBackgroundInProgress.name,$INFO[ListItem.Label])</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundUnWatched)">Skin.SetString(IndicatorColorBackgroundUnWatched.name,$INFO[ListItem.Label])</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundWatched)">Skin.SetString(IndicatorColorBackgroundWatched.name,$INFO[ListItem.Label])</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundNew)">Skin.SetString(IndicatorColorBackgroundNew.name,$INFO[ListItem.Label])</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundLabel)">Skin.SetString(IndicatorColorBackgroundLabel.name,$INFO[ListItem.Label])</onclick>
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlayingIcon)">Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,$INFO[ListItem.Label])</onclick>
+
+                    <onclick>SetProperty(colorstring,$INFO[Container(3000).ListItem.Label2],Home)</onclick>
+                    <onclick>AlarmClock(SkinColor,Control.SetFocus(9300),00:01,silent)</onclick>
+
+                    <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorFocus)">SetProperty(dialog_color_reload,1,Home)</onclick>
+
+                    <itemlayout height="60" width="60">
+                        <control type="image">
+                            <include content="Def_Padding"><param name="pad" value="1" /></include>
+                            <texture>$INFO[ListItem.Icon]</texture>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="60" width="60">
+                        <control type="image">
+                            <include content="Def_Padding"><param name="pad" value="1" /></include>
+                            <texture>$INFO[ListItem.Icon]</texture>
+                        </control>
+                    </focusedlayout>
+                    <content>plugin://script.texturemaker/</content>
+                </control>
+
+                <!-- SELECTION BOX -->
+
+                <control type="group">
+                    <left>-20</left>
+                    <top>-20</top>
+                    <width>100</width>
+                    <height>100</height>
+                    <visible>Control.Hasfocus(3000)</visible>
+                    <animation effect="slide" end="0,60" condition="Container(3000).Row(1)">Conditional</animation>
+                    <animation effect="slide" end="0,120" condition="Container(3000).Row(2)">Conditional</animation>
+                    <animation effect="slide" end="0,180" condition="Container(3000).Row(3)">Conditional</animation>
+                    <animation effect="slide" end="0,240" condition="Container(3000).Row(4)">Conditional</animation>
+                    <animation effect="slide" end="0,300" condition="Container(3000).Row(5)">Conditional</animation>
+                    <animation effect="slide" end="0,360" condition="Container(3000).Row(6)">Conditional</animation>
+                    <animation effect="slide" end="0,420" condition="Container(3000).Row(7)">Conditional</animation>
+                    <animation effect="slide" end="0,480" condition="Container(3000).Row(8)">Conditional</animation>
+                    <animation effect="slide" end="0,540" condition="Container(3000).Row(9)">Conditional</animation>
+                    <animation effect="slide" end="0,600" condition="Container(3000).Row(10)">Conditional</animation>
+                    <animation effect="slide" end="0,660" condition="Container(3000).Row(11)">Conditional</animation>
+                    <animation effect="slide" end="0,720" condition="Container(3000).Row(12)">Conditional</animation>
+
+                    <animation effect="slide" end="60" condition="Container(3000).Column(1)">Conditional</animation>
+                    <animation effect="slide" end="120" condition="Container(3000).Column(2)">Conditional</animation>
+                    <animation effect="slide" end="180" condition="Container(3000).Column(3)">Conditional</animation>
+                    <animation effect="slide" end="240" condition="Container(3000).Column(4)">Conditional</animation>
+                    <animation effect="slide" end="300" condition="Container(3000).Column(5)">Conditional</animation>
+                    <animation effect="slide" end="360" condition="Container(3000).Column(6)">Conditional</animation>
+                    <animation effect="slide" end="420" condition="Container(3000).Column(7)">Conditional</animation>
+                    <animation effect="slide" end="480" condition="Container(3000).Column(8)">Conditional</animation>
+                    <animation effect="slide" end="540" condition="Container(3000).Column(9)">Conditional</animation>
+                    <animation effect="slide" end="600" condition="Container(3000).Column(10)">Conditional</animation>
+                    <animation effect="slide" end="660" condition="Container(3000).Column(11)">Conditional</animation>
+                    <animation effect="slide" end="720" condition="Container(3000).Column(12)">Conditional</animation>
+                    <animation effect="slide" end="780" condition="Container(3000).Column(13)">Conditional</animation>
+                    <animation effect="slide" end="840" condition="Container(3000).Column(14)">Conditional</animation>
+                    <animation effect="slide" end="900" condition="Container(3000).Column(15)">Conditional</animation>
+                    <animation effect="slide" end="960" condition="Container(3000).Column(16)">Conditional</animation>
+                    <animation effect="slide" end="1020" condition="Container(3000).Column(17)">Conditional</animation>
+
+                    <control type="group">
+                        <include content="Def_Padding"><param name="pad" value="5" /></include>
+                        <control type="image">
+                            <include>Texture_Shadow_20</include>
+                            <texture border="20" colordiffuse="ccffffff">$VAR[texture_box12]</texture>
+                        </control>
+                    </control>
+                    <control type="image">
+                        <bordersize>10</bordersize>
+                        <texture border="12" colordiffuse="$INFO[Container(3000).ListItem.Label2]">$VAR[texture_box12]</texture>
+                    </control>
+                </control>
+            </control>
+
+            <!-- LIST LABEL - COLOR - LEFT -->
+
+            <control type="grouplist" id="9300">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>16</left>
+                <width>568</width>
+                <itemgap>0</itemgap>
+
+                <onleft>9100</onleft>
+                <onright>3000</onright>
+
+                <onup>9100</onup>
+
+                <ondown condition="String.IsEqual(Window(Home).Property(colorfilter),1) + !String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">3100</ondown>
+                <ondown condition="String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">SetFocus(3330)</ondown>
+                <!-- <ondown condition="String.IsEqual(Window(Home).Property(colorfilter),2) | String.IsEqual(Window(Home).Property(colorfilter),3)">3100</ondown> -->
+
+                <orientation>vertical</orientation>
+
+                <!--  TEXT FOCUS -->
+
+                <!-- FOCUS -->
+
+                <control type="radiobutton" id="9021">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorFocus)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),1)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31569]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(ColorFocus.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,ColorFocus.name,Home)</onclick>
+                    <onclick>SetProperty(ColorSettingSelected,ColorFocus,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9022">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorFocus)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),1)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31569]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(ColorFocus.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,ColorFocus.name,Home)</onclick>
+                    <onclick>SetProperty(ColorSettingSelected,ColorFocus,Home)</onclick>
+                </control>
+
+                <!-- TITLE SETTINGS -->
+
+                <control type="radiobutton" id="9011">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),1)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31570]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(ColorHighlight.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,ColorHighlight.name,Home)</onclick>
+                    <onclick>SetProperty(ColorSettingSelected,ColorHighlight,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9012">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),1)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31570]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(ColorHighlight.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,ColorHighlight.name,Home)</onclick>
+                    <onclick>SetProperty(ColorSettingSelected,ColorHighlight,Home)</onclick>
+                </control>
+
+                <!-- MEDIA FLAG STATUS -->
+
+                <!-- WATCHED -->
+
+                <control type="radiobutton" id="9141">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundWatched)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[16102]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundWatched,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundWatched.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundWatched.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9142">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundWatched)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[16102]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundWatched,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundWatched.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundWatched.name,Home)</onclick>
+                </control>
+
+                <!-- NEW -->
+
+                <control type="radiobutton" id="9151">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundNew)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[842]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundNew,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundNew.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundNew.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9152">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundNew)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[842]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundNew,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundNew.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundNew.name,Home)</onclick>
+                </control>
+
+                <!-- IS RESUMABLE -->
+
+                <control type="radiobutton" id="9121">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundInProgress)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31367]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundInProgress,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundInProgress.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundInProgress.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9122">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundInProgress)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31367]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundInProgress,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundInProgress.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundInProgress.name,Home)</onclick>
+                </control>
+
+                <!-- IS PLAYING -->
+
+                <control type="radiobutton" id="9111">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlaying)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31445]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundIsPlaying,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundIsPlaying.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9112">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlaying)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31445]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundIsPlaying,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundIsPlaying.name,Home)</onclick>
+                </control>
+
+                <!-- UNWATCHED -->
+
+                <control type="radiobutton" id="9131">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundUnWatched)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[16101]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundUnWatched,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundUnWatched.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9132">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundUnWatched)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[16101]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundUnWatched,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundUnWatched.name,Home)</onclick>
+                </control>
+
+                <!-- LABEL -->
+
+                <control type="radiobutton" id="9161">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundLabel)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31371]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundLabel,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundLabel.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundLabel.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9162">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundLabel)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31371]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundLabel,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundLabel.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundLabel.name,Home)</onclick>
+                </control>
+
+                <!-- ICON -->
+
+                <control type="radiobutton" id="9171">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlayingicon)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31446] - $LOCALIZE[31445]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundIsPlayingIcon,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlayingicon.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundIsPlayingicon.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9172">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlayingicon)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31446] - $LOCALIZE[31445]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,IndicatorColorBackgroundIsPlayingIcon,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlayingicon.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,IndicatorColorBackgroundIsPlayingicon.name,Home)</onclick>
+                </control>
+
+                <!--  RATING -->
+
+                <!-- STAR RATING KODI -->
+
+                <control type="radiobutton" id="9211">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),KodiRatingStarColor)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31093]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,KodiRatingStarColor,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(KodiRatingStarColor.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,KodiRatingStarColor.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9212">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),KodiRatingStarColor)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31093]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,KodiRatingStarColor,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(KodiRatingStarColor.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,KodiRatingStarColor.name,Home)</onclick>
+                </control>
+
+                <!-- STAR RATING USER -->
+
+                <control type="radiobutton" id="9221">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),UserRatingStarColor)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31097]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,UserRatingStarColor,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(UserRatingStarColor.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,UserRatingStarColor.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9222">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),UserRatingStarColor)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31097]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,UserRatingStarColor,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(UserRatingStarColor.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,UserRatingStarColor.name,Home)</onclick>
+                </control>
+
+                <!-- MPAA RATING -->
+
+                <control type="radiobutton" id="9231">
+                    <visible>!String.IsEqual(Window(Home).Property(ColorSettingSelected),MpaaCertifColor)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31094]</label>
+                    <selected>false</selected>
+                    <onclick>SetProperty(ColorSettingSelected,MpaaCertifColor,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(MpaaCertifColor.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,MpaaCertifColor.name,Home)</onclick>
+                </control>
+                <control type="radiobutton" id="9232">
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),MpaaCertifColor)</visible>
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>458</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$LOCALIZE[31094]</label>
+                    <selected>true</selected>
+                    <onclick>SetProperty(ColorSettingSelected,MpaaCertifColor,Home)</onclick>
+                    <onclick>SetProperty(colorstring,$INFO[Skin.String(MpaaCertifColor.name)],Home)</onclick>
+                    <onclick>SetProperty(colordesc,MpaaCertifColor.name,Home)</onclick>
+                </control>
+            </control>
+
+            <!-- PREVIEW - COLOR - RIGHT -->
+
+            <control type="grouplist" id="9303">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <right>916</right>
+                <width>60</width>
+
+                <itemgap>0</itemgap>
+                <orientation>vertical</orientation>
+
+                <!--  TEXT FOCUS -->
+
+                <!-- FOCUS -->
+
+                <control type="radiobutton" id="90032">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),1)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Focus]" />
+                    </include>
+                </control>
+
+                <!-- TEXT -->
+
+                <control type="radiobutton" id="90022">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),1)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Highlight]" />
+                    </include>
+                    <animation effect="fade" start="100" end="60" condition="true">Conditional</animation>
+                </control>
+
+                <!-- MEDIA FLAG STATUS -->
+
+                <!-- WATCHED -->
+
+                <control type="radiobutton" id="90022">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_Watched]" />
+                    </include>
+                </control>
+
+                <!-- NEW -->
+
+                <control type="radiobutton" id="90032">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_New]" />
+                    </include>
+                </control>
+
+                <!-- IS RESUMABLE -->
+
+                <control type="radiobutton" id="90032">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_In_Progress]" />
+                    </include>
+                </control>
+
+                <!-- IS PLAYING -->
+
+                <control type="radiobutton" id="90022">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_Is_Playing]" />
+                    </include>
+                </control>
+
+                <!-- UNWATCHED -->
+
+                <control type="radiobutton" id="90042">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_UnWatched]" />
+                    </include>
+                </control>
+
+                <!-- LABEL -->
+
+                <control type="radiobutton" id="90042">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_Label]" />
+                    </include>
+                </control>
+
+                <!-- ICON -->
+
+                <control type="radiobutton" id="90042">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),2)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Indicator_Background_Is_Playing_Icon]" />
+                    </include>
+                </control>
+
+                <!--  RATING -->
+
+                <!-- STAR RATING KODI -->
+
+                <control type="radiobutton" id="90032">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Rating_Kodi_Star]" />
+                    </include>
+                    <onclick>SetProperty(ColorSettingSelected,KodiRatingStarColor,Home)</onclick>
+                </control>
+
+                <!-- STAR RATING USER -->
+
+                <control type="radiobutton" id="90042">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Rating_User_Star]" />
+                    </include>
+                    <onclick>SetProperty(ColorSettingSelected,UserRatingStarColor,Home)</onclick>
+                </control>
+
+                <!-- MPAA RATING -->
+
+                <control type="radiobutton" id="90042">
+                    <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                    <width>60</width>
+                    <right>10</right>
+                    <align>right</align>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>30</radioposx>
+                    <include content="Def_Button_Colorbox">
+                        <param name="colorcode" value="$VAR[Color_Mpaa_Certif]" />
+                    </include>
+                    <onclick>SetProperty(ColorSettingSelected,MpaaCertifColor,Home)</onclick>
+                </control>
+            </control>
+
+            <!-- PREVIEW - COLOR STAR RATING -->
+
+            <control type="group">
+                <visible>String.IsEqual(Window(Home).Property(colorfilter),3)</visible>
+                <top>434</top>
+                <left>16</left>
+
+                <control type="grouplist">
+                    <orientation>vertical</orientation>
+                    <itemgap>0</itemgap>
+                    <enable>false</enable>
+
+                    <!-- LABEL ACTUAL -->
+
+                    <control type="button">
+                        <enable>false</enable>
+                        <textoffsetx>30</textoffsetx>
+                        <align>left</align>
+                        <width>300</width>
+                        <disabledcolor>PanelWhite100</disabledcolor>
+                        <height>66</height>
+                        <label>$LOCALIZE[31176] :</label>
+                    </control>
+
+                    <!-- LABEL PREVIEW -->
+
+                    <control type="button">
+                        <enable>false</enable>
+                        <textoffsetx>30</textoffsetx>
+                        <align>left</align>
+                        <width>300</width>
+                        <disabledcolor>PanelWhite100</disabledcolor>
+                        <height>66</height>
+                        <label>$LOCALIZE[1000] :</label>
+                    </control>
+                </control>
+
+                <!-- ACTUAL COLOR RATING STAR -->
+
+                <include content="Def_Color_Preview_Star">
+                    <param name="right" value="900" />
+                    <param name="top" value="0" />
+                    <param name="color" value="$INFO[Window(Home).Property(colorstring)]" />
+                </include>
+
+                <!-- PREVIEW COLOR RATING STAR -->
+
+                <include content="Def_Color_Preview_Star">
+                    <param name="visible" value="Control.HasFocus(3000)" />
+                    <param name="right" value="900" />
+                    <param name="top" value="66" />
+                    <param name="color" value="$INFO[Container(3000).ListItem.Label2]" />
+                </include>
+            </control>
+
+            <!-- LABEL - ACTUAL / PREVIEW -->
+
+            <control type="grouplist" id="3300">
+                <visible>String.IsEqual(Window(Home).Property(colorfilter),1)</visible>
+
+                <top>420</top>
+                <left>16</left>
+
+                <onleft>9100</onleft>
+                <onright>3000</onright>
+
+                <onup>2002</onup>
+                <ondown>3100</ondown>
+
+                <itemgap>14</itemgap>
+                <enable>false</enable>
+                <orientation>vertical</orientation>
+
+                <!-- LABEL ACTUAL -->
+
+                <control type="button" id="3310">
+                    <enable>false</enable>
+                    <textoffsetx>30</textoffsetx>
+                    <align>left</align>
+                    <width>300</width>
+                    <disabledcolor>PanelWhite100</disabledcolor>
+                    <height>66</height>
+                    <label>$LOCALIZE[31176] :</label>
+                </control>
+
+                <!-- LABEL PREVIEW -->
+
+                <control type="button" id="3320">
+                    <enable>false</enable>
+                    <textoffsetx>30</textoffsetx>
+                    <align>left</align>
+                    <width>300</width>
+                    <disabledcolor>PanelWhite100</disabledcolor>
+                    <height>66</height>
+                    <label>$LOCALIZE[1000] :</label>
+                </control>
+
+                <control type="radiobutton" id="3330">
+                    <width>568</width>
+                    <textoffsetx>30</textoffsetx>
+                    <radioposx>518</radioposx>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>31568</label>
+                    <selected>Skin.HasSetting(DisableColourTitleMenuSetting)</selected>
+                    <onclick>Skin.ToggleSetting(DisableColourTitleMenuSetting)</onclick>
+                    <visible>String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)</visible>
+                </control>
+            </control>
+
+            <!-- ACTUAL / PREVIEW - TITLE -->
+
+            <control type="grouplist">
+                <visible>String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)</visible>
+
+                <top>420</top>
+                <right>0</right>
+
+                <itemgap>14</itemgap>
+                <enable>false</enable>
+                <orientation>vertical</orientation>
+
+                <!-- ACTUAL COLOR TEXT -->
+
+                <control type="button">
+                    <enable>false</enable>
+                    <textoffsetx>0</textoffsetx>
+                    <font>Button</font>
+                    <align>right</align>
+                    <width>568</width>
+                    <disabledcolor>$VAR[Color_Highlight]</disabledcolor>
+                    <height>66</height>
+                    <label>$LOCALIZE[31176]</label>
+                    <animation effect="fade" start="100" end="60" condition="true">Conditional</animation>
+                </control>
+
+                <!-- PREVIEW COLOR TEXT -->
+
+                <control type="button">
+                    <visible>Control.HasFocus(3000)</visible>
+                    <enable>false</enable>
+                    <textoffsetx>0</textoffsetx>
+                    <font>Button</font>
+                    <align>right</align>
+                    <width>568</width>
+                    <disabledcolor>$INFO[Container(3000).ListItem.Label2]</disabledcolor>
+                    <height>66</height>
+                    <label>$LOCALIZE[1000]</label>
+                    <animation effect="fade" start="100" end="60" condition="true">Conditional</animation>
+                </control>
+            </control>
+
+            <!-- ACTUAL / PREVIEW - COLOR FOCUS -->
+
+            <control type="group">
+                <visible>String.IsEqual(Window(Home).Property(colorfilter),1) + !String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)</visible>
+
+                <top>420</top>
+                <right>0</right>
+                <left>302</left>
+
+                <!-- PREVIEW COLOR FOCUS -->
+
+                <control type="image">
+                    <top>0</top>
+                    <width>280</width>
+                    <height>66</height>
+                    <texture colordiffuse="$VAR[Color_Focus]" border="12">$VAR[texture_box12]</texture>
+                </control>
+
+                <control type="image">
+                    <top>80</top>
+                    <width>280</width>
+                    <height>66</height>
+                    <texture colordiffuse="$INFO[Container(3000).ListItem.Label]" border="12">$VAR[texture_box12]</texture>
+                    <visible>Control.HasFocus(3000)</visible>
+                </control>
+            </control>
+
+            <!-- BUTTON TO FOCUS FIRST ITEM ON LIST -->
+
+            <!-- ON UP -->
+
+            <control type="button" id="2002">
+                <visible allowhiddenfocus="true">false</visible>
+                <height>1</height>
+
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),1) + Control.IsVisible(9011)">SetFocus(9011)</onfocus>
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),1) + Control.IsVisible(9012)">SetFocus(9012)</onfocus>
+
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),2) + Control.IsVisible(9171)">SetFocus(9171)</onfocus>
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),2) + Control.IsVisible(9172)">SetFocus(9172)</onfocus>
+
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),3) + Control.IsVisible(9231)">SetFocus(9231)</onfocus>
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),3) + Control.IsVisible(9232)">SetFocus(9232)</onfocus>
+            </control>
+
+            <!-- ON DOWN -->
+
+            <control type="button" id="2001">
+                <visible allowhiddenfocus="true">false</visible>
+                <height>1</height>
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),1) + Control.IsVisible(9021)">SetFocus(9021)</onfocus>
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),1) + Control.IsVisible(9022)">SetFocus(9022)</onfocus>
+
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),2) + Control.IsVisible(9141)">SetFocus(9141)</onfocus>
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),2) + Control.IsVisible(9142)">SetFocus(9142)</onfocus>
+
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),3) + Control.IsVisible(9211)">SetFocus(9211)</onfocus>
+                <onfocus condition="String.IsEqual(Window(Home).Property(colorfilter),3) + Control.IsVisible(9212)">SetFocus(9212)</onfocus>
+            </control>
+
+            <!-- PREVIEW - MEDIA FLAG -->
+
+            <include content="Def_Color_Preview_Media_Status" condition="String.IsEqual(Window(Home).Property(colorfilter),2)">
+                <param name="right" value="900" />
+                <param name="top" value="600" />
+            </include>
+
+            <!-- BUTTON VALID / ACTUAL COLOR / PREVIEW COLOR -->
+
+            <control type="grouplist" id="9100">
+                <left>16</left>
+                <bottom>20</bottom>
+
+                <onright>3600</onright>
+                <onleft>3600</onleft>
+
+                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),1) + !String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">2002</onup>
+                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">SetFocus(3330)</onup>
+                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),2) | String.IsEqual(Window(Home).Property(colorfilter),3)">2002</onup>
+
+                <ondown>2001</ondown>
+
+                <orientation>horizontal</orientation>
+                <include>Def_List_Dimension</include>
+
+                <control type="radiobutton" id="3100">
+                    <label/>
+                    <onclick>Skin.Reset(settingpresetcolor)</onclick>
+                    <onclick>ClearProperty(dialog_color_reload,Home)</onclick>
+                    <onclick>SetProperty(reloadskin,1,Home)</onclick>
+                    <onclick>Close</onclick>
+
+                    <include>Def_Button_Dimensions_Square_Blur</include>
+                    <include content="Texture_RadioButton_Dialog_Info">
+                        <param name="icon" value="buttonsdialogs/enabled.png" />
+                        <param name="color" value="Black12" />
+                    </include>
+                </control>
+
+                <control type="image" id="3101">
+                    <bottom>17</bottom>
+                    <width>76</width>
+                    <height>66</height>
+                    <texture border="12">$VAR[texture_box12]</texture>
+                    <colordiffuse>$INFO[Window(Home).Property(colorstring)]</colordiffuse>
+                    <animation effect="fade" start="100" end="60" condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">Conditional</animation>
+                </control>
+
+                <control type="image" id="3102">
+                    <bottom>17</bottom>
+                    <width>76</width>
+                    <height>66</height>
+                    <texture border="12">$VAR[texture_box12]</texture>
+                    <colordiffuse>$INFO[Container(3000).ListItem.Label2]</colordiffuse>
+                    <animation effect="fade" start="100" end="60" condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">Conditional</animation>
+                </control>
+            </control>
+
+            <!-- CODE COLOR MANUAL -->
+
+            <control type="button" id="3600">
+                <left>330</left>
+                <bottom>20</bottom>
+                <width>254</width>
+
+                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),1) + !String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">2002</onup>
+                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),1) + String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">SetFocus(3330)</onup>
+                <onup condition="String.IsEqual(Window(Home).Property(colorfilter),2) | String.IsEqual(Window(Home).Property(colorfilter),3)">2002</onup>
+
+                <ondown>9100</ondown>
+                <onleft>3100</onleft>
+                <onback>3100</onback>
+
+                <include>Texture_Button_Dialog_Settings</include>
+                <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+
+                <label>#:</label>
+                <label2>$VAR[Color_Picker]</label2>
+
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">Skin.SetString(ColorHighlight.name)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorFocus)">Skin.SetString(ColorFocus.name)</onclick>
+
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),KodiRatingStarColor)">Skin.SetString(KodiRatingStarColor.name)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),UserRatingStarColor)">Skin.SetString(UserRatingStarColor.name)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),MpaaCertifColor)">Skin.SetString(MpaaCertifColor.name)</onclick>
+
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlaying)">Skin.SetString(IndicatorColorBackgroundIsPlaying.name)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundInProgress)">Skin.SetString(IndicatorColorBackgroundInProgress.name)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundUnWatched)">Skin.SetString(IndicatorColorBackgroundUnWatched.name)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundWatched)">Skin.SetString(IndicatorColorBackgroundWatched.name)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundNew)">Skin.SetString(IndicatorColorBackgroundNew.name)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundLabel)">Skin.SetString(IndicatorColorBackgroundLabel.name)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlayingIcon)">Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name)</onclick>
+
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorHighlight)">SetProperty(colorstring,$INFO[Skin.String(ColorHighlight.name)],Home)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),ColorFocus)">SetProperty(colorstring,$INFO[Skin.String(ColorFocus.name)],Home)</onclick>
+
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),KodiRatingStarColor)">Skin.SetString(KodiRatingStarColor.name,$INFO[ListItem.Label])</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),KodiRatingStarColor)">SetProperty(colorstring,$INFO[Skin.String(KodiRatingStarColor.name)],Home)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),UserRatingStarColor)">SetProperty(colorstring,$INFO[Skin.String(UserRatingStarColor.name)],Home)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),MpaaCertifColor)">SetProperty(colorstring,$INFO[Skin.String(MpaaCertifColor.name)],Home)</onclick>
+
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlaying)">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name)],Home)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundInProgress)">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundInProgress.name)],Home)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundUnWatched)">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name)],Home)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundWatched)">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundWatched.name)],Home)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundNew)">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundNew.name)],Home)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundLabel)">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundLabel.name)],Home)</onclick>
+                <onclick condition="String.IsEqual(Window(Home).Property(ColorSettingSelected),IndicatorColorBackgroundIsPlayingIcon)">SetProperty(colorstring,$INFO[Skin.String(IndicatorColorBackgroundIsPlayingicon.name)],Home)</onclick>
+            </control>
+        </control>
+    </controls>
+</window>

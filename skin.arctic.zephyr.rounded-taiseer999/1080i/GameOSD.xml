@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">110</defaultcontrol>
+
+    <onload condition="!System.GetBool(gamesgeneral.showosdhelp)">SetFocus(110)</onload>
+    <onload condition="System.GetBool(gamesgeneral.showosdhelp)">SetFocus(10)</onload>
+
+    <controls>
+        <control type="group">
+            <visible>ControlGroup(9000).HasFocus() | Control.HasFocus(1799) | Control.HasFocus(10)</visible>
+
+            <include content="Background_Overlay">
+                <param name="colordiffuse" value="$VAR[Color_GameOSD_Background_Overlay]" />
+                <param name="visible" value="!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation)" />
+            </include>
+        </control>
+
+        <control type="group">
+            <visible>!System.GetBool(gamesgeneral.showosdhelp)</visible>
+
+            <visible>!Window.IsActive(InGameSaves) + !Window.IsActive(GameAgents) + !Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(GameVolume) + !Window.IsActive(GameControllers) + !Window.IsActive(GamePorts) + !Window.IsActive(GameAdvancedSettings) + !Window.IsActive(DialogSlider.xml) + !Window.IsActive(GameDiscManager)</visible>
+
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>255</centerleft>
+
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /><param name="visible" value="ControlGroup(9000).HasFocus() | Control.HasFocus(1799)" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="35221" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="grouplist" id="9000">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <height>910</height>
+
+                <onup>9000</onup>
+                <ondown>9000</ondown>
+                <onleft>Close</onleft>
+                <onright>1799</onright>
+
+                <itemgap>0</itemgap>
+                <pagecontrol>1799</pagecontrol>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="button" id="55553">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>10821</label>
+                </control>
+
+                <control type="button" id="110">
+                    <description>Pause / Resume button</description>
+                    <label>$LOCALIZE[35224]</label>
+                    <label2>$FEATURE[select,game.controller.snes] + $FEATURE[x,game.controller.default]</label2>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>Play</onclick>
+                </control>
+                <control type="button" id="111">
+                    <description>Save / Load button</description>
+                    <label>$LOCALIZE[35249]</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>ActivateWindow(InGameSaves)</onclick>
+                </control>
+                <control type="button" id="113">
+                    <description>Disc Manager button</description>
+                    <label>$LOCALIZE[35272]</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>ActivateWindow(GameDiscManager)</onclick>
+                </control>
+                <control type="button" id="112">
+                    <description>Players button</description>
+                    <label>$LOCALIZE[35172]</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>ActivateWindow(GameAgents)</onclick>
+                </control>
+                <control type="button" id="102">
+                    <description>Reset button</description>
+                    <label>$LOCALIZE[13007]</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>PlayerControl(Reset)</onclick>
+                </control>
+                <control type="button" id="103">
+                    <description>Stop button</description>
+                    <label>$LOCALIZE[35222]</label>
+                    <label2>$FEATURE[select,game.controller.snes] + $FEATURE[start,game.controller.default]</label2>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>Stop</onclick>
+                </control>
+
+                <!-- GLOBAL -->
+
+                <control type="button" id="55552">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>$LOCALIZE[5]</label>
+                </control>
+
+                <control type="button" id="104">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[35225]</label>
+                    <onclick>ActivateWindow(GameVideoFilter)</onclick>
+                </control>
+                <control type="button" id="105">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[35233]</label>
+                    <onclick>ActivateWindow(GameStretchMode)</onclick>
+                </control>
+                <control type="button" id="106">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[35227]</label>
+                    <onclick>ActivateWindow(GameVideoRotation)</onclick>
+                </control>
+                <control type="button" id="107">
+                    <label>$LOCALIZE[13376]</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>ActivateWindow(GameVolume)</onclick>
+                </control>
+                <control type="button" id="109">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[35234]</label>
+                    <onclick>ActivateWindow(GameControllers)</onclick>
+                </control>
+                <control type="button" id="119">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[35110]</label>
+                    <onclick>ActivateWindow(GamePorts)</onclick>
+                </control>
+                <control type="button" id="120">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[10140]</label>
+                    <onclick>ActivateWindow(GameAdvancedSettings)</onclick>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1799" />
+                <param name="onleft" value="9000" />
+                <param name="onright" value="Close" />
+                <param name="height" value="910" />
+                <param name="centerright" value="4" />
+            </include>
+        </control>
+
+        <control type="group">
+            <visible>System.GetBool(gamesgeneral.showosdhelp)</visible>
+
+            <visible>!Window.IsActive(InGameSaves) + !Window.IsActive(GameAgents) + !Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(GameVolume) + !Window.IsActive(GameControllers) + !Window.IsActive(GamePorts) + !Window.IsActive(GameAdvancedSettings) + !Window.IsActive(DialogSlider.xml) + !Window.IsActive(GameDiscManager)</visible>
+
+            <include>Animation_Dialog_Menu_Right_Side</include>
+
+            <include content="Def_Dialog_Background">
+                <param name="height" value="920" />
+                <param name="width" value="600" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$LOCALIZE[35221]" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="group" id="1000">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <!-- <height>710</height> -->
+
+                <control type="textbox" id="1101">
+                    <description>Help text</description>
+                    <top>30</top>
+                    <left>30</left>
+                    <right>30</right>
+                    <height>130</height>
+                    <font>Tiny</font>
+                </control>
+                <control type="gamecontroller">
+                    <top>140</top>
+                    <left>30</left>
+                    <width>540</width>
+                    <height>540</height>
+                    <controllerid>game.controller.snes</controllerid>
+                </control>
+                <control type="textbox">
+                    <description>Additional help text. This will be removed in future versions.</description>
+                    <bottom>96</bottom>
+                    <left>30</left>
+                    <right>30</right>
+                    <height>130</height>
+                    <font>Tiny</font>
+                    <label>$LOCALIZE[35236]</label>
+                </control>
+
+                <!-- BUTTON -->
+
+                <control type="grouplist" id="9900">
+                    <bottom>30</bottom>
+                    <height>66</height>
+                    <width>100%</width>
+                    <align>center</align>
+                    <centerleft>50%</centerleft>
+
+                    <itemgap>14</itemgap>
+                    <orientation>horizontal</orientation>
+
+                    <include content="Def_Dialog_Button_Action">
+                        <param name="id" value="10" />
+                        <param name="onclick1" value="Action(close)" />
+                        <param name="label" value="$LOCALIZE[15067]" />
+                    </include>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

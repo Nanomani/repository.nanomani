@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog">
+    <defaultcontrol always="true">995</defaultcontrol>
+
+    <include>Def_Context_Menu_Focus_OnLoad</include>
+
+    <!-- INIT - ENCODE -->
+
+    <onload>ClearProperty(Encoded.ListItem.AlbumArtist,Home)</onload>
+    <onload>ClearProperty(Encoded.ListItem.Album,Home)</onload>
+    <onload>ClearProperty(Encoded.ListItem.Artist,Home)</onload>
+    <onload>ClearProperty(Encoded.ListItem.Title,Home)</onload>
+    <onload>ClearProperty(Encoded.ListItem.Label,Home)</onload>
+    <onload>ClearProperty(Encoded.ListItem.TVShowTitle,Home)</onload>
+
+    <!-- ENCODE -->
+
+    <!-- <onload condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_album))">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.AlbumArtist&amp;&amp;$INFO[ListItem.AlbumArtist]")</onload> -->
+
+    <onload condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_album))">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Album&amp;&amp;$INFO[Window(Home).Property(TMDbHelper.ListItem.base_album)]")</onload>
+
+    <onload condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_artist))">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Artist&amp;&amp;$INFO[Window(Home).Property(TMDbHelper.ListItem.base_artist)]")</onload>
+
+    <onload condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_title))">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Title&amp;&amp;$INFO[Window(Home).Property(TMDbHelper.ListItem.base_title)]")</onload>
+
+    <onload condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_label))">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Label&amp;&amp;$INFO[Window(Home).Property(TMDbHelper.ListItem.base_label)]")</onload>
+
+    <onload condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_tvshowtitle))">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.TVShowTitle&amp;&amp;$INFO[Window(Home).Property(TMDbHelper.ListItem.base_tvshowtitle)]")</onload>
+
+    <onload condition="$EXP[Exp_ContextMenu_Show_Info]">SetFocus(6150)</onload>
+
+    <onload condition="Window.IsActive(movieinformation) + !String.IsEmpty(Window(Home).Property(moviecontent))">SetFocus(5050)</onload>
+    <onload condition="Window.IsActive(musicinformation) | Window.IsActive(songinformation)">SetFocus(5050)</onload>
+    <onload condition="$EXP[IsYoutube_Comments]">SetFocus(5050)</onload>
+
+    <onload>SetProperty(TMDbHelper.ContextMenu,True)</onload>
+    <onload>ClearProperty(SlideHomeNowPlaying,Home)</onload>
+    <onload>ClearProperty(TrailerFullscreenIsLaunched,Home)</onload>
+    <onload>ClearProperty(TrailerFullscreenIsPlaying,Home)</onload>
+
+    <onload>ClearProperty(filemanager_back_video_info_type,Home)</onload>
+    <onload>ClearProperty(filemanager_back_video_info_bdid,Home)</onload>
+
+    <onunload> ClearProperty(SlideHomeNowPlaying,Home)</onunload>
+
+    <menucontrol>5050</menucontrol>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include>Animation_Dialog_Menu_Right_Side</include>
+
+            <include content="Def_Dialog_Background">
+                <param name="height" value="728" />
+                <param name="width" value="1020" />
+            </include>
+
+            <!-- HEADER -->
+
+            <control type="group">
+                <right>0</right>
+                <width>512</width>
+                <top>0</top>
+                <control type="label" id="2">
+                    <include>Def_Dialog_Header_Title</include>
+                    <label>$VAR[Label_Context_Menu_Header]</label>
+                </control>
+                <include content="Def_Dialog_Header_Logo"><param name="texture" value="bars" /></include>
+                <include content="Def_Dialog_Header_Line"><param name="top" value="95" /></include>
+                <include content="Def_Dialog_Header_Line"><param name="top" value="165" /><param name="visible" value="!Control.HasFocus(5050) + Integer.IsGreater(Container(995).NumItems,0)" /></include>
+            </control>
+
+            <!-- CONTEXT MENU ICON -->
+
+            <include>Def_Context_Menu_Bar_Icon</include>
+
+            <!-- BUTTON TO FOCUS MENU LIST -->
+
+            <include>Def_Context_Menu_Button_UpDown</include>
+
+            <!-- BUTTON VIEW PLOT -->
+
+            <control type="button" id="5050">
+                <include>Def_Hidden_Button</include>
+                <onright>996</onright>
+                <onleft>996</onleft>
+
+                <!-- SHOW INFO -->
+
+                <onclick condition="![Window.IsActive(movieinformation) + !String.IsEmpty(Window(Home).Property(moviecontent))] + ![Window.IsActive(musicinformation) | Window.IsActive(songinformation)] + $EXP[Exp_ContextMenu_Show_Info]">Dialog.Close(contextmenu)</onclick>
+                <onclick condition="![Window.IsActive(movieinformation) + !String.IsEmpty(Window(Home).Property(moviecontent))] + ![Window.IsActive(musicinformation) | Window.IsActive(songinformation)] + $EXP[Exp_ContextMenu_Show_Info]">AlarmClock(Launch_Search,$VAR[Path_ContextParams_Path_Info],00:01,silent)</onclick>
+
+                <!-- BACK MENU LIST -->
+
+                <onclick condition="![Window.IsActive(movieinformation) + !String.IsEmpty(Window(Home).Property(moviecontent))] + !$EXP[Exp_ContextMenu_Show_Info]">996</onclick>
+
+                <onback condition="![Window.IsActive(movieinformation) + !String.IsEmpty(Window(Home).Property(moviecontent))]">996</onback>
+                <onback condition="![Window.IsActive(musicinformation) | Window.IsActive(songinformation)]">996</onback>
+
+                <!-- DIALOG INFO VIDEO - CLOSE DIALOG CONTEXT MENU -->
+
+                <!-- <onclick condition="[Window.IsActive(movieinformation) + !String.IsEmpty(Window(Home).Property(moviecontent))]">Dialog.Close(contextmenu)</onclick> -->
+                <onback condition="[Window.IsActive(movieinformation) + !String.IsEmpty(Window(Home).Property(moviecontent))]">Dialog.Close(contextmenu)</onback>
+
+                <!-- DIALOG INFO MUSIC - CLOSE DIALOG CONTEXT MENU -->
+
+                <!-- <onclick condition="[Window.IsActive(musicinformation) | Window.IsActive(songinformation)]">Dialog.Close(contextmenu)</onclick> -->
+                <onback condition="[Window.IsActive(musicinformation) | Window.IsActive(songinformation)]">Dialog.Close(contextmenu)</onback>
+
+                <onback condition="!$EXP[IsYoutube_Comments]">996</onback>
+                <onback condition="$EXP[IsYoutube_Comments]">Dialog.Close(contextmenu)</onback>
+
+                <ondown>SetFocus(8601)</ondown>
+                <ondown>Down</ondown>
+                <ondown>SetFocus(5050)</ondown>
+                <onup>SetFocus(8601)</onup>
+                <onup>Up</onup>
+                <onup>SetFocus(5050)</onup>
+            </control>
+
+            <!-- VIEW - CONTEXT MENU LIST -->
+
+            <control type="grouplist" id="996">
+                <description>grouplist for context buttons</description>
+                <include>Animation_Scrolltime_Views_List</include>
+                <animation condition="Control.HasFocus(5050)" effect="fade" end="0" start="100" time="250">Conditional</animation>
+
+                <animation effect="slide" start="0,0" end="0,-70" time="0" condition="!Integer.IsGreater(Container(995).NumItems,0)">Conditional</animation>
+
+                <top>182</top>
+                <right>0</right>
+                <width>510</width>
+                <height max="490">auto</height>
+
+                <onup condition="Control.IsVisible(6150)">6150</onup>
+                <ondown condition="Control.IsVisible(6150)">6150</ondown>
+
+                <onup condition="!Control.IsVisible(6150)">995</onup>
+                <ondown condition="!Control.IsVisible(6150)">995</ondown>
+
+                <onleft>9070</onleft>
+                <onright>5050</onright>
+
+                <itemgap>0</itemgap>
+                <pagecontrol>9070</pagecontrol>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="button" id="1000">
+                    <description>Buttons</description>
+                    <right>16</right>
+                    <width>478</width>
+                    <textwidth>410</textwidth>
+                    <font>Tiny</font>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="group">
+                <animation effect="slide" start="0,0" end="0,-70" time="0" condition="!Integer.IsGreater(Container(995).NumItems,0)">Conditional</animation>
+
+                <include content="Object_Scrollbar_Dialog_Vertical">
+                    <param name="scrollid" value="9070" />
+                    <param name="top" value="182" />
+                    <param name="onleft" value="6150" />
+                    <param name="onleft2" value="995" />
+                    <param name="condition_on_left" value="Control.IsVisible(6150)" />
+                    <param name="onright" value="996" />
+                    <param name="onback" value="9000" />
+                    <param name="height" value="490" />
+                    <param name="centerright" value="510" />
+                </include>
+            </control>
+
+            <!-- VIEW PLOT -->
+
+            <control type="group">
+                <animation effect="fade" end="100" start="0" time="250" delay="300">Visible</animation>
+                <visible>Control.HasFocus(5050)</visible>
+
+                <top>112</top>
+                <right>30</right>
+                <width>448</width>
+
+                <!-- PLOT -->
+
+                <control type="textbox" id="8600">
+                    <include content="Def_Height" condition="String.IsEqual(ListItem.Property(tmdb_type),person) + !Window.IsVisible(DialogVideoInfo.xml)">
+                        <param name="height" value="520" />
+                    </include>
+                    <height>450</height>
+                    <font>SmallNavi</font>
+                    <textcolor>Dark2</textcolor>
+                    <align>left</align>
+                    <pagecontrol>8601</pagecontrol>
+                    <label fallback="19055">$VAR[Label_Context_Menu_Plot]</label>
+                </control>
+
+                 <!-- ARROW -->
+
+                <control type="group">
+                    <visible>Container(8600).HasNext</visible>
+                    <animation effect="fade" end="100" start="0" time="250" delay="300">Visible</animation>
+                    <include>Animation_Common_Fade_In</include>
+                    <include content="Def_Top" condition="String.IsEqual(ListItem.Property(tmdb_type),person) + !Window.IsVisible(DialogVideoInfo.xml)">
+                        <param name="top" value="532" />
+                    </include>
+                    <top>462</top>
+                    <left>216</left>
+                    <control type="image">
+                        <include>Def_Arrow_Size</include>
+                        <include content="Texture_Arrow_Down"><param name="colordiffuse" value="Dark2" /></include>
+                    </control>
+                </control>
+                <control type="group">
+                    <visible>Container(8600).HasPrevious</visible>
+                    <animation effect="fade" end="100" start="0" time="250" delay="300">Visible</animation>
+                    <include>Animation_Common_Fade_In</include>
+                    <include content="Def_Top" condition="String.IsEqual(ListItem.Property(tmdb_type),person) + !Window.IsVisible(DialogVideoInfo.xml)">
+                        <param name="top" value="520" />
+                    </include>
+                    <top>450</top>
+                    <left>216</left>
+                    <control type="image">
+                        <include>Def_Arrow_Size</include>
+                        <include content="Texture_Arrow_Up"><param name="colordiffuse" value="Dark2" /></include>
+                    </control>
+                </control>
+
+                <!-- FLAG STAR RATING -->
+
+                <control type="group">
+                    <visible>[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)]</visible>
+                    <top>400</top>
+                    <align>left</align>
+                    <width>448</width>
+
+                    <include content="Def_Flag">
+                        <param name="Star" value="ContextMenu_Flagstar1" />
+                    </include>
+                    <include content="Def_Flag">
+                        <param name="Star" value="ContextMenu_Flagstar2" />
+                        <param name="left" value="40" />
+                    </include>
+                    <include content="Def_Flag">
+                        <param name="Star" value="ContextMenu_Flagstar3" />
+                        <param name="left" value="80" />
+                    </include>
+                    <include content="Def_Flag">
+                        <param name="Star" value="ContextMenu_Flagstar4" />
+                        <param name="left" value="120" />
+                    </include>
+                    <include content="Def_Flag">
+                        <param name="Star" value="ContextMenu_Flagstar5" />
+                        <param name="left" value="160" />
+                    </include>
+                </control>
+
+                <!-- RATING / VOTES -->
+
+                <control type="label">
+                    <visible>[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)]</visible>
+                    <top>510</top>
+                    <align>left</align>
+                    <width>448</width>
+                    <font>Small333</font>
+                    <textcolor>Dark2</textcolor>
+                    <label>$VAR[Label_Rating_Context_Menu]</label>
+                    <selectedcolor>Dark2</selectedcolor>
+                </control>
+
+                <!-- INFO PVR -->
+
+                <control type="label">
+                    <visible>$EXP[Exp_ContextMenu_PVR_Info]</visible>
+                    <top>460</top>
+                    <align>left</align>
+                    <width>448</width>
+                    <font>Small333</font>
+                    <textcolor>Dark2</textcolor>
+                    <label>$INFO[ListItem.ChannelName]$INFO[ListItem.Genre,  •  ,]</label>
+                    <selectedcolor>Dark2</selectedcolor>
+                </control>
+                <control type="label">
+                    <visible>$EXP[Exp_ContextMenu_PVR_Info]</visible>
+                    <top>510</top>
+                    <align>left</align>
+                    <width>448</width>
+                    <font>Small333</font>
+                    <textcolor>Dark2</textcolor>
+                    <label>$VAR[Label_PVR_Channel_Start_End]$INFO[ListItem.Duration(mins),  •  , $LOCALIZE[31074]]</label>
+                    <selectedcolor>Dark2</selectedcolor>
+                </control>
+            </control>
+
+            <!-- TIPS - FOOTER -->
+
+            <control type="group">
+                <include>Animation_Furniture_Tip_Open</include>
+
+                <bottom>15</bottom>
+                <right>30</right>
+                <width>452</width>
+                <height>50</height>
+
+                <orientation>horizontal</orientation>
+                <align>right</align>
+                <itemgap>0</itemgap>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="label">
+                    <font>SymbolListMini</font>
+                    <textcolor>Dark3</textcolor>
+                    <label>&#62601;</label>
+                </control>
+                <control type="label">
+                    <font>Mini</font>
+                    <scroll>false</scroll>
+                    <align>center</align>
+                    <textcolor>Dark3</textcolor>
+                    <label>$VAR[Label_Context_Menu_Footer_Tip]</label>
+                </control>
+                <control type="label">
+                    <align>right</align>
+                    <font>SymbolListMini</font>
+                    <textcolor>Dark3</textcolor>
+                    <label>&#62600;</label>
+                </control>
+            </control>
+
+            <!-- TIPS - FOOTER -->
+
+            <control type="group">
+                <include>Animation_Furniture_Tip</include>
+
+                <bottom>15</bottom>
+                <right>30</right>
+                <width>452</width>
+                <height>50</height>
+
+                <orientation>horizontal</orientation>
+                <align>right</align>
+                <itemgap>0</itemgap>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="label">
+                    <font>SymbolListMini</font>
+                    <textcolor>Dark3</textcolor>
+                    <label>&#62601;</label>
+                </control>
+                <control type="label">
+                    <font>Mini</font>
+                    <scroll>false</scroll>
+                    <align>center</align>
+                    <textcolor>Dark3</textcolor>
+                    <label>$VAR[Label_Context_Menu_Footer_Tip]</label>
+                </control>
+                <control type="label">
+                    <align>right</align>
+                    <font>SymbolListMini</font>
+                    <textcolor>Dark3</textcolor>
+                    <label>&#62600;</label>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="8601">
+                <width>1</width>
+                <height>1</height>
+                <visible allowhiddenfocus="true">false</visible>
+            </control>
+
+            <!-- ART POSTER -->
+
+            <control type="group">
+                <visible>$EXP[Exp_ContextMenu_HasPoster]</visible>
+
+                <top>41</top>
+                <left>41</left>
+                <width>PosterW</width>
+                <height>635</height>
+
+                <include>Def_Art_Full_Background_b24</include>
+
+                <include content="Def_Art_Image">
+                    <param name="colordiffuse" value="Fallback" />
+                    <param name="texture" value="$VAR[Image_Context_Menu_Poster]" />
+                    <param name="texture_diffuse" value="poster_w428_h640_b24" />
+                    <param name="aspectratio" value="scale" />
+                    <param name="fallback" value="logo/kodi/kodi-logo" />
+                </include>
+            </control>
+
+            <!-- ART SQUARE -->
+
+            <control type="group">
+                <visible>!$EXP[Exp_ContextMenu_HasPoster]</visible>
+
+                <top>41</top>
+                <left>41</left>
+                <width>PosterW</width>
+                <height>PosterW</height>
+
+                <include>Def_Art_Full_Background_b24</include>
+
+                <include content="Def_Art_Image">
+                    <param name="texture" value="$VAR[Image_Context_Menu_Square]" />
+                    <param name="texture_diffuse" value="square_w428_h428_b24" />
+                    <param name="aspectratio" value="scale" />
+                    <param name="fallback" value="logo/kodi/kodi-logo" />
+                    <param name="visible" value="!$EXP[Exp_ContextMenu_HasPoster] + !String.StartsWith(ListItem.Icon,Default) + !$EXP[IsPvrItem]" />
+                </include>
+                <include content="Def_Art_Image">
+                    <param name="texture" value="$VAR[Image_Context_Menu_Square]" />
+                    <param name="texture_diffuse" value="square_w428_h428_b24" />
+                    <param name="aspectratio" value="keep" />
+                    <param name="fallback" value="DefaultAddonPVRClient" />
+                    <param name="visible" value="!$EXP[Exp_ContextMenu_HasPoster] + $EXP[IsPvrItem]" />
+                </include>
+                <include content="Def_Art_Icon">
+                    <param name="texture" value="$VAR[Image_Context_Menu_Icon]" />
+                    <param name="aspectratio" value="keep" />
+                    <param name="visible" value="!$EXP[Exp_ContextMenu_HasPoster] + String.StartsWith(ListItem.Icon,Default)" />
+                </include>
+            </control>
+
+            <!-- TITLE -->
+
+            <control type="grouplist">
+                <visible>!Window.IsVisible(AddonBrowser.xml) + !Window.IsVisible(FileManager.xml)</visible>
+
+                <top>500</top>
+                <left>44</left>
+                <width>410</width>
+
+                <itemgap>8</itemgap>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <include content="Def_Context_Menu_Information">
+                    <param name="label" value="&#61747;" />
+                    <param name="font" value="InfoNetflix" />
+                    <param name="value" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.base_artist)]" />
+                    <param name="visible" value="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)" />
+                </include>
+                <include content="Def_Context_Menu_Information">
+                    <param name="label" value="&#61825;" />
+                    <param name="font" value="Small24" />
+                    <param name="value" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.base_album)]" />
+                    <param name="visible" value="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)" />
+                </include>
+                <include content="Def_Context_Menu_Information">
+                    <param name="label" value="&#62229;" />
+                    <param name="font" value="Small24" />
+                    <param name="value" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.base_genre)]" />
+                    <param name="visible" value="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_genre))" />
+                </include>
+            </control>
+
+            <!-- CLEARLOGO - ARTIST / ALBUM / SONG -->
+
+            <control type="group">
+                <visible>String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)</visible>
+                <left>44</left>
+                <bottom>44</bottom>
+                <height>70</height>
+
+                <control type="image" description="clearlogo">
+                    <height>70</height>
+                    <width>PosterW</width>
+
+                    <fadetime>ClearArtFadetime</fadetime>
+                    <aspectratio align="left" aligny="bottom">keep</aspectratio>
+                    <texture background="true">$VAR[Image_Dialog_Info_Music_Ext_Crop_ClearLogo]</texture>
+                </control>
+            </control>
+        </control>
+
+        <include>Hidden_ContextMenu_List_Movie_DBID_Detail</include>
+    </controls>
+</window>

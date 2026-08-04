@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1195">
+    <visible>![$EXP[Video_Window_Home_Flix_Is_Active] + Player.HasMedia + Player.HasVideo] + Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Ready] + !$EXP[Context_Menu_Trailer_Is_Launched] + [
+    [String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),3) + System.IdleTime(3)]
+    |
+    [[String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),5) | !Skin.String(Value_Items_Flix_Trailer_Delay)] + System.IdleTime(5)]
+    |
+    [String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),7) + System.IdleTime(7)]
+    |
+    [String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),9) + System.IdleTime(9)]
+    |
+    [String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),11) + System.IdleTime(11)]
+    |
+    [String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),13) + System.IdleTime(13)]
+    |
+    [String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),15) + System.IdleTime(15)]
+    ] + !System.IdleTime(30) + !$EXP[View_Info_Dialog]</visible>
+
+    <!-- START BACKGROUND FADE -->
+
+    <onload>SetProperty(Trailer_Fade_Background,1,Home)</onload>
+
+    <!-- SET TRAILER PATH -->
+
+    <onload>SetProperty(Last_Trailer_Path,$INFO[ListItem.Trailer],Home)</onload>
+    <onload>SetProperty(Current_Trailer_Path,$INFO[ListItem.Trailer],Home)</onload>
+
+    <!-- START TRAILER -->
+
+    <onload>$VAR[PlayMedia_Trailer]</onload>
+    <controls />
+</window>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
+    <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Window.IsVisible(VideoOSD.xml) + !Window.IsVisible(DialogSubtitles.xml)">AlarmClock(delay_dialog_settings,PlayerControl(Play),00:00,silent)</onunload>
+
+    <onunload condition="Player.HasMedia + Player.HasVideo + !Player.PauseEnabled">setfocus(15)</onunload>
+    <onunload condition="Player.HasMedia + Player.HasVideo + Player.PauseEnabled">setfocus(14)</onunload>
+
+    <controls>
+        <include content="Background_Overlay">
+            <param name="colordiffuse" value="$VAR[Color_OSD_Background_Overlay]" />
+            <param name="visible" value="[Window.IsVisible(VideoOSD.xml) | Window.IsVisible(VideoFullScreen.xml)] + !Window.IsVisible(SliderDialog)" />
+        </include>
+
+        <include content="Background_Overlay">
+            <param name="visible" value="![Window.IsVisible(VideoOSD.xml) | Window.IsVisible(VideoFullScreen.xml)]" />
+        </include>
+
+        <include condition="![Window.IsVisible(VideoOSD.xml) | Window.IsVisible(VideoFullScreen.xml)]">Def_Dialog_Settings_standard</include>
+        <include condition="Window.IsVisible(VideoOSD.xml) | Window.IsVisible(VideoFullScreen.xml)">Def_Dialog_Settings_video_OSD</include>
+
+
+        <!-- DEF CONTROL TYPE -->
+
+        <control type="button" id="7">
+            <description>Default Button</description>
+            <align>left</align>
+            <include>Texture_Dialog_Settings</include>
+            <include condition="true">Animation_View_List_Focus_Scroll</include>
+        </control>
+        <control type="radiobutton" id="8">
+            <description>Default RadioButton</description>
+            <align>left</align>
+            <radioposx>1008</radioposx>
+            <include>Texture_Dialog_Settings</include>
+            <include condition="true">Animation_View_List_Focus_Scroll</include>
+        </control>
+        <control type="spincontrolex" id="9">
+            <description>Default spincontrolex</description>
+            <align>left</align>
+            <reverse>yes</reverse>
+            <include>Texture_Dialog_Settings</include>
+            <include condition="true">Animation_View_List_Focus_Scroll</include>
+        </control>
+        <control type="image" id="11">
+            <visible>false</visible>
+        </control>
+        <control type="edit" id="12">
+            <description>Default Button</description>
+            <align>left</align>
+            <include>Texture_Dialog_Settings</include>
+            <include condition="true">Animation_View_List_Focus_Scroll</include>
+        </control>
+        <control type="sliderex" id="13">
+            <description>Default Slider</description>
+            <include>Texture_Dialog_Settings</include>
+            <include condition="true">Animation_View_List_Focus_Scroll</include>
+        </control>
+        <control type="label" id="14">
+            <description>Default Button</description>
+            <include>Def_Custom_Settings_Label_Title_Left_Side</include>
+        </control>
+    </controls>
+</window>
