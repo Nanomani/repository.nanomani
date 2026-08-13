@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1248">
+    <defaultcontrol always="true">11</defaultcontrol>
+
+    <onunload>ClearProperty(includesetting,Home)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background"><param name="height" value="686" /><param name="width" value="1060" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$INFO[Container(11).ListItemAbsolute(0).Property(SettingsName)]" />
+                <param name="icon" value="skinsettings" />
+            </include>
+
+            <control type="list" id="11">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <bottom>16</bottom>
+                <left>16</left>
+                <right>0</right>
+
+                <height>545</height>
+                <onright>1600</onright>
+                <pagecontrol>1600</pagecontrol>
+                <orientation>vertical</orientation>
+
+                <itemlayout width="668" height="66">
+                    <control type="label">
+                        <aligny>center</aligny>
+                        <height>100%</height>
+                        <textcolor>PanelWhite100</textcolor>
+                        <font>Small</font>
+                        <left>30</left>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.IsEmpty(ListItem.Property(ItemSelected))</visible>
+                    </control>
+                    <control type="label">
+                        <aligny>center</aligny>
+                        <height>100%</height>
+                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
+                        <font>Small</font>
+                        <left>30</left>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>!String.IsEmpty(ListItem.Property(ItemSelected))</visible>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Black70" />
+                        <param name="colordiffuse_on" value="$VAR[Color_List_Item_Selected]" />
+                        <param name="visible" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
+                    </include>
+                </itemlayout>
+                <focusedlayout width="668" height="66">
+                    <control type="image">
+                        <width>100%</width>
+                        <height>100%</height>
+                        <include>Texture_Layout_Item_Focus</include>
+                        <animation effect="fade" start="100" end="50" condition="!Control.HasFocus(11)">Conditional</animation>
+                        <include condition="true">Animation_View_List_Focus_Scroll</include>
+                    </control>
+                    <control type="label">
+                        <aligny>center</aligny>
+                        <height>100%</height>
+                        <textcolor>Selected</textcolor>
+                        <font>Small</font>
+                        <left>30</left>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Selected" />
+                        <param name="colordiffuse_on" value="Selected" />
+                        <param name="visible" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
+                    </include>
+                </focusedlayout>
+
+                <content>
+                    <include condition="String.IsEqual(Window(Home).Property(includesetting),Value_Items_Flix_Trailer_Delay)">Set_Items_Flix_Trailer_Delay</include>
+                    <include condition="String.IsEqual(Window(Home).Property(includesetting),Value_Widget_Limit)">Set_Widget_Limit</include>
+                    <include condition="String.IsEqual(Window(Home).Property(includesetting),Value_Hub_Limit)">Set_Hub_Limit</include>
+                    <include condition="String.IsEqual(Window(Home).Property(includesetting),Value_TMDb_Item_Limit)">Set_TMDb_Item_Limit</include>
+                    <include condition="String.IsEqual(Window(Home).Property(includesetting),Value_OSD_Auto_Hide_Timeout)">Set_OSD_Auto_Hide_Timeout</include>
+                    <include condition="String.IsEqual(Window(Home).Property(includesetting),Value_Show_OSD_At_Start_Timeout)">Set_Show_OSD_At_Start_Timeout</include>
+                    <include condition="String.IsEqual(Window(Home).Property(includesetting),Value_OSD_Music_Info_Auto_Hide_Timeout)">Set_OSD_Music_Info_Auto_Hide_Timeout</include>
+                    <include condition="String.IsEqual(Window(Home).Property(includesetting),Value_Kodi_Rating_Provider)">Set_Kodi_Rating_Provider</include>
+                    <include condition="String.IsEqual(Window(Home).Property(includesetting),Value_Trailer_Count)">Set_Trailer_Count</include>
+                </content>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1600" />
+                <param name="onleft" value="11" />
+                <param name="onright" value="5" />
+                <param name="height" value="528" />
+            </include>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <left>700</left>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1600) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+                <onleft>1600</onleft>
+                <onright>1600</onright>
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="5" />
+                    <param name="label" value="15067" />
+                    <param name="onclick1" value="Close" />
+                </include>
+            </control>
+
+            <!-- LOGO KODI RATING PROVIDER -->
+
+            <control type="group">
+                <visible>String.IsEqual(Window(Home).Property(includesetting),Value_Kodi_Rating_Provider)</visible>
+
+                <top>406</top>
+                <right>80</right>
+                <width>200</width>
+                <height>200</height>
+
+                <control type="group">
+                    <include content="Def_Art_Full_Background_b24">
+                        <param name="pad_image" value="0" />
+                        <param name="colordiffuse" value="Fallback" />
+                        <param name="condition_fade" value="false" />
+                        <param name="visible_shadow" value="false" />
+                    </include>
+
+                    <control type="image">
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/square_w202_h202_b24.png" background="true">$INFO[Container(11).ListItem.Property(Logo)]</texture>
+                    </control>
+                </control>
+            </control>
+
+            <!-- LOGO WIKIPEDIA -->
+
+            <control type="grouplist">
+                <visible>String.IsEqual(Window(Home).Property(includesetting),Value_Wiki_Language)</visible>
+
+                <top>307</top>
+                <right>30</right>
+                <width>300</width>
+
+                <itemgap>-10</itemgap>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="image">
+                    <width>300</width>
+                    <height>236</height>
+                    <texture>logo/wikipedia/wikipedia_logo.png</texture>
+                    <aspectratio align="center" aligny="top">keep</aspectratio>
+                </control>
+                <control type="image">
+                    <width>300</width>
+                    <height>84</height>
+                    <texture colordiffuse="Dark2">logo/wikipedia/wikipedia_title.png</texture>
+                </control>
+            </control>
+
+            <!-- NUM ITEM -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </controls>
+</window>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">9100</defaultcontrol>
+    <menucontrol>9000</menucontrol>
+
+    <onload>SetFocus(9100,0,absolute)</onload>
+
+    <controls>
+        <include>Background_Global</include>
+
+        <include>Furniture_Header_Info</include>
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
+
+        <control type="group">
+            <include>Animation_Common_Global</include>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1675">
+                <include content="Object_Scrollbar_Views_Horizontal">
+                    <param name="scrollid" value="1675" />
+                    <param name="jumpbar" value="false" />
+                </include>
+            </control>
+
+            <!-- ARROWS -->
+
+            <control type="image">
+                <visible>!Container(9100).OnNext + !Container(9100).OnPrevious</visible>
+                <left>1860</left>
+                <top>530</top>
+                <include>Def_Arrow_Size</include>
+                <texture colordiffuse="Dark1" flipx="false">common/arrow_small_right.png</texture>
+                <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="600" /></include>
+            </control>
+            <control type="image">
+                <visible>!Container(9100).OnNext + !Container(9100).OnPrevious</visible>
+                <left>45</left>
+                <top>530</top>
+                <include>Def_Arrow_Size</include>
+                <texture colordiffuse="Dark1" flipx="true">common/arrow_small_right.png</texture>
+                <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="600" /></include>
+            </control>
+
+            <!-- WRAP LIST - PAGES -->
+
+            <control type="wraplist" id="9100">
+                <visible>!String.StartsWith(Weather.Data(Current.Temperature),$LOCALIZE[503])</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <left>View_Poster_Side</left>
+                <width>View_Poster_Width</width>
+                <height>900</height>
+
+                <onup>9000</onup>
+                <ondown>603</ondown>
+
+                <scroll>false</scroll>
+                <preloaditems>0</preloaditems>
+                <pagecontrol>1675</pagecontrol>
+                <orientation>horizontal</orientation>
+
+                <itemlayout height="810" width="1840">
+
+                    <!-- PAGE 1 - CURRENTLY - TODAY - TOMORROW -->
+
+                    <include>Layout_Weather_Today</include>
+
+                    <!-- PAGE 2 - NEXT DAYS -->
+
+                    <include>Layout_Weather_Next_Day</include>
+
+                    <!-- PAGE 3 - HOUR -->
+
+                    <include>Layout_Weather_Hour</include>
+                </itemlayout>
+                <focusedlayout height="810" width="1840">
+
+                    <!-- PAGE 1 - CURRENTLY - TODAY - TOMORROW -->
+
+                    <include>Layout_Weather_Today</include>
+
+                    <!-- PAGE 2 - NEXT DAYS -->
+
+                    <include>Layout_Weather_Next_Day</include>
+
+                    <!-- PAGE 3 - HOUR -->
+
+                    <include>Layout_Weather_Hour</include>
+                </focusedlayout>
+
+                <content>
+
+                    <!-- PAGE 1 - CURRENTLY - TODAY - TOMORROW -->
+
+                    <item id="0">
+                        <label/>
+                        <label2>View_Today</label2>
+                        <icon/>
+                    </item>
+
+                    <!-- PAGE 2 - NEXT DAYS -->
+
+                    <item id="1">
+                        <label>31067</label>
+                        <icon/>
+                        <label2>View_Daily</label2>
+                    </item>
+
+                    <!-- PAGE 3 - HOUR -->
+
+                    <item id="2">
+                        <label>31066</label>
+                        <icon/>
+                        <label2>View_Hourly</label2>
+                    </item>
+                </content>
+            </control>
+        </control>
+
+        <!-- CONTEXT MENU - BACKGROUND OVERLAY -->
+
+        <include>Def_Dialog_Menu_Background_Overlay</include>
+
+        <!-- CONTEXT MENU -->
+
+        <control type="group">
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>255</centerleft>
+
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="14018" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="grouplist" id="9000">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+
+                <pagecontrol>9070</pagecontrol>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="9100" /></include>
+
+                <!-- NOW PLAYING -->
+
+                <control type="button" id="55555">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31448</label>
+                    <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+                </control>
+
+                <include>Def_Dialog_Menu_Button_Playlist</include>
+
+                <!-- MINI PLAYER -->
+
+                <include>Def_Dialog_Menu_MiniPlayer</include>
+
+                <!-- WEATHER OPTIONS -->
+
+                <control type="button" id="90200">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>16106</label>
+                </control>
+
+                <control type="button" id="9008" description="Next Location">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[31573]</label>
+                    <onclick>Weather.LocationNext</onclick>
+                </control>
+                <control type="button" id="2" description="Weather Location">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[184]:</label>
+                    <label2>$INFO[Weather.Data(Location)]</label2>
+                </control>
+                <control type="button" id="9010" description="Set Weather Fanart">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[12014]:</label>
+                    <label2>$INFO[Window.Property(Updated)]</label2>
+                    <onclick>noop</onclick>
+                </control>
+                <control type="button" id="5">
+                    <description>Update settings</description>
+                    <label>5</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>ActivateWindow(servicesettings,weather)</onclick>
+                </control>
+
+                <!-- ILLUSTRATIONS -->
+
+                <control type="button" id="90100">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31151</label>
+                </control>
+
+                <control type="button" id="9011" description="Set Icons">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[536]:</label>
+                    <label2>$INFO[Skin.String(weather.icons.name)]</label2>
+                    <onclick>SetProperty(SelectType,weather_icons,Home)</onclick>
+                    <onclick>RunScript(script.image.resource.select,property=weather.icons&amp;type=resource.images.weathericons)</onclick>
+                </control>
+                <control type="button" id="9004" description="Set Weather Fanart">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[20445]</label>
+                    <label2>$INFO[Skin.String(weather.fanart.name)]</label2>
+                    <onclick>SetProperty(SelectType,weather_fanart,Home)</onclick>
+                    <onclick>RunScript(script.image.resource.select,property=weather.fanart&amp;type=resource.images.weatherfanart)</onclick>
+                </control>
+                <control type="radiobutton" id="9002" description="Show weather overlay">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>- $LOCALIZE[31108]</label>
+                    <enable>!String.IsEmpty(Skin.String(weather.fanart.path))</enable>
+                    <selected>!Skin.HasSetting(hide.weather.fanart)</selected>
+                    <onclick>Skin.ToggleSetting(hide.weather.fanart)</onclick>
+                </control>
+                <control type="radiobutton" id="9009" description="Show weather overlay">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>- $LOCALIZE[31291]</label>
+                    <enable>!String.IsEmpty(Skin.String(weather.fanart.path)) + !Skin.HasSetting(hide.weather.fanart)</enable>
+                    <selected>!Skin.HasSetting(hide.weather.fanart.widgets)</selected>
+                    <onclick>Skin.ToggleSetting(hide.weather.fanart.widgets)</onclick>
+                </control>
+            </control>
+        </control>
+
+        <!-- LOCATION SELECT -->
+
+        <!-- <control type="spincontrolex" id="3"> -->
+            <!-- <description>Location Select</description> -->
+            <!-- <onback>9100</onback> -->
+            <!-- <right>80</right> -->
+            <!-- <bottom>20</bottom> -->
+            <!-- <width>100%</width> -->
+            <!-- <textoffsetx>30</textoffsetx> -->
+            <!-- <include>Def_Settings_Button_Focus_Select_Right_Side</include> -->
+            <!-- <visible allowhiddenfocus="true">false</visible> -->
+        <!-- </control> -->
+
+        <control type="button" id="603">
+            <include>Def_Hidden_Button</include>
+            <onfocus>Weather.LocationNext</onfocus>
+            <onfocus>AlarmClock(delay,SetFocus(604),00:00,silent)</onfocus>
+        </control>
+        <control type="button" id="604">
+            <include>Def_Hidden_Button</include>
+            <onfocus condition="Weather.IsFetched + !String.IsEmpty(Window(Weather).Property(Updated))">AlarmClock(delay,SetFocus(9100),00:00,silent)</onfocus>
+            <onfocus condition="String.IsEmpty(Window(Weather).Property(Updated))">AlarmClock(delay,SetFocus(605),00:00,silent)</onfocus>
+        </control>
+        <control type="button" id="605">
+            <include>Def_Hidden_Button</include>
+            <onfocus condition="Weather.IsFetched + !String.IsEmpty(Window(Weather).Property(Updated))">AlarmClock(delay,SetFocus(9100),00:00,silent)</onfocus>
+            <onfocus condition="String.IsEmpty(Window(Weather).Property(Updated))">AlarmClock(delay,SetFocus(604),00:00,silent)</onfocus>
+        </control>
+    </controls>
+</window>

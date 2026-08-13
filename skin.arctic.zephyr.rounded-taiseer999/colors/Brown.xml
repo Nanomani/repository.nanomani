@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colors>
+    <color name="Highlight">FF0385B5</color>
+    <color name="Highlight2">FFFF4081</color>
+    <color name="Selected">FFEDEDED</color>
+    <color name="ColoredStars">FFD402AA</color>
+    <color name="ColoredIcons">FFD402AA</color>
+    <color name="ColorMpaaCertif">FF4E77FE</color>
+    <color name="ColorRatingUserStar">FF2B7FE7</color>
+
+    <color name="Dark1">FFD6D6D6</color>
+    <color name="Dark2">CCD6D6D6</color>
+    <color name="Dark3">4DD6D6D6</color>
+    <color name="Dark4">E61B1715</color>
+    <color name="Light1">FF333333</color>
+    <color name="Light2">B3333333</color>
+    <color name="Light3">4D333333</color>
+    <color name="Light4">1F333333</color>
+
+    <color name="White100">FF000000</color>
+    <color name="ArtPlate">FF000000</color>
+    <color name="White70">B3333333</color>
+    <color name="White30">4D333333</color>
+    <color name="White12">1F333333</color>
+
+    <color name="Black100">FFBBBBBB</color>
+    <color name="Black70">B3BBBBBB</color>
+    <color name="Black30">4DBBBBBB</color>
+    <color name="Black12">1FBBBBBB</color>
+
+    <color name="PanelWhiteSetting">FFDDDDDD</color>
+    <color name="PanelWhite100">FFDDDDDD</color>
+    <color name="PanelWhite90">E6DDDDDD</color>
+    <color name="PanelWhite70">B3DDDDDD</color>
+    <color name="PanelWhite30">4DDDDDDD</color>
+    <color name="PanelWhite12">1FDDDDDD</color>
+    <color name="PanelBlack30">4D000000</color>
+
+    <color name="MenuSlide">FF241D18</color>
+    <color name="InfoBackground">B3241D18</color>
+
+    <color name="Background">FF241D18</color>
+    <color name="BackgroundNew">D9241D18</color>
+    <color name="BackgroundNewBlur">B3241D18</color>
+    <color name="BackgroundOverlay">FF181818</color>
+
+    <color name="FanartFade">FFFFFFFF</color>
+    <color name="FanartFadeBlur">FFFFFFFF</color>
+    <color name="FloorFade">CC241D18</color>
+    <color name="FloorFade2">CC241D18</color>
+    <color name="FloorFadeBlur">CC241D18</color>
+
+    <color name="Fallback">FF141312</color>
+    <color name="IconOnFallback">CCD6D6D6</color>
+
+    <color name="OSD_Black">DF000000</color>
+    <color name="Panel">FF141312</color>
+
+    <color name="Box2">FFA7A7A7</color>
+    <color name="BoxNotification">CCA7A7A7</color>
+    <color name="BoxWidget">FFA7A7A7</color>
+    <color name="BoxHomerow">80A7A7A7</color>
+    <color name="BoxBorder">FF404040</color>
+    <color name="BoxBorderWidget">B3141414</color>
+    <color name="BoxShadow">FF040404</color>
+    <color name="DialogShadow">FF020202</color>
+
+    <color name="UnWatchedIcons">E600BCD4</color>
+
+    <color name="ProgressBarCacheColor">FFA0A0A0</color>
+</colors>

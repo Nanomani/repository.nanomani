@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <!-- =========================================== -->
+    <!--         DEFAULT  / SELECTING PICTURE        -->
+    <!-- =========================================== -->
+
+    <include name="Def_FileBrowser_Default">
+
+        <!-- =========================================== -->
+        <!--                DEFAULT                      -->
+        <!-- =========================================== -->
+
+        <control type="group">
+            <visible>Control.IsVisible(450)</visible>
+
+            <include content="Def_Dialog_Background">
+                <param name="height" value="882" />
+                <param name="width" value="1320" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="" />
+                <param name="label_id" value="411" />
+                <param name="icon" value="files" />
+            </include>
+
+            <!-- LIST -->
+
+            <control type="list" id="450">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>16</left>
+                <width>926</width>
+                <height>690</height>
+
+                <onup>450</onup>
+                <ondown>450</ondown>
+                <onleft>9001</onleft>
+                <onright>1724</onright>
+
+                <pagecontrol>1724</pagecontrol>
+
+                <itemlayout height="98">
+                    <control type="group">
+                        <top>3.3</top>
+                        <left>3.3</left>
+
+                        <!-- ICON -->
+
+                        <include content="Def_View_List_Icon_Info">
+                            <param name="colordiffuse_icon_black" value="PanelWhite100" />
+                            <param name="colordiffuse_background_icon_black" value="Black12" />
+                            <param name="texture_icon_black" value="$VAR[Image_FileBrowser_Icon_Black]" />
+                            <param name="visible_icon" value="!String.StartsWith(ListItem.Icon,Default)" />
+                            <param name="visible_icon_black" value="String.StartsWith(ListItem.Icon,Default)" />
+                        </include>
+
+                        <control type="label">
+                            <left>120</left>
+                            <top>-5</top>
+                            <width max="780">auto</width>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>InfoNetflix</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <top>28</top>
+                            <left>120</left>
+                            <width max="780">auto</width>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <align>left</align>
+                            <font>Small24</font>
+                            <textcolor>Dark2</textcolor>
+                            <selectedcolor>Dark2</selectedcolor>
+                            <label>$VAR[label_FileBrowser_Type]</label>
+                        </control>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="98">
+                    <control type="group">
+                        <visible>Control.HasFocus(450)</visible>
+
+                        <!-- ITEM FOCUS -->
+
+                        <include content="Def_Layout_Item_Focus"><param name="condition_scroll_anim" value="true" /></include>
+
+                        <control type="group">
+                            <top>3.3</top>
+                            <left>3.3</left>
+
+                            <!-- ICON -->
+
+                            <include content="Def_View_List_Icon_Info">
+                                <param name="colordiffuse_icon_black" value="Selected" />
+                                <param name="colordiffuse_background_icon_black" value="Dark3" />
+                                <param name="texture_icon_black" value="$VAR[Image_FileBrowser_Icon_Black]" />
+                                <param name="visible_icon" value="!String.StartsWith(ListItem.Icon,Default)" />
+                                <param name="visible_icon_black" value="String.StartsWith(ListItem.Icon,Default)" />
+                            </include>
+
+                            <control type="label">
+                                <left>120</left>
+                                <top>-5</top>
+                                <width max="780">auto</width>
+                                <aligny>center</aligny>
+                                <height>64</height>
+                                <font>InfoNetflix</font>
+                                <textcolor>Selected</textcolor>
+                                <selectedcolor>Selected</selectedcolor>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                            <control type="label">
+                                <top>28</top>
+                                <left>120</left>
+                                <width max="780">auto</width>
+                                <aligny>center</aligny>
+                                <height>64</height>
+                                <align>left</align>
+                                <font>Small24</font>
+                                <textcolor>Selected</textcolor>
+                                <selectedcolor>Selected</selectedcolor>
+                                <label>$VAR[label_FileBrowser_Type]</label>
+                            </control>
+                        </control>
+                    </control>
+                    <control type="group">
+                        <visible>!Control.HasFocus(450)</visible>
+
+                        <control type="group">
+                            <top>3.3</top>
+                            <left>3.3</left>
+
+                            <!-- ICON -->
+
+                            <include content="Def_View_List_Icon_Info">
+                                <param name="colordiffuse_icon_black" value="PanelWhite100" />
+                                <param name="texture_icon_black" value="$VAR[Image_FileBrowser_Icon_Black]" />
+                                <param name="visible_icon" value="!String.StartsWith(ListItem.Icon,Default)" />
+                                <param name="visible_icon_black" value="String.StartsWith(ListItem.Icon,Default)" />
+                            </include>
+
+                            <control type="label">
+                                <left>120</left>
+                                <top>-5</top>
+                                <width max="780">auto</width>
+                                <aligny>center</aligny>
+                                <height>64</height>
+                                <font>InfoNetflix</font>
+                                <textcolor>PanelWhite100</textcolor>
+                                <selectedcolor>PanelWhite100</selectedcolor>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                            <control type="label">
+                                <top>28</top>
+                                <left>120</left>
+                                <width max="780">auto</width>
+                                <aligny>center</aligny>
+                                <height>64</height>
+                                <align>left</align>
+                                <font>Small24</font>
+                                <textcolor>Dark2</textcolor>
+                                <selectedcolor>Dark2</selectedcolor>
+                                <label>$VAR[label_FileBrowser_Type]</label>
+                            </control>
+                        </control>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <height>686</height>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1724) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1724" />
+                <param name="onleft" value="450" />
+                <param name="onright" value="9001" />
+                <param name="height" value="686" />
+                <param name="centerright" value="360" />
+            </include>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+
+                <onleft>1724</onleft>
+                <onright>450</onright>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="413" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="414" />
+                    <param name="label" value="$LOCALIZE[222]" />
+                </include>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="415" />
+                    <param name="label" value="$LOCALIZE[119]" />
+                    <param name="visible" value="Control.IsEnabled(415)" />
+                </include>
+
+                <include content="Def_Dialog_Radio_Button_Action">
+                    <param name="id" value="416" />
+                    <param name="label" value="$LOCALIZE[749]" />
+                    <param name="visible" value="Control.IsEnabled(416)" />
+                </include>
+            </control>
+
+            <!-- PICTURE ON RIGHT -->
+
+            <control type="image">
+                <description>Large Icon Image</description>
+                <right>30</right>
+                <top>357</top>
+                <width>300</width>
+                <height>450</height>
+                <texture fallback="DefaultAddonNone.png">$INFO[Container(450).ListItem.Icon]</texture>
+                <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                <visible>!String.Contains(Control.GetLabel(416),*) + !String.StartsWith(ListItem.Icon,Default)</visible>
+            </control>
+            <control type="image">
+                <description>Large Icon Image</description>
+                <right>30</right>
+                <top>357</top>
+                <width>300</width>
+                <height>450</height>
+                <texture fallback="DefaultAddonNone.png" flipx="true">$INFO[Container(450).ListItem.Icon]</texture>
+                <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                <visible>String.Contains(Control.GetLabel(416),*) + !String.StartsWith(ListItem.Icon,Default)</visible>
+            </control>
+            <control type="image">
+                <description>Large Icon Image</description>
+                <right>30</right>
+                <top>357</top>
+                <width>300</width>
+                <height>450</height>
+                <texture fallback="DefaultAddonNone.png" colordiffuse="Dark2">$INFO[Container(450).ListItem.Icon]</texture>
+                <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                <visible>!String.Contains(Control.GetLabel(416),*) + String.StartsWith(ListItem.Icon,Default)</visible>
+            </control>
+            <control type="image">
+                <description>Large Icon Image</description>
+                <right>30</right>
+                <top>357</top>
+                <width>300</width>
+                <height>450</height>
+                <texture fallback="DefaultAddonNone.png" flipx="true" colordiffuse="Dark2">$INFO[Container(450).ListItem.Icon]</texture>
+                <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                <visible>String.Contains(Control.GetLabel(416),*) + String.StartsWith(ListItem.Icon,Default)</visible>
+            </control>
+
+            <!-- PATH ITEM -->
+
+            <control type="label" id="412">
+                <left>30</left>
+                <width>1150</width>
+                <scroll>true</scroll>
+                <scrollspeed>40</scrollspeed>
+                <font>Tiny</font>
+                <height>44</height>
+                <bottom>17</bottom>
+                <align>left</align>
+                <textcolor>Black70</textcolor>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+
+        <!-- =========================================== -->
+        <!--             SELECTING PICTURE               -->
+        <!-- =========================================== -->
+
+        <control type="group">
+            <visible>Control.IsVisible(451)</visible>
+
+            <include content="Def_Dialog_Background">
+                <param name="height" value="882" />
+                <param name="width" value="1605" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$INFO[Control.GetLabel(411)]" />
+                <param name="label_id" value="9411" />
+                <param name="icon" value="pictures" />
+            </include>
+
+            <control type="label" id="412">
+                <description>Path</description>
+                <bottom>10</bottom>
+                <height>84</height>
+                <aligny>center</aligny>
+                <left>30</left>
+                <width>750</width>
+                <haspath>true</haspath>
+                <font>Tiny</font>
+                <textcolor>Black70</textcolor>
+            </control>
+
+            <control type="panel" id="451">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <left>30</left>
+                <top>112</top>
+                <width>1200</width>
+                <height>680</height>
+
+                <onup>451</onup>
+                <ondown>451</ondown>
+                <onleft>9001</onleft>
+                <onright>1726</onright>
+
+                <pagecontrol>1726</pagecontrol>
+
+                <itemlayout height="340" width="299.33">
+                    <control type="group">
+                        <height>280</height>
+                        <width>280</width>
+                        <include content="Layout_Widget_Square">
+                            <param name="colordiffuse" value="Fallback" />
+                            <param name="texture_diffuse" value="square_w260_h260" />
+                            <param name="id" value="451" />
+                            <param name="height" value="280" />
+                            <param name="image_height" value="280" />
+                            <param name="distance" value="10" />
+                            <param name="aspectratio" value="keep" />
+                        </include>
+                    </control>
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>20</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="340" width="299.33">
+                    <control type="group">
+                        <height>280</height>
+                        <width>280</width>
+                        <include content="Layout_Widget_Square_Focus">
+                            <param name="colordiffuse" value="Fallback" />
+                            <param name="texture_diffuse" value="square_w260_h260" />
+                            <param name="id" value="451" />
+                            <param name="height" value="280" />
+                            <param name="image_height" value="280" />
+                            <param name="distance" value="10" />
+                            <param name="aspectratio" value="keep" />
+                            <param name="glow_height" value="280" />
+                            <param name="glow_top" value="0" />
+                        </include>
+                    </control>
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>20</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1726" />
+                <param name="onleft" value="451" />
+                <param name="onright" value="9001" />
+                <param name="centerright" value="360" />
+            </include>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <height>687</height>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1726) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>306</height>
+
+                <onleft>1726</onleft>
+                <onright>451</onright>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="9413" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                    <param name="visible" value="Control.IsEnabled(413)" />
+                    <param name="onclick1" value="SendClick(413)" />
+                </include>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="9414" />
+                    <param name="label" value="$LOCALIZE[222]" />
+                    <param name="visible" value="Control.IsEnabled(414)" />
+                    <param name="onclick1" value="SendClick(414)" />
+                </include>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="9415" />
+                    <param name="label" value="$LOCALIZE[119]" />
+                    <param name="visible" value="Control.IsEnabled(415)" />
+                    <param name="onclick1" value="SendClick(415)" />
+                </include>
+
+                <include content="Def_Dialog_Radio_Button_Action">
+                    <param name="id" value="9416" />
+                    <param name="label" value="$LOCALIZE[749]" />
+                    <param name="visible" value="Control.IsEnabled(416)" />
+                    <param name="onclick1" value="SendClick(416)" />
+                </include>
+            </control>
+
+            <!-- PICTURE ON RIGHT -->
+
+            <control type="group">
+                <top>357</top>
+                <right>30</right>
+                <width>300</width>
+                <height>450</height>
+
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png">$INFO[Container(451).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>!String.Contains(Control.GetLabel(416),*) + !String.StartsWith(ListItem.Icon,Default)</visible>
+                </control>
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png" flipx="true">$INFO[Container(451).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>String.Contains(Control.GetLabel(416),*) + !String.StartsWith(ListItem.Icon,Default)</visible>
+                </control>
+
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png" colordiffuse="PanelWhite100">$INFO[Container(451).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>!String.Contains(Control.GetLabel(416),*) + String.StartsWith(ListItem.Icon,Default)</visible>
+                </control>
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png" flipx="true" colordiffuse="PanelWhite100">$INFO[Container(451).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>String.Contains(Control.GetLabel(416),*) + String.StartsWith(ListItem.Icon,Default)</visible>
+                </control>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </include>
+
+    <!-- =========================================== -->
+    <!--          SKINSHORTCUTS - ICON               -->
+    <!-- =========================================== -->
+
+    <include name="Def_FileBrowser_Skinshortcuts_Icon">
+        <control type="group">
+            <!-- <visible>!String.IsEmpty(Window(Home).Property(SetIcon))</visible> -->
+
+            <include content="Def_Dialog_Background">
+                <param name="height" value="882" />
+                <param name="width" value="1412" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="choose icon" />
+                <param name="label_id" value="1" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="panel" id="450">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>-10</left>
+                <width>1060</width>
+                <height>696</height>
+
+                <onup>450</onup>
+                <ondown>450</ondown>
+                <onleft>9001</onleft>
+                <onright>1726</onright>
+                <onback>Dialog.Close(filebrowser)</onback>
+
+                <pagecontrol>1726</pagecontrol>
+
+                <itemlayout height="174" width="200">
+                    <control type="image">
+                        <left>40</left>
+                        <width>186</width>
+                        <height>160</height>
+                        <texture colordiffuse="Black12" border="12">$VAR[texture_box12]</texture>
+                    </control>
+                    <control type="image">
+                        <left>78</left>
+                        <top>5</top>
+                        <width>110</width>
+                        <height>110</height>
+                        <aspectratio scalediffuse="false">keep</aspectratio>
+                        <texture fallback="DefaultFolderBack.png" colordiffuse="PanelWhite70">$INFO[ListItem.Icon]</texture>
+                    </control>
+                    <control type="label">
+                        <left>45</left>
+                        <top>48</top>
+                        <align>center</align>
+                        <width>176</width>
+                        <height>145</height>
+                        <font>Tiny</font>
+                        <textcolor>PanelWhite100</textcolor>
+                        <selectedcolor>PanelWhite100</selectedcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="174" width="200">
+                    <control type="group">
+                        <visible>Control.HasFocus(450)</visible>
+                        <control type="image">
+                            <left>40</left>
+                            <width>186</width>
+                            <height>160</height>
+                            <include>Texture_Layout_Item_Focus</include>
+                            <include condition="true">Animation_View_List_Focus_Scroll</include>
+                        </control>
+                        <control type="image">
+                            <left>78</left>
+                            <top>5</top>
+                            <width>110</width>
+                            <height>110</height>
+                            <aspectratio scalediffuse="false">keep</aspectratio>
+                            <texture fallback="DefaultFolderBack.png" colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
+                        </control>
+                        <control type="label">
+                            <left>45</left>
+                            <top>48</top>
+                            <align>center</align>
+                            <width>176</width>
+                            <height>145</height>
+                            <font>Tiny</font>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                    </control>
+
+                    <control type="group">
+                        <visible>!Control.HasFocus(450)</visible>
+                        <control type="image">
+                            <left>68</left>
+                            <align>center</align>
+                            <top>0</top>
+                            <width>110</width>
+                            <height>110</height>
+                            <aspectratio scalediffuse="false">keep</aspectratio>
+                            <texture fallback="DefaultFolderBack.png" colordiffuse="PanelWhite100">$INFO[ListItem.Icon]</texture>
+                        </control>
+                        <control type="label">
+                            <left>45</left>
+                            <top>48</top>
+                            <align>center</align>
+                            <width>156</width>
+                            <height>135</height>
+                            <font>Tiny</font>
+                            <textcolor>PanelWhite100</textcolor>
+                            <selectedcolor>PanelWhite100</selectedcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1726" />
+                <param name="onleft" value="450" />
+                <param name="onright" value="9001" />
+                <param name="height" value="682" />
+                <param name="centerright" value="360" />
+            </include>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>360</right>
+                <top>112</top>
+                <height>687</height>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1726) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <top>112</top>
+                <right>30</right>
+                <width>300</width>
+                <height>306</height>
+
+                <onleft>1726</onleft>
+                <onright>450</onright>
+
+                <itemgap>14</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <!-- CLOSE -->
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="5" />
+                    <param name="label" value="15067" />
+                    <param name="onclick1" value="Dialog.Close(filebrowser)" />
+                </include>
+
+                <!-- OK -->
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="9413" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                    <param name="visible" value="Control.IsEnabled(413)" />
+                    <param name="onclick1" value="SendClick(413)" />
+                </include>
+
+                <!-- CANCEL -->
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="9414" />
+                    <param name="label" value="$LOCALIZE[222]" />
+                    <param name="visible" value="Control.IsEnabled(414)" />
+                    <param name="onclick1" value="SendClick(414)" />
+                </include>
+            </control>
+
+            <!-- PICTURE ON RIGHT -->
+
+            <control type="group">
+                <top>357</top>
+                <right>30</right>
+                <width>300</width>
+                <height>450</height>
+
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png">$INFO[Container(450).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>!String.StartsWith(ListItem.Icon,Default) + !String.IsEqual(Container(450).ListItem.Path,special://skin/extras/icons/)</visible>
+                </control>
+                <control type="image">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <texture fallback="DefaultAddonNone.png" colordiffuse="PanelWhite100">$INFO[Container(450).ListItem.Icon]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>String.StartsWith(ListItem.Icon,Default) | String.IsEqual(Container(450).ListItem.Path,special://skin/extras/icons/)</visible>
+                </control>
+            </control>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </include>
+</includes>

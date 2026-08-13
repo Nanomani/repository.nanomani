@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1141">
+    <visible>$EXP[Extended_Now_Playing_Helper_AutoShow]</visible>
+
+    <!-- SHOW NOW PLAYING + CONTROLS HIDDEN -->
+
+    <onload condition="!$EXP[Has_Home_Menu_Auto_Slide_Out_Animation] + Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">SetFocus(300)</onload>
+    <onload condition="$EXP[Has_Home_Menu_Auto_Slide_Out_Animation] + Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">SetFocus(2011)</onload>
+
+    <!-- SHOW NOW PLAYING + CONTROLS VISIBLE -->
+
+    <onload condition="!Skin.HasSetting(hide.home.nowplaying.extended.osd.control.button)">SetFocus(777)</onload>
+
+    <!-- CLEAR NOW PLAYING PROPERTY -->
+
+    <onload>ClearProperty(nowplaying.auto.show.timer,Home)</onload>
+
+    <controls />
+</window>

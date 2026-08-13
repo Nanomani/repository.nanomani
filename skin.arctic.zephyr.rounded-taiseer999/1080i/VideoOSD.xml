@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <include condition="!Player.PauseEnabled">Def_OSD_FocusStop</include>
+    <include condition="Player.PauseEnabled">Def_OSD_FocusPause</include>
+
+    <onload>ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</onload>
+    <onload>ClearProperty(OSDVideo_DIALOG_VIDEO_INFO,Home)</onload>
+    <onload>ClearProperty(OSDVideo_Show_AT_START_INFO,Home)</onload>
+
+    <onunload>ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</onunload>
+    <onunload>ClearProperty(OSDVideo_Show_INFO,Home)</onunload>
+    <onunload>ClearProperty(OSDVideo_Show_PLOT,Home)</onunload>
+    <onunload>ClearProperty(OSDVideo_Show_LiveTV_PLOT,Home)</onunload>
+    <onunload>ClearProperty(OSDVideo_Slider_Is_Focus,Home)</onunload>
+
+    <onunload>ClearProperty(OSDVideo_Show_SCROLLBAR_FOCUS_PLOT,Home)</onunload>
+
+    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID) + !Integer.IsEqual(Window(Home).Property(wikipedia),1)">PlayerControl(Play)</onload>
+
+    <onunload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + Player.Paused + !Integer.IsEqual(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO),1) + !Integer.IsEqual(Window(Home).Property(wikipedia),1)">PlayerControl(Play)</onunload>
+
+    <controls>
+        <!-- OSD - BUTTONS -->
+
+        <include>OSD_Video</include>
+
+        <!-- PLOT - VIDEO - WITH VIDEO OSD - MANUAL -->
+
+        <include content="Object_OSD_Player_Plot">
+            <param name="visible" value="[!String.IsEmpty(Window(Home).Property(OSDVideo_Show_PLOT)) + !Window.IsVisible(DialogFullScreenInfo.xml) + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO))]" />
+            <param name="onleft" value="SetFocus(556)" />
+            <param name="onright" value="SetFocus(556)" />
+            <param name="onback" value="SetFocus(556)" />
+            <param name="left" value="580" />
+            <param name="scroll_centerright" value="1240" />
+            <param name="scrollid" value="9805" />
+        </include>
+
+        <control type="button" id="556">
+            <include>Def_Hidden_Button</include>
+            <onfocus>ClearProperty(OSDVideo_Show_PLOT,Home)</onfocus>
+            <onfocus>ClearProperty(OSDVideo_Show_INFO,Home)</onfocus>
+            <onfocus>SetFocus(14)</onfocus>
+        </control>
+
+        <!-- FROM SLIDER VIDEO - IF NOT LIVE TV -->
+
+        <control type="button" id="557">
+            <include>Def_Hidden_Button</include>
+            <onfocus>SetProperty(OSDVideo_Show_INFO,1,Home)</onfocus>
+            <onfocus>SetProperty(OSDVideo_Show_PLOT,1,Home)</onfocus>
+
+            <onfocus condition="Control.IsVisible(9805)">AlarmClock(delay_focus_scrollbar,SetFocus(9805),00:01,silent)</onfocus>
+            <!-- <onup>SetFocus(9805)</onup> -->
+
+            <onleft>ClearProperty(OSDVideo_Show_INFO,Home)</onleft>
+            <onleft>ClearProperty(OSDVideo_Show_PLOT,Home)</onleft>
+            <onleft>CancelAlarm(delay_focus_scrollbar,true)</onleft>
+            <onleft condition="Player.ShowInfo">Action(Info)</onleft>
+            <onleft>SetFocus(14)</onleft>
+
+            <onright>ClearProperty(OSDVideo_Show_INFO,Home)</onright>
+            <onright>ClearProperty(OSDVideo_Show_PLOT,Home)</onright>
+            <onright>CancelAlarm(delay_focus_scrollbar,true)</onright>
+            <onright condition="Player.ShowInfo">Action(Info)</onright>
+            <onright>SetFocus(14)</onright>
+
+            <ondown>ClearProperty(OSDVideo_Show_INFO,Home)</ondown>
+            <ondown>ClearProperty(OSDVideo_Show_PLOT,Home)</ondown>
+            <ondown>CancelAlarm(delay_focus_scrollbar,true)</ondown>
+            <ondown condition="Player.ShowInfo">Action(Info)</ondown>
+            <ondown>8207</ondown>
+        </control>
+
+        <!-- FROM SLIDER VIDEO - LIVE TV -->
+
+        <control type="button" id="559">
+            <include>Def_Hidden_Button</include>
+            <onfocus>SetProperty(OSDVideo_Show_INFO,1,Home)</onfocus>
+            <onfocus>SetProperty(OSDVideo_Show_LiveTV_PLOT,1,Home)</onfocus>
+            <onfocus condition="!Player.ShowInfo">Action(Info)</onfocus>
+
+            <onleft>ClearProperty(OSDVideo_Show_INFO,Home)</onleft>
+            <onleft>ClearProperty(OSDVideo_Show_LiveTV_PLOT,Home)</onleft>
+            <onleft condition="Player.ShowInfo">Action(Info)</onleft>
+            <onleft>SetFocus(14)</onleft>
+
+            <onright>ClearProperty(OSDVideo_Show_INFO,Home)</onright>
+            <onright>ClearProperty(OSDVideo_Show_LiveTV_PLOT,Home)</onright>
+            <onright condition="Player.ShowInfo">Action(Info)</onright>
+            <onright>SetFocus(14)</onright>
+
+            <ondown>ClearProperty(OSDVideo_Show_INFO,Home)</ondown>
+            <ondown>ClearProperty(OSDVideo_Show_LiveTV_PLOT,Home)</ondown>
+            <ondown condition="Player.ShowInfo">Action(Info)</ondown>
+            <ondown>8207</ondown>
+
+            <onback condition="Player.ShowInfo">Action(Info)</onback>
+        </control>
+
+        <!-- SLIDER VIDEO  -->
+
+        <control type="button" id="8207">
+            <include>Def_Hidden_Button</include>
+            <onfocus>SetProperty(OSDVideo_Slider_Is_Focus,1,Home)</onfocus>
+            <onup condition="!VideoPlayer.Content(livetv)">SetFocus(557)</onup>
+            <onup condition="VideoPlayer.Content(livetv)">SetFocus(559)</onup>
+            <onup>ClearProperty(OSDVideo_Slider_Is_Focus,Home)</onup>
+            <ondown>SetFocus(14)</ondown>
+            <ondown condition="VideoPlayer.Content(livetv) + Player.ShowInfo">Action(Info)</ondown>
+            <ondown>ClearProperty(OSDVideo_Slider_Is_Focus,Home)</ondown>
+            <onleft>StepBack</onleft>
+            <onright condition="!Player.Paused">StepForward</onright>
+            <onright condition="Player.Paused">PlayerControl(FrameAdvance(1))</onright>
+            <onclick condition="!VideoPlayer.Content(livetv)">ClearProperty(OSDVideo_Slider_Is_Focus,Home)</onclick>
+            <onclick condition="!VideoPlayer.Content(livetv)">ActivateWindow(125)</onclick>
+        </control>
+
+        <control type="group" id="600">
+            <visible>Control.HasFocus(8207) + !Window.IsVisible(VideoOSDBookmarks.xml)</visible>
+            <left>130</left>
+            <right>130</right>
+            <bottom>184</bottom>
+
+            <control type="slider">
+                <visible>!VideoPlayer.Content(LiveTV)</visible>
+                <animation effect="fade" start="100" end="0" condition="Player.Seeking" reversible="false" delay="300" time="0">Conditional</animation>
+                <animation effect="fade" start="0" end="100" condition="!Player.Seeking" reversible="false" time="0">Conditional</animation>
+                <width>100%</width>
+                <bottom>-18</bottom>
+                <height>64</height>
+                <info>Player.Progress</info>
+                <action>seek</action>
+                <texturesliderbar colordiffuse="$VAR[Color_OSD_Progress_Bar_Background]">progress/slider_bg.png</texturesliderbar>
+                <textureslidernib colordiffuse="FFEDEDED">progress/slider_nib.png</textureslidernib>
+                <textureslidernibfocus />
+            </control>
+            <control type="slider">
+                <visible>VideoPlayer.Content(LiveTV)</visible>
+                <animation effect="fade" start="100" end="0" condition="Player.Seeking" reversible="false" delay="300" time="0">Conditional</animation>
+                <animation effect="fade" start="0" end="100" condition="!Player.Seeking" reversible="false" time="0">Conditional</animation>
+                <width>100%</width>
+                <bottom>-18</bottom>
+                <height>64</height>
+                <info>PVR.TimeshiftProgressPlayPos</info>
+                <action>pvr.seek</action>
+                <texturesliderbar colordiffuse="$VAR[Color_OSD_Progress_Bar_Background]">progress/slider_bg.png</texturesliderbar>
+                <textureslidernib colordiffuse="FFEDEDED">progress/slider_nib.png</textureslidernib>
+                <textureslidernibfocus />
+            </control>
+        </control>
+    </controls>
+</window>

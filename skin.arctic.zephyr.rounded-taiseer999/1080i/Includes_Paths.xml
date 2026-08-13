@@ -1,0 +1,1022 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+<!--            Sets                                                -->
+<!--            ===========================================         -->
+<!--            9550    SETS (SET TYPE)                             -->
+<!--                                                                -->
+<!--            Cast                                                -->
+<!--            ===========================================         -->
+<!--            50      Local                                       -->
+<!--            9550    On Line                                     -->
+<!--                                                                -->
+<!--            tvshow                                              -->
+<!--            ===========================================         -->
+<!--            9579    SEASONS                                     -->
+<!--            9520    CREATOR                                     -->
+<!--                                                                -->
+<!--            Movie / tv show                                     -->
+<!--            ===========================================         -->
+<!--                                                                -->
+<!--            9557    PICTURE     CREW                            -->
+<!--            9506    DIRECTOR                                    -->
+<!--            9556    WRITER                                      -->
+<!--            9514    YEAR                                        -->
+<!--            9515    SET (only movie)                            -->
+<!--            9518    SIMILAR                                     -->
+<!--            9517    RECOMENDATION                               -->
+<!--            9503    STUDIO                                      -->
+<!--                                                                -->
+<!--            Person                                              -->
+<!--            ===========================================         -->
+<!--                                                                -->
+<!--            9554    PICTURE     PERSON                          -->
+<!--            9560    DIRECTOR    MOVIES / TVSHOWS                -->
+<!--            9552    MOVIES      LIST BY CAST                    -->
+<!--            9553    TVSHOWS     LIST BY CAST                    -->
+<!--            9558    MOVIES      LIST BY MEMBER CREW             -->
+<!--            9559    TVSHOWS     LIST BY MEMBER CREW             -->
+<!--                                                                -->
+<!--            commun                                              -->
+<!--            ===========================================         -->
+<!--            9504    YOUTUBE                                     -->
+
+    <!-- =================================== -->
+    <!--       SEARCH - INFO DIALOG          -->
+    <!-- =================================== -->
+
+    <!-- OSD - MUSIC - info dialog - search - currrently playing item -->
+
+    <variable name="Def_Dialog_Info_Currently_Playing_Item_MusicOSD">
+
+        <!-- SEARCH SONG -->
+
+        <value condition="Player.HasAudio + !String.IsEmpty(MusicPlayer.DBID)">musicdb://songs/?songid=$INFO[MusicPlayer.DBID]</value>
+    </variable>
+
+    <!-- OSD - VIDEO - info dialog - search - currrently playing item -->
+
+    <variable name="Def_Dialog_Info_Currently_Playing_Item_VideoOSD">
+
+        <!-- search episode -->
+
+        <value condition="!String.IsEmpty(VideoPlayer.TvShowTitle)">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[VideoPlayer.DBID],tmdb_type=episode,call_auto=1190)</value>
+
+        <!-- search movie -->
+
+        <value condition="String.IsEmpty(VideoPlayer.TvShowTitle)">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[VideoPlayer.DBID],tmdb_type=movie,call_auto=1190)</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--        INFO DIALOG - YOUTUBE        -->
+    <!-- =================================== -->
+
+    <variable name="Path_Youtube_Query">
+        <value condition="[String.IsEqual(ListItem.DBType,set) | ListItem.IsCollection] + !String.IsEmpty(ListItem.Set)">$INFO[ListItem.Set]</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Title)">$INFO[Window(Home).Property(Encoded.ListItem.Title)]$INFO[ListItem.Year, ,] Movie</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Title)">$INFO[Window(Home).Property(Encoded.ListItem.Title)]$INFO[ListItem.Year, ,]</value>
+        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.TVShowTitle)">$INFO[Window(Home).Property(Encoded.ListItem.TVShowTitle)]$INFO[ListItem.Season, Season ,]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Title)">$INFO[Window(Home).Property(Encoded.ListItem.TVShowTitle),, ]$INFO[Window(Home).Property(Encoded.ListItem.Title)]</value>
+        <value condition="[String.IsEqual(ListItem.DBType,actor) | String.IsEqual(ListItem.Property(tmdb_type),person)] + !String.IsEmpty(ListItem.Label)">$INFO[ListItem.Label]</value>
+        <value condition="Window.IsVisible(script-akl-romdetails.xml) + !String.IsEmpty(Container(19801).ListItem.Label)">$INFO[Container(19801).ListItem.Label]</value>
+    </variable>
+
+    <variable name="Def_Content_Youtube_Video">
+        <!-- <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=videos&amp;nextpage=false&amp;cacheonly=true&amp;length=1&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]</value> -->
+
+        <!-- <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=videos&amp;nextpage=false&amp;cacheonly=true&amp;length=1&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]</value> -->
+
+
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + !String.IsEmpty(Window(Home).Property(SetYoutubeTermToSearch))">$INFO[Window(Home).Property(SetYoutubeTermToSearch),plugin://plugin.video.youtube/kodion/search/query/?q=,&amp;search_type=notvalid&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true]</value>
+    </variable>
+
+    <variable name="Def_Content_Youtube_Music">
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(artists) + !String.IsEmpty(ListItem.AlbumArtist)">plugin://plugin.video.youtube/kodion/search/query/?q==$INFO[ListItem.AlbumArtist]&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(artists) + !String.IsEmpty(ListItem.Artist)">plugin://plugin.video.youtube/kodion/search/query/?q==$INFO[ListItem.Artist]&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(albums) + !String.IsEmpty(ListItem.Album)">plugin://plugin.video.youtube/kodion/search/query/?q==$INFO[ListItem.Artist] $INFO[ListItem.Album] Album&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(SetYoutubeSearch)) + Container.Content(songs) + !String.IsEmpty(ListItem.Title)">plugin://plugin.video.youtube/kodion/search/query/?q==$INFO[ListItem.Artist] $INFO[ListItem.Title]&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--        INFO DIALOG - FANART         -->
+    <!-- =================================== -->
+
+    <variable name="Image_Content_Fanart_TMDb">
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(Item_Title))">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;query=$INFO[Window(Home).Property(Item_Title)]&amp;year=$INFO[Window(Home).Property(Item_Year)]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=fanart&amp;tmdb_type=$VAR[Path_Dialog_Info_TMDbType]&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+    </variable>
+
+    <include name="Image_Content_Additional_Fanart">
+        <content>$VAR[Image_Content_Fanart_TMDb]</content>
+    </include>
+
+    <!-- =================================== -->
+    <!--        INFO DIALOG - TRAILER         -->
+    <!-- =================================== -->
+
+    <variable name="PlayMedia_Trailer">
+        <value condition="String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[Window(Home).Property(TMDbHelper.ListItem.Trailer)],False,1)</value>
+        <value>PlayMedia($INFO[ListItem.Trailer],1)</value>
+    </variable>
+
+    <variable name="Path_Trailer">
+        <value condition="String.IsEmpty(ListItem.Trailer)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Trailer)]</value>
+        <value>$INFO[ListItem.Trailer]</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--           WIKIPEDIA                 -->
+    <!-- =================================== -->
+
+    <variable name="Path_Wikipedia_Query">
+        <value condition="!String.IsEmpty(ListItem.Artist)">$INFO[ListItem.Artist]</value>
+        <value condition="!String.IsEmpty(ListItem.TVShowTitle)">$INFO[ListItem.TVShowTitle]</value>
+        <value condition="!String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
+        <!-- <value condition="String.IsEqual(ListItem.Property(tmdb_type),person)">$INFO[ListItem.Title]</value> -->
+        <value>$INFO[ListItem.Label]</value>
+    </variable>
+
+    <variable name="Path_Wikipedia_Language">
+        <value condition="!String.IsEmpty(Skin.String(Value_Wiki_Language))">$INFO[Skin.String(Value_Wiki_Language)]</value>
+        <value>en</value>
+    </variable>
+
+    <variable name="Path_Dialog_Info_Wikipedia">
+        <value condition="Window.IsVisible(DialogVideoInfo.xml)">RunScript(script.wikipedia,wikipedia=$VAR[Path_Wikipedia_Query],tmdb_type=$VAR[Path_Dialog_Info_TMDbType])</value>
+        <value condition="Window.IsVisible(DialogMusicInfo.xml)">RunScript(script.wikipedia,wikipedia=$VAR[Path_Wikipedia_Query])</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--             TMDB TYPE               -->
+    <!-- =================================== -->
+
+    <variable name="Path_Dialog_Info_TMDbType">
+        <value condition="String.IsEqual(ListItem.DBType,tvshow)">tv</value>
+        <value condition="String.IsEqual(ListItem.DBType,season)">tv</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode)">tv</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie)">movie</value>
+        <value condition="String.IsEqual(ListItem.DBType,set)">movie</value>
+        <value condition="String.IsEqual(ListItem.Property(tmdb_type),person)">movie</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--          CONTEXT MENU               -->
+    <!-- =================================== -->
+
+    <variable name="Path_ContextParams_Youtube">
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_album))">$INFO[Window(Home).Property(Encoded.ListItem.Artist)] $INFO[Window(Home).Property(Encoded.ListItem.Album)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_artist))">$INFO[Window(Home).Property(Encoded.ListItem.Artist)]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_tvshowtitle))">$INFO[Window(Home).Property(Encoded.ListItem.Title)]$INFO[Window(Home).Property(TMDbHelper.ListItem.base_year), ,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_title)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)">$INFO[Window(Home).Property(Encoded.ListItem.Title)]$INFO[Window(Home).Property(TMDbHelper.ListItem.base_year), ,] Movie</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_title))">$INFO[Window(Home).Property(Encoded.ListItem.Title)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_label))">$INFO[Window(Home).Property(Encoded.ListItem.Label)]</value>
+    </variable>
+
+    <variable name="Path_ContextParams_Query">
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_album)) + !String.IsEmpty(Window(Home).Property(Encoded.ListItem.AlbumArtist))">$INFO[Window(Home).Property(Encoded.ListItem.AlbumArtist)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_album)) + !String.IsEmpty(Window(Home).Property(Encoded.ListItem.Artist))">$INFO[Window(Home).Property(Encoded.ListItem.Artist)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_artist))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_artist)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_tvshowtitle))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_tvshowtitle)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_title))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_title)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_label))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_label)]</value>
+    </variable>
+
+    <variable name="Path_ContextDirector_Query">
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_director)) + String.Contains(Window(Home).Property(TMDbHelper.ListItem.base_director), / )">$VAR[Path_Director_Name]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_director)) + !String.Contains(Window(Home).Property(TMDbHelper.ListItem.base_director), / )">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_director)]</value>
+        <value>$VAR[Path_Director_Name]</value>
+    </variable>
+
+    <variable name="Path_ContextParams_TMDbType">
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow)">tv</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season)">tv</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode)">tv</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)">movie</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set)">movie</value>
+        <value condition="String.IsEqual(ListItem.Property(tmdb_type),person)">movie</value>
+    </variable>
+
+    <variable name="Path_ContextParams_TMDbID">
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.TMDb_ID)]</value>
+        <value condition="String.IsEqual(ListItem.Property(tmdb_type),person)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
+    </variable>
+
+    <variable name="Path_ContextMenu_Movie_DBID_Detail">
+        <value condition="!Window.IsVisible(Home) + $EXP[Is_ContextMenu_PluginItem] + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.DBID)">plugin://script.skinvariables/?info=get_dbitem_movie_details&amp;dbid=$INFO[ListItem.DBID]</value>
+        <value condition="!Window.IsVisible(Home) + $EXP[Is_ContextMenu_PluginItem] + String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.DBID)">plugin://script.skinvariables/?info=get_dbitem_tvshow_details&amp;dbid=$INFO[ListItem.DBID]</value>
+        <value condition="!Window.IsVisible(Home) + $EXP[Is_ContextMenu_PluginItem] + String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.DBID)">plugin://script.skinvariables/?info=get_dbitem_episode_details&amp;dbid=$INFO[ListItem.DBID]</value>
+
+        <value condition="Window.IsVisible(Home) + $EXP[Is_ContextMenu_PluginItem] + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) + !String.IsEmpty(Window(Home).Property(ListItem_DBID))">plugin://script.skinvariables/?info=get_dbitem_movie_details&amp;dbid=$INFO[Window(Home).Property(ListItem_DBID)]</value>
+        <value condition="Window.IsVisible(Home) + $EXP[Is_ContextMenu_PluginItem] + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) + !String.IsEmpty(Window(Home).Property(ListItem_DBID))">plugin://script.skinvariables/?info=get_dbitem_tvshow_details&amp;dbid=$INFO[Window(Home).Property(ListItem_DBID)]</value>
+        <value condition="Window.IsVisible(Home) + $EXP[Is_ContextMenu_PluginItem] + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) + !String.IsEmpty(Window(Home).Property(ListItem_DBID))">plugin://script.skinvariables/?info=get_dbitem_episode_details&amp;dbid=$INFO[Window(Home).Property(ListItem_DBID)]</value>
+
+        <!-- <value condition="$EXP[Condition_List_Movie_DBID_Detail] + String.IsEqual(ListItem.DBType,season)">plugin://script.skinvariables/?info=get_dbitem_season_details&amp;dbid=$INFO[ListItem.DBID]</value> -->
+    </variable>
+
+    <variable name="Path_ContextParams_Path_Item">
+        <value condition="!String.IsEmpty(Container(44059).ListItem.Property(path)) + $EXP[Condition_ContextMenu_List_Movie_DBID_Detail]">$INFO[Container(44059).ListItem.Property(path)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_path))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_path)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Path))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Path)]</value>
+        <value condition="!String.IsEmpty(ListItem.Path)">$INFO[ListItem.Path]</value>
+    </variable>
+
+    <variable name="Path_ContextParams_Path_Info">
+        <value condition="$EXP[IsPluginJLOM] + String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Property(jlom.tmdb_id))">RunScript(plugin.video.themoviedb.helper,add_tmdb=$INFO[ListItem.UniqueID(tmdb)],tmdb_type=movie,call_auto=1190)</value>
+        <value>Action(Info)</value>
+    </variable>
+
+    <variable name="Path_MusicInfo_ArtistFolder">
+        <value condition="String.IsEmpty(ListItem.DBID)">$ESCINFO[ListItem.FolderPath]</value>
+        <value condition="!String.IsEmpty(ListItem.DBID)">musicdb://artists/$INFO[ListItem.DBID]/?albumartistsonly=true</value>
+    </variable>
+
+<!-- &amp;cacheonly=false -->
+
+    <!-- =================================== -->
+    <!--              TRAKT                   -->
+    <!-- =================================== -->
+
+    <variable name="Path_Dialog_Info_Trakt">
+        <!-- <value condition="!String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[ListItem.Property(tmdb_id)],cache_refresh)</value> -->
+        <!-- <value condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)],$VAR[DB_type],cache_refresh)</value> -->
+
+        <value condition="!String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,sync_trakt,tmdb_id=$INFO[ListItem.Property(tmdb_id)],$VAR[Path_Param_Type],cache_refresh)</value>
+
+        <value condition="String.IsEmpty(ListItem.Property(tmdb_id)) + !String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,sync_trakt,tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)],$VAR[Path_Param_Type],cache_refresh)</value>
+
+        <value condition="!String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,sync_trakt,tmdb_id=$INFO[ListItem.Property(tmdb_id)],$VAR[Path_Param_Type],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode],cache_refresh)</value>
+
+        <value condition="String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,sync_trakt,tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)],$VAR[Path_Param_Type],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode],cache_refresh)</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--               MISC                  -->
+    <!-- =================================== -->
+
+    <variable name="Path_Home_Album_Track_Count">
+        <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,album)">$INFO[ListItem.FolderPath]</value>
+    </variable>
+
+    <variable name="Path_Album_Track_Count">
+        <value condition="ListItem.IsFolder + [Container.Content(albums) | String.IsEqual(ListItem.DBType,album)]">$INFO[ListItem.FolderPath]</value>
+    </variable>
+
+    <variable name="Path_Home_Artist_Album_Count">
+        <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,artist)">$INFO[ListItem.DBID,musicdb://artists/,/]</value>
+    </variable>
+
+    <variable name="Path_Artist_Album_Count">
+        <value condition="ListItem.IsFolder + [Container.Content(artists) | String.IsEqual(ListItem.DBType,artist)]">$INFO[ListItem.DBID,musicdb://artists/,/]</value>
+    </variable>
+
+    <variable name="Path_Home_Group_Channel">
+        <value condition="ListItem.IsFolder + String.IsEqual(ListItem.Path,pvr://channels/tv/)">$INFO[ListItem.FolderPath]</value>
+    </variable>
+
+    <variable name="Path_Set_Count">
+        <value condition="$EXP[Condition_List_Set_Count]">videodb://movies/sets/$INFO[ListItem.DBID]/?setid=$INFO[ListItem.DBID]</value>
+    </variable>
+
+    <!-- ========================== -->
+    <!--  NOT USED FOR MEMORY ONLY  -->
+    <!-- ========================== -->
+
+    <variable name="Path_Movie_DBID_Detail_v1">
+        <value condition="$EXP[Condition_List_Movie_DBID_Detail] + String.IsEqual(ListItem.DBType,movie)">videodb://movies/titles/?xsp={"order":{"direction":"ascending","ignorefolders":0,"method":"sorttitle"},"rules":{"and":[{"field":"title","operator":"is","value":["$INFO[ListItem.Title]"]},{"field":"year","operator":"is","value":["$INFO[ListItem.Year]"]}]},"type":"movies"}</value>
+
+        <value condition="$EXP[Condition_List_Movie_DBID_Detail] + String.IsEqual(ListItem.DBType,tvshow)">videodb://tvshows/titles/?xsp={"order":{"direction":"ascending","ignorefolders":0,"method":"sorttitle"},"rules":{"and":[{"field":"title","operator":"is","value":["$INFO[ListItem.Title]"]},{"field":"year","operator":"is","value":["$INFO[ListItem.Year]"]}]},"type":"tvshows"}</value>
+
+        <value condition="$EXP[Condition_List_Movie_DBID_Detail] + String.IsEqual(ListItem.DBType,episode)">videodb://tvshows/titles/?xsp={"order":{"direction":"ascending","ignorefolders":0,"method":"sorttitle"},"rules":{"and":[{"field":"title","operator":"is","value":["$INFO[ListItem.TVShowtitle]"]},{"field":"year","operator":"is","value":["$INFO[ListItem.Year]"]}]},"type":"tvshows"}</value>
+    </variable>
+
+    <!-- ========================== -->
+    <!-- ========================== -->
+    <!-- ========================== -->
+
+    <variable name="Path_Movie_DBID_Detail">
+        <value condition="$EXP[Condition_List_Movie_DBID_Detail] + String.IsEqual(ListItem.DBType,movie)">plugin://script.skinvariables/?info=get_dbitem_movie_details&amp;dbid=$INFO[ListItem.DBID]</value>
+        <value condition="$EXP[Condition_List_Movie_DBID_Detail] + String.IsEqual(ListItem.DBType,tvshow)">plugin://script.skinvariables/?info=get_dbitem_tvshow_details&amp;dbid=$INFO[ListItem.DBID]</value>
+        <value condition="$EXP[Condition_List_Movie_DBID_Detail] + String.IsEqual(ListItem.DBType,episode)">plugin://script.skinvariables/?info=get_dbitem_episode_details&amp;dbid=$INFO[ListItem.DBID]</value>
+        <!-- <value condition="$EXP[Condition_List_Movie_DBID_Detail] + String.IsEqual(ListItem.DBType,season)">plugin://script.skinvariables/?info=get_dbitem_season_details&amp;dbid=$INFO[ListItem.DBID]</value> -->
+    </variable>
+
+    <variable name="Path_List_Home_Item_Name_In_Folder">
+        <value condition="$EXP[Condition_Home_List_Item_Name_In_Folder]">$INFO[ListItem.FolderPath]</value>
+    </variable>
+
+    <variable name="Path_List_Item_Name_In_Folder">
+        <value condition="$EXP[Condition_List_Num_Item_And_Name_In_Folder]">$INFO[ListItem.FolderPath]</value>
+    </variable>
+
+    <variable name="List_Sort_By">
+        <value condition="String.IsEqual(ListItem.DBType,artist)">year</value>
+        <value condition="String.IsEqual(ListItem.DBType,album)">track</value>
+        <value>label</value>
+    </variable>
+
+    <variable name="List_Sort_Order">
+        <value condition="String.IsEqual(ListItem.DBType,artist)">ascending</value>
+        <value condition="String.IsEqual(ListItem.DBType,album)">ascending</value>
+        <value>ascending</value>
+    </variable>
+
+    <variable name="Path_Up_Next_Episode">
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID)">videodb://inprogresstvshows/$INFO[ListItem.DBID]/-2/?tvshowid=$INFO[ListItem.DBID]</value>
+    </variable>
+
+    <variable name="Def_Content_DB_Video">
+        <value condition="String.IsEqual(Window(1104).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;tmdb_type=movie</value>
+        <value condition="String.IsEqual(Window(1104).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;tmdb_type=movie</value>
+        <value condition="String.IsEqual(Window(1104).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=upcoming&amp;tmdb_type=movie</value>
+        <value>plugin://plugin.video.themoviedb.helper?info=now_playing&amp;tmdb_type=movie</value>
+    </variable>
+
+    <variable name="Def_Content_DB_Episodes">
+        <value condition="String.IsEqual(Window(1105).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;tmdb_type=tv</value>
+        <value condition="String.IsEqual(Window(1105).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;tmdb_type=tv</value>
+        <value condition="String.IsEqual(Window(1105).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=on_the_air&amp;tmdb_type=tv</value>
+        <value>plugin://plugin.video.themoviedb.helper?info=airing_today&amp;tmdb_type=tv</value>
+    </variable>
+
+    <variable name="Path_Param_Type">
+        <value condition="String.IsEqual(ListItem.DBType,movie) | ListItem.IsCollection | String.IsEqual(ListItem.DBType,set)">type=movie</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">type=tv</value>
+        <value condition="String.IsEqual(ListItem.Property(tmdb_type),person)">type=person</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--                MUSIC                -->
+    <!-- =================================== -->
+
+    <variable name="Def_Music_Dialog_Most_Played_Song">
+        <value condition="!String.IsEmpty(Window(Home).Property(Encoded.ListItem.AlbumArtist))">musicdb://songs/?xsp={"order":{"direction":"ascending","ignorefolders":0,"method":"songs"},"rules":{"and":[{"field":"Artist","operator":"is","value":["$INFO[Window(Home).Property(Encoded.ListItem.AlbumArtist)]"]}]},"type":"songs"}</value>
+    </variable>
+
+    <variable name="Def_List_Albums_Year">
+        <value condition="!String.IsEmpty(ListItem.Year)">musicdb://albums/?xsp={"rules":{"and":[{"field":"year","operator":"is","value":["$INFO[ListItem.Year]"]}]},"type":"albums"}</value>
+    </variable>
+
+    <variable name="Def_List_Artist_Albums">
+        <value condition="!String.IsEmpty(Window(Home).Property(Encoded.ListItem.AlbumArtist))">musicdb://albums/?xsp={"rules":{"and":[{"field":"albumartist","operator":"is","value":["$INFO[Window(Home).Property(Encoded.ListItem.AlbumArtist)]"]}]},"type":"albums"}</value>
+    </variable>
+
+    <variable name="Def_List_Artist_Songs">
+        <value condition="!String.IsEmpty(Window(Home).Property(Encoded.ListItem.AlbumArtist))">musicdb://songs/?xsp={"order":{"ignorefolders":0,"method":"songs"},"rules":{"and":[{"field":"AlbumArtist","operator":"is","value":["$INFO[Window(Home).Property(Encoded.ListItem.AlbumArtist)]"]}]},"type":"songs"}</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--              TMDb ID                -->
+    <!-- =================================== -->
+
+    <variable name="Def_TMDb_ID">
+
+        <!-- VIDEO PLAYER -->
+
+        <value condition="VideoPlayer.Content(episodes) + !String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">$INFO[Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID)]</value>
+
+        <value condition="VideoPlayer.Content(movies) + !String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.tmdb_id)) + !String.IsEmpty(Window(Home).Property(OSDVideo_Show_INFO))">$INFO[Window(Home).Property(TMDbHelper.Player.tmdb_id)]</value>
+
+        <!-- MOVIE / TVSHOW / PERSON -->
+
+        <value condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.Property(tmdb_type),person)] + !String.IsEmpty(ListItem.Property(tmdb_id))">$INFO[ListItem.Property(tmdb_id)]</value>
+
+        <!-- SEASON / EPISODE -->
+
+        <value condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(ListItem.Property(tvshow.tmdb_id))">$INFO[ListItem.Property(tvshow.tmdb_id)]</value>
+
+        <!-- DEFAULT -->
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--            VIDEO - BROWSE           -->
+    <!-- =================================== -->
+
+    <variable name="Def_Browse_List_Season_Episode_Set">
+        <value>AlarmClock(call_list_browse,RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"call_path=$INFO[ListItem.FolderPath]"),00:00,silent)</value>
+    </variable>
+
+    <variable name="Def_Home_Browse_List_Season_Episode_Set">
+        <value>AlarmClock(call_list_browse,RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"call_path=$INFO[Window(Home).Property(ListItem_FolderPath)]"),00:00,silent)</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--            VIDEO - INFO             -->
+    <!-- =================================== -->
+
+    <variable name="Def_Open_Info_Video">
+
+        <!-- TMDB HELPER -->
+
+        <value condition="String.IsEmpty(Container.ListItem.DBID) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190$VAR[Path_Info_First_Item],return),00:00,silent)</value>
+
+        <!-- SEASON -->
+
+        <value condition="String.IsEqual(ListItem.DBType,season) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=$INFO[ListItem.FolderPath]),00:00,silent)</value>
+
+        <!-- LOCAL ONLY -->
+
+        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=movie,call_auto=1190$VAR[Path_Info_First_Item],return),00:00,silent)</value>
+
+        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=tv,call_auto=1190$VAR[Path_Info_First_Item],return),00:00,silent)</value>
+
+        <value condition="!String.IsEmpty(Container.ListItem.DBID) + String.IsEqual(ListItem.DBType,episode) + String.IsEmpty(Window(Home).Property(TMDbHelper.IsUpdating))">AlarmClock(Delay_Open_Info,RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.DBID],tmdb_type=episode,call_auto=1190$VAR[Path_Info_First_Item],return),00:00,silent)</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--           ACTORS - INFO             -->
+    <!-- =================================== -->
+
+    <variable name="Path_Actor_On_Info">
+        <value>RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)],call_auto=1190)</value>
+    </variable>
+
+    <variable name="Path_Video_Actor">
+        <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,actor)">$INFO[ListItem.FolderPath]</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--           DIRECTORS - INFO           -->
+    <!-- =================================== -->
+
+    <variable name="Path_Director_Dialog_Info">
+        <value>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],tmdb_type=person,call_auto=1190)</value>
+    </variable>
+
+    <variable name="Path_Director_On_Info">
+        <value>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],tmdb_type=person,call_auto=1190)</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--           CAST - INFO               -->
+    <!-- =================================== -->
+
+    <variable name="Path_Actor_Dialog_Info">
+        <value>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],tmdb_type=person,call_auto=1190$VAR[Path_Info_First_Item],return)</value>
+    </variable>
+
+    <variable name="Path_Actor_Dialog_Info_TMDb">
+        <value>RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Container($PARAM[controlid]).ListItem.Property(tmdb_id)],call_auto=1190$VAR[Path_Info_First_Item],return)</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--          CAST - LIST - TMDB         -->
+    <!-- =================================== -->
+
+    <variable name="Def_List_Cast">
+
+        <!-- DIALOG INFO  -->
+
+        <!-- MOVIE -->
+
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <!-- TV SHOW -->
+
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_AggregateCast]</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_AggregateCast]</value>
+
+        <!-- SEASON -->
+
+        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]&amp;season=$INFO[ListItem.Season]$VAR[Path_Param_Widget_Cache_Only]</value>
+        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]&amp;season=$INFO[ListItem.Season]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <!-- EPISODE -->
+
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]&amp;season=$INFO[ListItem.Season]&amp;episode=$INFO[ListItem.Episode]$VAR[Path_Param_Widget_Cache_Only]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]&amp;season=$INFO[ListItem.Season]&amp;episode=$INFO[ListItem.Episode]$VAR[Path_Param_Widget_Cache_Only]</value>
+
+        <!-- VIDEO PLAYER -->
+
+        <value condition="VideoPlayer.Content(movies) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TMDb_id)) + String.IsEqual(Window(Home).Property(TMDbHelper.Player.Title),VideoPlayer.Title)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_id),&amp;tmdb_id=,]</value>
+
+        <value condition="VideoPlayer.Content(movies) + !String.IsEmpty(VideoPlayer.IMDBNumber) + String.StartsWith(VideoPlayer.IMDBNumber,tt)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie$INFO[VideoPlayer.IMDBNumber,&amp;imdb_id=,]</value>
+
+        <value condition="VideoPlayer.Content(movies)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=movie$INFO[Player.Title,&amp;query=,]$INFO[VideoPlayer.Year,&amp;year=,]</value>
+
+        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID)) + String.IsEqual(Window(Home).Property(TMDbHelper.Player.Title),VideoPlayer.Title)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=tv$INFO[Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID),&amp;tmdb_id=,]$INFO[VideoPlayer.Season,&amp;season=,]$INFO[VideoPlayer.Episode,&amp;episode=,]</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--              PERSON                 -->
+    <!-- =================================== -->
+
+    <!-- PERSON - LIST PICTURES -->
+
+    <variable name="Def_Person_List_Picture">
+        <value>plugin://plugin.video.themoviedb.helper/?info=images&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+    </variable>
+
+    <variable name="Def_Person_Director">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(Window(Home).Property(Director_Person_Query))">plugin://plugin.video.themoviedb.helper/?info=crew_in_both&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director$INFO[Window(Home).Property(Director_Person_Query)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]$VAR[Path_Genre_Exclude]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"director","operator":"is","value":["$INFO[Window(Home).Property(SetDirectorSelected)]"]}]},"type":"movies"}</value>
+    </variable>
+
+    <!-- <variable name="label_genre_documentary"> -->
+        <!-- <value>$LOCALIZE[31484]</value> -->
+    <!-- </variable> -->
+
+    <variable name="Def_Person_List_Movies">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=stars_in_movies&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]$VAR[Path_Genre_Exclude]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + !Skin.HasSetting(filter.video.animation)">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"actor","operator":"is","value":["$INFO[ListItem.Label]"]}]},"type":"movies"}</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + Skin.HasSetting(filter.video.animation) + String.Contains(ListItem.Genre,animation)">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"actor","operator":"is","value":["$INFO[ListItem.Label]"]},{"field":"genre","operator":"is","value":["$LOCALIZE[31480]"]}]},"type":"movies"}</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + Skin.HasSetting(filter.video.animation) + !String.Contains(ListItem.Genre,animation)">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"actor","operator":"is","value":["$INFO[ListItem.Label]"]},{"field":"genre","operator":"isnot","value":["$LOCALIZE[31480]"]}]},"type":"movies"}</value>
+    </variable>
+
+    <variable name="Def_Person_List_TvShows">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=stars_in_tvshows&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]$VAR[Path_Genre_Exclude]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + !Skin.HasSetting(filter.video.animation)">videodb://tvshows/titles/?xsp={"rules":{"and":[{"field":"actor","operator":"is","value":["$INFO[ListItem.Label]"]}]},"type":"tvshows"}</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + Skin.HasSetting(filter.video.animation) + String.Contains(ListItem.Genre,animation)">videodb://tvshows/titles/?xsp={"rules":{"and":[{"field":"actor","operator":"is","value":["$INFO[ListItem.Label]"]},{"field":"genre","operator":"is","value":["$LOCALIZE[31480]"]}]},"type":"tvshows"}</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + Skin.HasSetting(filter.video.animation) + !String.Contains(ListItem.Genre,animation)">videodb://tvshows/titles/?xsp={"rules":{"and":[{"field":"actor","operator":"is","value":["$INFO[ListItem.Label]"]},{"field":"genre","operator":"isnot","value":["$LOCALIZE[31480]"]}]},"type":"tvshows"}</value>
+    </variable>
+
+    <variable name="Def_Person_List_Movies_Member_Crew">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=crew_in_movies&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]</value>
+    </variable>
+
+    <variable name="Def_Person_List_TvShows_Member_Crew">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=crew_in_tvshows&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--          MOVIE / TVSHOW             -->
+    <!-- =================================== -->
+
+    <variable name="Def_List_Crew">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=crew&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]&amp;aggregate=true</value>
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=crew&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]</value>
+    </variable>
+
+    <variable name="Def_List_Director">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Director_Query))">plugin://plugin.video.themoviedb.helper/?info=crew_in_both&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director$INFO[Window(Home).Property(Director_Query)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]$VAR[Path_Genre_Exclude]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"director","operator":"is","value":["$INFO[Window(Home).Property(SetDirectorSelected)]"]}]},"type":"movies"}</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"director","operator":"is","value":["$INFO[Window(Home).Property(SetDirectorSelected)]"]}]},"type":"tvshows"}</value>
+    </variable>
+
+    <variable name="Def_List_Writer">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Writer_Query))">plugin://plugin.video.themoviedb.helper/?info=crew_in_both&amp;tmdb_type=person&amp;filter_key=department&amp;filter_value=Writing$INFO[Window(Home).Property(Writer_Query)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]$VAR[Path_Genre_Exclude]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetWriterSelected))">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"writers","operator":"is","value":["$INFO[Window(Home).Property(SetWriterSelected)]"]}]},"type":"movies"}</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(SetWriterSelected))">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"writers","operator":"is","value":["$INFO[Window(Home).Property(SetWriterSelected)]"]}]},"type":"tvshows"}</value>
+    </variable>
+
+    <variable name="Def_List_Year">
+
+        <!-- tvshow -->
+        <value condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Skin.HasSetting(filter.video.animation)">plugin://plugin.video.themoviedb.helper?info=discover&amp;tmdb_type=tv&amp;first_air_date_year=$INFO[ListItem.Year]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_6]</value>
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + Skin.HasSetting(filter.video.animation) + String.Contains(ListItem.Genre,animation)">plugin://plugin.video.themoviedb.helper?info=discover&amp;tmdb_type=tv&amp;first_air_date_year=$INFO[ListItem.Year]&amp;with_genres=$LOCALIZE[31480]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_6]</value>
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + Skin.HasSetting(filter.video.animation) + !String.Contains(ListItem.Genre,animation)">plugin://plugin.video.themoviedb.helper?info=discover&amp;tmdb_type=tv&amp;first_air_date_year=$INFO[ListItem.Year]&amp;without_genres=$LOCALIZE[31480]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_6]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Skin.HasSetting(filter.video.animation)">videodb://tvshows/titles/?xsp={"rules":{"and":[{"field":"year","operator":"is","value":["$INFO[ListItem.Year]"]}]},"type":"tvshows"}</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + Skin.HasSetting(filter.video.animation) + String.Contains(ListItem.Genre,animation)">videodb://tvshows/titles/?xsp={"rules":{"and":[{"field":"year","operator":"is","value":["$INFO[ListItem.Year]"]},{"field":"genre","operator":"is","value":["$LOCALIZE[31480]"]}]},"type":"tvshows"}</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + Skin.HasSetting(filter.video.animation) + !String.Contains(ListItem.Genre,animation)">videodb://tvshows/titles/?xsp={"rules":{"and":[{"field":"year","operator":"is","value":["$INFO[ListItem.Year]"]},{"field":"genre","operator":"isnot","value":["$LOCALIZE[31480]"]}]},"type":"tvshows"}</value>
+
+
+
+        <!-- MOVIE NOT LOCAL ONLY  - WITHOUT FILTER " ANIMATION" -->
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !Skin.HasSetting(filter.video.animation)">plugin://plugin.video.themoviedb.helper?info=discover&amp;tmdb_type=movie&amp;primary_release_year=$INFO[ListItem.Year]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_6]</value>
+
+        <!-- MOVIE NOT LOCAL ONLY  - WITH FILTER " ANIMATION" + TYPE ANIMATION -->
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + Skin.HasSetting(filter.video.animation) + String.Contains(ListItem.Genre,animation)">plugin://plugin.video.themoviedb.helper?info=discover&amp;tmdb_type=movie&amp;primary_release_year=$INFO[ListItem.Year]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;with_genres=$LOCALIZE[31480]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_6]</value>
+
+        <!-- MOVIE NOT LOCAL ONLY  - WITH FILTER " ANIMATION" + TYPE NO ANIMATION -->
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + Skin.HasSetting(filter.video.animation) + !String.Contains(ListItem.Genre,animation)">plugin://plugin.video.themoviedb.helper?info=discover&amp;tmdb_type=movie&amp;primary_release_year=$INFO[ListItem.Year]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;without_genres=$LOCALIZE[31480]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_6]</value>
+
+        <!-- MOVIE LOCAL ONLY - WITHOUT FILTER " ANIMATION" -->
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !Skin.HasSetting(filter.video.animation)">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"year","operator":"is","value":["$INFO[ListItem.Year]"]}]},"type":"movies"}</value>
+
+        <!-- MOVIE LOCAL ONLY - WITH FILTER " ANIMATION" + TYPE ANIMATION  -->
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + Skin.HasSetting(filter.video.animation) + String.Contains(ListItem.Genre,animation)">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"year","operator":"is","value":["$INFO[listitem.year]"]},{"field":"genre","operator":"is","value":["$LOCALIZE[31480]"]}]},"type":"movies"}</value>
+
+        <!-- MOVIE LOCAL ONLY - WITH FILTER " ANIMATION" + TYPE NO ANIMATION  -->
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + Skin.HasSetting(filter.video.animation) + !String.Contains(ListItem.Genre,animation)">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"year","operator":"is","value":["$INFO[listitem.year]"]},{"field":"genre","operator":"isnot","value":["$LOCALIZE[31480]"]}]},"type":"movies"}</value>
+    </variable>
+
+    <variable name="Def_List_Set">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,set)">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection&amp;query='"$INFO[ListItem.Label]"'$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_3]</value>
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Query))">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection$INFO[Window(Home).Property(Set_Query)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_3]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,set)">$INFO[ListItem.FolderPath]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Encoded.ListItem.Set))">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"set","operator":"is","value":["$INFO[Window(Home).Property(Encoded.ListItem.Set)]"]}]},"type":"movies"}</value>
+    </variable>
+
+    <variable name="Def_List_Similar">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=similar&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_3]</value>
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=similar&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_3]</value>
+    </variable>
+
+    <variable name="Def_List_Recommendation">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=recommendations&amp;tmdb_type=movie&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]</value>
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=recommendations&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]</value>
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=recommendations&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]</value>
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper?info=recommendations&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]</value>
+    </variable>
+
+    <variable name="Def_List_Studio">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Studio_Query))">plugin://plugin.video.themoviedb.helper/?info=discover$INFO[Window(Home).Property(Studio_Query)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_6]</value>
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Network_Query))">plugin://plugin.video.themoviedb.helper/?info=discover$INFO[Window(Home).Property(Network_Query)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Page_6]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Encoded.ListItem.Studio))">videodb://movies/titles/?xsp={"rules":{"and":[{"field":"studio","operator":"is","value":["$INFO[Window(Home).Property(Encoded.ListItem.Studio)]"]}]},"type":"movies"}</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Encoded.ListItem.Studio))">videodb://tvshows/titles/?xsp={"rules":{"and":[{"field":"studio","operator":"is","value":["$INFO[Window(Home).Property(Encoded.ListItem.Studio)]"]}]},"type":"tvshows"}</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--              TVSHOW                 -->
+    <!-- =================================== -->
+
+    <variable name="Def_List_Creator">
+        <value condition="!Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(Window(Home).Property(Creator_Query))">plugin://plugin.video.themoviedb.helper/?info=crew_in_both&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Creator$INFO[Window(Home).Property(Creator_Query)]$VAR[Path_Param_Widget_Cache_Only]$VAR[Path_Param_Limit]</value>
+    </variable>
+
+    <variable name="Def_List_Seasons">
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.DBID)">$INFO[ListItem.DBID,videodb://tvshows/titles/,/]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + String.IsEqual(ListItem.DBType,tvshow) + String.IsEqual(ListItem.Label,ListItem.TvShowTitle)">$INFO[ListItem.FolderPath]</value>
+
+        <value condition="Skin.HasSetting(filter.video.only.local) + [String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(ListItem.TVShowDBID)">$INFO[ListItem.TVShowDBID,videodb://tvshows/titles/,/]</value>
+
+        <value condition="!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">plugin://plugin.video.themoviedb.helper/?info=seasons&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)]$VAR[Path_Param_Widget_Detail]</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--        TMDB HELPER - SCRIPT         -->
+    <!-- =================================== -->
+
+    <variable name="Path_Network_TMDb_ID">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.1.TMDb_ID))">$INFO[ListItem.Property(Network.1.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.2.TMDb_ID))">$INFO[ListItem.Property(Network.2.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.3.TMDb_ID))">$INFO[ListItem.Property(Network.3.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.4.TMDb_ID))">$INFO[ListItem.Property(Network.4.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.5.TMDb_ID))">$INFO[ListItem.Property(Network.5.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.2.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.2.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.3.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.3.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.4.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.4.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.5.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.5.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+    </variable>
+
+    <variable name="Path_Studio_TMDb_ID">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.1.TMDb_ID))">$INFO[ListItem.Property(Studio.1.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.2.TMDb_ID))">$INFO[ListItem.Property(Studio.2.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.3.TMDb_ID))">$INFO[ListItem.Property(Studio.3.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.4.TMDb_ID))">$INFO[ListItem.Property(Studio.4.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.5.TMDb_ID))">$INFO[ListItem.Property(Studio.5.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.2.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.2.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.3.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.3.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.4.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.4.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.5.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.5.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+    </variable>
+
+    <variable name="Path_Creator_TMDb_ID">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.1.TMDb_ID))">$INFO[ListItem.Property(Creator.1.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.2.TMDb_ID))">$INFO[ListItem.Property(Creator.2.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.3.TMDb_ID))">$INFO[ListItem.Property(Creator.3.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.4.TMDb_ID))">$INFO[ListItem.Property(Creator.4.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.5.TMDb_ID))">$INFO[ListItem.Property(Creator.5.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.6.TMDb_ID))">$INFO[ListItem.Property(Creator.6.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.7.TMDb_ID))">$INFO[ListItem.Property(Creator.7.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.8.TMDb_ID))">$INFO[ListItem.Property(Creator.8.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.9.TMDb_ID))">$INFO[ListItem.Property(Creator.9.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.10.TMDb_ID))">$INFO[ListItem.Property(Creator.10.TMDb_ID),&amp;tmdb_id=,]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.1.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.1.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.2.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.2.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.3.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.3.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.4.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.4.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.5.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.5.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.6.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.6.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.7.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.7.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.8.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.8.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.9.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.9.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.10.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.10.TMDb_ID),&amp;tmdb_id=,]</value>
+    </variable>
+
+    <variable name="Path_Writer_TMDb_ID">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.1.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.1.job)) + String.IsEqual(ListItem.Property(Writer.1.job),Screenplay)">$INFO[ListItem.Property(Writer.1.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.2.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.2.job)) + String.IsEqual(ListItem.Property(Writer.2.job),Screenplay)">$INFO[ListItem.Property(Writer.2.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.3.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.3.job)) + String.IsEqual(ListItem.Property(Writer.3.job),Screenplay)">$INFO[ListItem.Property(Writer.3.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.4.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.4.job)) + String.IsEqual(ListItem.Property(Writer.4.job),Screenplay)">$INFO[ListItem.Property(Writer.4.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.5.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.5.job)) + String.IsEqual(ListItem.Property(Writer.5.job),Screenplay)">$INFO[ListItem.Property(Writer.5.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.6.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.6.job)) + String.IsEqual(ListItem.Property(Writer.6.job),Screenplay)">$INFO[ListItem.Property(Writer.6.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.7.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.7.job)) + String.IsEqual(ListItem.Property(Writer.7.job),Screenplay)">$INFO[ListItem.Property(Writer.7.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.8.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.8.job)) + String.IsEqual(ListItem.Property(Writer.8.job),Screenplay)">$INFO[ListItem.Property(Writer.8.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.9.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.9.job)) + String.IsEqual(ListItem.Property(Writer.9.job),Screenplay)">$INFO[ListItem.Property(Writer.9.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.10.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Writer.10.job)) + String.IsEqual(ListItem.Property(Writer.10.job),Screenplay)">$INFO[ListItem.Property(Writer.10.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.1.TMDb_ID))">$INFO[ListItem.Property(Writer.1.TMDb_ID),&amp;tmdb_id=,]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.1.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.1.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.1.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.1.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.2.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.2.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.2.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.2.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.3.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.3.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.3.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.3.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.4.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.4.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.4.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.4.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.5.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.5.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.5.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.5.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.6.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.6.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.6.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.6.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.7.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.7.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.7.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.7.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.8.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.8.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.8.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.8.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.9.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.9.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.9.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.9.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.10.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.10.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.10.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.10.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.1.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.1.TMDb_ID),&amp;tmdb_id=,]</value>
+    </variable>
+
+    <variable name="Path_Director_TMDb_ID">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.1.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.1.job)) + String.IsEqual(ListItem.Property(Director.1.job),Director)">$INFO[ListItem.Property(Director.1.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.2.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.2.job)) + String.IsEqual(ListItem.Property(Director.2.job),Director)">$INFO[ListItem.Property(Director.2.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.3.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.3.job)) + String.IsEqual(ListItem.Property(Director.3.job),Director)">$INFO[ListItem.Property(Director.3.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.4.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.4.job)) + String.IsEqual(ListItem.Property(Director.4.job),Director)">$INFO[ListItem.Property(Director.4.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.5.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.5.job)) + String.IsEqual(ListItem.Property(Director.5.job),Director)">$INFO[ListItem.Property(Director.5.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.6.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.6.job)) + String.IsEqual(ListItem.Property(Director.6.job),Director)">$INFO[ListItem.Property(Director.6.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.7.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.7.job)) + String.IsEqual(ListItem.Property(Director.7.job),Director)">$INFO[ListItem.Property(Director.7.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.8.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.8.job)) + String.IsEqual(ListItem.Property(Director.8.job),Director)">$INFO[ListItem.Property(Director.8.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.9.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.9.job)) + String.IsEqual(ListItem.Property(Director.9.job),Director)">$INFO[ListItem.Property(Director.9.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.10.TMDb_ID)) + !String.IsEmpty(ListItem.Property(Director.10.job)) + String.IsEqual(ListItem.Property(Director.10.job),Director)">$INFO[ListItem.Property(Director.10.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Director) + !String.IsEmpty(ListItem.Property(Director.1.TMDb_ID))">$INFO[ListItem.Property(Director.1.TMDb_ID),&amp;tmdb_id=,]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.1.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.1.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.1.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.1.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.2.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.2.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.2.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.2.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.3.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.3.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.3.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.3.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.4.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.4.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.4.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.4.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.5.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.5.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.5.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.5.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.6.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.6.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.6.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.6.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.7.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.7.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.7.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.7.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.8.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.8.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.8.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.8.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.9.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.9.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.9.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.9.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.10.TMDb_ID)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.10.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.10.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.10.TMDb_ID),&amp;tmdb_id=,]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.1.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.1.TMDb_ID),&amp;tmdb_id=,]</value>
+    </variable>
+
+    <variable name="Path_Director_Person_TMDb_ID">
+        <value>$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id),&amp;tmdb_id=,]</value>
+    </variable>
+
+    <variable name="Path_Set_TMDb_ID">
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.TMDb_ID),&amp;tmdb_id=,]</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--          FILEMANAGER PARAM           -->
+    <!-- =================================== -->
+
+    <variable name="Def_Open_Info_From_FileManager_Type">
+        <value condition="String.IsEqual(ListItem.DBType,movie)">movie</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow)">tv</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode)">episode</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--          FIRST ITEM PARAM           -->
+    <!-- =================================== -->
+
+    <variable name="Path_InfoParams_TMDbType">
+        <value condition="!String.IsEmpty(Window(Home).Property(origin_dbid)) + String.IsEqual(ListItem.DBType,movie)">movie</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(origin_dbid)) + String.IsEqual(ListItem.DBType,tvshow)">tv</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(origin_dbid)) + String.IsEqual(ListItem.DBType,season)">season</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(origin_dbid)) + String.IsEqual(ListItem.DBType,episode)">episode</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(origin_dbid)) + String.IsEqual(ListItem.DBType,set)">collection</value>
+
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),movie)">movie</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),tvshow)">tv</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),season)">tv</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),episode)">tv</value>
+        <value condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEmpty(ListItem.DBID)">person</value>
+    </variable>
+
+    <variable name="Path_InfoParams_DBID">
+        <value>$INFO[ListItem.DBID]</value>
+    </variable>
+
+    <variable name="Path_InfoParams_TMDbID">
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),movie)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),tvshow)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),season)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tvshow.tmdb_id)]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.DBType),episode)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tvshow.tmdb_id)]</value>
+        <value condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEmpty(ListItem.DBID)">$INFO[Window(Home).Property(TMDbHelper.ListItem.tmdb_id)]</value>
+    </variable>
+
+    <variable name="Path_Info_First_Item">
+        <value condition="!String.IsEmpty(Window(Home).Property(origin_dbid))">,origin_tmdb_type=$INFO[Window(Home).Property(origin_tmdb_type)],origin_dbid=$INFO[Window(Home).Property(origin_dbid)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(origin_tmdb_id)) + !String.IsEmpty(Window(Home).Property(origin_season)) + !String.IsEmpty(Window(Home).Property(origin_episode))">,origin_tmdb_type=$INFO[Window(Home).Property(origin_tmdb_type)],origin_tmdb_id=$INFO[Window(Home).Property(origin_tmdb_id)],origin_season=$INFO[Window(Home).Property(origin_season)],origin_episode=$INFO[Window(Home).Property(origin_episode)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(origin_tmdb_id)) + !String.IsEmpty(Window(Home).Property(origin_season))">,origin_tmdb_type=$INFO[Window(Home).Property(origin_tmdb_type)],origin_tmdb_id=$INFO[Window(Home).Property(origin_tmdb_id)],origin_season=$INFO[Window(Home).Property(origin_season)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(origin_tmdb_id))">,origin_tmdb_type=$INFO[Window(Home).Property(origin_tmdb_type)],origin_tmdb_id=$INFO[Window(Home).Property(origin_tmdb_id)]</value>
+    </variable>
+
+
+    <!-- =================================== -->
+    <!--   TMDB HELPER - SCRIPT - OPTIONS    -->
+    <!-- =================================== -->
+
+    <variable name="Path_Param_Widget_Detail">
+        <value>&amp;nextpage=false&amp;cacheonly=false&amp;length=1</value>
+    </variable>
+
+    <variable name="Path_Param_Widget_Cache_Only">
+        <value>&amp;nextpage=false&amp;cacheonly=true&amp;length=1</value>
+    </variable>
+
+    <variable name="Path_Param_Page_6">
+        <value>&amp;page=1&amp;length=$VAR[Value_TMDb_Page_Limit]</value>
+    </variable>
+
+    <variable name="Path_Param_Page_3">
+        <value>&amp;page=1&amp;length=3</value>
+    </variable>
+
+    <variable name="Path_Param_Limit">
+        <value>&amp;limit=$VAR[Value_TMDb_Item_Limit]</value>
+    </variable>
+
+    <variable name="Path_Param_AggregateCast">
+        <value>&amp;aggregate=true</value>
+    </variable>
+
+    <variable name="Path_Param_AggregateCrew">
+        <value>&amp;aggregate=true</value>
+    </variable>
+
+    <variable name="Path_Genre_Exclude">
+        <value>&amp;exclude_key=genre&amp;exclude_value=Documentaire / Documentary / News / Talk / Reality / is_empty</value>
+    </variable>
+
+    <variable name="Path_Duration_Filter">
+        <value>&amp;exclude_key=duration&amp;exclude_value=30&amp;exclude_operator=lt</value>
+        <!-- <value>&amp;exclude_key=duration&amp;exclude_value=00:30:00&amp;exclude_operator=lt</value> -->
+    </variable>
+
+    <!-- =================================== -->
+    <!--           DEF SELECTED NAME         -->
+    <!-- =================================== -->
+
+    <variable name="Path_Network_Name">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.1.name))">$INFO[ListItem.Property(Network.1.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.2.name))">$INFO[ListItem.Property(Network.2.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.3.name))">$INFO[ListItem.Property(Network.3.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.4.name))">$INFO[ListItem.Property(Network.4.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Network.5.name))">$INFO[ListItem.Property(Network.5.name)]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.2.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.2.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.3.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.3.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.4.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.4.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.5.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.5.name)]</value>
+    </variable>
+
+    <variable name="Path_Studio_Name">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.1.name))">$INFO[ListItem.Property(Studio.1.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.2.name))">$INFO[ListItem.Property(Studio.2.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.3.name))">$INFO[ListItem.Property(Studio.3.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.4.name))">$INFO[ListItem.Property(Studio.4.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Studio.5.name))">$INFO[ListItem.Property(Studio.5.name)]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.2.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.2.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.3.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.3.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.4.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.4.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.5.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.5.name)]</value>
+    </variable>
+
+    <variable name="Path_Creator_Name">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.1.name))">$INFO[ListItem.Property(Creator.1.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.2.name))">$INFO[ListItem.Property(Creator.2.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Creator.3.name))">$INFO[ListItem.Property(Creator.3.name)]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.1.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.1.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.2.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.2.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator.3.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator.3.name)]</value>
+    </variable>
+
+    <variable name="Path_Writer_Name">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.1.name)) + !String.IsEmpty(ListItem.Property(Writer.1.job)) + String.IsEqual(ListItem.Property(Writer.1.job),Screenplay)">$INFO[ListItem.Property(Writer.1.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.2.name)) + !String.IsEmpty(ListItem.Property(Writer.2.job)) + String.IsEqual(ListItem.Property(Writer.2.job),Screenplay)">$INFO[ListItem.Property(Writer.2.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.3.name)) + !String.IsEmpty(ListItem.Property(Writer.3.job)) + String.IsEqual(ListItem.Property(Writer.3.job),Screenplay)">$INFO[ListItem.Property(Writer.3.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.4.name)) + !String.IsEmpty(ListItem.Property(Writer.4.job)) + String.IsEqual(ListItem.Property(Writer.4.job),Screenplay)">$INFO[ListItem.Property(Writer.4.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.5.name)) + !String.IsEmpty(ListItem.Property(Writer.5.job)) + String.IsEqual(ListItem.Property(Writer.5.job),Screenplay)">$INFO[ListItem.Property(Writer.5.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.6.name)) + !String.IsEmpty(ListItem.Property(Writer.6.job)) + String.IsEqual(ListItem.Property(Writer.6.job),Screenplay)">$INFO[ListItem.Property(Writer.6.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.7.name)) + !String.IsEmpty(ListItem.Property(Writer.7.job)) + String.IsEqual(ListItem.Property(Writer.7.job),Screenplay)">$INFO[ListItem.Property(Writer.7.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.8.name)) + !String.IsEmpty(ListItem.Property(Writer.8.job)) + String.IsEqual(ListItem.Property(Writer.8.job),Screenplay)">$INFO[ListItem.Property(Writer.8.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.9.name)) + !String.IsEmpty(ListItem.Property(Writer.9.job)) + String.IsEqual(ListItem.Property(Writer.9.job),Screenplay)">$INFO[ListItem.Property(Writer.9.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.10.name)) + !String.IsEmpty(ListItem.Property(Writer.10.job)) + String.IsEqual(ListItem.Property(Writer.10.job),Screenplay)">$INFO[ListItem.Property(Writer.10.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Writer.1.name))">$INFO[ListItem.Property(Writer.1.name)]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.1.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.1.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.1.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.1.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.2.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.2.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.2.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.2.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.3.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.3.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.3.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.3.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.4.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.4.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.4.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.4.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.5.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.5.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.5.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.5.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.6.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.6.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.6.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.6.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.7.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.7.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.7.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.7.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.8.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.8.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.8.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.8.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.9.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.9.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.9.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.9.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.10.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.10.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Writer.10.job),Screenplay)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.10.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Writer.1.name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Writer.1.name)]</value>
+    </variable>
+
+    <variable name="Path_Director_Name">
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.1.name)) + !String.IsEmpty(ListItem.Property(Director.1.job)) + String.IsEqual(ListItem.Property(Director.1.job),Director)">$INFO[ListItem.Property(Director.1.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.2.name)) + !String.IsEmpty(ListItem.Property(Director.2.job)) + String.IsEqual(ListItem.Property(Director.2.job),Director)">$INFO[ListItem.Property(Director.2.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.3.name)) + !String.IsEmpty(ListItem.Property(Director.3.job)) + String.IsEqual(ListItem.Property(Director.3.job),Director)">$INFO[ListItem.Property(Director.3.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.4.name)) + !String.IsEmpty(ListItem.Property(Director.4.job)) + String.IsEqual(ListItem.Property(Director.4.job),Director)">$INFO[ListItem.Property(Director.4.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.5.name)) + !String.IsEmpty(ListItem.Property(Director.5.job)) + String.IsEqual(ListItem.Property(Director.5.job),Director)">$INFO[ListItem.Property(Director.5.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.6.name)) + !String.IsEmpty(ListItem.Property(Director.6.job)) + String.IsEqual(ListItem.Property(Director.6.job),Director)">$INFO[ListItem.Property(Director.6.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.7.name)) + !String.IsEmpty(ListItem.Property(Director.7.job)) + String.IsEqual(ListItem.Property(Director.7.job),Director)">$INFO[ListItem.Property(Director.7.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.8.name)) + !String.IsEmpty(ListItem.Property(Director.8.job)) + String.IsEqual(ListItem.Property(Director.8.job),Director)">$INFO[ListItem.Property(Director.8.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.9.name)) + !String.IsEmpty(ListItem.Property(Director.9.job)) + String.IsEqual(ListItem.Property(Director.9.job),Director)">$INFO[ListItem.Property(Director.9.name)]</value>
+        <value condition="Window.IsVisible(1190) + !String.IsEmpty(ListItem.Property(Director.10.name)) + !String.IsEmpty(ListItem.Property(Director.10.job)) + String.IsEqual(ListItem.Property(Director.10.job),Director)">$INFO[ListItem.Property(Director.10.name)]</value>
+
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.1.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.1.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.1.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.1.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.2.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.2.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.2.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.2.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.3.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.3.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.3.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.3.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.4.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.4.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.4.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.4.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.5.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.5.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.5.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.5.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.6.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.6.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.6.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.6.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.7.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.7.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.7.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.7.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.8.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.8.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.8.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.8.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.9.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.9.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.9.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.9.name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.10.name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.10.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.10.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.10.name)]</value>
+    </variable>
+
+    <!-- =================================== -->
+    <!--               SEARCH                -->
+    <!-- =================================== -->
+
+    <variable name="Path_Auto_Completion">
+        <value condition="$EXP[Is_AutoCompletion_Enabled] + !String.IsEmpty(Control.GetLabel(312).index(1))">plugin://plugin.program.autocompletion?info=autocomplete&amp;&amp;id=$INFO[Control.GetLabel(312).index(1)]&amp;&amp;limit=9</value>
+
+        <value>plugin://script.skinvariables/?info=get_split_string&amp;infolabel=Skin.String(SearchHistory)&amp;reload=$INFO[Skin.String(SearchHistory)]</value>
+    </variable>
+
+    <variable name="Path_SearchTerm">
+        <value condition="!String.IsEmpty(Control.GetLabel(312).index(1))">$INFO[Control.GetLabel(312).index(1)]</value>
+        <!-- <value condition="![Window.IsVisible(1105) | Window.IsVisible(1185)]">$INFO[Control.GetLabel(19).index(1)]</value> -->
+    </variable>
+
+    <!-- =================================== -->
+    <!--         TMDb Item Limit             -->
+    <!-- =================================== -->
+
+    <variable name="Value_TMDb_Item_Limit">
+        <value condition="!String.IsEmpty(Skin.String(TMDbLimit))">$INFO[Skin.String(TMDbLimit)]</value>
+        <value>80</value>
+    </variable>
+
+    <variable name="Value_TMDb_Page_Limit">
+        <value condition="String.IsEmpty(Skin.String(TMDbLimit))">4</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),20)">1</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),40)">2</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),60)">3</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),80)">4</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),100)">5</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),120)">6</value>
+        <value condition="String.IsEqual(Skin.String(TMDbLimit),140)">7</value>
+    </variable>
+</includes>

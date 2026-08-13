@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="View_500_Thumbnails">
+        <control type="group">
+            <visible>Control.IsVisible(500)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <control type="panel" id="500">
+                    <visible>$EXP[Exp_View_500]</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <include>Def_On_Info</include>
+
+                    <top>View_Poster_Top</top>
+                    <left>View_Poster_Side</left>
+                    <width>View_Poster_Width</width>
+                    <height>View_Poster_height</height>
+
+                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                    <onleft>1635</onleft>
+                    <onup>500</onup>
+                    <ondown>500</ondown>
+
+                    <preloaditems>2</preloaditems>
+                    <pagecontrol>1635</pagecontrol>
+                    <orientation>vertical</orientation>
+
+                    <viewtype label="31580">list</viewtype>
+
+                    <itemlayout height="335" width="299.33">
+                        <control type="group">
+                            <height>280</height>
+                            <width>280</width>
+                            <include content="Layout_Widget_Square">
+                                <param name="texture_diffuse" value="square_w260_h260" />
+                                <param name="id" value="500" />
+                                <param name="height" value="280" />
+                                <param name="image_height" value="280" />
+                                <param name="aspectratio" value="scale" />
+                            </include>
+                        </control>
+
+                        <!-- FIRST LINE -->
+
+                        <control type="label">
+                            <left>15</left>
+                            <right>30</right>
+                            <bottom>24</bottom>
+                            <height>50</height>
+                            <align>center</align>
+                            <font>InfoNetflix</font>
+                            <label>$VAR[Label_Widget_Lign_1]</label>
+                            <textcolor>Dark1</textcolor>
+                            <selectedcolor>Dark1</selectedcolor>
+                        </control>
+
+                        <!-- SECOND LINE -->
+
+                        <control type="label">
+                            <left>15</left>
+                            <right>30</right>
+                            <bottom>-10</bottom>
+                            <height>50</height>
+                            <align>center</align>
+                            <font>Small24</font>
+                            <label>$VAR[Label_Widget_Lign_2]</label>
+                            <textcolor>PanelWhite70</textcolor>
+                            <selectedcolor>PanelWhite70</selectedcolor>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="335" width="299.33">
+                        <control type="group">
+                            <height>280</height>
+                            <width>280</width>
+                            <include content="Layout_Widget_Square_Focus">
+                                <param name="texture_diffuse" value="square_w260_h260" />
+                                <param name="id" value="500" />
+                                <param name="height" value="280" />
+                                <param name="image_height" value="280" />
+                                <param name="aspectratio" value="scale" />
+                                <param name="glow_height" value="280" />
+                                <param name="glow_top" value="0" />
+                            </include>
+                        </control>
+
+                        <!-- FIRST LINE -->
+
+                        <control type="label">
+                            <left>15</left>
+                            <right>30</right>
+                            <bottom>24</bottom>
+                            <height>50</height>
+                            <align>center</align>
+                            <font>InfoNetflix</font>
+                            <label>$VAR[Label_Widget_Lign_1]</label>
+                            <textcolor>Dark1</textcolor>
+                            <selectedcolor>Dark1</selectedcolor>
+                        </control>
+
+                        <!-- SECOND LINE -->
+
+                        <control type="label">
+                            <left>15</left>
+                            <right>30</right>
+                            <bottom>-10</bottom>
+                            <height>50</height>
+                            <align>center</align>
+                            <font>Small24</font>
+                            <label>$VAR[Label_Widget_Lign_2]</label>
+                            <textcolor>PanelWhite70</textcolor>
+                            <selectedcolor>PanelWhite70</selectedcolor>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1635">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1635" />
+                    <param name="idlayout" value="500" />
+                    <param name="height" value="670" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="500" /></include>
+        </control>
+    </include>
+
+    <include name="View_547_ThumbnailsSmall">
+        <control type="group">
+            <visible>Control.IsVisible(547)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <control type="panel" id="547">
+                    <visible>$EXP[Exp_View_547]</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <include>Def_On_Info</include>
+
+                    <top>View_Poster_Top</top>
+                    <left>View_Poster_Side</left>
+                    <width>View_Poster_Width</width>
+                    <height>View_Poster_height</height>
+
+                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                    <onleft>1647</onleft>
+                    <onup>547</onup>
+                    <ondown>547</ondown>
+
+                    <preloaditems>2</preloaditems>
+                    <pagecontrol>1647</pagecontrol>
+                    <orientation>vertical</orientation>
+
+                    <viewtype label="31513">list</viewtype>
+
+                    <itemlayout height="222" width="222">
+                        <control type="group">
+                            <height>222</height>
+                            <width>222</width>
+                            <include content="Layout_Widget_Square">
+                                <param name="texture_diffuse" value="square_w202_h202" />
+                                <param name="id" value="547" />
+                                <param name="height" value="222" />
+                                <param name="image_height" value="222" />
+                                <param name="distance" value="10" />
+                                <param name="aspectratio" value="scale" />
+                            </include>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="222" width="222">
+                        <control type="group">
+                            <height>222</height>
+                            <width>222</width>
+                            <include content="Layout_Widget_Square_Focus">
+                                <param name="texture_diffuse" value="square_w202_h202" />
+                                <param name="id" value="547" />
+                                <param name="height" value="222" />
+                                <param name="image_height" value="222" />
+                                <param name="distance" value="10" />
+                                <param name="aspectratio" value="scale" />
+                                <param name="glow_height" value="222" />
+                                <param name="glow_top" value="0" />
+                            </include>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1647">
+                <include content="Object_Scrollbar_Views_Vertical">
+                    <param name="scrollid" value="1647" />
+                    <param name="idlayout" value="547" />
+                </include>
+            </control>
+
+            <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="547" /></include>
+        </control>
+    </include>
+</includes>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">3</defaultcontrol>
+
+    <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
+
+    <controls>
+        <include>Background_Global</include>
+
+        <include>Furniture_Header_Info</include>
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        <include condition="Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Info</include>
+        <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
+
+        <control type="group">
+            <include>Animation_Common_Settings</include>
+            <include>Def_Dialog_Settings</include>
+
+            <!-- HEADER  -->
+
+            <include content="Def_Dialog_Settings_Header">
+                <param name="left" value="110" />
+                <param name="width" value="338" />
+                <param name="label_right_sub_title" value="$INFO[Control.GetLabel(6)]" />
+            </include>
+
+            <!-- LEFT - GROUP -->
+
+            <control type="grouplist" id="3">
+                <description>Button Area</description>
+                <include>Animation_Scrolltime_Views_List</include>
+                <top>140</top>
+                <left>96</left>
+                <right>16</right>
+                <width>338</width>
+                <height>490</height>
+                <itemgap>0</itemgap>
+                <onright>5</onright>
+                <onleft>20</onleft>
+                <ondown>3</ondown>
+                <orientation>vertical</orientation>
+            </control>
+
+            <!-- RIGHT - GROUP -->
+
+            <control type="grouplist" id="5">
+                <description>Control Area</description>
+                <top>140</top>
+                <left>466</left>
+                <width>1278</width>
+                <height>490</height>
+
+                <itemgap>0</itemgap>
+                <onleft>3</onleft>
+                <onup>5</onup>
+                <ondown>5</ondown>
+                <orientation>vertical</orientation>
+                <onright>1773</onright>
+                <pagecontrol>1773</pagecontrol>
+                <include>Animation_Scrolltime_Views_List</include>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1773" />
+                <param name="top" value="140" />
+                <param name="onleft" value="5" />
+                <param name="onright" value="5" />
+                <param name="height" value="490" />
+                <param name="centerright" value="4" />
+                <param name="animation_fade_hide" value="false" />
+            </include>
+
+            <!-- SETTINGS LEVEL -->
+
+            <include content="Def_Settings_Button_Level">
+                <param name="def_onclick" value="Def_OnClick_Button_Level_Kodi_Settings" />
+            </include>
+        </control>
+
+        <control type="label" id="6">
+            <visible>false</visible>
+        </control>
+        <control type="label" id="14">
+            <include>Def_Settings_Label_Title_Right_Side</include>
+        </control>
+        <control type="button" id="7">
+            <description>Default Button</description>
+            <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+        </control>
+        <control type="radiobutton" id="8">
+            <description>Default Radio Button</description>
+            <radioposx>1220</radioposx>
+            <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+        </control>
+        <control type="spincontrolex" id="9">
+            <description>Default Spin Control</description>
+            <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+        </control>
+        <control type="colorbutton" id="15">
+            <description>Default ColorButton</description>
+            <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+        </control>
+        <control type="togglebutton" id="10">
+            <description>Default Category Button</description>
+            <width>338</width>
+            <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+        </control>
+        <control type="sliderex" id="13">
+            <description>Default Slider Control</description>
+            <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+            <font>Small33</font>
+        </control>
+    </controls>
+</window>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1151">
+    <defaultcontrol>11</defaultcontrol>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background">
+                <param name="height" value="882" />
+                <param name="width" value="1722" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="31108" />
+                <param name="icon" value="skinsettings" />
+            </include>
+
+            <control type="list" id="11">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+                <left>16</left>
+                <width>418</width>
+                <height>700</height>
+
+                <onup>11</onup>
+                <ondown>11</ondown>
+                <onleft>close</onleft>
+                <onright>1773</onright>
+
+                <itemgap>0</itemgap>
+                <pagecontrol>1773</pagecontrol>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <itemlayout width="418" height="70">
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>Black70</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>!String.IsEqual(Window(Home).property(SetViewHomeSelected),ListItem.Label)</visible>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>$VAR[Color_List_Item_Selected]</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.IsEqual(Window(Home).property(SetViewHomeSelected),ListItem.Label)</visible>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Black70" />
+                        <param name="colordiffuse_on" value="$VAR[Color_List_Item_Selected]" />
+                        <param name="visible" value="String.IsEqual(Window(Home).property(SetViewHomeSelected),ListItem.Label)" />
+                    </include>
+                </itemlayout>
+                <focusedlayout width="418" height="70">
+
+                    <!-- ITEM FOCUS -->
+
+                    <include content="Def_Layout_Item_Focus">
+                        <param name="visible" value="Control.HasFocus(11)" />
+                    </include>
+
+                    <control type="label">
+                        <left>30</left>
+                        <width>310</width>
+                        <height>70</height>
+                        <font>Small</font>
+                        <textcolor>Selected</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <include content="Def_Button_Radio">
+                        <param name="colordiffuse_off" value="Selected" />
+                        <param name="colordiffuse_on" value="Selected" />
+                        <param name="visible" value="String.IsEqual(Window(Home).property(SetViewHomeSelected),ListItem.Label)" />
+                    </include>
+                </focusedlayout>
+
+                <!-- MOVIES -->
+
+                <content>
+                    <item id="1">
+                        <label>$LOCALIZE[20342]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.movie)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.movie)</onclick>
+                    </item>
+
+                    <!-- TVSHOWS -->
+
+                    <item id="2">
+                        <label>$LOCALIZE[20343]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.tvshow)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.tvshow)</onclick>
+                    </item>
+
+                    <!-- MUSIC -->
+
+                    <item id="3">
+                        <label>$LOCALIZE[2]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.music)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.music)</onclick>
+                    </item>
+
+                    <!-- PVR -->
+
+                    <item id="4">
+                        <label>$LOCALIZE[14204]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.pvr)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.pvr)</onclick>
+                    </item>
+
+                    <!-- RADIO -->
+
+                    <item id="5">
+                        <label>19021</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.radio)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.radio)</onclick>
+                    </item>
+
+                    <!-- FAVOURITES -->
+
+                    <item id="6">
+                        <label>$LOCALIZE[1036]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.favourite)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.favourite)</onclick>
+                    </item>
+
+                    <!-- WEATHER -->
+
+                    <item id="7">
+                        <label>$LOCALIZE[12600]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.weather)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.weather)</onclick>
+                    </item>
+
+                    <!-- SETTINGS -->
+
+                    <item id="8">
+                        <label>$LOCALIZE[5]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.settings)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.settings)</onclick>
+                    </item>
+
+                    <!-- PROGRAMS -->
+
+                    <item id="9">
+                        <label>$LOCALIZE[0]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.programs)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.programs)</onclick>
+                    </item>
+
+                    <!-- EXIT / POWER MENU -->
+
+                    <item id="10">
+                        <label>$LOCALIZE[13012]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.exit)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.exit)</onclick>
+                    </item>
+
+                    <!-- PERSONS -->
+
+                    <item id="11">
+                        <label>$ADDON[plugin.video.themoviedb.helper 32172]</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.person)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.person)</onclick>
+                    </item>
+
+                    <!-- IMAGES -->
+
+                    <item id="12">
+                        <label>1213</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.image)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.image)</onclick>
+                    </item>
+
+                    <!-- GAMES -->
+
+                    <item id="13">
+                        <label>15016</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.game)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.game)</onclick>
+                    </item>
+
+                    <!-- SEARCH -->
+
+                    <item id="14">
+                        <label>137</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.search)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.search)</onclick>
+                    </item>
+
+                    <!-- FALLBACK -->
+
+                    <item id="15">
+                        <label>15224</label>
+                        <label2>$INFO[Skin.String(fanart.fallback)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback)</onclick>
+                    </item>
+
+                    <!-- YOUTUBE -->
+
+                    <item id="16">
+                        <label>31101</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.youtube)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.youtube)</onclick>
+                    </item>
+
+                    <!-- APPLE PODCAST -->
+
+                    <item id="17">
+                        <label>Apple Podcasts</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.podcasts)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.podcasts)</onclick>
+                    </item>
+
+                    <!-- MORE -->
+
+                    <item id="18">
+                        <label>31320</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.more)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.more)</onclick>
+                    </item>
+
+                    <!-- DVD -->
+
+                    <item id="19">
+                        <label>218</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.dvd)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.dvd)</onclick>
+                    </item>
+
+                    <!-- STARTUP -->
+
+                    <item id="20">
+                        <label>12999</label>
+                        <label2>$INFO[Skin.String(fanart.fallback.startup)]</label2>
+                        <onclick>Skin.SetImage(fanart.fallback.startup)</onclick>
+                    </item>
+                </content>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1773" />
+                <param name="onleft" value="11" />
+                <param name="onright" value="11" />
+                <param name="height" value="700" />
+                <param name="centerright" value="1272" />
+            </include>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <right>1272</right>
+                <top>112</top>
+                <bottom>17</bottom>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1773) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- VIEW TYPE ON RIGHT -->
+
+            <include content="Def_Dialog_View_Type">
+                <param name="texture" value="$INFO[Container(11).ListItem.Label2]" />
+            </include>
+
+            <!-- NUM ITEMS -->
+
+            <include>Def_Dialog_Select_label_Num_Item</include>
+        </control>
+    </controls>
+</window>

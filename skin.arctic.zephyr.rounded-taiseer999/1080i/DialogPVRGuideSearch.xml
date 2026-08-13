@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">20</defaultcontrol>
+    <onunload>ClearProperty(Focus)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+        <control type="group">
+            <include content="Def_Dialog_Background"><param name="height" value="1006" /><param name="width" value="1302" /><param name="colordiffuse" value="Panel" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="19142" />
+                <param name="icon" value="search" />
+            </include>
+
+            <control type="group" id="8000">
+                <top>112</top>
+                <width>1302</width>
+
+                <control type="edit" id="9">
+                    <description>Search</description>
+                    <left>16</left>
+                    <right>16</right>
+                    <height>66</height>
+                    <align>left</align>
+                    <ondown>8001</ondown>
+                    <include>Texture_Button_Dialog_Settings</include>
+                    <label>19133</label>
+                    <textcolor>Black70</textcolor>
+                </control>
+                <control type="textbox">
+                    <description>Search help</description>
+                    <top>84</top>
+                    <left>32</left>
+                    <right>32</right>
+                    <height>74</height>
+                    <align>justify</align>
+                    <label>$LOCALIZE[19001] $LOCALIZE[19002]</label>
+                    <font>Tiny</font>
+                </control>
+
+                <control type="grouplist" id="8001">
+                    <top>190</top>
+                    <left>16</left>
+                    <width>619</width>
+                    <height>590</height>
+
+                    <onup>9</onup>
+                    <onleft>8003</onleft>
+                    <onright>8002</onright>
+                    <ondown>8003</ondown>
+
+                    <itemgap>0</itemgap>
+                    <orientation>vertical</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+
+                    <control type="radiobutton" id="10" description="Include Description">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19134</label>
+                    </control>
+                    <control type="radiobutton" id="11" description="Casesensitive">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19135</label>
+                    </control>
+                    <control type="edit" id="14" description="Start Date">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19128</label>
+                    </control>
+                    <control type="edit" id="15" description="Stop Date">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19129</label>
+                    </control>
+                    <control type="spincontrolex" id="18" description="Genre">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>515</label>
+                    </control>
+                    <control type="radiobutton" id="20" description="unknowngenre">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19132</label>
+                    </control>
+                    <control type="radiobutton" id="22" description="ftaonly">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19123</label>
+                    </control>
+                    <control type="radiobutton" id="24" description="ignoretimers">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19124</label>
+                    </control>
+                </control>
+
+                <!-- LINE VERTICAL -->
+
+                <control type="image">
+                    <left>651</left>
+                    <top>190</top>
+                    <bottom>154</bottom>
+                    <width>1</width>
+                    <include>Texture_Dialog_Line</include>
+                </control>
+
+                <control type="grouplist" id="8002">
+                    <top>190</top>
+                    <right>16</right>
+                    <width>619</width>
+                    <height>590</height>
+
+                    <onup>9</onup>
+                    <onleft>8001</onleft>
+                    <onright>8003</onright>
+                    <ondown>8003</ondown>
+
+                    <itemgap>0</itemgap>
+                    <orientation>vertical</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+
+                    <control type="spincontrolex" id="12" description="minduration">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19130</label>
+                    </control>
+                    <control type="spincontrolex" id="13" description="maxdur">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19131</label>
+                    </control>
+                    <control type="edit" id="16" description="Start Time">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19126</label>
+                    </control>
+                    <control type="edit" id="17" description="Stop Time">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19127</label>
+                    </control>
+                    <control type="radiobutton" id="19" description="avoidrepeats">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19121</label>
+                    </control>
+                    <control type="spincontrolex" id="21" description="groups">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19141</label>
+                    </control>
+                    <control type="spincontrolex" id="23" description="channels">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19148</label>
+                    </control>
+                    <control type="radiobutton" id="27" description="ignrec">
+                        <include>Def_Dialog_Buttons_PVR</include>
+                        <label>19125</label>
+                    </control>
+                </control>
+            </control>
+
+            <!-- BUTTON ON BOTTOM -->
+
+            <control type="grouplist" id="8003">
+                <bottom>30</bottom>
+                <height>66</height>
+                <width>100%</width>
+                <align>center</align>
+                <centerleft>50%</centerleft>
+
+                <onup>8001</onup>
+                <onleft>8001</onleft>
+                <onright>8002</onright>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+				<include content="Def_Dialog_Button_Action">
+					<param name="id" value="26" />
+					<param name="label" value="$LOCALIZE[137]" />
+				</include>
+				<include content="Def_Dialog_Button_Action">
+					<param name="id" value="29" />
+					<param name="label" value="$LOCALIZE[190]" />
+				</include>
+				<include content="Def_Dialog_Button_Action">
+					<param name="id" value="28" />
+					<param name="label" value="$LOCALIZE[13007]" />
+				</include>
+				<include content="Def_Dialog_Button_Action">
+					<param name="id" value="25" />
+					<param name="label" value="$LOCALIZE[222]" />
+				</include>
+            </control>
+        </control>
+    </controls>
+</window>

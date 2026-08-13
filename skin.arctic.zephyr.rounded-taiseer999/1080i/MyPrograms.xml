@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <!-- <views>50,550,57,500,547,523,524</views> -->
+    <include>View_MediaWindows_ID</include>
+    <defaultcontrol always="true">50</defaultcontrol>
+    <menucontrol>9000</menucontrol>
+
+    <onload>RunScript(script.skinvariables,action=buildviews)</onload>
+
+    <controls>
+        <include>Background_Global</include>
+
+        <include condition="$EXP[Exp_View_50_Include]">View_50_List_Addons</include>
+        <include condition="$EXP[Exp_View_550_Include]">View_550_List_Square_Addons</include>
+        <include condition="$EXP[Exp_View_57_Include]">View_57_List_Info_Video</include>
+        <include condition="$EXP[Exp_View_500_Include]">View_500_Thumbnails</include>
+        <include condition="$EXP[Exp_View_547_Include]">View_547_ThumbnailsSmall</include>
+        <include condition="$EXP[Exp_View_523_Include]">View_523_Flix_Square</include>
+        <include condition="$EXP[Exp_View_524_Include]">View_524_Flix_List_Video</include>
+
+        <include>Furniture_Header_Info</include>
+
+        <control type="group">
+            <visible>!$EXP[View_Info_Dialog]</visible>
+            <include>Animation_Feature_NowPlaying</include>
+            <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        </control>
+
+        <include>Furniture_Jumpbar_Horizontal</include>
+        <include condition="Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Info</include>
+        <include condition="!Skin.HasSetting(hide.furniture.flags)">Furniture_Footer_Video_Flags</include>
+        <include>Furniture_Header_Clock_Right</include>
+
+        <include>Hidden_Button_ReloadSkin</include>
+
+        <include>Def_Dialog_Menu_Background_Overlay</include>
+
+        <!-- CONTEXT MENU -->
+
+        <control type="group">
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>255</centerleft>
+
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="14018" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="grouplist" id="9000">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+
+                <pagecontrol>9070</pagecontrol>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="50" /></include>
+
+                <!-- NOW PLAYING -->
+
+                <control type="button" id="55555">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31448</label>
+                    <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+                </control>
+
+                <include>Def_Dialog_Menu_Button_Playlist</include>
+
+                <!-- MINI PLAYER -->
+
+                <include>Def_Dialog_Menu_MiniPlayer</include>
+
+                <!-- ALL VIEWS -->
+
+                <control type="button" id="55550">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31226</label>
+                </control>
+
+                <!-- <control type="button" id="2"> -->
+                    <!-- <description>View</description> -->
+                    <!-- <include>Def_Dialog_Menu_Button_Focus_Select</include> -->
+                    <!-- <align>left</align> -->
+                <!-- </control> -->
+
+                <control type="button" id="9011">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>$LOCALIZE[582]:</label>
+                    <label2>$INFO[Container.Viewmode]</label2>
+                    <onclick>Runscript(script.skinvariables,action=buildviews,contentid=$VAR[Items_ViewMode_Switch],pluginname=$INFO[Container.PluginName])</onclick>
+                </control>
+
+                <control type="button" id="3">
+                    <description>Sort</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                </control>
+                <control type="togglebutton" id="4">
+                    <description>Ascending</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>584</label>
+                    <altlabel>585</altlabel>
+                </control>
+
+                <!-- THIS VIEW  -->
+
+                <control type="button" id="55551">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31051</label>
+                    <visible>Control.IsVisible(50)</visible>
+                    <visible>Container.Content(addons)</visible>
+                </control>
+
+                <!-- list extended -->
+                <control type="radiobutton" id="90281">
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <label>31192</label>
+                    <selected>!Skin.HasSetting(disable.view.50.extended.list.addons)</selected>
+                    <onclick>Skin.ToggleSetting(disable.view.50.extended.list.addons)</onclick>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(550)</visible>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

@@ -1,0 +1,3335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <!-- DEF - DIALOG -->
+
+    <include name="Def_Dialog_Header_Font">
+        <font>MediumBold</font>
+    </include>
+
+    <include name="Def_Dialog_Header_Title">
+        <param name="top" value="$PARAM[top]" default="24" />
+        <param name="width" value="$PARAM[width]" default="1070" />
+        <param name="left" value="$PARAM[left]" default="105" />
+        <param name="textcolor" value="$PARAM[textcolor]" default="Dark2" />
+        <definition>
+            <description>header label</description>
+            <left>$PARAM[left]</left>
+            <top>$PARAM[top]</top>
+            <width>$PARAM[width]</width>
+            <include>Def_Dialog_Header_Font</include>
+            <textcolor>$PARAM[textcolor]</textcolor>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Header_Logo">
+        <param name="top" value="$PARAM[top]" default="20" />
+        <param name="left" value="$PARAM[left]" default="20" />
+        <param name="dimensions" value="$PARAM[dimensions]" default="80" />
+        <param name="texture" value="$PARAM[texture]" default="kodi" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="$VAR[Color_Dialog_Header_Logo]" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <definition>
+            <control type="image">
+               <top>$PARAM[top]</top>
+               <left>$PARAM[left]</left>
+               <width>$PARAM[dimensions]</width>
+               <height>$PARAM[dimensions]</height>
+               <colordiffuse>$PARAM[colordiffuse]</colordiffuse>
+               <texture>special://skin/extras/icons/$PARAM[texture].png</texture>
+               <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Header_Line">
+        <param name="visible" default="true" />
+        <param name="top" value="$PARAM[top]" default="95" />
+        <param name="left" value="$PARAM[left]" default="30" />
+        <param name="right" value="$PARAM[right]" default="30" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="Black12" />
+        <definition>
+            <control type="image">
+               <top>$PARAM[top]</top>
+               <right>$PARAM[right]</right>
+               <left>$PARAM[left]</left>
+               <height>1</height>
+               <include>Texture_Dialog_Line</include>
+               <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Line_Vertical">
+        <param name="top" value="$PARAM[top]" default="112" />
+        <param name="bottom" value="$PARAM[bottom]" default="17" />
+        <param name="right" value="$PARAM[right]" default="360" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <definition>
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <bottom>$PARAM[bottom]</bottom>
+                <right>$PARAM[right]</right>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_List_Dimension">
+        <height>68</height>
+        <bottom>33</bottom>
+        <itemgap>28</itemgap>
+    </include>
+
+    <include name="Def_Dialog_Header">
+        <param name="label" value="$PARAM[label]" default="" />
+        <param name="label_id" value="$PARAM[label_id]" />
+        <param name="label_width" value="$PARAM[label_width]" default="1070" />
+        <param name="label_color" value="$PARAM[label_color]" default="Dark2" />
+        <param name="icon" value="$PARAM[icon]" default="kodi" />
+        <param name="icon_color" value="$PARAM[icon_color]" default="$VAR[Color_Dialog_Header_Logo]" />
+        <param name="line_color" value="$PARAM[line_color]" default="$VAR[Color_Dialog_Line]" />
+        <param name="visible" default="true" />
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <include content="Def_Dialog_Header_Logo">
+                    <param name="texture" value="$PARAM[icon]" />
+                    <param name="colordiffuse" value="$PARAM[icon_color]" />
+                </include>
+                <control type="label" id="$PARAM[label_id]">
+                    <include content="Def_Dialog_Header_Title">
+                        <param name="textcolor" value="$PARAM[label_color]" />
+                        <param name="width" value="$PARAM[label_width]" />
+                    </include>
+                    <label>$PARAM[label]</label>
+                </control>
+                <include content="Def_Dialog_Header_Line">
+                    <param name="colordiffuse" value="$PARAM[line_color]" />
+                </include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Settings_Header">
+        <param name="left" value="$PARAM[left]"  default="30" />
+        <param name="width" value="$PARAM[width]"  default="390" />
+        <param name="label_left_title" value="$PARAM[label_left_title]"  default="5" />
+        <param name="label_left_sub_title" value="$PARAM[label_left_sub_title]" default="$INFO[System.ProfileName]" />
+        <param name="label_right_title" value="$PARAM[label_right_title]" default="$VAR[Label_Header_Settings]" />
+        <param name="label_right_sub_title" value="$PARAM[label_right_sub_title]" />
+        <param name="visible_header_right" value="$PARAM[visible_header_right]" default="true" />
+
+        <definition>
+
+            <!-- LEFT - HEADER -->
+
+            <control type="label">
+                <top>18</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <font>MediumBold</font>
+                <label>$PARAM[label_left_title]</label>
+                <textcolor>PanelWhite100</textcolor>
+            </control>
+            <control type="label">
+                <top>77</top>
+                <left>$PARAM[left]</left>
+                <height>30</height>
+                <width>$PARAM[width]</width>
+                <font>Tiny</font>
+                <textcolor>PanelWhite70</textcolor>
+                <scroll>true</scroll>
+                <align>left</align>
+                <textoffsetx>0</textoffsetx>
+                <label>$PARAM[label_left_sub_title]</label>
+            </control>
+
+            <!-- LINES - VERTICAL -->
+
+            <include content="Def_Dialog_Line_Vertical">
+                <param name="top" value="17" />
+                <param name="right" value="1310" />
+            </include>
+
+            <!-- RIGHT - HEADER -->
+
+            <control type="group">
+                <visible>$PARAM[visible_header_right]</visible>
+                <control type="label">
+                    <top>18</top>
+                    <left>480</left>
+                    <right>30</right>
+                    <font>MediumBold</font>
+                    <label>$PARAM[label_right_title]</label>
+                    <textcolor>PanelWhite100</textcolor>
+                </control>
+                <control type="label">
+                    <top>77</top>
+                    <height>30</height>
+                    <left>480</left>
+                    <right>30</right>
+                    <font>Tiny</font>
+                    <label>$PARAM[label_right_sub_title]</label>
+                    <textcolor>PanelWhite70</textcolor>
+                    <scroll>true</scroll>
+                </control>
+            </control>
+
+            <!-- RIGHT - LINE -->
+
+            <include content="Def_Dialog_Header_Line">
+                <param name="top" value="123" />
+                <param name="left" value="480" />
+                <param name="visible" value="$PARAM[visible_header_right]" />
+            </include>
+        </definition>
+    </include>
+
+    <!-- DEF - DIALOG - NOTIFICATION -->
+
+    <include name="Def_Dialog_Notification_Background">
+        <param name="texture" value="$PARAM[texture]" default="$VAR[Image_Notification_Background]" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White70" />
+        <param name="condition_fade" value="$PARAM[condition_fade]" default="true" />
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="image">
+                <texture colordiffuse="$PARAM[colordiffuse]">$PARAM[texture]</texture>
+                <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Image_Notification">
+        <param name="top" value="$PARAM[top]" default="6" />
+        <param name="left" value="$PARAM[left]" default="6" />
+        <param name="width" value="$PARAM[width]" default="68" />
+        <param name="height" value="$PARAM[height]" default="68" />
+
+        <param name="aspectratio" value="$PARAM[aspectratio]" default="scale" />
+        <param name="texture_diffuse" value="$PARAM[texture_diffuse]" default="circle_72" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="Dark2" />
+        <param name="texture" value="$PARAM[texture]" default="$INFO[Control.GetLabel(400)]" />
+
+        <param name="visible" value="$PARAM[visible]" default="true" />
+        <definition>
+            <control type="image">
+                <visible>$PARAM[visible]</visible>
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture diffuse="diffuse/$PARAM[texture_diffuse].png" background="false" colordiffuse="$PARAM[colordiffuse]">$PARAM[texture]</texture>
+            </control>
+        </definition>
+    </include>
+
+    <!-- DEF - DIALOG - BACKGROUND -->
+
+    <include name="Def_Dialog_Background">
+        <param name="height" default="882" />
+        <param name="width" default="1320" />
+        <param name="centerleft" default="50%" />
+        <param name="centertop" default="50%" />
+        <param name="colordiffuse" default="White100" />
+        <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" default="$VAR[Color_Border]" />
+        <param name="colordiffuse_shadow" value="$PARAM[colordiffuse_shadow]" default="$VAR[Color_Dialog_Shadow]" />
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <param name="animation_fade_in" value="$PARAM[animation_fade_in]" default="Animation_Dialog_Fade_In_Zoom" />
+        <param name="animation_fade_out" value="$PARAM[animation_fade_out]" default="Animation_Common_Fade_Out" />
+        <param name="condition_fade" value="$PARAM[condition_fade]" default="false" />
+        <param name="visible" default="true" />
+
+        <definition>
+            <visible>$PARAM[visible]</visible>
+
+            <include condition="!$EXP[Condition_Show_Button_Setup_Wizard]">$PARAM[animation_fade_in]</include>
+            <include condition="!$EXP[Condition_Show_Button_Setup_Wizard]">$PARAM[animation_fade_out]</include>
+
+            <include condition="$EXP[Condition_Show_Button_Setup_Wizard]">Animation_Dialog_Menu_Prec_Next_Side</include>
+
+            <centerleft>$PARAM[centerleft]</centerleft>
+            <centertop>$PARAM[centertop]</centertop>
+            <height>$PARAM[height]</height>
+            <width>$PARAM[width]</width>
+
+           <include content="Def_Dialog_Image_Background">
+                <param name="colordiffuse" value="$PARAM[colordiffuse]" />
+                <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" />
+                <param name="colordiffuse_shadow" value="$PARAM[colordiffuse_shadow]" />
+                <param name="pad_shadow" value="$PARAM[pad_shadow]" />
+                <param name="pad_image" value="$PARAM[pad_image]" />
+                <param name="condition_fade" value="$PARAM[condition_fade]" />
+            </include>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Image_Background">
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="border_shadow" value="$PARAM[border_shadow]" default="34" />
+        <param name="texture_shadow" value="$PARAM[texture_shadow]" default="$VAR[shadow24]" />
+        <param name="colordiffuse_shadow" value="$PARAM[colordiffuse_shadow]" default="$VAR[Color_Shadow]" />
+        <param name="visible_shadow" value="$PARAM[visible_shadow]" default="true" />
+
+        <param name="pad_border" value="$PARAM[pad_border]" default="-9" />
+        <param name="border_border" value="$PARAM[border_border]" default="32" />
+        <param name="texture_border" value="$PARAM[texture_border]" default="$VAR[border24]" />
+        <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" default="$VAR[Color_Border]" />
+        <param name="visible_border" value="$PARAM[visible_border]" default="true" />
+
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <param name="colordiffuse" value="$PARAM[colordiffuse]" default="White100" />
+        <param name="condition_fade" value="$PARAM[condition_fade]" default="false" />
+
+        <param name="visible" value="$PARAM[visible]" default="true" />
+
+        <definition>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_shadow]" /></include>
+                <texture border="$PARAM[border_shadow]" colordiffuse="$PARAM[colordiffuse_shadow]" infill="false">$PARAM[texture_shadow]</texture>
+                <visible>!Skin.HasSetting(hide.global.shadows)</visible>
+                <visible>$PARAM[visible_shadow]</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_border]" /></include>
+                <texture border="$PARAM[border_border]" colordiffuse="$PARAM[colordiffuse_border]" infill="false">$PARAM[texture_border]</texture>
+                <visible>Skin.HasSetting(hide.global.shadows)</visible>
+                <visible>$PARAM[visible_border]</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <include content="Def_Padding"><param name="pad" value="$PARAM[pad_image]" /></include>
+                <texture border="24" colordiffuse="$PARAM[colordiffuse]">$VAR[texture_box24]</texture>
+                <animation effect="fade" start="100" end="90" condition="$PARAM[condition_fade]">Conditional</animation>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Multi_Row_Background">
+        <param name="colordiffuse" default="White100" />
+        <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" default="$VAR[Color_Border]" />
+        <param name="colordiffuse_shadow" value="$PARAM[colordiffuse_shadow]" default="$VAR[Color_Dialog_Shadow]" />
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <param name="visible" default="true" />
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <height>$PARAM[height]</height>
+                <include content="Def_Dialog_Image_Background">
+                    <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" />
+                    <param name="colordiffuse_shadow" value="$PARAM[colordiffuse_shadow]" />
+                    <param name="colordiffuse" value="$PARAM[colordiffuse]" />
+                    <param name="pad_shadow" value="$PARAM[pad_shadow]" />
+                    <param name="pad_image" value="$PARAM[pad_image]" />
+                    <param name="condition_fade" value="false" />
+                </include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Settings">
+        <param name="top" default="View_List_Top" />
+        <param name="left" default="View_List_Side" />
+        <param name="height" default="646" />
+        <param name="width" default="View_List_Width" />
+        <param name="colordiffuse" default="White100" />
+        <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" default="$VAR[Color_Border]" />
+        <param name="pad_shadow" value="$PARAM[pad_shadow]" default="-9" />
+        <param name="pad_image" value="$PARAM[pad_image]" default="0" />
+        <definition>
+            <top>$PARAM[top]</top>
+            <left>$PARAM[left]</left>
+            <height>$PARAM[height]</height>
+            <width>$PARAM[width]</width>
+            <include content="Def_Dialog_Image_Background">
+                <param name="colordiffuse_border" value="$PARAM[colordiffuse_border]" />
+                <param name="colordiffuse" value="$PARAM[colordiffuse]" />
+                <param name="pad_shadow" value="$PARAM[pad_shadow]" />
+                <param name="pad_image" value="$PARAM[pad_image]" />
+                <param name="condition_fade" value="false" />
+            </include>
+        </definition>
+    </include>
+
+    <!-- ======================================================== -->
+    <!-- DEF - DIALOG SETTINGS MOVIE / TVSHOW / MUSIC DIALOG INFO -->
+    <!-- ======================================================== -->
+
+    <include name="Def_Dialog_Custom_Settings">
+        <control type="group">
+            <visible>![Window.IsVisible(DialogNumeric.xml) | Window.IsVisible(DialogKeyboard.xml)]</visible>
+
+            <include content="Background_Overlay">
+                <param name="visible" value="!String.IsEmpty(Window(Home).Property(open_dialog_info_settings))" />
+            </include>
+
+            <control type="group">
+                <visible>!String.IsEmpty(Window(Home).Property(open_dialog_info_settings))</visible>
+                <include>Animation_Dialog_Menu_Top_Side</include>
+
+                <control type="group">
+                    <top>200</top>
+                    <centerleft>50%</centerleft>
+                    <width>566</width>
+
+                    <!-- BACKGROUND -->
+
+                    <include content="Def_Dialog_Multi_Row_Background">
+                        <param name="height" value="199" />
+                        <param name="visible" value="Integer.IsEqual(Container(9400).NumItems,1)" />
+                    </include>
+
+                    <include content="Def_Dialog_Multi_Row_Background">
+                        <param name="height" value="269" />
+                        <param name="visible" value="Integer.IsEqual(Container(9400).NumItems,2)" />
+                    </include>
+
+                    <include content="Def_Dialog_Multi_Row_Background">
+                        <param name="height" value="339" />
+                        <param name="visible" value="Integer.IsEqual(Container(9400).NumItems,3)" />
+                    </include>
+
+                    <include content="Def_Dialog_Multi_Row_Background">
+                        <param name="height" value="409" />
+                        <param name="visible" value="Integer.IsEqual(Container(9400).NumItems,4)" />
+                    </include>
+
+                    <include content="Def_Dialog_Multi_Row_Background">
+                        <param name="height" value="479" />
+                        <param name="visible" value="Integer.IsEqual(Container(9400).NumItems,5)" />
+                    </include>
+
+                    <include content="Def_Dialog_Multi_Row_Background">
+                        <param name="height" value="549" />
+                        <param name="visible" value="Integer.IsEqual(Container(9400).NumItems,6)" />
+                    </include>
+
+                    <include content="Def_Dialog_Multi_Row_Background">
+                        <param name="height" value="619" />
+                        <param name="visible" value="Integer.IsEqual(Container(9400).NumItems,7)" />
+                    </include>
+
+                    <include content="Def_Dialog_Multi_Row_Background">
+                        <param name="height" value="689" />
+                        <param name="visible" value="Integer.IsGreater(Container(9400).NumItems,7)" />
+                    </include>
+
+                    <include content="Def_Dialog_Header">
+                        <param name="label" value="16106" />
+                        <param name="icon" value="settings" />
+                    </include>
+
+                    <!-- LIST MENU -->
+
+                    <control type="list" id="9400">
+                        <include>Animation_Scrolltime_Views_List</include>
+
+                        <top>112</top>
+                        <left>16</left>
+                        <width>534</width>
+                        <height min="100" max="560">auto</height>
+                        <bottom>17</bottom>
+
+                        <onback>clearProperty(open_dialog_info_settings,Home)</onback>
+                        <onback>9000</onback>
+                        <onleft>9000</onleft>
+                        <onright>9000</onright>
+                        <onleft>Close</onleft>
+                        <onright>Close</onright>
+                        <onback>300</onback>
+
+                        <orientation>vertical</orientation>
+
+                        <itemlayout width="534" height="70">
+                            <control type="image">
+                                <left>16</left>
+                                <top>8</top>
+                                <width>56</width>
+                                <height>56</height>
+                                <texture colordiffuse="$VAR[Color_Icon_Menu_List]">$INFO[Container(300).ListItem.Icon]</texture>
+                            </control>
+                            <control type="label">
+                                <align>left</align>
+                                <left>84</left>
+                                <aligny>center</aligny>
+                                <width>100%</width>
+                                <centertop>50%</centertop>
+                                <height>100%</height>
+                                <textcolor>Dark2</textcolor>
+                                <font>Tiny</font>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                        </itemlayout>
+                        <focusedlayout width="534" height="70">
+                            <control type="image">
+                                <width>100%</width>
+                                <height>100%</height>
+                                <include>Texture_Layout_Item_Focus</include>
+                                <include condition="true">Animation_View_List_Focus_Scroll</include>
+                            </control>
+                            <control type="image">
+                                <left>16</left>
+                                <top>8</top>
+                                <width>56</width>
+                                <height>56</height>
+                                <texture colordiffuse="Selected">$INFO[Container(300).ListItem.Icon]</texture>
+                            </control>
+                            <control type="label">
+                                <align>left</align>
+                                <left>84</left>
+                                <aligny>center</aligny>
+                                <width>100%</width>
+                                <centertop>50%</centertop>
+                                <height>100%</height>
+                                <textcolor>Selected</textcolor>
+                                <font>Tiny</font>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                        </focusedlayout>
+
+                        <content>
+
+                            <!-- ACTUALISE INFO -->
+
+                            <item>
+                                <label>$LOCALIZE[184]</label>
+                                <icon>special://skin/extras/icons/update.png</icon>
+                                <onclick>SendClick(6)</onclick>
+                                <visible>!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)</visible>
+                                <visible>Control.IsEnabled(6)</visible>
+                            </item>
+
+                            <!-- CHANGE ARTWORK -->
+
+                            <item>
+                                <label>$LOCALIZE[13511]</label>
+                                <icon>special://skin/extras/icons/images.png</icon>
+                                <onclick>SendClick(10)</onclick>
+                                <visible>Control.IsEnabled(10)</visible>
+                                <visible>!String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.DBType)</visible>
+                            </item>
+
+                            <!-- AKL - CHANGE ARTWORK -->
+
+                            <item>
+                                <label>$LOCALIZE[13511]</label>
+                                <icon>special://skin/extras/icons/images.png</icon>
+                                <onclick>RunPlugin(plugin://plugin.program.akl/execute/command/rom_edit_assets/?rom_id=$INFO[Container(19801).ListItem.Property(entityid)])</onclick>
+                                <visible>Window.IsVisible(script-akl-romdetails.xml)</visible>
+                            </item>
+
+                            <!-- VERSION -->
+
+                            <item>
+                                <label>$LOCALIZE[40000]</label>
+                                <icon>special://skin/extras/icons/server.png</icon>
+                                <onclick>SendClick(14)</onclick>
+                                <visible>String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.DBID)</visible>
+                            </item>
+
+                            <!-- EXTRA -->
+
+                            <item>
+                                <label>$LOCALIZE[40211]</label>
+                                <icon>special://skin/extras/icons/favourites.png</icon>
+                                <onclick>SendClick(15)</onclick>
+                                <visible>String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.DBID)</visible>
+                            </item>
+
+                            <!-- FILES MANAGER -->
+
+                            <item>
+                                <label>7</label>
+                                <icon>special://skin/extras/icons/filebox.png</icon>
+
+                                <onclick>Dialog.Close(all)</onclick>
+                                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
+
+                                <onclick>SetProperty(filemanager_back_video_info_type,$VAR[Def_Open_Info_From_FileManager_Type],Home)</onclick>
+                                <onclick>SetProperty(filemanager_back_video_info_bdid,$INFO[ListItem.DBID],Home)</onclick>
+
+                                <onclick condition="!String.IsEmpty(Container(44029).ListItem.Property(path))">AlarmClock(delay_open_filemanager,ActivateWindow(filemanager,"$INFO[Container(44029).ListItem.Property(path)]",return),00:01,silent)</onclick>
+
+                                <onclick condition="!String.IsEmpty(ListItem.Path) + !$EXP[IsPluginItem]">AlarmClock(delay_open_filemanager,ActivateWindow(filemanager,"$INFO[ListItem.Path]",return),00:01,silent)</onclick>
+
+                                <onclick condition="!String.IsEmpty(ListItem.Property(path))">AlarmClock(delay_open_filemanager,ActivateWindow(filemanager,"$INFO[ListItem.Property(path)]",return),00:01,silent)</onclick>
+
+                                <visible>!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)</visible>
+                                <visible>!String.IsEqual(ListItem.DBType,set)</visible>
+                                <visible>[!String.IsEmpty(ListItem.Path) + !$EXP[IsPluginItem]] | !String.IsEmpty(ListItem.Property(path)) | !String.IsEmpty(Container(44029).ListItem.Property(path))</visible>
+                            </item>
+
+                            <!-- METADATA EDITOR -->
+
+                            <item>
+                                <label>$ADDON[script.metadata.editor 32000]</label>
+                                <icon>special://skin/extras/icons/bookmarks.png</icon>
+                                <onclick>RunScript(script.metadata.editor,dbid=$INFO[ListItem.DBID],type=$INFO[ListItem.DBType])</onclick>
+                                <visible>!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)</visible>
+                                <visible>System.AddonIsEnabled(script.metadata.editor)</visible>
+                            </item>
+
+                            <!-- SETTINGS -->
+
+                            <item>
+                                <label>5</label>
+                                <icon>special://skin/extras/icons/addons.png</icon>
+                                <onclick>ActivateWindow(1260)</onclick>
+                            </item>
+                        </content>
+                    </control>
+
+                    <!-- BUTTON ACTUALISE INFO -->
+
+                    <control type="button" id="6">
+                        <visible allowhiddenfocus="true">false</visible>
+                    </control>
+
+                    <!-- BUTTON CHANGE ARTWORK -->
+
+                    <control type="button" id="10">
+                        <visible allowhiddenfocus="true">false</visible>
+                    </control>
+                </control>
+            </control>
+        </control>
+    </include>
+
+    <include name="Def_Dialog_Select_label_Num_Item">
+        <param name="right" default="30" />
+        <param name="bottom" default="17" />
+        <definition>
+            <control type="label">
+                <right>$PARAM[right]</right>
+                <bottom>$PARAM[bottom]</bottom>
+                <font>Tiny</font>
+                <height>44</height>
+                <align>right</align>
+                <textcolor>Black70</textcolor>
+                <label>$VAR[Label_Dialog_Select_Num_Item]</label>
+            </control>
+        </definition>
+    </include>
+
+    <!-- DEF - BUTTON KEYBOARD -->
+
+    <include name="Def_Keyboard_Keys">
+        <width>85</width>
+        <height>75</height>
+        <include>Texture_Keyboard_Keys</include>
+        <textoffsetx>0</textoffsetx>
+        <textcolor>Black70</textcolor>
+        <focusedcolor>Selected</focusedcolor>
+        <radioposx>320</radioposx>
+        <radioposy>22</radioposy>
+    </include>
+
+    <include name="Def_Button_Dimensions_Keyboard">
+        <width>$PARAM[keyboardbuttonwidth]</width>
+        <height>$PARAM[keyboardbuttonheight]</height>
+        <radioposx>$PARAM[keyboardbuttonradioposx]</radioposx>
+        <radioposy>$PARAM[keyboardbuttonradioposy]</radioposy>
+        <radiowidth>48</radiowidth>
+    </include>
+
+    <include name="Def_Button_Dimensions_Numpad">
+        <width>181</width>
+        <height>85</height>
+        <radioposx>70</radioposx>
+        <radioposy>30</radioposy>
+        <radiowidth>48</radiowidth>
+    </include>
+
+    <!-- DEF - BUTTON -->
+
+    <include name="Def_Dialog_Standard_Button">
+        <width>300</width>
+        <height>66</height>
+        <align>center</align>
+        <textoffsetx>22</textoffsetx>
+        <textoffsety>78</textoffsety>
+        <font>Button</font>
+        <textcolor>Black70</textcolor>
+        <include>Texture_Button_Dialog_Settings</include>
+    </include>
+
+    <include name="Def_Dialog_Button_Action">
+        <param name="width" value="$PARAM[width]" default="300" />
+        <param name="height" value="$PARAM[height]" default="66" />
+        <param name="align" value="$PARAM[align]" default="center" />
+        <param name="textoffsetx" value="$PARAM[textoffsetx]" default="22" />
+        <param name="onclick1" value="$PARAM[onclick1]" default="" />
+        <param name="selected" value="$PARAM[selected]" default="" />
+        <param name="textcolor" value="$PARAM[textcolor]" default="Black70" />
+        <param name="colordiffuse_texturenofocus" value="$PARAM[colordiffuse_texturenofocus]" default="Black12" />
+
+        <definition>
+            <control type="button" id="$PARAM[id]">
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <align>$PARAM[align]</align>
+                <textoffsetx>$PARAM[textoffsetx]</textoffsetx>
+                <textoffsety>78</textoffsety>
+                <font>Button</font>
+                <label>$PARAM[label]</label>
+                <label2>$PARAM[label2]</label2>
+                <textcolor>$PARAM[textcolor]</textcolor>
+                <altlabel>$PARAM[altlabel]</altlabel>
+                <visible>$PARAM[visible]</visible>
+                <include content="Texture_Button_Dialog_Settings">
+                    <param name="colordiffuse_nofocus" value="$PARAM[colordiffuse_texturenofocus]" />
+                </include>
+                <selected>$PARAM[selected]</selected>
+                <onclick>$PARAM[onclick1]</onclick>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Button_Confirm">
+        <param name="width" value="$PARAM[width]" default="300" />
+        <param name="height" value="$PARAM[height]" default="66" />
+        <param name="onclick1" value="$PARAM[onclick1]" default="" />
+        <param name="textcolor" value="$PARAM[textcolor]" default="Black70" />
+        <param name="colordiffuse_texturenofocus" value="$PARAM[colordiffuse_texturenofocus]" default="Black12" />
+
+        <definition>
+            <control type="button" id="$PARAM[id]">
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <align>center</align>
+                <textoffsetx>22</textoffsetx>
+                <textoffsety>78</textoffsety>
+                <font>Button</font>
+                <label>$PARAM[label]</label>
+                <textcolor>$PARAM[textcolor]</textcolor>
+                <altlabel>$PARAM[altlabel]</altlabel>
+                <visible>$PARAM[visible]</visible>
+
+                <include>Texture_Button_Dialog_Settings</include>
+                <onclick>$PARAM[onclick1]</onclick>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Dialog_Radio_Button_Action">
+        <param name="width" value="$PARAM[width]" default="300" />
+        <param name="height" value="$PARAM[height]" default="66" />
+        <param name="align" value="$PARAM[align]" default="left" />
+        <param name="radioposx" value="$PARAM[radioposx]" default="250" />
+        <param name="textoffsetx" value="$PARAM[textoffsetx]" default="60" />
+        <param name="onclick1" value="$PARAM[onclick1]" default="" />
+        <param name="selected" value="$PARAM[selected]" default="" />
+
+        <definition>
+            <control type="radiobutton" id="$PARAM[id]">
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+                <align>$PARAM[align]</align>
+                <textoffsetx>$PARAM[textoffsetx]</textoffsetx>
+                <radioposx>$PARAM[radioposx]</radioposx>
+                <font>Button</font>
+                <label>$PARAM[label]</label>
+                <visible>$PARAM[visible]</visible>
+
+                <include>Texture_Button_Dialog_Settings</include>
+                <selected>$PARAM[selected]</selected>
+                <onclick>$PARAM[onclick1]</onclick>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Button_Radio">
+        <param name="colordiffuse_off" value="$PARAM[colordiffuse_off]" default="Black70" />
+        <param name="colordiffuse_on" value="$PARAM[colordiffuse_on]" default="$VAR[Color_List_Item_Selected]" />
+        <param name="visible" value="$PARAM[visible]" />
+        <definition>
+            <control type="image">
+                <right>30</right>
+                <centertop>50%</centertop>
+                <width>26</width>
+                <height>26</height>
+                <texture colordiffuse="$PARAM[colordiffuse_off]">buttons/radio-off.png</texture>
+                <visible>!$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <right>30</right>
+                <centertop>50%</centertop>
+                <width>26</width>
+                <height>26</height>
+                <texture colordiffuse="$PARAM[colordiffuse_on]">buttons/radio-on.png</texture>
+                <visible>$PARAM[visible]</visible>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Button_Dimensions_Poster">
+        <width>134</width>
+        <height>68</height>
+        <radioposx>42</radioposx>
+        <radioposy>18</radioposy>
+        <radiowidth>48</radiowidth>
+    </include>
+
+    <include name="Def_Button_Dimensions_Square">
+        <width>127</width>
+        <height>68</height>
+        <radioposx>40</radioposx>
+        <radioposy>18</radioposy>
+        <radiowidth>48</radiowidth>
+    </include>
+
+    <include name="Def_Button_Dimensions_Square_Blur">
+        <width>76</width>
+        <height>66</height>
+        <radioposx>14</radioposx>
+        <radioposy>18</radioposy>
+        <radiowidth>48</radiowidth>
+    </include>
+
+    <include name="Def_Button_Dimensions_Circle">
+        <width>50</width>
+        <height>50</height>
+        <radioposx>1</radioposx>
+        <radioposy>10</radioposy>
+        <radiowidth>48</radiowidth>
+    </include>
+
+    <include name="Def_Buttons_Info">
+        <font>Button</font>
+        <textcolor>Dark2</textcolor>
+        <width>247</width>
+        <height>68</height>
+        <onfocus>ClearProperty(content)</onfocus>
+        <include>Texture_Button_Info</include>
+    </include>
+
+    <include name="Def_Dialog_Buttons_PVR">
+        <width>619</width>
+        <height>66</height>
+        <align>left</align>
+        <include>Texture_Dialog_Settings</include>
+        <radioposx>559</radioposx>
+        <textcolor>Black70</textcolor>
+    </include>
+
+    <include name="Def_Button_Colorbox">
+        <textoffsetx>30</textoffsetx>
+        <radioposx>1250</radioposx>
+        <width>1310</width>
+        <height>70</height>
+        <font>Small</font>
+        <align>left</align>
+        <textcolor>PanelWhite100</textcolor>
+        <textureradioonfocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioonfocus>
+        <textureradioofffocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioofffocus>
+        <textureradioonnofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioonnofocus>
+        <textureradiooffnofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradiooffnofocus>
+        <textureradiofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradiofocus>
+        <textureradionofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradionofocus>
+        <focusedcolor>Selected</focusedcolor>
+        <include>Texture_Dialog_ColorBox</include>
+    </include>
+
+    <include name="Def_Button_Colorbox_2">
+        <textoffsetx>30</textoffsetx>
+        <radioposx>10</radioposx>
+        <width>35</width>
+        <height>70</height>
+        <font>Small</font>
+        <align>left</align>
+        <label/>
+        <textcolor>PanelWhite100</textcolor>
+        <textureradioonfocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioonfocus>
+        <textureradioofffocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioofffocus>
+        <textureradioonnofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradioonnofocus>
+        <textureradiooffnofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradiooffnofocus>
+        <textureradiofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradiofocus>
+        <textureradionofocus colordiffuse="$PARAM[colorcode]">buttons/colorbox.png</textureradionofocus>
+        <focusedcolor>Selected</focusedcolor>
+        <include>Texture_Dialog_ColorBox</include>
+    </include>
+
+    <!-- DEF - DIALOG - SETTINGS - ACCESS LEVEL -->
+
+    <include name="Def_Settings_Button_Level">
+        <param name="def_onclick" value="$PARAM[def_onclick]" default="Def_OnClick_Button_Level_Kodi_Settings" />
+        <param name="on_move" value="$PARAM[on_move]" default="3" />
+        <param name="label" value="$PARAM[label]" default="" />
+
+        <definition>
+            <control type="group">
+                <control type="image">
+                    <top>0</top>
+                    <left>0</left>
+                    <width>80</width>
+                    <bottom>0</bottom>
+                    <texture border="24" colordiffuse="PanelWhite12">$VAR[texture_box24]</texture>
+                    <animation effect="fade" end="50" start="100" time="0" condition="true">Conditional</animation>
+                </control>
+                <control type="image">
+                    <top>0</top>
+                    <left>0</left>
+                    <width>80</width>
+                    <bottom>0</bottom>
+                    <texture border="24" colordiffuse="$VAR[Color_Focus]">$VAR[texture_box24]</texture>
+                    <visible>Control.HasFocus(20)</visible>
+                </control>
+                <control type="button" id="20">
+                    <top>305</top>
+                    <left>-260</left>
+                    <right>30</right>
+                    <width>600</width>
+                    <height>30</height>
+                    <font>Tiny</font>
+                    <label>$PARAM[label]</label>
+                    <textcolor>PanelWhite70</textcolor>
+                    <align>center</align>
+                    <textoffsetx>0</textoffsetx>
+                    <texturenofocus />
+                    <texturefocus />
+                    <focusedcolor>Selected</focusedcolor>
+                    <ondown>$PARAM[on_move]</ondown>
+                    <onright>$PARAM[on_move]</onright>
+                    <onup>$PARAM[on_move]</onup>
+                    <include>$PARAM[def_onclick]</include>
+                    <animation effect="rotate" condition="true" start="360" end="270" loop="false" time="0" center="auto">Conditional</animation>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_OnClick_Button_Level_Kodi_Settings">
+        <onclick>SettingsLevelChange</onclick>
+    </include>
+
+    <include name="Def_OnClick_Button_Level_Skin_Settings">
+        <onclick condition="Integer.IsEqual(Skin.String(Skin.SettingsLevel),1)">Skin.SetString(Skin.SettingsLevel,$NUMBER[2])</onclick>
+        <onclick condition="Integer.IsEqual(Skin.String(Skin.SettingsLevel),2)">Skin.SetString(Skin.SettingsLevel,$NUMBER[3])</onclick>
+        <onclick condition="Integer.IsEqual(Skin.String(Skin.SettingsLevel),3)">Skin.SetString(Skin.SettingsLevel,$NUMBER[1])</onclick>
+        <onclick>ReloadSkin()</onclick>
+    </include>
+
+    <!-- DEF - DIALOG - SKIN SETTINGS - SETTINGS - CUSTOM SETTINGS ( HEIGHT 70 ) -->
+
+    <include name="Def_Settings_Button_Focus_Select_Left_Side">
+        <align>left</align>
+        <width>568</width>
+        <textoffsetx>30</textoffsetx>
+        <radioposx>518</radioposx>
+        <textcolor>PanelWhite100</textcolor>
+        <disabledcolor>PanelWhite12</disabledcolor>
+        <selectedcolor>Selected</selectedcolor>
+        <height>70</height>
+        <include>Texture_Highlight_Focus</include>
+        <include condition="true">Animation_View_List_Focus_Scroll</include>
+    </include>
+
+    <include name="Def_Settings_Label_Title_Right_Side">
+        <height>70</height>
+        <width>1278</width>
+        <align>left</align>
+        <font>Button</font>
+        <textoffsetx>14</textoffsetx>
+        <textcolor>$VAR[Color_Label_Settings_Title]</textcolor>
+        <animation effect="fade" start="100" end="60" condition="true">Conditional</animation>
+    </include>
+
+    <include name="Def_Settings_Button_Focus_Select_Right_Side">
+        <align>left</align>
+        <radioposx>1218</radioposx>
+        <textoffsetx>30</textoffsetx>
+        <textcolor>PanelWhite100</textcolor>
+        <disabledcolor>PanelWhite12</disabledcolor>
+        <selectedcolor>Selected</selectedcolor>
+        <height>70</height>
+        <include>Texture_Highlight_Focus</include>
+        <include condition="true">Animation_View_List_Focus_Scroll</include>
+    </include>
+
+    <!-- DEF - DIALOG SETTINGS - CUSTOM - 1260 - 1149  ( HEIGHT 66 )-->
+
+    <include name="Def_Custom_Settings_Label_Title_Left_Side">
+        <height>66</height>
+        <width>418</width>
+        <align>left</align>
+        <font>Button</font>
+        <textoffsetx>14</textoffsetx>
+        <textcolor>$VAR[Color_Label_Settings_Title]</textcolor>
+        <animation effect="fade" start="100" end="60" condition="true">Conditional</animation>
+    </include>
+
+    <include name="Def_Custom_Settings_Button_Focus_Select_Left_Side">
+        <param name="condition_scroll_anim" value="$PARAM[condition_scroll_anim]" default="true" />
+
+        <definition>
+            <radioposx>611</radioposx>
+            <left>0</left>
+            <align>left</align>
+            <textwidth>600</textwidth>
+            <width>668</width>
+            <height>66</height>
+            <font>Small</font>
+            <disabledcolor>Black12</disabledcolor>
+            <textcolor>Black70</textcolor>
+            <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
+            <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
+            <focusedcolor>Selected</focusedcolor>
+            <include>Texture_Highlight_Focus</include>
+            <include condition="$PARAM[condition_scroll_anim]">Animation_View_List_Focus_Scroll</include>
+        </definition>
+    </include>
+
+    <!-- DEF - DIALOG - SKIN SETTINGS -->
+
+    <include name="Def_SkinSettings_radiobutton_Addons_Right_Side">
+        <control type="radiobutton" id="$PARAM[id]1">
+            <visible>$PARAM[visible]</visible>
+            <visible>System.HasAddon($PARAM[addonname]) + System.AddonIsEnabled($PARAM[addonname])</visible>
+            <width>1278</width>
+            <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+            <label>$PARAM[addonname]</label>
+            <label2>$INFO[System.AddonVersion($PARAM[addonname]),(,)]        </label2>
+            <selected>true</selected>
+            <onclick>Addon.OpenSettings($PARAM[addonname])</onclick>
+        </control>
+        <control type="radiobutton" id="$PARAM[id]2">
+            <visible>$PARAM[visible]</visible>
+            <visible>System.HasAddon($PARAM[addonname]) + !System.AddonIsEnabled($PARAM[addonname])</visible>
+            <width>1278</width>
+            <include>Def_SkinSettings_radiobutton_Addons_Disable_Right_Side</include>
+            <label>$PARAM[addonname]</label>
+            <label2>($LOCALIZE[31350]) $INFO[System.AddonVersion($PARAM[addonname]),(,)]        </label2>
+            <selected>true</selected>
+        </control>
+        <control type="radiobutton" id="$PARAM[id]3">
+            <visible>$PARAM[visible]</visible>
+            <visible>!System.HasAddon($PARAM[addonname])</visible>
+            <width>1278</width>
+            <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+            <label>$PARAM[addonname]</label>
+            <label2>$INFO[System.AddonVersion($PARAM[addonname]),(,)]        </label2>
+            <selected>false</selected>
+            <onclick>InstallAddon($PARAM[addonname])</onclick>
+        </control>
+    </include>
+
+    <include name="Def_SkinSettings_radiobutton_Addons_Disable_Right_Side">
+        <align>left</align>
+        <radioposx>1218</radioposx>
+        <textoffsetx>30</textoffsetx>
+        <height>70</height>
+        <textcolor>$VAR[Color_Item_Disabled]</textcolor>
+        <focusedcolor>Selected</focusedcolor>
+        <textureradioonnofocus colordiffuse="$VAR[Color_Item_Disabled]">buttons/radio-on.png</textureradioonnofocus>
+        <include>Texture_Highlight_Focus</include>
+        <include condition="true">Animation_View_List_Focus_Scroll</include>
+    </include>
+
+    <!-- DEF - DIALOG - SETTINGS - SYSTEM INFO -->
+
+    <include name="Def_Settings_System_Info_Label_Left_Side">
+        <align>left</align>
+        <font>Small</font>
+        <textcolor>PanelWhite100</textcolor>
+        <height>70</height>
+    </include>
+
+    <include name="Def_Settings_Label_Info_Left_Side">
+        <width>1278</width>
+        <height>279</height>
+        <align>center</align>
+    </include>
+
+    <!-- DEF - DIALOG INFO NAVIGATION -->
+
+    <include name="Def_Dialog_Info_Navigation_Addon">
+        <control type="grouplist" id="9000">
+            <bottom>224</bottom>
+            <left>DialogInfo_Square_Left</left>
+            <right>View_List_Side</right>
+
+            <include>Def_List_Dimension</include>
+
+            <ondown>9669</ondown>
+            <onup condition="Control.IsVisible(50)">50</onup>
+
+            <orientation>horizontal</orientation>
+
+            <!-- LAUNCH -->
+
+            <control type="radiobutton" id="12">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/launch.png" />
+                </include>
+                <textcolor>Dark4</textcolor>
+                <font>Null</font>
+                <visible>Control.IsEnabled(12)</visible>
+            </control>
+
+            <!-- INSTALL / UNINSTALL -->
+
+            <control type="radiobutton" id="6">
+                <include>Def_Button_Dimensions_Square</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/uninstall.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/uninstall.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/install.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/install.png</textureradiooffnofocus>
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+                <visible>Control.IsEnabled(6)</visible>
+                <textcolor>Dark4</textcolor>
+                <font>Null</font>
+                <selected>ListItem.Property(addon.isinstalled) | !Window.IsActive(addonbrowser)</selected>
+            </control>
+
+            <!-- ENABLE / DISABLE -->
+
+            <control type="radiobutton" id="7">
+                <include>Def_Button_Dimensions_Square</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/disable.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/disable.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/enabled.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark3">buttonsdialogs/enabled.png</textureradiooffnofocus>
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+                <visible>Control.IsEnabled(7)</visible>
+                <textcolor>Dark4</textcolor>
+                <font>Null</font>
+                <selected>!String.StartsWith(Control.GetLabel(7),$LOCALIZE[24022]) | !Window.IsActive(addonbrowser)</selected>
+            </control>
+
+            <!-- SETTINGS -->
+
+            <control type="radiobutton" id="9">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/configure.png" />
+                </include>
+                <visible>Control.IsEnabled(9)</visible>
+            </control>
+
+            <control type="radiobutton" id="8">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/install.png" />
+                </include>
+                <visible>Control.IsEnabled(8)</visible>
+            </control>
+
+            <!-- VERSION ? -->
+
+            <control type="radiobutton" id="14">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/update.png" />
+                </include>
+                <visible>Control.IsEnabled(14)</visible>
+            </control>
+
+            <!-- AUTO UPDATE / MANUAL UPDATE ? -->
+
+            <control type="radiobutton" id="13">
+                <include>Def_Button_Dimensions_Square</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdate.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/autoupdate.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdateon.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark3">buttonsdialogs/autoupdateon.png</textureradiooffnofocus>
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+                <visible>Control.IsEnabled(13)</visible>
+                <textcolor>Dark4</textcolor>
+                <font>Null</font>
+            </control>
+
+            <!-- DEPENDENCY -->
+
+            <control type="radiobutton" id="10">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/dependency.png" />
+                </include>
+                <visible>Control.IsEnabled(10)</visible>
+            </control>
+        </control>
+    </include>
+
+    <include name="Def_Dialog_Info_Navigation_PVR">
+        <control type="grouplist" id="9000">
+            <bottom>224</bottom>
+            <left>DialogInfo_Square_Left</left>
+            <right>View_List_Side</right>
+
+            <include>Def_List_Dimension</include>
+
+            <onup>50</onup>
+            <ondown>9669</ondown>
+
+            <orientation>horizontal</orientation>
+
+            <control type="radiobutton" id="5">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/launch.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="4">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/similar.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="6">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/record2.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="8">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/play_record.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo) | Window.IsVisible(PVRRecordingInfo)</visible>
+            </control>
+            <control type="radiobutton" id="9">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/timer.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="11">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/ring.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="666">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/record2.png" />
+                </include>
+                <onclick>Action(close)</onclick>
+                <onclick>RunScript(plugin.video.iptv.recorder,$ESCINFO[ListItem.ChannelName],$ESCINFO[ListItem.Title],$ESCINFO[ListItem.Date],$ESCINFO[ListItem.Duration],$ESCINFO[ListItem.Plot])</onclick>
+                <visible>System.AddonIsEnabled(plugin.video.iptv.recorder)</visible>
+            </control>
+            <control type="radiobutton" id="667">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/play_record.png" />
+                </include>
+                <onclick>Action(close)</onclick>
+                <onclick>ActivateWindow(10025,&quot;plugin://plugin.video.iptv.recorder/recordings&quot;,return)</onclick>
+                <visible>System.AddonIsEnabled(plugin.video.iptv.recorder)</visible>
+            </control>
+            <control type="radiobutton" id="10">
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/play.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+        </control>
+    </include>
+
+    <include name="Def_Dialog_Info_Navigation_Music">
+        <control type="grouplist" id="9000">
+            <include>Animation_Scrolltime_Widgets_List</include>
+
+            <bottom>144</bottom>
+            <left>DialogInfo_Square_Left</left>
+            <right>View_List_Side</right>
+
+            <include>Def_List_Dimension</include>
+            <orientation>horizontal</orientation>
+
+            <onleft>9000</onleft>
+            <onright>9000</onright>
+
+            <ondown condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(Window(Home).Property(Rotate_Cover))">ClearProperty(Show_Disc,Home)</ondown>
+            <ondown condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Rotate_Cover,Home)</ondown>
+
+            <ondown condition="!String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEqual(Window(Home).Property(Rotate_Cover),1)">9669</ondown>
+
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2)">9509</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2)">SetProperty(TMDbHelper.WidgetContainer,9509,Home)</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),12)">50</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),12)">SetProperty(TMDbHelper.WidgetContainer,50,Home)</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),8)">9508</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),8)">SetProperty(TMDbHelper.WidgetContainer,9508,Home)</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),5)">9511</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),5)">SetProperty(TMDbHelper.WidgetContainer,9511,Home)</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),3)">9502</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),4) + Integer.IsGreater(Container(9503).NumItems,0)">95031</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),1)">9119</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),1)">SetProperty(focus_tracklist,1,Home)</onup>
+
+            <onup condition="Control.HasFocus(9092) + !String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEqual(ListItem.DBType,album)">SetProperty(Show_Disc,1,Home)</onup>
+            <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + !String.IsEmpty(ListItem.Art(back)) + String.IsEqual(ListItem.DBType,album)">SetProperty(Rotate_Cover,1,Home)</onup>
+            <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEmpty(ListItem.Art(back)) + String.IsEqual(ListItem.DBType,album)">ClearProperty(Show_Disc,Home)</onup>
+            <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(Window(Home).Property(Rotate_Cover),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEqual(ListItem.DBType,album)">ClearProperty(Rotate_Cover,Home)</onup>
+            <onup condition="Control.HasFocus(9092) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(Window(Home).Property(Rotate_Cover),1) + !String.IsEmpty(ListItem.Art(discart)) + String.IsEqual(ListItem.DBType,album)">ClearProperty(Show_Disc,Home)</onup>
+
+            <onup condition="String.IsEmpty(Window(Home).Property(musiccontent))">9010</onup>
+
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2) | String.IsEqual(Window(Home).Property(musiccontent),8) | String.IsEqual(Window(Home).Property(musiccontent),5)">Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onup>
+
+            <onup condition="String.IsEqual(Window(Home).Property(musiccontent),2) | String.IsEqual(Window(Home).Property(musiccontent),3) | String.IsEqual(Window(Home).Property(musiccontent),5) | String.IsEqual(Window(Home).Property(musiccontent),8) | String.IsEqual(Window(Home).Property(musiccontent),12) | String.IsEmpty(Window(Home).Property(musiccontent))">SetProperty(view_extended,1,Home)</onup>
+
+            <include>Def_Dialog_Info_On_Back_Music_Set_Absolute_0</include>
+
+            <onback condition="Window.Is(songinformation) + !Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))">ClearProperty(show_info_song,Home)</onback>
+
+            <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + String.IsEmpty(Window(Home).Property(show_info_artist))">AlarmClock(Delay_focus90921,SetFocus(129),00:01,silent)</onback>
+
+            <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + String.IsEmpty(Window(Home).Property(show_info_artist))">ClearProperty(show_info_album,Home)</onback>
+
+            <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + String.IsEmpty(Window(Home).Property(show_info_artist)) + !String.IsEmpty(Window(Home).Property(shownowplayinginfo))">AlarmClock(Delay_focus90921,SetFocus(129),00:01,silent)</onback>
+
+            <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + !String.IsEmpty(Window(Home).Property(show_info_artist))">ClearProperty(show_info_album,Home)</onback>
+
+            <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + !String.IsEmpty(Window(Home).Property(show_info_artist))">AlarmClock(Delay_focus90922,SetFocus(129),00:01,silent)</onback>
+
+            <onback condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album)) + !String.IsEmpty(Window(Home).Property(show_info_artist))">ClearProperty(show_info_artist,Home)</onback>
+
+            <onback>ClearProperty(last_music_focus,Home)</onback>
+            <onback>ClearProperty(musiccontent,Home)</onback>
+
+            <!-- BACK FULLSCREEN NOW PLAYING -->
+
+            <control type="radiobutton" id="9202">
+                <visible>Player.HasMedia + String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
+
+                <onfocus>SetProperty(last_music_focus,9202,Home)</onfocus>
+                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/expand.png" />
+                </include>
+
+                <onclick condition="Player.HasVideo">close</onclick>
+                <onclick condition="Player.HasAudio">Dialog.Close(musicinformation,force)</onclick>
+                <onclick condition="Player.HasAudio">Dialog.Close(songinformation,force)</onclick>
+                <onclick condition="Player.HasVideo">ActivateWindow(fullscreenvideo)</onclick>
+                <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
+
+                <selected>Player.Playing</selected>
+            </control>
+
+            <!-- START PLAYING -->
+
+            <control type="radiobutton" id="9001">
+                <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + ![ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
+
+                <onfocus>SetProperty(last_music_focus,9001,Home)</onfocus>
+                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <onclick condition="String.IsEmpty(ListItem.DBID)">PlayMedia($INFO[ListItem.FilenameAndPath])</onclick>
+                <onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.DBID)">RunScript(script.playalbum,songid=$INFO[ListItem.DBID])</onclick>
+                <onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.DBID)">RunScript(script.playalbum,albumid=$INFO[ListItem.DBID])</onclick>
+                <onclick condition="!System.HasAddon(script.playalbum) + !String.IsEmpty(ListItem.DBID)">InstallAddon(script.playalbum)</onclick>
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/play.png" />
+                </include>
+            </control>
+
+            <!-- PAUSE / PLAY -->
+
+            <control type="radiobutton" id="9201">
+                <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + [ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
+
+                <onfocus>SetProperty(last_music_focus,9201,Home)</onfocus>
+                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/pause.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/continue.png</textureradiooffnofocus>
+                <selected>Player.Playing</selected>
+                <onclick condition="Player.Playing">Pause</onclick>
+                <onclick condition="!Player.Playing">Play</onclick>
+            </control>
+
+            <!-- FOLDER ALBUM / SONGS -->
+
+            <control type="radiobutton" id="9013">
+                <visible>String.IsEqual(ListItem.DBType,album)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9013,Home)</onfocus>
+                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <onclick>Dialog.Close(all)</onclick>
+                <onclick condition="String.IsEqual(ListItem.DBType,album)">AlarmClock(delay_activatewindow2,ActivateWindow(music,musicdb://albums/$INFO[ListItem.DBID]/,return),00:01,silent)</onclick>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/folder.png" />
+                </include>
+            </control>
+
+            <!-- INFO -->
+
+            <control type="radiobutton" id="9092">
+                <visible>String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)</visible>
+                <visible>Control.IsEnabled(12)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9092,Home)</onfocus>
+                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
+                <onfocus>ClearProperty(title_tempo,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/info.png" />
+                </include>
+
+                <onclick condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + String.IsEmpty(Window(Home).Property(show_info_album))">SetProperty(show_info_album,1,Home)</onclick>
+                <onclick condition="!String.IsEmpty(Window(Home).Property(show_info_song)) + !String.IsEmpty(Window(Home).Property(show_info_album))">SetProperty(show_info_artist,1,Home)</onclick>
+
+                <include>Def_Dialog_Info_On_Click_Music_Set_Absolute_0</include>
+
+                <onclick>SetFocus(290)</onclick>
+                <onclick>SetProperty(title_tempo,1,Home)</onclick>
+                <onclick>ClearProperty(last_music_focus,Home)</onclick>
+            </control>
+            <control type="radiobutton" id="9002">
+                <visible>String.IsEqual(ListItem.DBType,artist)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9002,Home)</onfocus>
+                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/info.png" />
+                </include>
+            </control>
+
+            <!-- WIKIPEDIA -->
+
+            <control type="radiobutton" id="9030">
+                <visible>!Skin.HasSetting(hide.button.music.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9030,Home)</onfocus>
+                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <onclick>$VAR[Path_Dialog_Info_Wikipedia]</onclick>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/wiki.png" />
+                </include>
+            </control>
+
+            <!-- USER RATING -->
+
+            <control type="radiobutton" id="7">
+                <visible>!String.IsEqual(ListItem.DBType,artist)</visible>
+                <visible>!Skin.HasSetting(hide.button.music.rating)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9007,Home)</onfocus>
+                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/rating.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/rating_new.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/rating_new.png</textureradiooffnofocus>
+                <selected>String.IsEmpty(ListItem.UserRating)</selected>
+                <textcolor>Dark4</textcolor>
+                <font>Null</font>
+
+                <include>Def_On_User_Rating</include>
+            </control>
+
+            <!-- TRACKLIST -->
+
+            <control type="radiobutton" id="9003">
+                <visible>String.IsEqual(ListItem.DBType,album)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9003,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(Window(Home).Property(musiccontent),1)">ClearProperty(musiccontent,Home)</onfocus>
+                <onfocus>SetProperty(musiccontent,1,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/playlist.png" />
+                </include>
+
+                <onclick>SetProperty(focus_tracklist,1,Home)</onclick>
+                <onclick>SetFocus(9119)</onclick>
+            </control>
+
+            <!-- DISCOGRAPHY -->
+
+            <control type="radiobutton" id="9024">
+                <visible>String.IsEqual(ListItem.DBType,artist)</visible>
+                <visible>![Window.Is(songinformation) + Window.IsActive(musicinformation)]</visible>
+                <visible>Integer.IsGreater(Container(50).NumItems,0)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9024,Home)</onfocus>
+                <onfocus>SetProperty(musiccontent,12,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/collection.png" />
+                </include>
+                <visible>Skin.HasSetting(show.button.music.artist.discography)</visible>
+
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetFocus(50)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,50,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- ALBUMS LIST -->
+
+            <control type="radiobutton" id="9004">
+                <visible>!Skin.HasSetting(hide.button.music.artist.albums)</visible>
+                <visible>!String.IsEmpty(Window(Home).Property(Encoded.ListItem.AlbumArtist))</visible>
+                <visible>Integer.IsGreater(Container(9509).NumItems,0)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9004,Home)</onfocus>
+                <onfocus>SetProperty(musiccontent,2,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/compact-disc.png" />
+                </include>
+
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetFocus(9509)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9509,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- SONGS LIST -->
+
+            <control type="radiobutton" id="9029">
+                <visible>!Skin.HasSetting(hide.button.music.artist.songs)</visible>
+                <visible>!String.IsEmpty(Window(Home).Property(Encoded.ListItem.AlbumArtist))</visible>
+                <visible>Integer.IsGreater(Container(9508).NumItems,0)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9029,Home)</onfocus>
+                <onfocus>SetProperty(musiccontent,8,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <font>Button</font>
+                <textcolor>Dark2</textcolor>
+                <include>Def_Button_Dimensions_Square</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/songs.png" />
+                </include>
+
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetFocus(9508)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9508,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- ALBUMS THIS YEAR  -->
+
+            <control type="radiobutton" id="9011">
+                <visible>!Skin.HasSetting(hide.button.music.album.year)</visible>
+                <visible>String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,album)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9011,Home)</onfocus>
+                <onfocus>SetProperty(musiccontent,5,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/calendar-day.png" />
+                </include>
+
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetFocus(9511)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9511,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- FANART -->
+
+            <control type="radiobutton" id="9006">
+                <visible>!Skin.HasSetting(hide.button.music.fanart)</visible>
+                <visible>[!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(hide.artwork.music.fanart)] | [!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hide.artwork.music.landscape)] | [!String.IsEmpty(ListItem.Art(thumb)) + !Skin.HasSetting(hide.artwork.music.thumb)]</visible>
+
+                <onfocus>SetProperty(last_music_focus,9006,Home)</onfocus>
+                <onfocus>SetProperty(musiccontent,4,Home)</onfocus>
+
+                <onfocus condition="![Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))]">ClearProperty(show_info_artist,Home)</onfocus>
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <font>Button</font>
+                <textcolor>Dark2</textcolor>
+                <include>Def_Button_Dimensions_Square</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/image.png" />
+                </include>
+
+                <onclick>SetFocus(95031)</onclick>
+            </control>
+
+            <!-- YOUTUBE -->
+
+            <control type="radiobutton" id="9005">
+                <visible>!Skin.HasSetting(hide.button.music.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9005,Home)</onfocus>
+                <onfocus>SetProperty(musiccontent,3,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/youtube.png" />
+                </include>
+
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetFocus(9502)</onclick>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
+            </control>
+
+            <!-- SETTING -->
+
+            <control type="radiobutton" id="9008">
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+
+                <onfocus>SetProperty(last_music_focus,9008,Home)</onfocus>
+                <onfocus>ClearProperty(musiccontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(Rotate_Cover,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/settings.png" />
+                </include>
+
+                <onclick>SetProperty(open_dialog_info_settings,1,Home)</onclick>
+                <onclick>SetFocus(9400)</onclick>
+            </control>
+        </control>
+    </include>
+
+    <include name="Def_Dialog_Info_Navigation_Video">
+        <control type="grouplist" id="9000">
+            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | !$EXP[Group9090IsFocus] | $EXP[Plot9669IsFocus]</visible>
+
+            <include>Animation_Scrolltime_Widgets_List</include>
+
+            <animation type="Visible">
+                <effect type="slide" start="0,-80" end="0" delay="0" time="200" tween="sine" easing="in" />
+                <effect type="fade" end="100" start="0" time="100" tween="sine" easing="out" />
+            </animation>
+            <animation type="Hidden">
+                <effect type="slide" start="0,0" end="0,-80" time="200" tween="sine" easing="in" />
+                <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+            </animation>
+
+            <bottom>144</bottom>
+            <left>DialogInfo_Poster_Left</left>
+            <right>View_List_Side</right>
+
+            <include>Def_List_Dimension</include>
+            <orientation>horizontal</orientation>
+
+            <onleft>9000</onleft>
+            <onright>9000</onright>
+
+            <!-- HIDE DISCART -->
+
+            <ondown condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Show_Disc,Home)</ondown>
+
+            <!-- FOCUS SECOND ROW BUTTON NAVIGATION -->
+
+            <ondown condition="!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set) + String.IsEmpty(Window(Home).Property(Show_Disc)) + !String.IsEqual(ListItem.DBType,video)">9090</ondown>
+
+            <!-- SHOW RESUME OVERLAY -->
+
+            <ondown condition="String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video)">9669</ondown>
+
+            <!-- MOVIES LIST BY CAST -->
+
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),11)">9552</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),11)">SetProperty(TMDbHelper.WidgetContainer,9552,Home)</onup>
+
+            <!-- TVSHOWS LIST BY CAST -->
+
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),12)">9553</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),12)">SetProperty(TMDbHelper.WidgetContainer,9553,Home)</onup>
+
+            <!-- MOVIES LIST BY MEMBER CREW -->
+
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),18)">9558</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),18)">SetProperty(TMDbHelper.WidgetContainer,9558,Home)</onup>
+
+            <!-- TVSHOWS LIST BY MEMBER CREW -->
+
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),19)">9559</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),19)">SetProperty(TMDbHelper.WidgetContainer,9559,Home)</onup>
+
+            <!-- MOVIES LIST BY DIRECTOR -->
+
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">9560</onup>
+            <onup condition="String.IsEqual(ListItem.Property(tmdb_type),person) + String.IsEqual(Window(Home).Property(moviecontent),20)">SetProperty(TMDbHelper.WidgetContainer,9560,Home)</onup>
+
+            <!-- CAST LIST - LOCAL ONLY -->
+
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !$EXP[CastOnLine] + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">SetProperty(last_video_focus,50,Home)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !$EXP[CastOnLine] + !String.IsEqual(ListItem.DBType,set) + !$EXP[IsYoutubeItem]">50</onup>
+
+            <!-- SET LIST -->
+
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,set)">SetProperty(last_video_focus,9550,Home)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,set)">9550</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,set)">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
+
+            <!-- CAST LIST - ON LINE - WITH TMDB ONLINE -->
+
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + $EXP[PluginsAllowedItem]">SetProperty(last_video_focus,9550,Home)</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + $EXP[PluginsAllowedItem]">9550</onup>
+            <onup condition="String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + $EXP[CastOnLine] + $EXP[PluginsAllowedItem]">SetProperty(TMDbHelper.WidgetContainer,9550,Home)</onup>
+
+            <!-- CAST PICTURE -->
+
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),13)">SetProperty(last_video_focus,9554,Home)</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),13)">9554</onup>
+
+            <!-- YOUTUBE -->
+
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),4)">9504</onup>
+
+            <!-- FANART -->
+
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),5) + Integer.IsGreater(Container(9505).NumItems,0)">95051</onup>
+
+            <!-- DISCART -->
+
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),1) + !String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">SetProperty(Show_Disc,1,Home)</onup>
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Show_Disc,Home)</onup>
+
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),11) | String.IsEqual(Window(Home).Property(moviecontent),12) | String.IsEqual(Window(Home).Property(moviecontent),18) | String.IsEqual(Window(Home).Property(moviecontent),19) | [String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating + String.IsEqual(ListItem.DBType,set)]">Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onup>
+
+            <onup condition="String.IsEqual(Window(Home).Property(moviecontent),4) | String.IsEqual(Window(Home).Property(moviecontent),5) | String.IsEqual(Window(Home).Property(moviecontent),11) | String.IsEqual(Window(Home).Property(moviecontent),12) | String.IsEqual(Window(Home).Property(moviecontent),18) | String.IsEqual(Window(Home).Property(moviecontent),19) | [String.IsEmpty(Window(Home).Property(moviecontent)) + !Container(9550).IsUpdating]">SetProperty(view_extended,1,Home)</onup>
+
+            <!-- ON BACK -->
+
+            <onback condition="!String.IsEmpty(Window(Home).Property(isoninfo_actor)) | !String.IsEmpty(Window(Home).Property(isoninfo_director))">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onback>
+            <onback condition="!String.IsEmpty(Window(Home).Property(isoninfo_director))">ClearProperty(isoninfo_director,Home)</onback>
+            <onback condition="!String.IsEmpty(Window(Home).Property(isoninfo_actor))">ClearProperty(isoninfo_actor,Home)</onback>
+
+            <include>Def_Cleanup_On_Back</include>
+            <onback>ClearProperty(moviecontent,Home)</onback>
+
+            <!-- BACK FULLSCREEN NOW PLAYING -->
+
+            <control type="radiobutton" id="9201">
+                <visible>Player.HasMedia + String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying)) + String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))</visible>
+
+                <onfocus>SetProperty(last_video_focus,9201,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/expand.png" />
+                </include>
+
+                <onclick condition="Player.HasVideo">close</onclick>
+                <onclick condition="Player.HasAudio">close</onclick>
+                <onclick condition="Window.IsVisible(1190) + Player.HasVideo">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
+                <onclick condition="Player.HasVideo">AlarmClock(DelayFullSreen,ActivateWindow(fullscreenvideo),00:01,silent)</onclick>
+                <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
+
+                <selected>Player.Playing</selected>
+            </control>
+
+            <!-- PAUSE / PLAY -->
+
+            <control type="radiobutton" id="8008">
+                <visible>!ListItem.IsPlaying | [ListItem.IsPlaying + !String.IsEqual(ListItem.DBID,VideoPlayer.DBID)]</visible>
+                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+
+                <onfocus>SetProperty(last_video_focus,8008,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/continue.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/play.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/play.png</textureradiooffnofocus>
+                <selected>ListItem.IsResumable</selected>
+
+                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
+                <onclick condition="Window.IsVisible(1190)">AlarmClock(Tempo_Launch_Playing,RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.FolderPath]"),00:01,silent)</onclick>
+                <onclick condition="!Window.IsVisible(1190)">SendClick(8)</onclick>
+                <onclick>Dialog.Close(all)</onclick>
+            </control>
+
+            <!-- FOLDER SEASON / EPISODES / SET -->
+
+            <control type="radiobutton" id="9078">
+                <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9078,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">Stop</onclick>
+
+                <onclick condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + $EXP[Trailer_Is_Playing] + !Skin.HasSetting(enable.trailer.playing.on.unfocus)">ClearProperty(Current_Trailer_Path,Home)</onclick>
+
+                <onclick>Dialog.Close(all)</onclick>
+                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
+                <onclick condition="Window.IsVisible(1190) | [ListItem.IsCollection + String.IsEmpty(ListItem.DBID)]">$VAR[Def_Browse_List_Season_Episode_Set]</onclick>
+                <onclick condition="!Window.IsVisible(1190) + ![ListItem.IsCollection + String.IsEmpty(ListItem.DBID)]">SendClick(8)</onclick>
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/folder.png" />
+                </include>
+            </control>
+
+            <!-- UPNEXT -->
+
+            <control type="radiobutton" id="9077">
+                <visible>[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]</visible>
+                <visible>Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(HideNextUpEpisodeButton) + !String.IsEmpty(Container(9911).ListItem.FileNameAndPath)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9077,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <onclick>Dialog.Close(all)</onclick>
+                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
+                <onclick>AlarmClock(LaunchUpNextEpisode,PlayMedia($ESCINFO[Container(9911).ListItem.FileNameAndPath]),00:01,silent)</onclick>
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/upnext.png" />
+                </include>
+            </control>
+
+            <!-- INFO -->
+
+            <control type="radiobutton" id="9001">
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9001,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,1,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <include>Def_Button_Dimensions_Poster</include>
+
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/info.png" />
+                </include>
+
+                <!-- SEARCH TVSHOW INFO -->
+
+                <onclick condition="!String.IsEmpty(ListItem.TvShowDBID) + [String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[ListItem.TvShowDBID],tmdb_type=tv,call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
+
+                <onclick condition="!String.IsEmpty(VideoPlayer.TvShowDBID) + [String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[VideoPlayer.TvShowDBID],tmdb_type=tv,call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
+
+                <onclick condition="String.IsEmpty(ListItem.DBID) + [String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=tv&amp;tmdb_id=$INFO[Window(Home).Property(Set_Movie_TvShow_TMDb_id)],call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
+
+                <!-- SEARCH DIRECTOR INFO -->
+
+                <onclick condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">SetProperty(SelectPerson,1,Home)</onclick>
+
+                <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Window(Home).Property(SetDirectorSelected)],tmdb_type=person,call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
+
+                <!-- SEARCH DIRECTOR INFO -->
+
+                <onclick condition="String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Director_Query))">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(Director_Query)],call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
+
+                <!-- SEARCH CREATOR INFO -->
+
+                <onclick condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(SetCreatorSelected))">SetProperty(SelectPerson,1,Home)</onclick>
+
+                <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(SetCreatorSelected))">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Window(Home).Property(SetCreatorSelected)],tmdb_type=person,call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
+
+                <!-- SEARCH CREATOR INFO -->
+
+                <onclick condition="String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(Window(Home).Property(Creator_Query))">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=$INFO[Window(Home).Property(Creator_Query)],call_auto=1190$VAR[Path_Info_First_Item],return)</onclick>
+
+                <!-- CLEANUP -->
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Set_Movie_TvShow_TMDb_id,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Init_Value_TMDb,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetYoutubeSearch,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetDirectorSelected,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] +
+                !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetWriterSelected,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetCreatorSelected,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(SetStudioSelected,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Director_Query,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Writer_Query,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Creator_Query,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Studio_Query,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Network_Query,Home)</onclick>
+
+                <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Encoded.ListItem.Studio,Home)</onclick>
+
+                <onclick condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(Home).Property(Set_Movie_TvShow_TMDb_id))">ClearProperty(Director_Person_Query,Home)</onclick>
+            </control>
+
+            <!-- TRAILER - FULLSCREEN -->
+
+            <control type="radiobutton" id="1224">
+                <visible>!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
+                <visible>!Skin.HasSetting(PlayTrailerWindowed)</visible>
+
+                <onfocus>SetProperty(last_video_focus,1224,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/trailer.png" />
+                </include>
+
+                <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
+                <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
+                <onclick>SetFocus(7011)</onclick>
+                <onclick>$VAR[PlayMedia_Trailer]</onclick>
+            </control>
+
+            <!-- TRAILER - WINDOWED -->
+
+            <control type="radiobutton" id="1223">
+                <visible>!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
+                <visible>Skin.HasSetting(PlayTrailerWindowed)</visible>
+
+                <onfocus>SetProperty(last_video_focus,1223,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,6,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/trailer.png" />
+                </include>
+
+                <onup>$VAR[PlayMedia_Trailer]</onup>
+                <onup condition="!Player.HasVideo">SetProperty(TrailerFullscreenIsPlaying,1,Home)</onup>
+                <onup>SetFocus(7012)</onup>
+
+                <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
+                <onclick>$VAR[PlayMedia_Trailer]</onclick>
+                <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
+                <onclick>SetFocus(7012)</onclick>
+            </control>
+
+        <!-- PERSONS -->
+
+            <!-- LOCAL ONLY / ON LINE -->
+
+             <control type="radiobutton" id="90122">
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | [ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)]</visible>
+                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
+
+                <onfocus>SetProperty(last_video_focus,90122,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/tmdb.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/tmdb.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
+                <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
+
+                <onclick>Skin.ToggleSetting(filter.video.only.local)</onclick>
+                <include>Def_Cleanup_On_Click</include>
+            </control>
+
+            <!-- LOCAL ONLY IF TMDB HELPER DISABLE -->
+
+             <control type="radiobutton" id="90123">
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)</visible>
+                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
+
+                <onfocus>SetProperty(last_video_focus,90123,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/tmdb.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/tmdb.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
+                <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
+
+                <onfocus condition="!Skin.HasSetting(filter.video.only.local)">Skin.ToggleSetting(filter.video.only.local)</onfocus>
+            </control>
+
+            <!-- MOVIES LIST BY DIRECTOR -->
+
+            <control type="radiobutton" id="9060">
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+                <visible>!Integer.IsEqual(Container(9560).NumItems,0) + !Container(9560).IsUpdating</visible>
+                <visible>[Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(SetDirectorSelected))] | [!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Director_Person_Query))]</visible>
+
+                <onfocus>SetProperty(last_video_focus,9060,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,20,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/director.png" />
+                </include>
+
+                <onclick>SetFocus(9560)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9560,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- MOVIES LIST BY CAST -->
+
+            <control type="radiobutton" id="9052">
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+                <visible>!Integer.IsEqual(Container(9552).NumItems,0) + !Container(9552).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9052,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,11,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/movie.png" />
+                </include>
+
+                <onclick>SetFocus(9552)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9552,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- TVSHOWS LIST BY CAST -->
+
+            <control type="radiobutton" id="9053">
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+                <visible>!Integer.IsEqual(Container(9553).NumItems,0) + !Container(9553).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9053,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,12,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/tvshow.png" />
+                </include>
+
+                <onclick>SetFocus(9553)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9553,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- MOVIES LIST BY MEMBER CREW -->
+
+            <control type="radiobutton" id="9058">
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9558).NumItems,0) + !Container(9558).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9058,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,18,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/people-group.png" />
+                </include>
+
+                <onclick>SetFocus(9558)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9558,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- TVSHOWS LIST BY MEMBER CREW -->
+
+            <control type="radiobutton" id="9059">
+                <visible>String.IsEqual(ListItem.Property(tmdb_type),person) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9559).NumItems,0) + !Container(9559).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9059,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,19,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/people-line.png" />
+                </include>
+
+                <onclick>SetFocus(9559)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9559,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+        <!-- OTHERS -->
+
+            <!-- WIKIPEDIA -->
+
+            <control type="radiobutton" id="9013">
+                <visible>String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>[!String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+                <visible>!Skin.HasSetting(hide.button.video.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9013,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+                <onfocus>ClearProperty(dontslide,Home)</onfocus>
+                <onclick>SetProperty(dontslide,1,Home)</onclick>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/wiki.png" />
+                </include>
+
+                <onclick>$VAR[Path_Dialog_Info_Wikipedia]</onclick>
+            </control>
+
+            <!-- CINEMA EXPERIENCE -->
+
+            <control type="radiobutton" id="49">
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>Skin.HasSetting(show.button.video.cinema) + System.AddonIsEnabled(script.preshowexperience)</visible>
+
+                <onfocus>SetProperty(last_video_focus,49,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <onclick>SetProperty(Set_User_Rating,mixed,Home)</onclick>
+                <onfocus>SetProperty(Set_User_Rating,mixed,Home)</onfocus>
+                <onunfocus>ClearProperty(Set_User_Rating,Home)</onunfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/playcinema.png" />
+                </include>
+
+                <onclick>RunScript(script.preshowexperience,dbtype=$INFO[ListItem.DBType],dbid=$INFO[ListItem.DBID])</onclick>
+            </control>
+
+            <!-- USER RATING -->
+
+            <control type="radiobutton" id="7">
+                <visible>[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)] + Control.IsEnabled(7)</visible>
+                <visible>!Skin.HasSetting(hide.button.video.rating)</visible>
+
+                <onfocus>SetProperty(last_video_focus,7,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/rating.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/rating_new.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/rating_new.png</textureradiooffnofocus>
+                <selected>String.IsEmpty(ListItem.UserRating)</selected>
+
+                <include>Def_On_User_Rating</include>
+            </control>
+
+            <!-- ADD-ON "SPECIAL FEATURES" -->
+
+            <control type="radiobutton" id="1236">
+                <visible>!Skin.HasSetting(hide.button.video.specialfeatures)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.specialfeatures)</visible>
+                <visible>String.IsEqual(Window(Home).Property(SpecialFeatures.Visible),true)</visible>
+
+                <onfocus>SetProperty(last_video_focus,1236,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/more.png" />
+                </include>
+
+                <onclick>SetProperty(Set_User_Rating,mixed,Home)</onclick>
+                <onfocus>SetProperty(Set_User_Rating,mixed,Home)</onfocus>
+                <onunfocus>ClearProperty(Set_User_Rating,Home)</onunfocus>
+
+                <onclick>Action(close)</onclick>
+                <onclick>RunScript(plugin.video.specialfeatures,listitem)</onclick>
+            </control>
+
+            <!-- FANART -->
+
+            <control type="radiobutton" id="9005">
+                <visible>!Skin.HasSetting(hide.button.video.fanart)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEmpty(ListItem.DBType)</visible>
+                <visible>[!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(hide.artwork.video.fanart)] | [!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hide.artwork.video.landscape)] | Skin.HasSetting(showartwork.video.tmdbhelper)</visible>
+                <visible>!Container.Content(seasons)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9005,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,5,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/image.png" />
+                </include>
+
+                <onclick>SetFocus(95051)</onclick>
+            </control>
+
+            <!-- YOUTUBE -->
+
+            <control type="radiobutton" id="9004">
+                <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
+                <visible>[!String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)] | String.IsEqual(ListItem.Property(tmdb_type),person) | $EXP[IsTMDbHelperItem]</visible>
+
+                <onfocus>SetProperty(last_video_focus,9004,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,4,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/youtube.png" />
+                </include>
+
+                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeTermToSearch))">SetProperty(SetYoutubeTermToSearch,$VAR[Path_Youtube_Query],Home)</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
+                <onclick>SetFocus(9504)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+            </control>
+
+            <!-- TRAKT -->
+
+            <control type="radiobutton" id="9011">
+                <visible>!Skin.HasSetting(hide.button.video.trakt)</visible>
+                <visible>[!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
+                <enable>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</enable>
+
+                <onfocus>SetProperty(last_video_focus,9011,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/trakt.png" />
+                </include>
+
+                <onclick>$VAR[Path_Dialog_Info_Trakt]</onclick>
+            </control>
+
+            <!-- SETTINGS -->
+
+            <control type="radiobutton" id="9010">
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+                <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,video) + !String.IsEmpty(ListItem.DBType)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9010,Home)</onfocus>
+                <onfocus condition="!String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(moviecontent,Home)</onfocus>
+                <onfocus condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetProperty(moviecontent,13,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/settings.png" />
+                </include>
+
+                <onclick>SetProperty(open_dialog_info_settings,1,Home)</onclick>
+                <onclick>SetFocus(9400)</onclick>
+            </control>
+        </control>
+    </include>
+
+    <include name="Def_Dialog_Info_Navigation_Video_2">
+        <control type="grouplist" id="9090">
+            <visible allowhiddenfocus="true">$EXP[Group9090IsFocus]</visible>
+            <visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + !String.IsEqual(ListItem.DBType,set)</visible>
+
+            <include>Animation_Scrolltime_Widgets_List</include>
+
+            <animation type="Visible">
+                <effect type="slide" start="0,80" end="0,0" delay="0" time="200" tween="sine" easing="in" />
+                <effect type="fade" end="100" start="0,0" time="200" tween="sine" easing="in" />
+            </animation>
+            <animation type="Hidden">
+                <effect type="slide" start="0,0" end="0,80" time="100" tween="sine" easing="out" />
+                <effect type="fade" end="0" start="100" time="200" tween="sine" easing="out" />
+            </animation>
+
+            <bottom>144</bottom>
+            <left>DialogInfo_Poster_Left</left>
+            <right>View_List_Side</right>
+
+            <include>Def_List_Dimension</include>
+            <orientation>horizontal</orientation>
+
+            <ondown condition="String.IsEqual(Window(Home).Property(moviecontent),1) + String.IsEqual(Window(Home).Property(Show_Disc),1) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Art(discart))">ClearProperty(Show_Disc,Home)</ondown>
+            <ondown condition="!String.IsEqual(Window(Home).Property(Show_Disc),1)">9669</ondown>
+
+            <onup>9000</onup>
+            <onback>9000</onback>
+            <onleft>9090</onleft>
+            <onright>9090</onright>
+
+            <!-- LOCAL ONLY / ON LINE -->
+
+             <control type="radiobutton" id="9012">
+                <visible>System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+
+                <!-- PLUGINS ALLOWED -->
+
+                <visible>$EXP[PluginsAllowed]</visible>
+
+                <onfocus>SetProperty(last_video_focus,9012,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/tmdb.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/tmdb.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
+                <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
+
+                <include>Def_Cleanup_On_Click</include>
+                <onclick>Skin.ToggleSetting(filter.video.only.local)</onclick>
+            </control>
+
+            <!-- LOCAL ONLY IF TMDB HELPER DISABLE -->
+
+             <control type="radiobutton" id="90124">
+                <visible>![String.IsEqual(ListItem.Property(tmdb_type),person) | String.IsEqual(ListItem.DBType,set)]</visible>
+                <visible>![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]</visible>
+
+                <onfocus>SetProperty(last_video_focus,90124,Home)</onfocus>
+                <onfocus>ClearProperty(moviecontent,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include>Texture_Button_Dialog_Info</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/tmdb.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/tmdb.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/storageinfo.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/storageinfo.png</textureradiooffnofocus>
+                <usealttexture>Skin.HasSetting(filter.video.only.local)</usealttexture>
+
+                <onfocus condition="!Skin.HasSetting(filter.video.only.local)">Skin.ToggleSetting(filter.video.only.local)</onfocus>
+            </control>
+
+        <!-- TVSOWS -->
+
+            <!-- SEASONS -->
+
+            <control type="radiobutton" id="9079">
+                <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>!Skin.HasSetting(hide.button.tvshow.season)</visible>
+                <visible>!Integer.IsEqual(Container(9579).NumItems,0) + !Container(9579).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9079,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,15,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/viewmode.png" />
+                </include>
+
+                <onclick>SetFocus(9579)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9579,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- CREW -->
+
+            <control type="radiobutton" id="9057">
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <visible>Skin.HasSetting(show.button.video.crew) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9557).NumItems,0) + !Container(9557).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9057,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,17,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/users-line.png" />
+                </include>
+
+                <onclick>SetFocus(9557)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9557,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- CREATOR -->
+
+            <control type="radiobutton" id="9020">
+                <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)</visible>
+                <visible>!Skin.HasSetting(hide.button.tvshow.creator) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9520).NumItems,0) + !Container(9520).IsUpdating</visible>
+                <visible>!String.IsEmpty(Window(Home).Property(SetCreatorSelected))</visible>
+
+                <onfocus>SetProperty(last_video_focus,9020,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,22,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/user-tie.png" />
+                </include>
+
+                <onclick>SetFocus(9520)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9520,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+        <!-- MOVIES -->
+
+            <!-- DIRECTOR -->
+
+            <control type="radiobutton" id="9006">
+                <visible>String.IsEqual(ListItem.DBType,movie) | [String.IsEqual(ListItem.DBType,episode) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]]</visible>
+                <visible>Skin.HasSetting(show.button.video.director)</visible>
+                <visible>!Integer.IsEqual(Container(9506).NumItems,0) + !Container(9506).IsUpdating</visible>
+                <visible>!String.IsEmpty(Window(Home).Property(SetDirectorSelected))</visible>
+
+                <onfocus>SetProperty(last_video_focus,9006,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,7,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/director.png" />
+                </include>
+
+                <onclick>SetFocus(9506)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9506,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- WRITER -->
+
+            <control type="radiobutton" id="9056">
+                <visible>String.IsEqual(ListItem.DBType,movie) | [String.IsEqual(ListItem.DBType,episode) + [!Skin.HasSetting(filter.video.only.local) | String.IsEmpty(ListItem.DBID)]]</visible>
+                <visible>Skin.HasSetting(show.button.video.writer)</visible>
+                <visible>!Integer.IsEqual(Container(9556).NumItems,0) + !Container(9556).IsUpdating</visible>
+                <visible>!String.IsEmpty(Window(Home).Property(SetWriterSelected))</visible>
+
+                <onfocus>SetProperty(last_video_focus,9056,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,14,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/writer.png" />
+                </include>
+
+                <onclick>SetFocus(9556)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9556,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- YEAR -->
+
+            <control type="radiobutton" id="9014">
+                <visible>Skin.HasSetting(show.button.video.year)</visible>
+                <visible>!Integer.IsEqual(Container(9514).NumItems,0) + !Container(9514).IsUpdating</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9014,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,9,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/calendar-day.png" />
+                </include>
+
+                <onclick>SetFocus(9514)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9514,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- SETS -->
+
+            <control type="radiobutton" id="9015">
+                <visible>String.IsEqual(ListItem.DBType,movie)</visible>
+                <visible>Skin.HasSetting(show.button.video.set)</visible>
+                <visible>[Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(ListItem.SetId)] | [!Skin.HasSetting(filter.video.only.local) + !String.IsEmpty(Window(Home).Property(Set_Query))]</visible>
+                <visible>!Integer.IsEqual(Container(9515).NumItems,0) + !Container(9515).IsUpdating</visible>
+
+                <onfocus>SetProperty(last_video_focus,9015,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,8,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/collection.png" />
+                </include>
+
+                <onclick>SetFocus(9515)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9515,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+        <!-- MOVIES / TVSHOWS -->
+
+            <!-- SIMILAR -->
+
+            <control type="radiobutton" id="9018">
+                <visible>!Skin.HasSetting(hide.button.video.similar) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9518).NumItems,0) + !Container(9518).IsUpdating</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9018,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,2,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/similar.png" />
+                </include>
+
+                <onclick>SetFocus(9518)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9518,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- RECOMMENDATION -->
+
+            <control type="radiobutton" id="9017">
+                <visible>Skin.HasSetting(show.button.video.recommended) + !Skin.HasSetting(filter.video.only.local)</visible>
+                <visible>!Integer.IsEqual(Container(9517).NumItems,0) + !Container(9517).IsUpdating</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9017,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,16,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/lightbulb.png" />
+                </include>
+
+                <onclick>SetFocus(9517)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9517,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+
+            <!-- STUDIO -->
+
+            <control type="radiobutton" id="9003">
+                <visible>!Skin.HasSetting(hide.button.video.studio)</visible>
+                <visible>!Integer.IsEqual(Container(9503).NumItems,0) + !Container(9503).IsUpdating</visible>
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+
+                <onfocus>SetProperty(last_video_focus,9003,Home)</onfocus>
+                <onfocus>SetProperty(moviecontent,3,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/studio.png" />
+                </include>
+
+                <onclick>SetFocus(9503)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+                <onclick>SetProperty(TMDbHelper.WidgetContainer,9503,Home)</onclick>
+                <onclick>Skin.SetBool(TMDbHelper.ForceWidgetContainer)</onclick>
+            </control>
+        </control>
+    </include>
+
+    <include name="Def_Dialog_Info_Navigation_AKL_Rom">
+        <control type="grouplist" id="9000">
+            <include>Animation_Scrolltime_Widgets_List</include>
+
+            <bottom>144</bottom>
+            <left>DialogInfo_Poster_Left</left>
+            <right>View_List_Side</right>
+
+            <include>Def_List_Dimension</include>
+            <orientation>horizontal</orientation>
+
+            <onup>19802</onup>
+            <onleft>9000</onleft>
+            <onright>9000</onright>
+            <!-- <ondown condition="!Integer.IsGreater(Container(9000).Position,4)">SetFocus(19802,$INFO[Container(9000).Position])</ondown> -->
+            <!-- <ondown condition="Integer.IsGreater(Container(9000).Position,4)">SetFocus(19802,4)</ondown> -->
+
+            <ondown condition="!String.IsEmpty(Container(19801).ListItem.Plot)">9669</ondown>
+
+            <!-- LAUNCH -->
+
+            <control type="radiobutton" id="19980">
+                <onfocus>ClearProperty(gamescontent,Home)</onfocus>
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/launch.png" />
+                </include>
+
+                <onclick>RunPlugin(plugin://plugin.program.akl/execute/rom/$INFO[Container(19801).ListItem.Property(entityid)])</onclick>
+            </control>
+
+            <!-- TRAILER - FULLSCREEN -->
+
+            <control type="radiobutton" id="1224">
+                <visible>!String.IsEmpty(Container(19801).ListItem.Trailer)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
+                <visible>!Skin.HasSetting(PlayTrailerWindowed)</visible>
+
+                <onfocus>SetProperty(last_video_focus,1224,Home)</onfocus>
+                <onfocus>ClearProperty(gamescontent,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/trailer.png" />
+                </include>
+
+                <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
+                <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
+                <onclick>SetFocus(7011)</onclick>
+                <onclick>PlayMedia($INFO[Container(19801).ListItem.Trailer],1)</onclick>
+            </control>
+
+            <!-- TRAILER - WINDOWED -->
+
+            <control type="radiobutton" id="1223">
+                <visible>!String.IsEmpty(Container(19801).ListItem.Trailer)</visible>
+                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
+                <visible>Skin.HasSetting(PlayTrailerWindowed)</visible>
+
+                <onfocus>SetProperty(last_video_focus,1223,Home)</onfocus>
+                <onfocus>SetProperty(gamescontent,6,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/trailer.png" />
+                </include>
+
+                <onup>PlayMedia($INFO[Container(19801).ListItem.Trailer],1)</onup>
+                <onup condition="!Player.HasVideo">SetProperty(TrailerFullscreenIsPlaying,1,Home)</onup>
+                <onup>SetFocus(7012)</onup>
+
+                <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
+                <onclick>PlayMedia($INFO[Container(19801).ListItem.Trailer],1)</onclick>
+                <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
+                <onclick>SetFocus(7012)</onclick>
+
+                <!-- <label>$LOCALIZE[20410]</label> -->
+            </control>
+
+            <!-- INFO -->
+
+            <control type="radiobutton" id="19982">
+                <onfocus>ClearProperty(gamescontent,Home)</onfocus>
+                <include>Def_Button_Dimensions_Square</include>
+
+                <include>Texture_Button_Dialog_Info</include>
+
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/info.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="Dark2">buttonsdialogs/info.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/info.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="Dark2">buttonsdialogs/info.png</textureradiooffnofocus>
+
+                <onclick condition="String.IsEqual(Window.Property(DataListView),metadata)">SetProperty(DataListView,scanneddata)</onclick>
+                <onclick condition="String.IsEqual(Window.Property(DataListView),scanneddata)">SetProperty(DataListView,metadata)</onclick>
+            </control>
+
+            <!-- EDIT METADATA -->
+
+             <control type="radiobutton" id="19983">
+                <onfocus>ClearProperty(gamescontent,Home)</onfocus>
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/writer.png" />
+                </include>
+
+                <onclick>RunPlugin(plugin://plugin.program.akl/execute/command/rom_edit_metadata/?rom_id=$INFO[Container(19801).ListItem.Property(entityid)])</onclick>
+            </control>
+
+            <!-- CHOOSE ART -->
+
+             <control type="radiobutton" id="19984">
+                <onfocus>ClearProperty(gamescontent,Home)</onfocus>
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/image.png" />
+                </include>
+
+                <!-- <label>$ADDON[plugin.program.akl 40854]</label> -->
+                <onclick>RunPlugin(plugin://plugin.program.akl/execute/command/rom_edit_assets/?rom_id=$INFO[Container(19801).ListItem.Property(entityid)])</onclick>
+            </control>
+
+            <!-- SCRAPE ROM -->
+
+             <control type="radiobutton" id="19985">
+                <onfocus>ClearProperty(gamescontent,Home)</onfocus>
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/autoupdate.png" />
+                </include>
+
+                <!-- <label>$ADDON[plugin.program.akl 40855]</label> -->
+                <onclick>RunPlugin(plugin://plugin.program.akl/execute/command/scrape_rom/?rom_id=$INFO[Container(19801).ListItem.Property(entityid)])</onclick>
+            </control>
+
+            <!-- YOUTUBE -->
+
+            <control type="radiobutton" id="9004">
+                <visible>!Skin.HasSetting(hide.button.video.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
+
+                <onfocus>SetProperty(last_game_focus,9004,Home)</onfocus>
+                <onfocus>SetProperty(gamescontent,4,Home)</onfocus>
+
+                <include>Def_Clear_TMDbHelper_WidgetContainer_On_Focus</include>
+                <onfocus>ClearProperty(Show_Disc,Home)</onfocus>
+
+                <include>Def_Button_Dimensions_Poster</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/youtube.png" />
+                </include>
+
+                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeTermToSearch))">SetProperty(SetYoutubeTermToSearch,$VAR[Path_Youtube_Query],Home)</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(SetYoutubeSearch))">SetProperty(SetYoutubeSearch,1,Home)</onfocus>
+                <onclick>SetFocus(9504)</onclick>
+                <onclick>SetProperty(view_extended,1,Home)</onclick>
+            </control>
+
+            <!-- SETTING -->
+
+            <control type="radiobutton" id="9010">
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+
+                <onfocus>ClearProperty(gamescontent,Home)</onfocus>
+                <include>Def_Button_Dimensions_Square</include>
+                <include content="Texture_RadioButton_Dialog_Info">
+                    <param name="icon" value="buttonsdialogs/settings.png" />
+                </include>
+
+                <onclick>SetProperty(open_dialog_info_settings,1,Home)</onclick>
+                <onclick>SetFocus(9400)</onclick>
+            </control>
+        </control>
+    </include>
+
+    <!-- DEF - DIALOG SETUP WIZARD NAVIGATION -->
+
+    <include name="Def_Button_Setup_Wizard">
+        <control type="group">
+
+            <!-- PREC -->
+
+            <control type="group">
+                <left>30</left>
+                <bottom>20</bottom>
+                <height>50</height>
+
+                <control type="radiobutton" id="9010">
+                    <include>Def_Button_Dimensions_Circle</include>
+                    <include content="Texture_RadioButton_Dialog_Circle">
+                        <param name="icon" value="buttonsdialogs/angle-left.png" />
+                        <param name="color" value="Black12" />
+                    </include>
+                    <label/>
+                    <enable>!Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml)</enable>
+
+                    <onup condition="!Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml) + !Window.IsVisible(Custom_1155_Set_Skin_Theme_Color.xml)">SetFocus(11)</onup>
+                    <onup condition="Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml) | Window.IsVisible(Custom_1155_Set_Skin_Theme_Color.xml)">SetFocus(5)</onup>
+
+                    <ondown>SetFocus(11)</ondown>
+
+                    <onleft condition="!Window.IsVisible(Custom_1156_Set_Skin_Preset_Color.xml)">SetFocus(9020)</onleft>
+                    <onright condition="!Window.IsVisible(Custom_1156_Set_Skin_Preset_Color.xml)">SetFocus(9020)</onright>
+
+                    <onleft condition="Window.IsVisible(Custom_1156_Set_Skin_Preset_Color.xml)">SetFocus(9030)</onleft>
+                    <onright condition="Window.IsVisible(Custom_1156_Set_Skin_Preset_Color.xml)">SetFocus(9030)</onright>
+
+                    <onclick>SetProperty(SetupWizardDirection,Prec,Home)</onclick>
+                    <onclick>close</onclick>
+
+                    <onclick condition="Window.IsVisible(Custom_1154_Set_Settings_Perfomance.xml)">ActivateWindow(1153)</onclick>
+                    <onclick condition="Window.IsVisible(Custom_1155_Set_Skin_Theme_Color.xml)">ActivateWindow(1154)</onclick>
+                    <onclick condition="Window.IsVisible(Custom_1156_Set_Skin_Preset_Color.xml)">ActivateWindow(1155)</onclick>
+                </control>
+            </control>
+
+            <!-- NEXT -->
+
+            <control type="group">
+                <left>366</left>
+                <bottom>20</bottom>
+                <height>50</height>
+
+                <control type="radiobutton" id="9020">
+                    <include>Def_Button_Dimensions_Circle</include>
+                    <include content="Texture_RadioButton_Dialog_Circle">
+                        <param name="icon" value="buttonsdialogs/angle-right.png" />
+                        <param name="color" value="Black12" />
+                    </include>
+                    <label/>
+                    <visible>!Window.IsVisible(Custom_1156_Set_Skin_Preset_Color.xml)</visible>
+
+                    <onup condition="!Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml) + !Window.IsVisible(Custom_1155_Set_Skin_Theme_Color.xml)">SetFocus(11)</onup>
+                    <onup condition="Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml) | Window.IsVisible(Custom_1155_Set_Skin_Theme_Color.xml)">SetFocus(5)</onup>
+
+                    <ondown>SetFocus(11)</ondown>
+
+                    <onright condition="!Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml)">SetFocus(9010)</onright>
+                    <onright condition="Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml)">SetFocus(5)</onright>
+
+                    <onleft condition="!Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml)">SetFocus(9010)</onleft>
+                    <onleft condition="Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml)">SetFocus(5)</onleft>
+
+                    <onclick>SetProperty(SetupWizardDirection,Next,Home)</onclick>
+                    <onclick>close</onclick>
+
+                    <onclick condition="Window.IsVisible(Custom_1153_Set_Viewtype_Home.xml)">ActivateWindow(1154)</onclick>
+                    <onclick condition="Window.IsVisible(Custom_1154_Set_Settings_Perfomance.xml)">ActivateWindow(1155)</onclick>
+                    <onclick condition="Window.IsVisible(Custom_1155_Set_Skin_Theme_Color.xml)">ActivateWindow(1156)</onclick>
+                </control>
+            </control>
+
+            <!-- START -->
+
+            <control type="group">
+                <left>366</left>
+                <bottom>20</bottom>
+                <height>50</height>
+
+                <control type="radiobutton" id="9030">
+                    <include>Def_Button_Dimensions_Circle</include>
+                    <include content="Texture_RadioButton_Dialog_Circle">
+                        <param name="icon" value="buttonsdialogs/launch.png" />
+                        <param name="color" value="Black12" />
+                    </include>
+                    <label/>
+                    <visible>Window.IsVisible(Custom_1156_Set_Skin_Preset_Color.xml)</visible>
+
+                    <onup>SetFocus(11)</onup>
+                    <ondown>SetFocus(11)</ondown>
+                    <onright>SetFocus(9010)</onright>
+                    <onleft>SetFocus(9010)</onleft>
+
+                    <onback>ClearProperty(launchsetupwizard,Home)</onback>
+
+                    <onclick>SetProperty(SetupWizardDirection,Next,Home)</onclick>
+
+                    <onclick condition="String.IsEmpty(Skin.String(FullInitEnded))">AlarmClock(GoHome,ReplaceWindow($INFO[System.StartupWindow]),00:01,silent)</onclick>
+                    <onclick condition="String.IsEmpty(Skin.String(FullInitEnded))">Skin.SetString(FullInitEnded,1)</onclick>
+                    <onclick condition="String.IsEmpty(Skin.String(FullInitEnded))">Dialog.Close(all)</onclick>
+
+                    <onclick condition="!String.IsEmpty(Skin.String(FullInitEnded)) | !String.IsEmpty(Window(Home).Property(launchsetupwizard))">close</onclick>
+                    <onclick condition="!String.IsEmpty(Window(Home).Property(launchsetupwizard))">ClearProperty(launchsetupwizard,Home)</onclick>
+                </control>
+            </control>
+
+            <!-- TIPS - FOOTER -->
+
+            <control type="group">
+                <visible>Control.HasFocus(9010) | Control.HasFocus(9020) | Control.HasFocus(9030)</visible>
+
+                <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="150" /></include>
+                <include>Animation_Dialog_Info_Fade_Out_150</include>
+
+                <bottom>30</bottom>
+                <left>30</left>
+                <width>370</width>
+                <height>50</height>
+
+                <control type="label">
+                    <font>Small</font>
+                    <scroll>false</scroll>
+                    <align>center</align>
+                    <textcolor>Dark2</textcolor>
+                    <label>$VAR[Label_Setup_Wizard_Footer_Tip]</label>
+                </control>
+            </control>
+        </control>
+    </include>
+
+    <!-- DEF - FULL SCREEN PLOT OVERLAY -->
+
+    <include name="Def_Dialog_Info_Overlay">
+        <param name="ondirection" value="$PARAM[ondirection]" default="9000" />
+        <param name="ondirection2" value="$PARAM[ondirection2]" default="9090" />
+        <param name="visible" value="$PARAM[visible]" default="Control.HasFocus(9669)" />
+        <param name="show_clearlogo" value="$PARAM[show_clearlogo]" default="false" />
+        <definition>
+            <control type="scrollbar" id="9669">
+                <width>1</width>
+                <height>1</height>
+                <visible allowhiddenfocus="true">false</visible>
+
+                <onback condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection2]</onback>
+                <onback condition="![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] | Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection]</onback>
+
+                <onleft condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection2]</onleft>
+                <onleft condition="![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] | Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection]</onleft>
+
+                <onright condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection2]</onright>
+                <onright condition="![String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] | Window.IsVisible(VideoFullScreen.xml)">$PARAM[ondirection]</onright>
+
+                <onback>ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</onback>
+                <onleft>ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</onleft>
+                <onright>ClearProperty(OSDVideo_DONT_AUTO_CLOSE,Home)</onright>
+            </control>
+
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <include>Animation_Common_Fade_In_Slide_Down_Bounce</include>
+
+                <top>View_List_Top</top>
+                <height>630</height>
+                <left>View_List_Side</left>
+                <right>View_List_Side</right>
+
+                <!-- CLEARLOGO -->
+
+                <control type="image" description="clearlogo">
+                    <visible>$PARAM[show_clearlogo]</visible>
+                    <visible>$EXP[Title_Clearlogo_Available]</visible>
+                    <centertop>60</centertop>
+                    <left>60</left>
+                    <height>ClearLogoTitleMaxHeight</height>
+                    <width>ClearLogoTitleMaxWidth</width>
+                    <aspectratio scalediffuse="true" align="left">keep</aspectratio>
+                    <texture background="true">$VAR[Image_Crop_ClearLogo]</texture>
+                    <animation effect="fade" start="0" end="100" time="200" delay="0" reversible="true">Visible</animation>
+                    <animation effect="fade" start="100" end="0" delay="400" time="200" reversible="true">Hidden</animation>
+                </control>
+
+                <!-- MAIN TILE -->
+
+                <control type="label">
+                    <description>header label</description>
+                    <left>60</left>
+                    <right>60</right>
+                    <top>60</top>
+                    <font>LargeNetflix</font>
+                    <textcolor>Dark1</textcolor>
+                    <height>45</height>
+                    <label>$PARAM[headerinfo]</label>
+                    <visible>!$PARAM[show_clearlogo] | [$PARAM[show_clearlogo] + !$EXP[Title_Clearlogo_Available]]</visible>
+                </control>
+
+                <!-- PLOT -->
+
+                <control type="textbox" id="9600">
+                    <description>textarea</description>
+                    <left>60</left>
+                    <right>60</right>
+                    <top>150</top>
+                    <bottom>0</bottom>
+                    <align>justify</align>
+                    <font>Medium</font>
+                    <textcolor>Dark1</textcolor>
+                    <pagecontrol>9669</pagecontrol>
+                    <autoscroll>false</autoscroll>
+                    <label fallback="19055">$PARAM[plotinfo]</label>
+                </control>
+            </control>
+
+            <!-- ARROWS -->
+
+            <include content="Object_Arrows_Textbox_Navigation">
+                <param name="top" value="80" />
+                <param name="bottom" value="970" />
+                <param name="left" value="952" />
+                <param name="idtextbox" value="9600" />
+                <param name="visible" value="$PARAM[visible]" />
+            </include>
+        </definition>
+    </include>
+
+    <!-- DEF - FULL SCREEN WIKIPEDIA OVERLAY -->
+
+    <include name="Def_Dialog_Info_Overlay_Wiki">
+        <control type="group">
+            <visible>Window.IsVisible(script-wikipedia.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogVideoInfo.xml)</visible>
+
+            <include>Animation_Common_Fade_In</include>
+            <include>Animation_Common_Fade_Out</include>
+
+            <control type="image" description="Background">
+               <include>Def_Dimensions_Fullscreen</include>
+               <texture colordiffuse="Background">background/bg.jpg</texture>
+               <animation effect="fade" start="100" end="95" condition="true">Conditional</animation>
+            </control>
+
+            <!-- FANART VIDEO FULLSCREEN -->
+
+            <control type="image" description="Background">
+               <visible>!String.IsEmpty(Player.Art(fanart)) + Window.IsVisible(fullscreenvideo)</visible>
+               <include>Def_Dimensions_Fullscreen</include>
+               <texture>$INFO[Player.Art(fanart)]</texture>
+               <animation effect="fade" start="100" end="30" condition="true">Conditional</animation>
+            </control>
+
+            <!-- FALLBACK -->
+
+            <control type="image" description="Background">
+               <visible>!String.IsEmpty(Skin.String(fanart.fallback)) + [[String.IsEmpty(Player.Art(fanart)) + Window.IsVisible(fullscreenvideo)] | !Window.IsVisible(fullscreenvideo)]</visible>
+               <include>Def_Dimensions_Fullscreen</include>
+               <texture>$INFO[Skin.String(fanart.fallback)]</texture>
+               <animation effect="fade" start="100" end="70" condition="true">Conditional</animation>
+            </control>
+
+            <!-- OVERLAY -->
+
+            <control type="image" description="FanartOverlay">
+                <include>Def_Dimensions_Fullscreen</include>
+                <texture colordiffuse="FloorFade">background/combined_flixart_dialog.png</texture>
+            </control>
+        </control>
+    </include>
+
+    <!-- DEF - VIDEO TRAILER / YOUTUBE FULLSCREEN -->
+
+    <include name="Def_Dialog_Info_Video_Fullscreen">
+        <control type="group">
+            <visible>Control.HasFocus(7011)</visible>
+            <visible>Player.HasVideo</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying)) | !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))</visible>
+
+            <animation type="Visible" reversible="false">
+                <effect type="fade" start="0" end="100" time="300" delay="150" tween="sine" easing="in" />
+                <effect type="zoom" start="80" end="100" time="300" delay="150" center="auto" tween="sine" easing="out" />
+            </animation>
+            <animation type="Hidden" reversible="false">
+                <effect type="fade" start="100" end="0" time="300" delay="250" tween="cubic" easing="out" />
+                <effect type="zoom" start="100" end="80" time="300" delay="250" center="auto" tween="sine" easing="out" />
+            </animation>
+
+            <control type="image">
+                <texture colordiffuse="black">common/white.png</texture>
+            </control>
+
+            <!-- VIDEO WINDOW -->
+
+            <control type="videowindow" />
+
+            <!-- SPINNER PAUSE -->
+
+            <include content="Object_Spinner_Pause">
+                <param name="centerleft" value="50%" />
+                <param name="centertop" value="50%" />
+            </include>
+
+            <!-- MINI PLAYER -->
+
+            <include>Object_OSD_Mini_Player</include>
+
+            <!-- BUTTON TRAILER -->
+
+            <control type="button" id="7011">
+                <include>Def_Hidden_Button</include>
+                <texturenofocus />
+                <texturefocus />
+
+                <!-- ON CLICK -->
+
+                <onclick condition="Player.HasVideo + String.IsEmpty(Window(Home).Property(show_mini_osd))">SetProperty(show_mini_osd,1,Home)</onclick>
+                <onclick condition="Player.HasVideo + !String.IsEmpty(Window(Home).Property(show_mini_osd))">ClearProperty(show_mini_osd,Home)</onclick>
+
+                <!-- ON BACK -->
+
+                <onback>ClearProperty(VideoYoutubeIsPlaying,Home)</onback>
+                <onback>ClearProperty(show_mini_osd,Home)</onback>
+                <onback condition="Player.HasVideo">Stop</onback>
+                <onback condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">1224</onback>
+                <onback condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">9004</onback>
+                <onback condition="Window.IsVisible(DialogMusicInfo.xml)">9005</onback>
+                <onback condition="!Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">50</onback>
+                <onback condition="Window.IsVisible(Home) + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">399</onback>
+
+                <!-- ON UP -->
+
+                <onup>ClearProperty(VideoYoutubeIsPlaying,Home)</onup>
+                <onup>ClearProperty(show_mini_osd,Home)</onup>
+                <onup condition="Player.HasVideo">Stop</onup>
+                <onup condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">SetFocus(1224)</onup>
+                <onup condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">SetFocus(9004)</onup>
+                <onup condition="Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9005)</onup>
+                <onup condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">SetFocus(50)</onup>
+
+                <!-- ON DOWN -->
+
+                <ondown>ClearProperty(VideoYoutubeIsPlaying,Home)</ondown>
+                <ondown>ClearProperty(show_mini_osd,Home)</ondown>
+                <ondown condition="Player.HasVideo">Stop</ondown>
+                <ondown condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">SetFocus(1224)</ondown>
+                <ondown condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">SetFocus(9004)</ondown>
+                <ondown condition="Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9005)</ondown>
+                <ondown condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml)">SetFocus(50)</ondown>
+
+                <!-- ON LEFT -->
+
+                <onleft condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onleft>
+                <onleft condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onleft>
+                <onleft condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">SetFocus(1224)</onleft>
+                <onleft condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">SetFocus(9004)</onleft>
+                <onleft condition="!Player.HasVideo + Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9005)</onleft>
+                <onleft condition="Player.HasVideo">StepBack</onleft>
+
+                <!-- ON RIGHT -->
+
+                <onright condition="!Player.HasVideo">ClearProperty(VideoYoutubeIsPlaying,Home)</onright>
+                <onright condition="!Player.HasVideo">ClearProperty(show_mini_osd,Home)</onright>
+                <onright condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(TrailerFullscreenIsPlaying))">SetFocus(1224)</onright>
+                <onright condition="!Player.HasVideo + Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(Home).Property(VideoYoutubeIsPlaying))">SetFocus(9004)</onright>
+                <onright condition="!Player.HasVideo + Window.IsVisible(DialogMusicInfo.xml)">SetFocus(9005)</onright>
+                <onright condition="Player.HasVideo">StepForward</onright>
+           </control>
+        </control>
+    </include>
+
+    <!-- DEF - DIALOG - VIDEO INFO - MISC -->
+
+    <include name="Def_Dialog_Info_Video_Image_Extended">
+        <control type="button" id="$PARAM[buttonid]">
+            <include>Def_Hidden_Button</include>
+            <onleft>SetFocus($PARAM[containerid])</onleft>
+            <onleft>LEFT</onleft>
+            <onleft>SetFocus($PARAM[buttonid])</onleft>
+            <onright>SetFocus($PARAM[containerid])</onright>
+            <onright>RIGHT</onright>
+            <onright>SetFocus($PARAM[buttonid])</onright>
+            <ondown>Close</ondown>
+        </control>
+        <control type="group">
+            <visible>Control.HasFocus($PARAM[buttonid])</visible>
+            <animation effect="fade" end="100" start="20" time="200" delay="200" easing="out">Visible</animation>
+            <animation effect="fade" end="0" start="100" time="200" easing="out">Hidden</animation>
+            <control type="image">
+                <left>0</left>
+                <top>0</top>
+                <width>1920</width>
+                <height>1080</height>
+                <texture>common/black.png</texture>
+            </control>
+            <control type="image">
+                <height>1080</height>
+                <fadetime>ImageViewerFadetime</fadetime>
+                <aspectratio align="center">keep</aspectratio>
+                <texture background="true">$INFO[Container($PARAM[containerid]).ListItem.Art(thumb)]</texture>
+            </control>
+        </control>
+    </include>
+
+    <include name="Def_Image_TvShow_Provider">
+        <control type="image">
+            <top>21</top>
+            <width>28</width>
+            <height>28</height>
+            <texture diffuse="$VAR[texture_box12]">$INFO[Window(Home).Property(TMDbHelper.ListItem.Provider.$PARAM[icon].Icon)]</texture>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Provider.$PARAM[icon].Icon))</visible>
+            <aspectratio align="center">keep</aspectratio>
+        </control>
+    </include>
+
+    <!-- SCRIPT SKINSHORTCUTS -->
+
+    <include name="Def_Skinshortcuts_Button_Title_Right_Side">
+        <width>100%</width>
+        <height>66</height>
+        <align>left</align>
+        <textoffsetx>20</textoffsetx>
+        <disabledcolor>Black70</disabledcolor>
+        <font>Button</font>
+        <enable>false</enable>
+    </include>
+
+    <include name="Def_Skinshortcuts_Button_Menu_Right_Side">
+        <width>100%</width>
+        <height>66</height>
+        <align>left</align>
+        <font>Small</font>
+        <textcolor>Black70</textcolor>
+        <include>Texture_Button_Dialog_Settings</include>
+    </include>
+</includes>

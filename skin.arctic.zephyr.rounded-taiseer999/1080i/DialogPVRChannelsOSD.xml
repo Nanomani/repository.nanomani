@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">11</defaultcontrol>
+
+    <onload>ClearProperty(ListItem_FolderPath,Home)</onload>
+    <onload>SetProperty(TMDbHelper.WidgetContainer,11,Home)</onload>
+    <onunload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunload>
+
+    <controls>
+        <include content="Background_Overlay">
+            <param name="colordiffuse" value="$VAR[Color_OSD_Background_Overlay]" />
+            <param name="visible" value="true" />
+        </include>
+
+        <control type="group">
+            <include>Animation_Common_Context_Menu_Slide_Left</include>
+
+            <top>20</top>
+            <left>20</left>
+
+            <!-- BACKGROUND -->
+
+            <control type="image">
+                <width>668</width>
+                <height>1040</height>
+                <colordiffuse>$VAR[Color_OSD_Background_Dialog]</colordiffuse>
+                <texture border="24">$VAR[texture_box24]</texture>
+                <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+            </control>
+
+            <!-- HEADER -->
+
+            <control type="group">
+                <control type="image">
+                    <left>530</left>
+                    <top>-4</top>
+                    <width>128</width>
+                    <height>128</height>
+                    <texture>special://skin/extras/icons/livetv.png</texture>
+                    <colordiffuse>$VAR[Color_OSD_Panel_White100]</colordiffuse>
+                </control>
+                <control type="label">
+                    <left>33</left>
+                    <top>10</top>
+                    <width>480</width>
+                    <align>left</align>
+                    <textcolor>$VAR[Color_OSD_Panel_White100]</textcolor>
+                    <font>Medium</font>
+                    <label>$INFO[VideoPlayer.ChannelGroup]</label>
+                </control>
+                <control type="label">
+                    <left>33</left>
+                    <top>54</top>
+                    <width>480</width>
+                    <align>left</align>
+                    <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                    <font>Tiny</font>
+                    <label>$INFO[System.Time]$INFO[Container(11).NumItems, - ,  $LOCALIZE[19019]]</label>
+                </control>
+
+                <!-- LINE HORIZONTAL -->
+
+                <control type="image">
+                    <left>30</left>
+                    <top>120</top>
+                    <width>607</width>
+                    <height>1</height>
+                    <align>left</align>
+                    <texture colordiffuse="$VAR[Color_OSD_Dialog_Line]">common/white.png</texture>
+                </control>
+            </control>
+
+            <!-- CHANNEL LIST -->
+
+            <control type="fixedlist" id="11">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>136</top>
+                <left>16</left>
+                <width>1650</width>
+                <height>892</height>
+
+                <onright>NextChannelGroup</onright>
+                <onleft>1773</onleft>
+
+                <itemgap>0</itemgap>
+                <pagecontrol>1773</pagecontrol>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <focusposition>1</focusposition>
+                <movement>5</movement>
+
+                <itemlayout height="111.5" width="1650">
+
+                    <!-- IS PLAYING -->
+
+                    <include content="Def_View_List_Item_IsPlaying">
+                        <param name="width" value="635" />
+                    </include>
+
+                    <control type="image">
+                        <left>22</left>
+                        <top>17</top>
+                        <width>85</width>
+                        <height>85</height>
+                        <texture>$INFO[ListItem.Thumb]</texture>
+                        <aspectratio>keep</aspectratio>
+                    </control>
+                    <control type="group">
+                        <control type="progress">
+                            <left>550</left>
+                            <top>69</top>
+                            <width>67</width>
+                            <height>19</height>
+                            <reveal>true</reveal>
+                            <texturebg>progress/pvr/progress-back.png</texturebg>
+                            <lefttexture>progress/pvr/progress-leftright.png</lefttexture>
+                            <midtexture colordiffuse="$VAR[Color_Focus]">progress/pvr/progress-mid.png</midtexture>
+                            <righttexture>progress/pvr/progress-leftright.png</righttexture>
+                            <info>ListItem.Progress</info>
+                            <colordiffuse>$VAR[Color_OSD_Panel_White70]</colordiffuse>
+                        </control>
+
+                        <control type="label">
+                            <left>150</left>
+                            <right>50</right>
+                            <top>5</top>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>Small</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$INFO[ListItem.ChannelNumberLabel,,  ]$INFO[ListItem.ChannelName]</label>
+                            <visible>[String.IsEmpty(ListItem.StartTime) + String.IsEmpty(ListItem.EndTime)]</visible>
+                        </control>
+                         <control type="label">
+                            <left>150</left>
+                            <right>230</right>
+                            <top>5</top>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>Small</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <label>$INFO[ListItem.ChannelNumberLabel,,  ]$INFO[ListItem.ChannelName]</label>
+                            <visible>![String.IsEmpty(ListItem.StartTime) + String.IsEmpty(ListItem.EndTime)]</visible>
+                        </control>
+
+                        <control type="label">
+                            <top>40</top>
+                            <left>150</left>
+                            <width>350</width>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>SmallPVR</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White30]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White30]</selectedcolor>
+                            <label fallback="19055">$INFO[ListItem.Title]</label>
+                        </control>
+                    </control>
+                    <control type="label">
+                        <width>200</width>
+                        <top>4</top>
+                        <right>30</right>
+                        <left>410</left>
+                        <align>right</align>
+                        <font>Small</font>
+                        <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                        <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                        <label>$VAR[Label_PVR_Channel_Start_End]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="111.5" width="1650">
+
+                    <!-- IS PLAYING -->
+
+                    <include content="Def_View_List_Focus_IsPlaying">
+                        <param name="width" value="635" />
+                        <param name="list_id" value="11" />
+                    </include>
+
+                    <control type="image">
+                        <left>22</left>
+                        <top>17</top>
+                        <width>85</width>
+                        <height>85</height>
+                        <texture>$INFO[ListItem.Thumb]</texture>
+                        <aspectratio>keep</aspectratio>
+                    </control>
+
+                    <control type="group">
+                        <control type="progress">
+                            <left>550</left>
+                            <top>69</top>
+                            <width>67</width>
+                            <height>19</height>
+                            <reveal>true</reveal>
+                            <texturebg colordiffuse="Selected">progress/pvr/progress-back.png</texturebg>
+                            <lefttexture>progress/pvr/progress-leftright.png</lefttexture>
+                            <midtexture colordiffuse="Selected">progress/pvr/progress-mid.png</midtexture>
+                            <righttexture>progress/pvr/progress-leftright.png</righttexture>
+                            <info>ListItem.Progress</info>
+                            <colordiffuse>Selected</colordiffuse>
+                        </control>
+
+                        <control type="label">
+                            <left>150</left>
+                            <right>50</right>
+                            <top>5</top>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>Small</font>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <label>$INFO[ListItem.ChannelNumberLabel,,  ]$INFO[ListItem.ChannelName]</label>
+                            <visible>[String.IsEmpty(ListItem.StartTime) + String.IsEmpty(ListItem.EndTime)]</visible>
+                        </control>
+                        <control type="label">
+                            <left>150</left>
+                            <right>230</right>
+                            <top>5</top>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>Small</font>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <label>$INFO[ListItem.ChannelNumberLabel,,  ]$INFO[ListItem.ChannelName]</label>
+                            <visible>![String.IsEmpty(ListItem.StartTime) + String.IsEmpty(ListItem.EndTime)]</visible>
+                        </control>
+
+                        <control type="label">
+                            <top>40</top>
+                            <left>150</left>
+                            <width>350</width>
+                            <aligny>center</aligny>
+                            <height>64</height>
+                            <font>SmallPVR</font>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <label fallback="19055">$INFO[ListItem.Title]</label>
+                        </control>
+                    </control>
+                    <control type="label">
+                        <width>200</width>
+                        <top>4</top>
+                        <right>30</right>
+                        <left>410</left>
+                        <align>right</align>
+                        <font>Small</font>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <label>$VAR[Label_PVR_Channel_Start_End]</label>
+                    </control>
+
+                    <!-- SHOW PLOT -->
+
+                    <control type="group">
+                        <visible>!String.IsEmpty(ListItem.Plot) + Control.HasFocus(11)</visible>
+                        <animation effect="fade" start="0" end="100" time="200">Focus</animation>
+
+                        <control type="image">
+                            <left>667</left>
+                            <top>0</top>
+                            <width>986</width>
+                            <height>212</height>
+                            <colordiffuse>$VAR[Color_OSD_Background_Dialog]</colordiffuse>
+                            <texture border="24">$VAR[texture_box24]</texture>
+                            <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+                        </control>
+                        <control type="textbox">
+                            <left>699</left>
+                            <right>16</right>
+                            <top>16</top>
+                            <width>922</width>
+                            <height>170</height>
+                            <label>$INFO[ListItem.Plot]</label>
+                            <font>Small</font>
+                            <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                            <selectedcolor>$VAR[Color_OSD_Panel_White70]</selectedcolor>
+                            <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+                        </control>
+                    </control>
+
+                    <!-- SET PROPERTY LISTITEM_FOLDERPATH -->
+
+                    <control type="button">
+                        <visible>false</visible>
+                        <onfocus condition="Window.IsVisible(VideoFullScreen.xml)">SetProperty(ListItem_FolderPath,$INFO[ListItem.FolderPath],Home)</onfocus>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1773" />
+                <param name="onleft" value="PreviousChannelGroup" />
+                <param name="onright" value="11" />
+                <param name="top" value="136" />
+                <param name="height" value="892" />
+                <param name="centerright" value="1895" />
+            </include>
+        </control>
+    </controls>
+</window>

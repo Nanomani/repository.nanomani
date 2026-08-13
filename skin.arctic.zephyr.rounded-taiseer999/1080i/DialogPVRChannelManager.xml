@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">20</defaultcontrol>
+    <onunload>ClearProperty(Focus)</onunload>
+
+    <controls>
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background"><param name="height" value="959" /><param name="width" value="1260" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$VAR[Label_Header_PVR_Channel_Manager]$INFO[Container(20).NumItems, (,)]" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="group" id="8000">
+                <top>112</top>
+                <width>1230</width>
+
+                <!-- LEFT LIST -->
+
+                <control type="list" id="20">
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <left>16</left>
+                    <width>598</width>
+                    <height>720</height>
+
+                    <onup>20</onup>
+                    <ondown>20</ondown>
+                    <onleft>8003</onleft>
+                    <onright>60</onright>
+
+                    <pagecontrol>60</pagecontrol>
+
+                    <itemlayout height="80" width="598">
+                        <control type="image">
+                            <top>10</top>
+                            <left>14</left>
+                            <width>60</width>
+                            <height>60</height>
+                            <aspectratio align="left">keep</aspectratio>
+                            <texture background="true">$INFO[ListItem.Icon]</texture>
+                        </control>
+                        <control type="label">
+                            <left>105</left>
+                            <right>45</right>
+                            <label>$INFO[ListItem.Property(Number),(,) ]$INFO[ListItem.Property(Name)]</label>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="80" width="598">
+                        <control type="image">
+                            <include>Texture_Layout_Item_Focus</include>
+                            <include condition="true">Animation_View_List_Focus_Scroll</include>
+                            <animation effect="fade" start="100" end="50" condition="!Control.HasFocus(20)">Conditional</animation>
+                        </control>
+                        <control type="image">
+                            <top>10</top>
+                            <left>14</left>
+                            <width>60</width>
+                            <height>60</height>
+                            <aspectratio align="left">keep</aspectratio>
+                            <texture background="true">$INFO[ListItem.Icon]</texture>
+                        </control>
+                        <control type="label">
+                            <top>-10</top>
+                            <left>105</left>
+                            <right>45</right>
+                            <textcolor>Selected</textcolor>
+                            <label>$INFO[ListItem.Property(Number),(,) ]$INFO[ListItem.Property(Name)]</label>
+                        </control>
+                        <control type="label">
+                            <left>105</left>
+                            <right>45</right>
+                            <height>50</height>
+                            <bottom>0</bottom>
+                            <font>Mini</font>
+                            <textcolor>Selected</textcolor>
+                            <label>$INFO[ListItem.Property(ClientName),$LOCALIZE[19210]: ,]</label>
+                        </control>
+                    </focusedlayout>
+                </control>
+
+                <!-- RIGHT LIST -->
+
+                <control type="grouplist" id="8002">
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <left>630</left>
+                    <width>614</width>
+                    <height>720</height>
+
+                    <onleft>20</onleft>
+                    <onright>8003</onright>
+
+                    <itemgap>3</itemgap>
+                    <orientation>vertical</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+
+                    <control type="radiobutton" id="7">
+                        <description>Channel activated</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <label>19074</label>
+                        <radioposx>538</radioposx>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                    <control type="edit" id="8">
+                        <description>Channel name</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <label>19201</label>
+                        <textcolor>Black70</textcolor>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                    <control type="button" id="9">
+                        <description>Channel logo Button</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <label>19202</label>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                    <control type="radiobutton" id="12">
+                        <description>EPG activated</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <label>19206</label>
+                        <radioposx>538</radioposx>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                    <control type="spincontrolex" id="13">
+                        <description>EPG source</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <label>19200</label>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                    <control type="radiobutton" id="14">
+                        <description>Parental locked</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <radioposx>538</radioposx>
+                        <label>19267</label>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                    <control type="button" id="30">
+                        <top>30</top>
+                        <description>Group Manager Button</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <label>19205</label>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                    <control type="button" id="34">
+                        <description>TV/Radio Button</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <label>$LOCALIZE[19021] / $LOCALIZE[19020]</label>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                    <control type="button" id="35">
+                        <description>Create channel Button</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <label>19041</label>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                    <control type="button" id="31">
+                        <description>Create channel Button</description>
+                        <width>598</width>
+                        <height>66</height>
+                        <label>19204</label>
+                        <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    </control>
+                </control>
+
+                <!-- CHANNEL LOGO -->
+
+				<control type="image">
+					<right>11</right>
+                    <align>right</align>
+					<top>144</top>
+					<width>140</width>
+					<height>54</height>
+                    <aspectratio align="right" aligny="center">keep</aspectratio>
+					<texture background="true">$INFO[Container(20).ListItem.Property(icon)]</texture>
+				</control>
+
+                <!-- LINE HORIZONTAL -->
+
+                <control type="image" id="111">
+                    <left>647</left>
+                    <top>428</top>
+                    <height>1</height>
+                    <right>17</right>
+                    <include>Texture_Dialog_Line</include>
+                </control>
+            </control>
+
+            <!-- LINE VERTICAL -->
+
+            <control type="image">
+                <left>630</left>
+                <top>112</top>
+                <bottom>130</bottom>
+                <width>1</width>
+                <include>Texture_Dialog_Line</include>
+                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="60" />
+                <param name="onleft" value="20" />
+                <param name="onright" value="8002" />
+                <param name="centerright" value="630" />
+                <param name="height" value="720" />
+            </include>
+
+            <!-- BUTTON ON BOTTOM -->
+
+            <control type="grouplist" id="8003">
+                <bottom>30</bottom>
+                <height>66</height>
+                <width>100%</width>
+                <align>center</align>
+                <centerleft>50%</centerleft>
+
+                <onup>13</onup>
+                <ondown>13</ondown>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="4" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="5" />
+                    <param name="label" value="$LOCALIZE[14070]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="6" />
+                    <param name="label" value="$LOCALIZE[222]" />
+                </include>
+            </control>
+        </control>
+    </controls>
+</window>

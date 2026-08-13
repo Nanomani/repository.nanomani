@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1251">
+    <defaultcontrol>10</defaultcontrol>
+    <controls>
+        <include>Background_Overlay</include>
+        <control type="group">
+
+            <include content="Def_Dialog_Background"><param name="height" value="433" /><param name="width" value="1320" /><param name="colordiffuse" value="Panel" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="$LOCALIZE[844] Clearlogo ($LOCALIZE[593])" />
+                <param name="icon" value="skinsettings" />
+            </include>
+
+            <control type="textbox">
+                <height>230</height>
+                <align>left</align>
+                <left>30</left>
+                <right>30</right>
+                <font>Tiny</font>
+                <top>112</top>
+                <label>$LOCALIZE[750]</label>
+            </control>
+
+            <control type="grouplist">
+                <bottom>40</bottom>
+                <height>66</height>
+                <width>100%</width>
+                <align>center</align>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+                <control type="button" id="11">
+                    <width>300</width>
+                    <label>107</label>
+                    <font>Button</font>
+                    <include>Texture_Button_Dialog_Settings</include>
+
+                    <!-- SETTINGS - HIDE - ALL CEARLOGO -->
+
+                    <include>Def_Settings_Clearlogo_Disable_All</include>
+                    <onclick>Skin.SetString(settingperflevel,2)</onclick>
+
+                    <onclick>close</onclick>
+                </control>
+
+                <!-- BUTTON -->
+
+                <control type="button" id="10">
+                    <description>No</description>
+                    <width>300</width>
+                    <label>106</label>
+                    <font>Button</font>
+                    <include>Texture_Button_Dialog_Settings</include>
+                    <onclick>close</onclick>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

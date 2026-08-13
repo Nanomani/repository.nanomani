@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">8</defaultcontrol>
+
+    <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
+
+    <controls>
+        <control type="image" description="Background">
+            <include>Def_Dimensions_Fullscreen</include>
+            <texture colordiffuse="Background">background/bg.jpg</texture>
+            <visible>!Player.HasVideo</visible>
+        </control>
+        <control type="videowindow" id="20">
+            <description>videowindow</description>
+            <include>Def_Dimensions_Fullscreen</include>
+            <visible>Player.HasVideo</visible>
+        </control>
+        <control type="mover" id="8">
+            <description>top left mover</description>
+            <left>0</left>
+            <top>0</top>
+            <width>192</width>
+            <height>192</height>
+            <texturefocus>screen_calibration/calibratetopleft.png</texturefocus>
+            <texturenofocus />
+            <movingspeed acceleration="180" maxvelocity="300" resettimeout="200" delta="1">
+                <eventconfig type="up" />
+                <eventconfig type="down" />
+                <eventconfig type="left" />
+                <eventconfig type="right" />
+            </movingspeed>
+        </control>
+        <control type="mover" id="9">
+            <description>right bottom mover</description>
+            <left>1050</left>
+            <top>750</top>
+            <width>192</width>
+            <height>192</height>
+            <texturefocus>screen_calibration/calibratebottomright.png</texturefocus>
+            <texturenofocus />
+            <movingspeed acceleration="180" maxvelocity="300" resettimeout="200" delta="1">
+                <eventconfig type="up" />
+                <eventconfig type="down" />
+                <eventconfig type="left" />
+                <eventconfig type="right" />
+            </movingspeed>
+        </control>
+        <control type="mover" id="10">
+            <description>subtitle position mover</description>
+            <left>300</left>
+            <top>750</top>
+            <width>768</width>
+            <height>192</height>
+            <texturefocus>screen_calibration/calibratesubtitles.png</texturefocus>
+            <texturenofocus />
+            <movingspeed acceleration="180" maxvelocity="300" resettimeout="200" delta="1">
+                <eventconfig type="up" />
+                <eventconfig type="down" />
+            </movingspeed>
+        </control>
+        <control type="resize" id="11">
+            <description>pixel aspect ratio box</description>
+            <left>0</left>
+            <top>348</top>
+            <width>384</width>
+            <height>384</height>
+            <texturefocus>screen_calibration/calibratepixelratio.png</texturefocus>
+            <texturenofocus />
+            <movingspeed acceleration="140" maxvelocity="300" resettimeout="180" delta="1">
+                <eventconfig type="left" />
+                <eventconfig type="right" />
+            </movingspeed>
+        </control>
+        <control type="mover" id="12">
+            <description>reset calibration</description>
+            <left>0</left>
+            <bottom>0</bottom>
+            <width>100</width>
+            <height>100</height>
+            <texturefocus>screen_calibration/reset.png</texturefocus>
+            <texturenofocus />
+        </control>
+        <control type="label" id="2">
+            <description>coordinates label</description>
+            <left>30</left>
+            <top>480</top>
+            <width>1860</width>
+            <align>center</align>
+            <textcolor>Dark1</textcolor>
+            <animation effect="slide" start="0" end="0,350" time="0" condition="Control.HasFocus(11)">Conditional</animation>
+            <label />
+        </control>
+        <control type="label" id="3">
+            <description>help information</description>
+            <left>30</left>
+            <top>540</top>
+            <width>1860</width>
+            <align>center</align>
+            <textcolor>Dark1</textcolor>
+            <animation effect="slide" start="0" end="0,350" time="0" condition="Control.HasFocus(11)">Conditional</animation>
+            <label />
+        </control>
+        <control type="label" id="4">
+            <description>help information</description>
+            <left>30</left>
+            <top>600</top>
+            <width>1860</width>
+            <align>center</align>
+            <textcolor>Dark1</textcolor>
+            <animation effect="slide" start="0" end="0,350" time="0" condition="Control.HasFocus(11)">Conditional</animation>
+            <label />
+        </control>
+    </controls>
+</window>

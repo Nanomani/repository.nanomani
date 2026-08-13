@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <onload>SetProperty(SkinInitStarted,1,Home)</onload>
+
+    <onload>ClearProperty(reloadsetupwizard,Home)</onload>
+
+    <!-- DEBUG - INIT SETUP -->
+
+    <!-- <onload>Skin.Reset(FullInitStarted)</onload> -->
+    <!-- <onload>Skin.Reset(FullInitEnded)</onload> -->
+
+    <include>Def_Settings_Startup_Init</include>
+
+    <!-- GO HOME -->
+
+    <onload condition="!Skin.HasSetting(disable.startup.window)">ReplaceWindow(1100)</onload>
+    <onload condition="Skin.HasSetting(disable.startup.window)">ReplaceWindow($INFO[System.StartupWindow])</onload>
+</window>

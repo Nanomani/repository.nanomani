@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <!-- CONTEXT MENU ICON -->
+
+    <include name="Def_Context_Menu_Bar_Icon">
+        <control type="grouplist" id="995">
+            <animation condition="Control.HasFocus(5050)" effect="fade" end="0" start="100" time="250">Conditional</animation>
+
+            <top>108</top>
+            <left>536</left>
+            <width>464</width>
+            <height>64</height>
+
+            <onup>2000</onup>
+            <ondown>2002</ondown>
+            <onleft>995</onleft>
+            <onright>995</onright>
+
+            <itemgap>12</itemgap>
+            <orientation>horizontal</orientation>
+
+            <!-- INFO -->
+
+            <include content="Object_OSD_Button" condition="$EXP[Exp_ContextMenu_Show_Info]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/info2.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6150" />
+                <param name="groupid" value="6099" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick>AlarmClock(Launch_Search,$VAR[Path_ContextParams_Path_Info],00:01,silent)</onclick>
+                <animation effect="fade" start="100" end="66" time="100" condition="Container.Content(files)">Conditional</animation>
+            </include>
+
+            <!-- PLAY -->
+
+            <include content="Object_OSD_Button" condition="$EXP[Exp_ContextMenu_Show_Info] + !Window.IsVisible(DialogPVRChannelGuide.xml)">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/play2.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6157" />
+                <param name="groupid" value="6799" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <param name="icon_colordiffuse_disabled" value="$VAR[Color_Icon_Disabled]" />
+                <param name="show_not_enabled" value="true" />
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick condition="!String.IsEmpty(ListItem.FolderPath)">AlarmClock(Play_Media,playmedia($INFO[ListItem.FolderPath]),00:01,silent)</onclick>
+                <onclick condition="String.IsEmpty(ListItem.FolderPath)">AlarmClock(Play_Media,playmedia($INFO[Window(Home).Property(ListItem_FolderPath)]),00:01,silent)</onclick>
+                <animation effect="fade" start="100" end="66" time="100" condition="Container.Content(files)">Conditional</animation>
+            </include>
+
+            <!-- BACK FULLSCREEN NOW PLAYING -->
+
+            <include content="Object_OSD_Button" condition="$EXP[Exp_ContextMenu_Player_Fullscreen]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/expand.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6158" />
+                <param name="groupid" value="6899" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick condition="Player.HasVideo">Dialog.Close(contextmenu)</onclick>
+                <onclick condition="Player.HasAudio">Dialog.Close(contextmenu)</onclick>
+                <onclick condition="Player.HasVideo">ActivateWindow(fullscreenvideo)</onclick>
+                <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
+            </include>
+
+            <!-- MENU CONTEXTUEL -->
+
+            <include content="Object_OSD_Button" condition="Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(DialogPVRInfo.xml)">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/bars.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6160" />
+                <param name="groupid" value="7099" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick>AlarmClock(Launch_Search,Action(Menu),00:01,silent)</onclick>
+            </include>
+
+            <!-- TRAILER -->
+
+            <include content="Object_OSD_Button" condition="[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/video.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6152" />
+                <param name="groupid" value="6299" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick condition="Player.HasMedia">PlayerControl(Stop)</onclick>
+                <onclick>SetProperty(TrailerFullscreenIsLaunched,1,Home)</onclick>
+                <onclick>$VAR[PlayMedia_Trailer]</onclick>
+                <onclick>SetProperty(TrailerFullscreenIsPlaying,1,Home)</onclick>
+                <onclick>SetFocus(7011)</onclick>
+            </include>
+
+            <!-- WIKIPEDIA -->
+
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),director) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),actor) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song) | String.IsEqual(ListItem.Property(tmdb_type),person) | [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) + !$EXP[IsJlomItem]]]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/world.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6153" />
+                <param name="groupid" value="6399" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <!-- <onclick>Dialog.Close(contextmenu)</onclick> -->
+                <onclick condition="![String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)]">RunScript(script.wikipedia,wikipedia=$VAR[Path_ContextParams_Query],tmdb_type=$VAR[Path_ContextParams_TMDbType],language=$VAR[Path_Wikipedia_Language])</onclick>
+                <onclick condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)]">RunScript(script.wikipedia,wikipedia=$VAR[Path_ContextParams_Query],language=$VAR[Path_Wikipedia_Language])</onclick>
+            </include>
+
+            <!-- YOUTUBE -->
+
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),director) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),actor) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),video)]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/youtube.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6154" />
+                <param name="groupid" value="6499" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick condition="System.AddonIsEnabled(plugin.video.youtube)">ActivateWindow(Videos,"plugin://plugin.video.youtube/kodion/search/query/?q=$VAR[Path_ContextParams_Youtube]&amp;search_type=notvalid&amp;hide_channels=true&amp;hide_videos=true&amp;hide_folders=true",return)</onclick>
+            </include>
+
+            <!--  DIRECTOR FROM MOVIE -->
+
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) + !$EXP[IsJlomItem]]]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/user.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6155" />
+                <param name="groupid" value="6599" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick>SetProperty(SelectPerson,1,Home)</onclick>
+                <onclick>SetProperty(isoninfo_director,1,Home)</onclick>
+                <onclick>RunScript(plugin.video.themoviedb.helper,add_query=$VAR[Path_ContextDirector_Query],tmdb_type=person,call_auto=1190)</onclick>
+            </include>
+
+            <!--  ARTIST FROM ALBUM -->
+
+            <!-- <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)]"> -->
+                <!-- <param name="visible" value="true" /> -->
+                <!-- <param name="size" value="44" /> -->
+                <!-- <param name="left" value="-56" /> -->
+                <!-- <param name="icon" value="special://skin/extras/icons/songs.png" /> -->
+                <!-- <param name="icon_colordiffuse" value="Dark2" /> -->
+                <!-- <param name="id" value="6160" /> -->
+                <!-- <param name="groupid" value="7199" /> -->
+                <!-- <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" /> -->
+                <!-- <onclick>Dialog.Close(contextmenu)</onclick> -->
+                <!-- <onclick condition="!Container(991).IsUpdating + Integer.IsGreater(Container(991).NumItems,0)">SetFocus(991)</onclick> -->
+                <!-- <onclick condition="!Container(991).IsUpdating + Integer.IsGreater(Container(991).NumItems,0)">Action(info)</onclick> -->
+            <!-- </include> -->
+
+            <!-- TMDB HELPER -->
+
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie)]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/tmdb.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6156" />
+                <param name="groupid" value="6699" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick>AlarmClock(DelayCommand,RunScript(plugin.video.themoviedb.helper,related_lists,query=$VAR[Path_ContextParams_Query],tmdb_type=$VAR[Path_ContextParams_TMDbType]),00:01,silent)</onclick>
+            </include>
+
+            <!-- BROWSE -->
+
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | [Window.IsVisible(Home) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode)] | [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) + !$EXP[IsJlomItem]]]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/folder-closed.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6159" />
+                <param name="groupid" value="6999" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+
+                <!-- <onclick>SetProperty(Context_Menu_ListItem_DBID,126,Home)</onclick> -->
+                <onclick>Dialog.Close(contextmenu)</onclick>
+
+                <!-- ALBUM -->
+
+                <onclick condition="!Window.IsVisible(Home) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album)">AlarmClock(delay_activatewindow2,ActivateWindow(music,musicdb://albums/$INFO[ListItem.DBID]/,return),00:00,silent)</onclick>
+
+                <onclick condition="Window.IsVisible(Home) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album)">AlarmClock(delay_activatewindow2,ActivateWindow(music,musicdb://albums/$INFO[Window(Home).Property(ListItem_DBID)]/,return),00:00,silent)</onclick>
+
+                <!-- ARTIST -->
+
+                <onclick condition="!Window.IsVisible(Home) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist)">AlarmClock(delay_activatewindow2,ActivateWindow(music,musicdb://artists/$INFO[ListItem.DBID]/,return),00:00,silent)</onclick>
+
+                <onclick condition="Window.IsVisible(Home) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist)">AlarmClock(delay_activatewindow2,ActivateWindow(music,musicdb://artists/$INFO[Window(Home).Property(ListItem_DBID)]/,return),00:00,silent)</onclick>
+
+                <!-- TVSHOW / SEASON / SET -->
+
+                <onclick condition="!Window.IsVisible(Home) + [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) + !$EXP[IsJlomItem]]]">AlarmClock(delay_activatewindow2,$VAR[Def_Browse_List_Season_Episode_Set],00:00,silent)</onclick>
+
+                <!-- TVSHOW / SEASON / EPISODE / SET -->
+
+                <onclick condition="Window.IsVisible(Home) + [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),set) + !$EXP[IsJlomItem]]]">AlarmClock(delay_activatewindow2,$VAR[Def_Home_Browse_List_Season_Episode_Set],00:00,silent)</onclick>
+            </include>
+
+            <!-- PLAYLIST -->
+
+            <include content="Object_OSD_Button" condition="[String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),album) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),artist) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song)] + Integer.IsGreater(Playlist.Length(music),0)">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/playlist.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6161" />
+                <param name="groupid" value="7199" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+
+                <!-- <onclick condition="Integer.IsGreater(Playlist.Length(video),0) + [Player.HasVideo | Integer.IsEqual(Playlist.Length(music),0)]">ActivateWindow(videoplaylist)</onclick> -->
+                <onclick condition="Integer.IsGreater(Playlist.Length(music),0) + !Player.HasVideo">ActivateWindow(musicplaylist)</onclick>
+                <onclick>Dialog.Close(contextmenu)</onclick>
+            </include>
+
+            <!-- FILES MANAGERS -->
+
+            <include content="Object_OSD_Button" condition="[!$EXP[Is_ContextMenu_PluginItem] | [$EXP[Is_ContextMenu_Plugin_TMDbHelper_Item] + !$EXP[View_Info_Dialog] + [[!String.IsEmpty(ListItem.DBID) + !Window.IsVisible(Home)] | [Window.IsVisible(Home) + !String.IsEmpty(Window(Home).Property(ListItem_DBID))]]]] + [String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),movie) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),tvshow) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),season) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),episode) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.base_dbtype),song) | Container.Content(files)]">
+                <param name="visible" value="true" />
+                <param name="size" value="44" />
+                <param name="left" value="-56" />
+                <param name="icon" value="special://skin/extras/icons/filebox.png" />
+                <param name="icon_colordiffuse" value="Dark2" />
+                <param name="id" value="6151" />
+                <param name="groupid" value="6199" />
+                <param name="back_colordiffuse" value="$VAR[Color_OSD_NowPlaying_Button_Background]" />
+                <onclick>Dialog.Close(contextmenu)</onclick>
+                <onclick>ActivateWindow(filemanager,"$VAR[Path_ContextParams_Path_Item]",return)</onclick>
+                <!-- <enable>!Container(44059).IsUpdating</enable> -->
+                <!-- <animation effect="fade" start="100" end="66" time="100" condition="!Container(44059).IsUpdating">Conditional</animation> -->
+            </include>
+        </control>
+    </include>
+
+    <!-- BUTTON TO FOCUS MENU LIST -->
+
+    <include name="Def_Context_Menu_Button_UpDown">
+
+        <!-- BUTTON TO FOCUS FIRST ITEM ON LIST -->
+
+        <control type="button" id="2002">
+            <visible allowhiddenfocus="true">false</visible>
+            <height>1</height>
+            <onfocus condition="Control.IsVisible(1030)">SetFocus(1030)</onfocus>
+            <onfocus condition="Control.IsVisible(1029)">SetFocus(1029)</onfocus>
+            <onfocus condition="Control.IsVisible(1028)">SetFocus(1028)</onfocus>
+            <onfocus condition="Control.IsVisible(1027)">SetFocus(1027)</onfocus>
+            <onfocus condition="Control.IsVisible(1026)">SetFocus(1026)</onfocus>
+            <onfocus condition="Control.IsVisible(1025)">SetFocus(1025)</onfocus>
+            <onfocus condition="Control.IsVisible(1024)">SetFocus(1024)</onfocus>
+            <onfocus condition="Control.IsVisible(1023)">SetFocus(1023)</onfocus>
+            <onfocus condition="Control.IsVisible(1022)">SetFocus(1022)</onfocus>
+            <onfocus condition="Control.IsVisible(1021)">SetFocus(1021)</onfocus>
+            <onfocus condition="Control.IsVisible(1020)">SetFocus(1020)</onfocus>
+            <onfocus condition="Control.IsVisible(1019)">SetFocus(1019)</onfocus>
+            <onfocus condition="Control.IsVisible(1018)">SetFocus(1018)</onfocus>
+            <onfocus condition="Control.IsVisible(1017)">SetFocus(1017)</onfocus>
+            <onfocus condition="Control.IsVisible(1016)">SetFocus(1016)</onfocus>
+            <onfocus condition="Control.IsVisible(1015)">SetFocus(1015)</onfocus>
+            <onfocus condition="Control.IsVisible(1014)">SetFocus(1014)</onfocus>
+            <onfocus condition="Control.IsVisible(1013)">SetFocus(1013)</onfocus>
+            <onfocus condition="Control.IsVisible(1012)">SetFocus(1012)</onfocus>
+            <onfocus condition="Control.IsVisible(1011)">SetFocus(1011)</onfocus>
+            <onfocus condition="Control.IsVisible(1010)">SetFocus(1010)</onfocus>
+            <onfocus condition="Control.IsVisible(1009)">SetFocus(1009)</onfocus>
+            <onfocus condition="Control.IsVisible(1008)">SetFocus(1008)</onfocus>
+            <onfocus condition="Control.IsVisible(1007)">SetFocus(1007)</onfocus>
+            <onfocus condition="Control.IsVisible(1006)">SetFocus(1006)</onfocus>
+            <onfocus condition="Control.IsVisible(1005)">SetFocus(1005)</onfocus>
+            <onfocus condition="Control.IsVisible(1004)">SetFocus(1004)</onfocus>
+            <onfocus condition="Control.IsVisible(1003)">SetFocus(1003)</onfocus>
+            <onfocus condition="Control.IsVisible(1002)">SetFocus(1002)</onfocus>
+            <onfocus condition="Control.IsVisible(1001)">SetFocus(1001)</onfocus>
+        </control>
+
+        <!-- BUTTON TO FOCUS LASTEST ITEM ON LIST -->
+
+        <control type="button" id="2000">
+            <visible allowhiddenfocus="true">false</visible>
+            <height>1</height>
+            <onfocus condition="Control.IsVisible(1001)">SetFocus(1001)</onfocus>
+            <onfocus condition="Control.IsVisible(1002)">SetFocus(1002)</onfocus>
+            <onfocus condition="Control.IsVisible(1003)">SetFocus(1003)</onfocus>
+            <onfocus condition="Control.IsVisible(1004)">SetFocus(1004)</onfocus>
+            <onfocus condition="Control.IsVisible(1005)">SetFocus(1005)</onfocus>
+            <onfocus condition="Control.IsVisible(1006)">SetFocus(1006)</onfocus>
+            <onfocus condition="Control.IsVisible(1007)">SetFocus(1007)</onfocus>
+            <onfocus condition="Control.IsVisible(1008)">SetFocus(1008)</onfocus>
+            <onfocus condition="Control.IsVisible(1009)">SetFocus(1009)</onfocus>
+            <onfocus condition="Control.IsVisible(1010)">SetFocus(1010)</onfocus>
+            <onfocus condition="Control.IsVisible(1011)">SetFocus(1011)</onfocus>
+            <onfocus condition="Control.IsVisible(1012)">SetFocus(1012)</onfocus>
+            <onfocus condition="Control.IsVisible(1013)">SetFocus(1013)</onfocus>
+            <onfocus condition="Control.IsVisible(1014)">SetFocus(1014)</onfocus>
+            <onfocus condition="Control.IsVisible(1015)">SetFocus(1015)</onfocus>
+            <onfocus condition="Control.IsVisible(1016)">SetFocus(1016)</onfocus>
+            <onfocus condition="Control.IsVisible(1017)">SetFocus(1017)</onfocus>
+            <onfocus condition="Control.IsVisible(1018)">SetFocus(1018)</onfocus>
+            <onfocus condition="Control.IsVisible(1019)">SetFocus(1019)</onfocus>
+            <onfocus condition="Control.IsVisible(1020)">SetFocus(1020)</onfocus>
+            <onfocus condition="Control.IsVisible(1021)">SetFocus(1021)</onfocus>
+            <onfocus condition="Control.IsVisible(1022)">SetFocus(1022)</onfocus>
+            <onfocus condition="Control.IsVisible(1023)">SetFocus(1023)</onfocus>
+            <onfocus condition="Control.IsVisible(1024)">SetFocus(1024)</onfocus>
+            <onfocus condition="Control.IsVisible(1025)">SetFocus(1025)</onfocus>
+            <onfocus condition="Control.IsVisible(1026)">SetFocus(1026)</onfocus>
+            <onfocus condition="Control.IsVisible(1027)">SetFocus(1027)</onfocus>
+            <onfocus condition="Control.IsVisible(1028)">SetFocus(1028)</onfocus>
+            <onfocus condition="Control.IsVisible(1029)">SetFocus(1029)</onfocus>
+            <onfocus condition="Control.IsVisible(1030)">SetFocus(1030)</onfocus>
+        </control>
+    </include>
+
+    <!-- DEFAULT FOCUS ONLOAD -->
+
+    <include name="Def_Context_Menu_Focus_OnLoad">
+        <onload condition="Control.IsVisible(1030)">SetFocus(1030)</onload>
+        <onload condition="Control.IsVisible(1029)">SetFocus(1029)</onload>
+        <onload condition="Control.IsVisible(1028)">SetFocus(1028)</onload>
+        <onload condition="Control.IsVisible(1027)">SetFocus(1027)</onload>
+        <onload condition="Control.IsVisible(1026)">SetFocus(1026)</onload>
+        <onload condition="Control.IsVisible(1025)">SetFocus(1025)</onload>
+        <onload condition="Control.IsVisible(1024)">SetFocus(1024)</onload>
+        <onload condition="Control.IsVisible(1023)">SetFocus(1023)</onload>
+        <onload condition="Control.IsVisible(1022)">SetFocus(1022)</onload>
+        <onload condition="Control.IsVisible(1021)">SetFocus(1021)</onload>
+        <onload condition="Control.IsVisible(1020)">SetFocus(1020)</onload>
+        <onload condition="Control.IsVisible(1019)">SetFocus(1019)</onload>
+        <onload condition="Control.IsVisible(1018)">SetFocus(1018)</onload>
+        <onload condition="Control.IsVisible(1017)">SetFocus(1017)</onload>
+        <onload condition="Control.IsVisible(1016)">SetFocus(1016)</onload>
+        <onload condition="Control.IsVisible(1015)">SetFocus(1015)</onload>
+        <onload condition="Control.IsVisible(1014)">SetFocus(1014)</onload>
+        <onload condition="Control.IsVisible(1013)">SetFocus(1013)</onload>
+        <onload condition="Control.IsVisible(1012)">SetFocus(1012)</onload>
+        <onload condition="Control.IsVisible(1011)">SetFocus(1011)</onload>
+        <onload condition="Control.IsVisible(1010)">SetFocus(1010)</onload>
+        <onload condition="Control.IsVisible(1009)">SetFocus(1009)</onload>
+        <onload condition="Control.IsVisible(1008)">SetFocus(1008)</onload>
+        <onload condition="Control.IsVisible(1007)">SetFocus(1007)</onload>
+        <onload condition="Control.IsVisible(1006)">SetFocus(1006)</onload>
+        <onload condition="Control.IsVisible(1005)">SetFocus(1005)</onload>
+        <onload condition="Control.IsVisible(1004)">SetFocus(1004)</onload>
+        <onload condition="Control.IsVisible(1003)">SetFocus(1003)</onload>
+        <onload condition="Control.IsVisible(1002)">SetFocus(1002)</onload>
+        <onload condition="Control.IsVisible(1002)">SetFocus(1001)</onload>
+    </include>
+
+    <!-- TITLE -->
+
+    <include name="Def_Context_Menu_Information">
+        <param name="font" value="$PARAM[font]" default="Tiny" />
+        <param name="color" value="$PARAM[color]" default="Dark2" />
+
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <height>40</height>
+                <control type="label">
+                    <top>2</top>
+                    <width>46</width>
+                    <height>40</height>
+                    <font>SymbolList</font>
+                    <textcolor>$PARAM[color]</textcolor>
+                    <label>$PARAM[label] :</label>
+                </control>
+                <control type="label">
+                    <left>40</left>
+                    <width>350</width>
+                    <height>40</height>
+                    <font>$PARAM[font]</font>
+                    <textcolor>$PARAM[color]</textcolor>
+                    <label fallback="19055">$PARAM[value]</label>
+                </control>
+            </control>
+        </definition>
+    </include>
+</includes>

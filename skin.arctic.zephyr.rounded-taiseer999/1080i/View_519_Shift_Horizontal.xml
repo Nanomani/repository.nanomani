@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <include name="View_519_Shift_Horizontal">
+        <description>List View (id=509)</description>
+        <control type="group">
+            <visible>Control.IsVisible(519)</visible>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+            <include>Animation_Common_Global</include>
+
+            <control type="panel" id="519">
+                <visible>$EXP[Exp_View_519]</visible>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>View_Poster_Top</top>
+                <left>View_Poster_Side</left>
+                <width>1780</width>
+                <height>395</height>
+
+                <onup condition="!Skin.HasSetting(global.kioskmode)">9000</onup>
+                <onup condition="!Skin.HasSetting(global.kioskmode) + [Player.HasMedia | Player.Playing]">AlarmClock(GoToButtonFullScreen,SetFocus(6157),00:00,silent)</onup>
+                <ondown>1734</ondown>
+
+                <orientation>horizontal</orientation>
+                <preloaditems>2</preloaditems>
+                <pagecontrol>1734</pagecontrol>
+
+                <viewtype label="31276">list</viewtype>
+
+                <itemlayout height="395" width="222">
+                    <control type="group">
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="55" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="395" width="222">
+                    <control type="group">
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster_Focus">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="519" />
+                        </include>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <control type="scrollbar" id="1734">
+                <include content="Object_Scrollbar_Views_Horizontal">
+                    <param name="scrollid" value="1734" />
+                    <param name="bottom" value="560" />
+                </include>
+            </control>
+
+            <!-- INFORMATION -->
+
+            <control type="group">
+                <top>566</top>
+                <left>View_List_Side</left>
+                <width>1110</width>
+
+                <orientation>vertical</orientation>
+                <itemgap>3</itemgap>
+
+                <!-- MAIN TITLE -->
+
+                <include content="Def_Label_View_Flix_Main_Title">
+                    <param name="top" value="0" />
+                    <param name="show_clearlogo" value="false" />
+                </include>
+
+                <!-- SUB TITLE -->
+
+                <include content="Def_Label_View_Flix_Sub_Title">
+                    <param name="visible" value="!$EXP[View_Flix_Show_Clearlogo_Enable]" />
+                    <param name="top" value="45" />
+                </include>
+                <include content="Def_Label_View_Flix_Sub_Title">
+                    <param name="visible" value="$EXP[View_Flix_Show_Clearlogo_Enable]" />
+                    <param name="top" value="105" />
+                </include>
+
+                <!-- PLOT -->
+
+                <include content="Def_Label_View_Flix_Plot">
+                    <param name="visible" value="!$EXP[View_Flix_Show_Clearlogo_Enable]" />
+                    <param name="top" value="120" />
+                    <param name="height" value="180" />
+                </include>
+                <include content="Def_Label_View_Flix_Plot">
+                    <param name="visible" value="$EXP[View_Flix_Show_Clearlogo_Enable]" />
+                    <param name="top" value="180" />
+                    <param name="height" value="140" />
+                </include>
+            </control>
+
+            <!-- CLEARART -->
+
+            <control type="image" description="clearlogo">
+                <fadetime>ClearArtFadetime</fadetime>
+                <top>PosterH</top>
+                <right>View_List_Side</right>
+                <width>400</width>
+                <aspectratio scalediffuse="true" align="right" aligny="top">keep</aspectratio>
+                <texture background="true">$INFO[ListItem.Art(clearart)]</texture>
+                <visible>Skin.HasSetting(show.view.519.clearart)</visible>
+            </control>
+        </control>
+    </include>
+</includes>

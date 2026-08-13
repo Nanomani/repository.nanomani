@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">3</defaultcontrol>
+
+    <controls>
+        <include content="Background_Overlay">
+            <param name="visible" value="!Window.IsVisible(GameOSD.xml)" />
+        </include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background"><param name="height" value="959" /><param name="width" value="1484" /><param name="colordiffuse" value="White100" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="" />
+                <param name="label_id" value="2" />
+                <param name="icon" value="settings" />
+                <param name="visible" value="!Window.IsVisible(DialogBusy.xml) | Window.IsVisible(MyVideoNav.xml)" />
+            </include>
+
+            <!-- MENU LEFT -->
+
+            <control type="grouplist" id="3">
+                <description>button area</description>
+                <top>112</top>
+                <left>16</left>
+                <width>418</width>
+                <height>630</height>
+                <itemgap>0</itemgap>
+                <onright>5</onright>
+                <onup>3</onup>
+                <ondown>3</ondown>
+                <include>Animation_Scrolltime_Views_List</include>
+            </control>
+            <control type="togglebutton" id="10">
+                <description>Default Category Button</description>
+                <width>418</width>
+                <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+            </control>
+
+            <!-- MENU RIGHT -->
+
+            <control type="grouplist" id="5">
+                <description>control area</description>
+                <top>112</top>
+                <left>466</left>
+                <width>1002</width>
+                <height>700</height>
+                <itemgap>0</itemgap>
+                <onup>5</onup>
+                <ondown>9002</ondown>
+                <onleft>3</onleft>
+                <onright>1773</onright>
+                <pagecontrol>1773</pagecontrol>
+                <orientation>vertical</orientation>
+                <include>Animation_Scrolltime_Views_List</include>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="1773" />
+                <param name="onleft" value="5" />
+                <param name="onright" value="9002" />
+                <param name="height" value="700" />
+                <param name="centerright" value="4" />
+                <param name="animation_fade_hide" value="false" />
+            </include>
+
+            <!-- TITLE MENU LABEL -->
+
+            <control type="label" id="14">
+                <include>Def_Settings_Label_Title_Right_Side</include>
+            </control>
+            <control type="button" id="7">
+                <description>Default Button</description>
+                <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+            </control>
+            <control type="radiobutton" id="8">
+                <description>Default Radio Button</description>
+                <textwidth>812</textwidth>
+                <radioposx>942</radioposx>
+                <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+            </control>
+            <control type="spincontrolex" id="9">
+                <description>Default Spin Control</description>
+                <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+            </control>
+            <control type="image" id="11">
+                <visible>false</visible>
+            </control>
+            <control type="edit" id="12">
+                <description>Default ColorButton</description>
+                <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+            </control>
+            <control type="sliderex" id="13">
+                <description>Default Slider Control</description>
+                <textwidth>604</textwidth>
+                <font>Small33</font>
+                <include>Def_Settings_Button_Focus_Select_Right_Side</include>
+            </control>
+
+            <!-- ADDON ICON -->
+
+            <control type="group">
+                <left>40</left>
+                <bottom>40</bottom>
+                <width>153</width>
+                <height>153</height>
+
+                <include content="Def_Art_Full_Background_b12">
+                    <param name="pad_image" value="0" />
+                    <param name="colordiffuse" value="Fallback" />
+                    <param name="condition_fade" value="false" />
+                    <param name="visible_shadow" value="false" />
+                </include>
+
+                <control type="image">
+                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/square_w154_h154.png" background="true">$INFO[Window(addonsettings).Property(Addon.Icon)]</texture>
+                </control>
+            </control>
+
+            <!-- LINE -->
+
+            <control type="image">
+                <top>112</top>
+                <left>450</left>
+                <width>1</width>
+                <bottom>17</bottom>
+                <include>Texture_Dialog_Line</include>
+            </control>
+
+            <!-- BUTTON ON BOTTOM -->
+
+            <control type="grouplist" id="9002">
+                <bottom>30</bottom>
+                <height>66</height>
+                <left>503</left>
+
+                <onup>5</onup>
+                <ondown>5</ondown>
+                <onleft>3</onleft>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="28" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="29" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="30" />
+                </include>
+            </control>
+        </control>
+    </controls>
+</window>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">50</defaultcontrol>
+    <views>50</views>
+
+    <controls>
+        <include>Background_Global</include>
+        <include>Furniture_Header_Info</include>
+        <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+
+        <control type="label" id="12">
+            <visible>false</visible>
+        </control>
+        <control type="label" id="101">
+            <visible>false</visible>
+        </control>
+
+        <control type="group">
+            <include>Animation_Common_Settings</include>
+
+            <!-- LEFT PANEL -->
+
+            <control type="group">
+                <include content="Def_Dialog_Settings"><param name="width" value="850" /></include>
+
+                <include content="Def_Dialog_Header">
+                    <param name="label" value="$LOCALIZE[19076]$INFO[Control.GetLabel(12), - ,]" />
+                    <param name="icon" value="filebox" />
+                </include>
+
+                <control type="list" id="50">
+                    <description>Left File List</description>
+                    <top>112</top>
+                    <left>16</left>
+                    <right>16</right>
+                    <height>483</height>
+
+                    <onup>50</onup>
+                    <ondown>50</ondown>
+                    <onright>100</onright>
+                    <onleft>1824</onleft>
+
+                    <pagecontrol>1824</pagecontrol>
+
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <itemlayout height="69" width="818">
+                        <control type="label">
+                            <left>30</left>
+                            <width>715</width>
+                            <align>left</align>
+                            <textcolor>PanelWhite70</textcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <right>30</right>
+                            <width>150</width>
+                            <align>right</align>
+                            <font>Tiny</font>
+                            <textcolor>PanelWhite70</textcolor>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="69" width="818">
+                        <control type="image">
+                            <width>100%</width>
+                            <height>66</height>
+                            <include>Texture_Layout_Item_Focus</include>
+                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(50)">Conditional</animation>
+                        </control>
+                        <control type="label">
+                            <left>30</left>
+                            <width>720</width>
+                            <align>left</align>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <right>30</right>
+                            <width>720</width>
+                            <align>right</align>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <font>Tiny</font>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                    </focusedlayout>
+                </control>
+
+                <!-- SCROLLBAR -->
+
+                <include content="Object_Scrollbar_Filemanager">
+                    <param name="scrollid" value="1824" />
+                    <param name="onleft" value="9000" />
+                    <param name="onright" value="50" />
+                    <param name="height" value="483" />
+                    <param name="left" value="-20" />
+                </include>
+
+                <!-- NUM ITEMS -->
+
+                <control type="label">
+                    <right>32</right>
+                    <font>Tiny</font>
+                    <height>44</height>
+                    <bottom>6</bottom>
+                    <align>right</align>
+                    <textcolor>Black70</textcolor>
+                    <label>$INFO[Container(50).CurrentItem]$INFO[Container(50).NumItems, / ,]</label>
+                </control>
+            </control>
+
+            <!-- RIGHT PANEL -->
+
+            <control type="group">
+                <include content="Def_Dialog_Settings"><param name="left" value="990" /><param name="width" value="850" /></include>
+
+                <include content="Def_Dialog_Header">
+                    <param name="label" value="$LOCALIZE[559]$INFO[Control.GetLabel(101), - ,]" />
+                    <param name="icon" value="playlist" />
+                </include>
+
+                <control type="list" id="100">
+                    <description>Left File List</description>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <top>112</top>
+                    <left>16</left>
+                    <right>16</right>
+                    <height>483</height>
+
+                    <onleft>50</onleft>
+                    <onright>1825</onright>
+                    <!-- <include>Def_View_Focus_Dialog_Menu_On_Right</include> -->
+                    <onup>100</onup>
+                    <ondown>100</ondown>
+
+                    <pagecontrol>1825</pagecontrol>
+
+                    <itemlayout height="69" width="818">
+                        <control type="label">
+                            <left>30</left>
+                            <width>720</width>
+                            <align>left</align>
+                            <textcolor>PanelWhite70</textcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <right>30</right>
+                            <width>150</width>
+                            <align>right</align>
+                            <font>Tiny</font>
+                            <textcolor>PanelWhite70</textcolor>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="69" width="818">
+                        <control type="image">
+                            <width>100%</width>
+                            <height>66</height>
+                            <include>Texture_Layout_Item_Focus</include>
+                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(100)">Conditional</animation>
+                        </control>
+                        <control type="label">
+                            <left>30</left>
+                            <width>720</width>
+                            <align>left</align>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <right>30</right>
+                            <width>720</width>
+                            <align>right</align>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <font>Tiny</font>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                    </focusedlayout>
+                </control>
+
+                <!-- SCROLLBAR -->
+
+                <include content="Object_Scrollbar_Filemanager">
+                    <param name="scrollid" value="1825" />
+                    <param name="onleft" value="100" />
+                    <param name="onright" value="9000" />
+                    <param name="height" value="483" />
+                    <param name="left" value="862" />
+                </include>
+
+                <!-- NUM ITEMS -->
+
+                <control type="label">
+                    <right>32</right>
+                    <font>Tiny</font>
+                    <height>44</height>
+                    <bottom>6</bottom>
+                    <align>right</align>
+                    <textcolor>Black70</textcolor>
+                    <label>$INFO[Container(100).CurrentItem]$INFO[Container(100).NumItems, / ,]</label>
+                </control>
+            </control>
+        </control>
+
+        <!-- CONTEXT MENU -->
+
+        <include>Def_Dialog_Menu_Background_Overlay</include>
+
+        <control type="group">
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>255</centerleft>
+
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="33063" />
+                <param name="icon" value="files" />
+            </include>
+
+            <control type="grouplist" id="9000">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+
+                <pagecontrol>9070</pagecontrol>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="50" /></include>
+
+                <!-- NOW PLAYING -->
+
+                <control type="button" id="55555">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31448</label>
+                    <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+                </control>
+
+                <include>Def_Dialog_Menu_Button_Playlist</include>
+
+                <!-- MINI PLAYER -->
+
+                <include>Def_Dialog_Menu_MiniPlayer</include>
+
+                <control type="button" id="90200">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>16106</label>
+                </control>
+
+                <control type="button" id="6">
+                    <label>21478</label>
+                    <description>Open</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                </control>
+                <control type="button" id="7">
+                    <label>190</label>
+                    <description>Save</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                </control>
+                <control type="button" id="8">
+                    <label>192</label>
+                    <description>Clear</description>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                </control>
+            </control>
+
+            <!-- SCROLLBAR -->
+
+            <include content="Object_Scrollbar_Dialog_Vertical">
+                <param name="scrollid" value="9070" />
+                <param name="top" value="112" />
+                <param name="onleft" value="9000" />
+                <param name="onright" value="9000" />
+                <param name="onback" value="9000" />
+                <param name="height" value="560" />
+                <param name="centerright" value="4" />
+            </include>
+        </control>
+    </controls>
+</window>

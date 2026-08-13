@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <!-- SET - BACKGROUND BRIGHTNESS -->
+
+    <include name="Set_Background_Brightness_Flix">
+        <item id="1">
+            <label>$NUMBER[10]%</label>
+            <property name="SettingsName">$LOCALIZE[464]</property>
+            <onclick>Skin.SetString(Value_Brightness_Flix,10)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),10)">Def_Item_Selected</include>
+        </item>
+        <item id="2">
+            <label>$NUMBER[20]%</label>
+            <property name="SettingsName">$LOCALIZE[464]</property>
+            <onclick>Skin.SetString(Value_Brightness_Flix,20)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),20)">Def_Item_Selected</include>
+        </item>
+        <item id="3">
+            <label>$NUMBER[30]%</label>
+            <property name="SettingsName">$LOCALIZE[464]</property>
+            <onclick>Skin.SetString(Value_Brightness_Flix,30)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),30)">Def_Item_Selected</include>
+        </item>
+        <item id="4">
+            <label>$NUMBER[40]%</label>
+            <property name="SettingsName">$LOCALIZE[464]</property>
+            <onclick>Skin.SetString(Value_Brightness_Flix,40)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),40)">Def_Item_Selected</include>
+        </item>
+        <item id="5">
+            <label>$NUMBER[50]%</label>
+            <property name="SettingsName">$LOCALIZE[464]</property>
+            <onclick>Skin.SetString(Value_Brightness_Flix,50)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),50)">Def_Item_Selected</include>
+        </item>
+        <item id="6">
+            <label>$NUMBER[60]% - $LOCALIZE[571]</label>
+            <onclick>Skin.SetString(Value_Brightness_Flix,60)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),60) | String.IsEmpty(Skin.String(Value_Brightness_Flix))">Def_Item_Selected</include>
+        </item>
+        <item id="7">
+            <label>$NUMBER[70]%</label>
+            <onclick>Skin.SetString(Value_Brightness_Flix,70)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),70)">Def_Item_Selected</include>
+        </item>
+        <item id="8">
+            <label>$NUMBER[80]%</label>
+            <onclick>Skin.SetString(Value_Brightness_Flix,80)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),80)">Def_Item_Selected</include>
+        </item>
+        <item id="9">
+            <label>$NUMBER[90]%</label>
+            <onclick>Skin.SetString(Value_Brightness_Flix,90)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),90)">Def_Item_Selected</include>
+        </item>
+        <item id="10">
+            <label>$NUMBER[100]%</label>
+            <onclick>Skin.SetString(Value_Brightness_Flix,100)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_Flix),100)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <include name="Set_Background_Brightness_Flix_Dialog_Info">
+        <item id="1">
+            <label>$NUMBER[10]%</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,10)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),10)">Def_Item_Selected</include>
+        </item>
+        <item id="2">
+            <label>$NUMBER[20]%</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,20)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),20)">Def_Item_Selected</include>
+        </item>
+        <item id="3">
+            <label>$NUMBER[30]% - $LOCALIZE[571]</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,30)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),30) | String.IsEmpty(Skin.String(Value_Brightness_NoFlix))">Def_Item_Selected</include>
+        </item>
+        <item id="4">
+            <label>$NUMBER[40]%</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,40)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),40)">Def_Item_Selected</include>
+        </item>
+        <item id="5">
+            <label>$NUMBER[50]%</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,50)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),50)">Def_Item_Selected</include>
+        </item>
+        <item id="6">
+            <label>$NUMBER[60]%</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,60)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),60)">Def_Item_Selected</include>
+        </item>
+        <item id="7">
+            <label>$NUMBER[70]%</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,70)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),70)">Def_Item_Selected</include>
+        </item>
+        <item id="8">
+            <label>$NUMBER[80]%</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,80)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),80)">Def_Item_Selected</include>
+        </item>
+        <item id="8">
+            <label>$NUMBER[90]%</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,90)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),90)">Def_Item_Selected</include>
+        </item>
+        <item id="10">
+            <label>$NUMBER[100]%</label>
+            <onclick>Skin.SetString(Value_Brightness_NoFlix,100)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Brightness_NoFlix),100)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SET - KODI RATING PROVIDER -->
+
+    <include name="Set_Kodi_Rating_Provider">
+        <item>
+            <label>Kodi - $LOCALIZE[571]</label>
+            <property name="SettingsName">$LOCALIZE[15225] $LOCALIZE[563] Kodi</property>
+            <property name="Logo">logo/kodi/kodi_square_logo.jpg</property>
+            <onclick>Skin.SetString(Value_Kodi_Rating_Provider,Kodi)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),Kodi) | String.IsEmpty(Skin.String(Value_Kodi_Rating_Provider))">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$LOCALIZE[31173]</label>
+            <property name="SettingsName">$LOCALIZE[15225] $LOCALIZE[563] Kodi</property>
+            <property name="Logo">logo/tmdb/tmdb_square_logo.jpg</property>
+            <onclick>Skin.SetString(Value_Kodi_Rating_Provider,TMDb)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),TMDb)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$LOCALIZE[31149]</label>
+            <property name="SettingsName">$LOCALIZE[15225] $LOCALIZE[563] Kodi</property>
+            <property name="Logo">logo/imdb/imdb_square_logo.jpg</property>
+            <onclick>Skin.SetString(Value_Kodi_Rating_Provider,IMDb)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),IMDb)">Def_Item_Selected</include>
+        </item>
+        <!-- <item> -->
+            <!-- <label>$LOCALIZE[31096]</label> -->
+            <!-- <property name="SettingsName">$LOCALIZE[15225] $LOCALIZE[563] Kodi</property> -->
+            <!-- <property name="Logo">logo/trakt/trakt_square_logo.jpg</property> -->
+            <!-- <onclick>Skin.SetString(Value_Kodi_Rating_Provider,Trakt)</onclick> -->
+            <!-- <onclick>Close</onclick> -->
+            <!-- <include condition="String.IsEqual(Skin.String(Value_Kodi_Rating_Provider),Trakt)">Def_Item_Selected</include> -->
+        <!-- </item> -->
+    </include>
+
+    <!-- SET - COLOR THEME -->
+
+    <include name="Set_Color_Preset_Item">
+
+        <!-- Lavender / Lavande -->
+
+        <item id="1">
+            <label>$LOCALIZE[31458]</label>
+
+            <property name="ColorHighlight.name">FFBA68C8</property>
+            <property name="ColorFocus.name">FFBA68C8</property>
+
+            <property name="KodiRatingStarColor.name">FFCA7B02</property>
+            <property name="UserRatingStarColor.name">FFD402AA</property>
+            <property name="MpaaCertifColor.name">ColorMpaaCertif</property>
+
+            <property name="IndicatorColorBackgroundNew.name">E6E6002E</property>
+            <property name="IndicatorColorBackgroundInProgress.name">E6A8287B</property>
+            <property name="IndicatorColorBackgroundUnWatched.name">UnWatchedIcons</property>
+            <property name="IndicatorColorBackgroundWatched.name">E6689F38</property>
+            <property name="IndicatorColorBackgroundIsPlaying.name">E60097A7</property>
+            <property name="IndicatorColorBackgroundLabel.name">FFFFFFFF</property>
+            <property name="IndicatorColorBackgroundIsPlayingicon.name">FFFFFFFF</property>
+
+            <onclick>Skin.SetString(settingpresetcolor,1)</onclick>
+
+            <onclick>Skin.SetString(ColorHighlight.name,FFBA68C8)</onclick>
+            <onclick>Skin.SetString(ColorFocus.name,FFBA68C8)</onclick>
+
+            <onclick>Skin.SetString(KodiRatingStarColor.name,FFCA7B02)</onclick>
+            <onclick>Skin.SetString(UserRatingStarColor.name,FFD402AA)</onclick>
+            <onclick>Skin.SetString(MpaaCertifColor.name,ColorMpaaCertif)</onclick>
+
+            <onclick>Skin.SetString(IndicatorColorBackgroundNew.name,E6E6002E)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundInProgress.name,E6A8287B)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundUnWatched.name,UnWatchedIcons)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundWatched.name,E6689F38)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlaying.name,E60097A7)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundLabel.name,FFFFFFFF)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,FFFFFFFF)</onclick>
+
+            <onclick>Skin.Reset(DisableColourTitleMenuSetting)</onclick>
+
+            <onclick condition="!$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadskin,1,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1156,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+            <onclick>Close</onclick>
+
+            <include condition="String.IsEqual(Skin.String(settingpresetcolor),1)">Def_Item_Selected</include>
+        </item>
+
+        <!-- Orange Pumpkin / Orange Citrouille -->
+
+        <item id="2">
+            <label>$LOCALIZE[31460]</label>
+
+            <property name="ColorHighlight.name">FFF4511E</property>
+            <property name="ColorFocus.name">FFF4511E</property>
+
+            <property name="KodiRatingStarColor.name">FFCA7B02</property>
+            <property name="UserRatingStarColor.name">FFD402AA</property>
+            <property name="MpaaCertifColor.name">ColorMpaaCertif</property>
+
+            <property name="IndicatorColorBackgroundNew.name">E6E6002E</property>
+            <property name="IndicatorColorBackgroundInProgress.name">E6A8287B</property>
+            <property name="IndicatorColorBackgroundUnWatched.name">UnWatchedIcons</property>
+            <property name="IndicatorColorBackgroundWatched.name">E6689F38</property>
+            <property name="IndicatorColorBackgroundIsPlaying.name">E60097A7</property>
+            <property name="IndicatorColorBackgroundLabel.name">FFFFFFFF</property>
+            <property name="IndicatorColorBackgroundIsPlayingicon.name">FFFFFFFF</property>
+
+            <onclick>Skin.SetString(settingpresetcolor,2)</onclick>
+
+            <onclick>Skin.SetString(ColorHighlight.name,FFF4511E)</onclick>
+            <onclick>Skin.SetString(ColorFocus.name,FFF4511E)</onclick>
+
+            <onclick>Skin.SetString(KodiRatingStarColor.name,FFCA7B02)</onclick>
+            <onclick>Skin.SetString(UserRatingStarColor.name,FFD402AA)</onclick>
+            <onclick>Skin.SetString(MpaaCertifColor.name,ColorMpaaCertif)</onclick>
+
+            <onclick>Skin.SetString(IndicatorColorBackgroundNew.name,E6E6002E)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundInProgress.name,E6A8287B)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundUnWatched.name,UnWatchedIcons)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundWatched.name,E6689F38)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlaying.name,E60097A7)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundLabel.name,FFFFFFFF)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,FFFFFFFF)</onclick>
+
+            <onclick>Skin.Reset(DisableColourTitleMenuSetting)</onclick>
+
+            <onclick condition="!$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadskin,1,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1156,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+            <onclick>Close</onclick>
+
+            <include condition="String.IsEqual(Skin.String(settingpresetcolor),2)">Def_Item_Selected</include>
+
+        </item>
+
+        <!-- Azure Blue / Bleu Azur -->
+
+        <item id="3">
+            <label>$LOCALIZE[31461] ($LOCALIZE[571])</label>
+
+            <property name="ColorHighlight.name">FF03A9F4</property>
+            <property name="ColorFocus.name">FF03A9F4</property>
+
+            <property name="KodiRatingStarColor.name">FFCA7B02</property>
+            <property name="UserRatingStarColor.name">FFD402AA</property>
+            <property name="MpaaCertifColor.name">ColorMpaaCertif</property>
+
+            <property name="IndicatorColorBackgroundNew.name">E6E6002E</property>
+            <property name="IndicatorColorBackgroundInProgress.name">E6A8287B</property>
+            <property name="IndicatorColorBackgroundUnWatched.name">UnWatchedIcons</property>
+            <property name="IndicatorColorBackgroundWatched.name">E6689F38</property>
+            <property name="IndicatorColorBackgroundIsPlaying.name">E60097A7</property>
+            <property name="IndicatorColorBackgroundLabel.name">FFFFFFFF</property>
+            <property name="IndicatorColorBackgroundIsPlayingicon.name">FFFFFFFF</property>
+
+            <onclick>Skin.SetString(settingpresetcolor,3)</onclick>
+
+            <onclick>Skin.SetString(ColorHighlight.name,FF03A9F4)</onclick>
+            <onclick>Skin.SetString(ColorFocus.name,FF03A9F4)</onclick>
+
+            <onclick>Skin.SetString(KodiRatingStarColor.name,FFCA7B02)</onclick>
+            <onclick>Skin.SetString(UserRatingStarColor.name,FFD402AA)</onclick>
+            <onclick>Skin.SetString(MpaaCertifColor.name,ColorMpaaCertif)</onclick>
+
+            <onclick>Skin.SetString(IndicatorColorBackgroundNew.name,E6E6002E)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundInProgress.name,E6A8287B)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundUnWatched.name,UnWatchedIcons)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundWatched.name,E6689F38)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlaying.name,E60097A7)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundLabel.name,FFFFFFFF)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,FFFFFFFF)</onclick>
+
+            <onclick>Skin.Reset(DisableColourTitleMenuSetting)</onclick>
+
+           <onclick condition="!$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadskin,1,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1156,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+            <onclick>Close</onclick>
+
+            <include condition="String.IsEqual(Skin.String(settingpresetcolor),3)">Def_Item_Selected</include>
+        </item>
+
+        <!-- Spring Green / Vert Printanier -->
+
+        <item id="4">
+            <label>$LOCALIZE[31462]</label>
+
+            <property name="ColorHighlight.name">FF8BC34A</property>
+            <property name="ColorFocus.name">FF8BC34A</property>
+
+            <property name="KodiRatingStarColor.name">FFCA7B02</property>
+            <property name="UserRatingStarColor.name">FFD402AA</property>
+            <property name="MpaaCertifColor.name">ColorMpaaCertif</property>
+
+            <property name="IndicatorColorBackgroundNew.name">E6E6002E</property>
+            <property name="IndicatorColorBackgroundInProgress.name">E6A8287B</property>
+            <property name="IndicatorColorBackgroundUnWatched.name">UnWatchedIcons</property>
+            <property name="IndicatorColorBackgroundWatched.name">E6689F38</property>
+            <property name="IndicatorColorBackgroundIsPlaying.name">E60097A7</property>
+            <property name="IndicatorColorBackgroundLabel.name">FFFFFFFF</property>
+            <property name="IndicatorColorBackgroundIsPlayingicon.name">FFFFFFFF</property>
+
+            <onclick>Skin.SetString(settingpresetcolor,4)</onclick>
+
+            <onclick>Skin.SetString(ColorHighlight.name,FF8BC34A)</onclick>
+            <onclick>Skin.SetString(ColorFocus.name,FF8BC34A)</onclick>
+
+            <onclick>Skin.SetString(KodiRatingStarColor.name,FFCA7B02)</onclick>
+            <onclick>Skin.SetString(UserRatingStarColor.name,FFD402AA)</onclick>
+            <onclick>Skin.SetString(MpaaCertifColor.name,ColorMpaaCertif)</onclick>
+
+            <onclick>Skin.SetString(IndicatorColorBackgroundNew.name,E6E6002E)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundInProgress.name,E6A8287B)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundUnWatched.name,UnWatchedIcons)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundWatched.name,E6689F38)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlaying.name,E60097A7)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundLabel.name,FFFFFFFF)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,FFFFFFFF)</onclick>
+
+            <onclick>Skin.Reset(DisableColourTitleMenuSetting)</onclick>
+
+           <onclick condition="!$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadskin,1,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1156,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+            <onclick>Close</onclick>
+
+            <include condition="String.IsEqual(Skin.String(settingpresetcolor),4)">Def_Item_Selected</include>
+        </item>
+
+        <!-- Brick Red / Rouge Brique -->
+
+        <item id="5">
+            <label>$LOCALIZE[31463]</label>
+
+            <property name="ColorHighlight.name">FFD32F2F</property>
+            <property name="ColorFocus.name">FFD32F2F</property>
+
+            <property name="KodiRatingStarColor.name">FFCA7B02</property>
+            <property name="UserRatingStarColor.name">FFD402AA</property>
+            <property name="MpaaCertifColor.name">ColorMpaaCertif</property>
+
+            <property name="IndicatorColorBackgroundNew.name">E6E6002E</property>
+            <property name="IndicatorColorBackgroundInProgress.name">E6A8287B</property>
+            <property name="IndicatorColorBackgroundUnWatched.name">UnWatchedIcons</property>
+            <property name="IndicatorColorBackgroundWatched.name">E6689F38</property>
+            <property name="IndicatorColorBackgroundIsPlaying.name">E60097A7</property>
+            <property name="IndicatorColorBackgroundLabel.name">FFFFFFFF</property>
+            <property name="IndicatorColorBackgroundIsPlayingicon.name">FFFFFFFF</property>
+
+            <onclick>Skin.SetString(settingpresetcolor,5)</onclick>
+
+            <onclick>Skin.SetString(ColorHighlight.name,FFD32F2F)</onclick>
+            <onclick>Skin.SetString(ColorFocus.name,FFD32F2F)</onclick>
+
+            <onclick>Skin.SetString(KodiRatingStarColor.name,FFCA7B02)</onclick>
+            <onclick>Skin.SetString(UserRatingStarColor.name,FFD402AA)</onclick>
+            <onclick>Skin.SetString(MpaaCertifColor.name,ColorMpaaCertif)</onclick>
+
+            <onclick>Skin.SetString(IndicatorColorBackgroundNew.name,E6E6002E)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundInProgress.name,E6A8287B)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundUnWatched.name,UnWatchedIcons)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundWatched.name,E6689F38)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlaying.name,E60097A7)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundLabel.name,FFFFFFFF)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,FFFFFFFF)</onclick>
+
+            <onclick>Skin.Reset(DisableColourTitleMenuSetting)</onclick>
+
+           <onclick condition="!$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadskin,1,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1156,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+            <onclick>Close</onclick>
+
+            <include condition="String.IsEqual(Skin.String(settingpresetcolor),5)">Def_Item_Selected</include>
+        </item>
+
+        <!-- Bright Turquoise / Cyan brillant -->
+
+        <item id="6">
+            <label>$LOCALIZE[31459]</label>
+
+            <property name="ColorHighlight.name">FF26C6DA</property>
+            <property name="ColorFocus.name">FF26C6DA</property>
+
+            <property name="KodiRatingStarColor.name">FFCA7B02</property>
+            <property name="UserRatingStarColor.name">FFD402AA</property>
+            <property name="MpaaCertifColor.name">ColorMpaaCertif</property>
+
+            <property name="IndicatorColorBackgroundNew.name">E6E6002E</property>
+            <property name="IndicatorColorBackgroundInProgress.name">E6A8287B</property>
+            <property name="IndicatorColorBackgroundUnWatched.name">UnWatchedIcons</property>
+            <property name="IndicatorColorBackgroundWatched.name">E6689F38</property>
+            <property name="IndicatorColorBackgroundIsPlaying.name">E60097A7</property>
+            <property name="IndicatorColorBackgroundLabel.name">FFFFFFFF</property>
+            <property name="IndicatorColorBackgroundIsPlayingicon.name">FFFFFFFF</property>
+
+            <onclick>Skin.SetString(settingpresetcolor,6)</onclick>
+
+            <onclick>Skin.SetString(ColorHighlight.name,FF26C6DA)</onclick>
+            <onclick>Skin.SetString(ColorFocus.name,FF26C6DA)</onclick>
+
+            <onclick>Skin.SetString(KodiRatingStarColor.name,FFCA7B02)</onclick>
+            <onclick>Skin.SetString(UserRatingStarColor.name,FFD402AA)</onclick>
+            <onclick>Skin.SetString(MpaaCertifColor.name,ColorMpaaCertif)</onclick>
+
+            <onclick>Skin.SetString(IndicatorColorBackgroundNew.name,E6E6002E)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundInProgress.name,E6A8287B)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundUnWatched.name,UnWatchedIcons)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundWatched.name,E6689F38)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlaying.name,E60097A7)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundLabel.name,FFFFFFFF)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,FFFFFFFF)</onclick>
+
+            <onclick>Skin.Reset(DisableColourTitleMenuSetting)</onclick>
+
+           <onclick condition="!$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadskin,1,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1156,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+            <onclick>Close</onclick>
+
+            <include condition="String.IsEqual(Skin.String(settingpresetcolor),6)">Def_Item_Selected</include>
+        </item>
+
+        <!-- Light Taupe / Taupe Clair -->
+
+        <item id="7">
+            <label>$LOCALIZE[31491]</label>
+
+            <property name="ColorHighlight.name">FFA1887F</property>
+            <property name="ColorFocus.name">FFA1887F</property>
+
+            <property name="KodiRatingStarColor.name">FFCA7B02</property>
+            <property name="UserRatingStarColor.name">FFD402AA</property>
+            <property name="MpaaCertifColor.name">ColorMpaaCertif</property>
+
+            <property name="IndicatorColorBackgroundNew.name">E6E6002E</property>
+            <property name="IndicatorColorBackgroundInProgress.name">E6A8287B</property>
+            <property name="IndicatorColorBackgroundUnWatched.name">UnWatchedIcons</property>
+            <property name="IndicatorColorBackgroundWatched.name">E6689F38</property>
+            <property name="IndicatorColorBackgroundIsPlaying.name">E60097A7</property>
+            <property name="IndicatorColorBackgroundLabel.name">FFFFFFFF</property>
+            <property name="IndicatorColorBackgroundIsPlayingicon.name">FFFFFFFF</property>
+
+            <onclick>Skin.SetString(settingpresetcolor,7)</onclick>
+
+            <onclick>Skin.SetString(ColorHighlight.name,FFA1887F)</onclick>
+            <onclick>Skin.SetString(ColorFocus.name,FFA1887F)</onclick>
+
+            <onclick>Skin.SetString(KodiRatingStarColor.name,FFCA7B02)</onclick>
+            <onclick>Skin.SetString(UserRatingStarColor.name,FFD402AA)</onclick>
+            <onclick>Skin.SetString(MpaaCertifColor.name,ColorMpaaCertif)</onclick>
+
+            <onclick>Skin.SetString(IndicatorColorBackgroundNew.name,E6E6002E)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundInProgress.name,E6A8287B)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundUnWatched.name,UnWatchedIcons)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundWatched.name,E6689F38)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlaying.name,E60097A7)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundLabel.name,FFFFFFFF)</onclick>
+            <onclick>Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,FFFFFFFF)</onclick>
+
+            <onclick>Skin.Reset(DisableColourTitleMenuSetting)</onclick>
+
+           <onclick condition="!$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadskin,1,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1156,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+            <onclick>Close</onclick>
+
+            <include condition="String.IsEqual(Skin.String(settingpresetcolor),7)">Def_Item_Selected</include>
+        </item>
+
+        <!-- CUSTOM -->
+
+        <item id="8">
+            <visible>!String.IsEmpty(Skin.String(color.preset.name.own))</visible>
+
+            <label>$INFO[Skin.String(color.preset.name.own)] - $LOCALIZE[31455]</label>
+
+            <property name="ColorHighlight.name">$INFO[Skin.String(ColorHighlight.name.own)]</property>
+            <property name="ColorFocus.name">$INFO[Skin.String(ColorFocus.name.own)]</property>
+
+            <property name="KodiRatingStarColor.name">$VAR[KodiRatingStarColor.name.own]</property>
+            <property name="UserRatingStarColor.name">$VAR[UserRatingStarColor.name.own]</property>
+            <property name="MpaaCertifColor.name">$VAR[MpaaCertifColor.name.own]</property>
+
+            <property name="IndicatorColorBackgroundNew.name">$VAR[IndicatorColorBackgroundNew.name.own]</property>
+            <property name="IndicatorColorBackgroundInProgress.name">$VAR[IndicatorColorBackgroundInProgress.name.own]</property>
+            <property name="IndicatorColorBackgroundUnWatched.name">$VAR[IndicatorColorBackgroundUnWatched.name.own]</property>
+            <property name="IndicatorColorBackgroundWatched.name">$VAR[IndicatorColorBackgroundWatched.name.own]</property>
+            <property name="IndicatorColorBackgroundIsPlaying.name">$VAR[IndicatorColorBackgroundIsPlaying.name.own]</property>
+            <property name="IndicatorColorBackgroundLabel.name">$VAR[IndicatorColorBackgroundLabel.name.own]</property>
+            <property name="IndicatorColorBackgroundIsPlayingicon.name">$VAR[IndicatorColorBackgroundIsPlayingicon.name.own]</property>
+
+            <onclick>Skin.SetString(settingpresetcolor,8)</onclick>
+
+            <onclick>Skin.Reset(ColorHighlight.name)</onclick>
+            <onclick>Skin.Reset(ColorFocus.name)</onclick>
+
+            <onclick condition="!String.IsEmpty(Skin.String(ColorHighlight.name.own))">Skin.SetString(ColorHighlight.name,$INFO[Skin.String(ColorHighlight.name.own)])</onclick>
+            <onclick condition="!String.IsEmpty(Skin.String(ColorFocus.name.own))">Skin.SetString(ColorFocus.name,$INFO[Skin.String(ColorFocus.name.own)])</onclick>
+
+            <onclick condition="!String.IsEmpty(Skin.String(UserRatingStarColor.name.own))">Skin.SetString(UserRatingStarColor.name,$INFO[Skin.String(UserRatingStarColor.name.own)])</onclick>
+            <onclick condition="!String.IsEmpty(Skin.String(MpaaCertifColor.name.own))">Skin.SetString(MpaaCertifColor.name,$INFO[Skin.String(MpaaCertifColor.name.own)])</onclick>
+            <onclick condition="!String.IsEmpty(Skin.String(KodiRatingStarColor.name.own))">Skin.SetString(KodiRatingStarColor.name,$INFO[Skin.String(KodiRatingStarColor.name.own)])</onclick>
+
+            <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundNew.name.own))">Skin.SetString(IndicatorColorBackgroundNew.name,$INFO[Skin.String(IndicatorColorBackgroundNew.name.own)])</onclick>
+            <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundInProgress.name.own))">Skin.SetString(IndicatorColorBackgroundInProgress.name,$INFO[Skin.String(IndicatorColorBackgroundInProgress.name.own)])</onclick>
+            <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundUnWatched.name.own))">Skin.SetString(IndicatorColorBackgroundUnWatched.name,$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name.own)])</onclick>
+            <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundWatched.name.own))">Skin.SetString(IndicatorColorBackgroundWatched.name,$INFO[Skin.String(IndicatorColorBackgroundWatched.name.own)])</onclick>
+            <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundIsPlaying.name.own))">Skin.SetString(IndicatorColorBackgroundIsPlaying.name,$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name.own)])</onclick>
+            <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundLabel.name.own))">Skin.SetString(IndicatorColorBackgroundLabel.name,$INFO[Skin.String(IndicatorColorBackgroundLabel.name.own)])</onclick>
+            <onclick condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundIsPlayingicon.name.own))">Skin.SetString(IndicatorColorBackgroundIsPlayingicon.name,$INFO[Skin.String(IndicatorColorBackgroundIsPlayingicon.name.own)])</onclick>
+
+            <onclick condition="!String.IsEmpty(Skin.String(DisableColourTitleMenuSetting.name.own))">Skin.SetBool(DisableColourTitleMenuSetting)</onclick>
+            <onclick condition="String.IsEmpty(Skin.String(DisableColourTitleMenuSetting.name.own))">Skin.Reset(DisableColourTitleMenuSetting)</onclick>
+
+           <onclick condition="!$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadskin,1,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(reloadsetupwizard,1156,Home)</onclick>
+            <onclick condition="$EXP[Condition_Show_Button_Setup_Wizard]">SetProperty(SetupWizardDirection,Next,Home)</onclick>
+            <onclick>Close</onclick>
+
+            <include condition="String.IsEqual(Skin.String(settingpresetcolor),8)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SET - TRAILER DELAY START -->
+
+    <include name="Set_Items_Flix_Trailer_Delay">
+        <item>
+            <label>$NUMBER[3]</label>
+            <property name="SettingsName">$LOCALIZE[303]</property>
+            <onclick>Skin.SetString(Value_Items_Flix_Trailer_Delay,3)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),3)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[5] - $LOCALIZE[571]</label>
+            <onclick>Skin.SetString(Value_Items_Flix_Trailer_Delay,5)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),5) | String.IsEmpty(Skin.String(Value_Items_Flix_Trailer_Delay))">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[7]</label>
+            <onclick>Skin.SetString(Value_Items_Flix_Trailer_Delay,7)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),7)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[9]</label>
+            <onclick>Skin.SetString(Value_Items_Flix_Trailer_Delay,9)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),9)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[11]</label>
+            <onclick>Skin.SetString(Value_Items_Flix_Trailer_Delay,11)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),11)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[13]</label>
+            <onclick>Skin.SetString(Value_Items_Flix_Trailer_Delay,13)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),13)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[15]</label>
+            <onclick>Skin.SetString(Value_Items_Flix_Trailer_Delay,15)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(Value_Items_Flix_Trailer_Delay),15)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SET - WIDGET LIMIT -->
+
+    <include name="Set_Widget_Limit">
+        <item>
+            <label>$NUMBER[10]</label>
+            <property name="SettingsName">$LOCALIZE[31000]</property>
+            <onclick>Skin.SetString(WidgetLimit,10)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(WidgetLimit),10) | String.IsEmpty(Skin.String(WidgetLimit))">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[25] - $LOCALIZE[571]</label>
+            <onclick>Skin.SetString(WidgetLimit,25)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(WidgetLimit),25)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[50]</label>
+            <onclick>Skin.SetString(WidgetLimit,50)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(WidgetLimit),50)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[100]</label>
+            <onclick>Skin.SetString(WidgetLimit,100)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(WidgetLimit),100)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[250]</label>
+            <onclick>Skin.SetString(WidgetLimit,250)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(WidgetLimit),250)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[500]</label>
+            <onclick>Skin.SetString(WidgetLimit,500)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(WidgetLimit),500)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[1000]</label>
+            <onclick>Skin.SetString(WidgetLimit,1000)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(WidgetLimit),1000)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$LOCALIZE[21428]</label>
+            <onclick>Skin.SetString(WidgetLimit,99999)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(WidgetLimit),99999)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SET - HUB LIMIT -->
+
+    <include name="Set_Hub_Limit">
+        <item>
+            <label>$NUMBER[10]</label>
+            <property name="SettingsName">$LOCALIZE[31000]</property>
+            <onclick>Skin.SetString(HubLimit,10)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(HubLimit),10) | String.IsEmpty(Skin.String(HubLimit))">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[25] - $LOCALIZE[571]</label>
+            <onclick>Skin.SetString(HubLimit,25)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(HubLimit),25)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[50]</label>
+            <onclick>Skin.SetString(HubLimit,50)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(HubLimit),50)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[100]</label>
+            <onclick>Skin.SetString(HubLimit,100)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(HubLimit),100)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[250]</label>
+            <onclick>Skin.SetString(HubLimit,250)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(HubLimit),250)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[500]</label>
+            <onclick>Skin.SetString(HubLimit,500)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(HubLimit),500)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[1000]</label>
+            <onclick>Skin.SetString(HubLimit,1000)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(HubLimit),1000)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$LOCALIZE[21428]</label>
+            <onclick>Skin.SetString(HubLimit,99999)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(HubLimit),99999)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SET - TMDB ITEM LIMIT -->
+
+    <include name="Set_TMDb_Item_Limit">
+        <item>
+            <label>$NUMBER[20]</label>
+            <property name="SettingsName">$LOCALIZE[31000]</property>
+            <onclick>Skin.SetString(TMDbLimit,20)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(TMDbLimit),20)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[40]</label>
+            <onclick>Skin.SetString(TMDbLimit,40)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(TMDbLimit),40)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[60]</label>
+            <onclick>Skin.SetString(TMDbLimit,60)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(TMDbLimit),60)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[80] - $LOCALIZE[571]</label>
+            <onclick>Skin.SetString(TMDbLimit,80)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(TMDbLimit),80) | String.IsEmpty(Skin.String(TMDbLimit))">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[100]</label>
+            <onclick>Skin.SetString(TMDbLimit,100)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(TMDbLimit),100)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[120]</label>
+            <onclick>Skin.SetString(TMDbLimit,120)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(TMDbLimit),120)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[140]</label>
+            <onclick>Skin.SetString(TMDbLimit,140)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(TMDbLimit),140)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SET - TRIALER COUNT -->
+
+    <include name="Set_Trailer_Count">
+        <item>
+            <label>$LOCALIZE[231] - $LOCALIZE[571]</label>
+            <property name="SettingsName">$LOCALIZE[31342]</property>
+            <onclick>Skin.Reset(Value_Trailer_Count)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEmpty(Skin.String(Value_Trailer_Count))">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[1]</label>
+            <onclick>Skin.SetString(Value_Trailer_Count,1)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_Trailer_Count),2)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[2]</label>
+            <onclick>Skin.SetString(Value_Trailer_Count,2)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_Trailer_Count),3)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[3]</label>
+            <onclick>Skin.SetString(Value_Trailer_Count,3)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_Trailer_Count),3)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[4]</label>
+            <onclick>Skin.SetString(Value_Trailer_Count,4)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_Trailer_Count),4)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[5]</label>
+            <onclick>Skin.SetString(Value_Trailer_Count,5)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_Trailer_Count),5)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SET - OSD AUTO HIDE TIMEOUT -->
+
+    <include name="Set_OSD_Auto_Hide_Timeout">
+        <item>
+            <label>$LOCALIZE[591] - $LOCALIZE[571]</label>
+            <property name="SettingsName">$LOCALIZE[31232]</property>
+            <onclick>Skin.Reset(Value_OSD_Auto_Hide_Timeout)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEmpty(Skin.String(Value_OSD_Auto_Hide_Timeout))">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[1]</label>
+            <onclick>Skin.SetString(Value_OSD_Auto_Hide_Timeout,1)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Auto_Hide_Timeout),1)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[2]</label>
+            <onclick>Skin.SetString(Value_OSD_Auto_Hide_Timeout,2)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Auto_Hide_Timeout),2)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[3]</label>
+            <onclick>Skin.SetString(Value_OSD_Auto_Hide_Timeout,3)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Auto_Hide_Timeout),3)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[5]</label>
+            <onclick>Skin.SetString(Value_OSD_Auto_Hide_Timeout,5)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Auto_Hide_Timeout),5)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[10]</label>
+            <onclick>Skin.SetString(Value_OSD_Auto_Hide_Timeout,10)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Auto_Hide_Timeout),10)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[15]</label>
+            <onclick>Skin.SetString(Value_OSD_Auto_Hide_Timeout,15)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Auto_Hide_Timeout),15)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[20]</label>
+            <onclick>Skin.SetString(Value_OSD_Auto_Hide_Timeout,20)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Auto_Hide_Timeout),20)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[25]</label>
+            <onclick>Skin.SetString(Value_OSD_Auto_Hide_Timeout,25)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Auto_Hide_Timeout),25)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[30]</label>
+            <onclick>Skin.SetString(Value_OSD_Auto_Hide_Timeout,30)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Auto_Hide_Timeout),30)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SET - OSD TIMEOUT AT START -->
+
+    <include name="Set_Show_OSD_At_Start_Timeout">
+        <item>
+            <label>$LOCALIZE[591] - $LOCALIZE[571]</label>
+            <property name="SettingsName">$LOCALIZE[31454]</property>
+            <onclick>Skin.Reset(Value_Show_OSD_At_Start_Timeout)</onclick>
+            <onclick>Skin.Reset(show.osd.video.info.at.start)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEmpty(Skin.String(Value_Show_OSD_At_Start_Timeout))">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[3]</label>
+            <onclick>Skin.SetBool(show.osd.video.info.at.start)</onclick>
+            <onclick>Skin.SetString(Value_Show_OSD_At_Start_Timeout,3)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_Show_OSD_At_Start_Timeout),3)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[5]</label>
+            <onclick>Skin.SetBool(show.osd.video.info.at.start)</onclick>
+            <onclick>Skin.SetString(Value_Show_OSD_At_Start_Timeout,5)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_Show_OSD_At_Start_Timeout),5)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[7]</label>
+            <onclick>Skin.SetBool(show.osd.video.info.at.start)</onclick>
+            <onclick>Skin.SetString(Value_Show_OSD_At_Start_Timeout,7)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_Show_OSD_At_Start_Timeout),7)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[10]</label>
+            <onclick>Skin.SetBool(show.osd.video.info.at.start)</onclick>
+            <onclick>Skin.SetString(Value_Show_OSD_At_Start_Timeout,10)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_Show_OSD_At_Start_Timeout),10)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SET - OSD - MUSIC - INFO - AUTO HIDE TIMEOUT -->
+
+    <include name="Set_OSD_Music_Info_Auto_Hide_Timeout">
+        <item>
+            <label>$NUMBER[1]</label>
+            <property name="SettingsName">$LOCALIZE[31232]</property>
+            <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,1)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Music_Info_Auto_Hide_Timeout),1)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[2]</label>
+            <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,2)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Music_Info_Auto_Hide_Timeout),2)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[3]</label>
+            <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,3)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Music_Info_Auto_Hide_Timeout),3)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[5] - $LOCALIZE[571]</label>
+            <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,5)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Music_Info_Auto_Hide_Timeout),5)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[10]</label>
+            <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,10)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Music_Info_Auto_Hide_Timeout),10)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[15]</label>
+            <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,15)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Music_Info_Auto_Hide_Timeout),15)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[20]</label>
+            <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,20)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Music_Info_Auto_Hide_Timeout),20)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[25]</label>
+            <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,25)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Music_Info_Auto_Hide_Timeout),25)">Def_Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[30]</label>
+            <onclick>Skin.SetString(Value_OSD_Music_Info_Auto_Hide_Timeout,30)</onclick>
+            <onclick>Close</onclick>
+            <include condition="Integer.IsEqual(Skin.String(Value_OSD_Music_Info_Auto_Hide_Timeout),30)">Def_Item_Selected</include>
+        </item>
+    </include>
+
+    <!-- SKIN SETTINGS - MENU LEFT - ITEMS -->
+
+    <include name="Def_Skin_Settings_Item_Left_base">
+        <item id="1">
+            <label>$LOCALIZE[31007]</label>
+        </item>
+        <item id="2">
+            <label>$LOCALIZE[10000]</label>
+        </item>
+        <item id="3">
+            <label>$LOCALIZE[480]</label>
+        </item>
+        <item id="4">
+            <label>$LOCALIZE[31081]</label>
+        </item>
+        <item id="5">
+            <label>$LOCALIZE[31110]</label>
+        </item>
+        <item id="6">
+            <label>$LOCALIZE[31447]</label>
+        </item>
+        <item id="7">
+            <label>$LOCALIZE[31197]</label>
+        </item>
+        <item id="8">
+            <label>$LOCALIZE[31220]</label>
+        </item>
+    </include>
+
+    <include name="Def_Skin_Settings_Item_Left_standard">
+        <item id="1">
+            <label>$LOCALIZE[31007]</label>
+        </item>
+        <item id="2">
+            <label>$LOCALIZE[10000]</label>
+        </item>
+        <item id="3">
+            <label>$LOCALIZE[480]</label>
+        </item>
+        <item id="4">
+            <label>$LOCALIZE[31081]</label>
+        </item>
+        <item id="5">
+            <label>$LOCALIZE[31110]</label>
+        </item>
+        <item id="6">
+            <label>$LOCALIZE[31447]</label>
+        </item>
+        <item id="7">
+            <label>$LOCALIZE[31197]</label>
+        </item>
+        <item id="8">
+            <label>$LOCALIZE[31220]</label>
+        </item>
+    </include>
+
+    <include name="Def_Skin_Settings_Item_Left_advanced">
+        <item id="1">
+            <label>$LOCALIZE[31007]</label>
+        </item>
+        <item id="2">
+            <label>$LOCALIZE[10000]</label>
+        </item>
+        <item id="3">
+            <label>$LOCALIZE[480]</label>
+        </item>
+        <item id="4">
+            <label>$LOCALIZE[31081]</label>
+        </item>
+        <item id="5">
+            <label>$LOCALIZE[31110]</label>
+        </item>
+        <item id="6">
+            <label>$LOCALIZE[31447]</label>
+        </item>
+        <item id="7">
+            <label>$LOCALIZE[31197]</label>
+        </item>
+        <item id="8">
+            <label>$LOCALIZE[31220]</label>
+        </item>
+        <item id="9">
+            <label>$LOCALIZE[39024]</label>
+        </item>
+        <item id="10">
+            <label>$LOCALIZE[13007]</label>
+        </item>
+    </include>
+</includes>

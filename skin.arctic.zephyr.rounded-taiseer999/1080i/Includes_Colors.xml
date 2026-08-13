@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<variable name="Color_Item_DiscEjected">
+		<value condition="!RetroPlayer.DiscEjected">$VAR[Color_Item_Disabled]</value>
+		<value>Dark2</value>
+	</variable>
+
+    <!-- DEF COLOR - POSTER - BORDER -->
+
+    <variable name="Color_Border">
+        <value>BoxBorder</value>
+    </variable>
+
+    <variable name="Color_Border_Widget">
+        <value>BoxBorderWidget</value>
+    </variable>
+
+    <variable name="Color_Shadow">
+        <value>BoxShadow</value>
+    </variable>
+
+    <variable name="Color_Dialog_Shadow">
+        <value>DialogShadow</value>
+    </variable>
+
+    <!-- DEF SKIN COLOR -->
+
+    <variable name="Color_Label_Settings_Title">
+        <value>$VAR[Color_Highlight]</value>
+    </variable>
+
+    <variable name="Color_Icon_Menu_List">
+        <value>Dark2</value>
+        <!-- <value>$VAR[Color_Label_Settings_Title]</value> -->
+    </variable>
+
+
+    <!-- HIGHLIGHT COLOR HEADER SUB TITLE - INFOS -->
+
+    <variable name="Color_Label_Header_Sub_Title_Info">
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <variable name="Color_Wikipedia_Format_Link">
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <variable name="Color_Dialog_Header_Logo">
+        <value>Dark2</value>
+    </variable>
+
+    <variable name="Color_Dialog_Line">
+        <value>Black12</value>
+    </variable>
+
+    <variable name="Color_Button_NoFocus">
+        <value>Black12</value>
+    </variable>
+
+    <variable name="Color_Label_AZR">
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <variable name="Color_List_Item_Selected">
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <variable name="Color_Loading_Spinner">
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <!-- DEF COLOR -->
+
+    <variable name="Value_Color_Settings">
+        <value condition="String.IsEqual(Skin.CurrentColourTheme,Darkest)">FF1F1E1D</value>
+        <value condition="String.IsEqual(Skin.CurrentColourTheme,Light)">Dark4</value>
+        <value condition="String.IsEqual(Skin.CurrentColourTheme,Light Brown)">FF1E1E1E</value>
+        <value condition="String.IsEqual(Skin.CurrentColourTheme,Brown)">FF1E1E1E</value>
+        <value>FF1F1E1D</value>
+    </variable>
+
+    <variable name="Value_Color_Watched_Poster">
+        <value>UnWatchedIcons</value>
+    </variable>
+
+    <variable name="Color_Empty_DBID">
+        <value>orange</value>
+    </variable>
+
+    <variable name="Color_Indicator_Set">
+        <value>FFD402AA</value>
+    </variable>
+
+    <variable name="Color_Indicator_Version">
+        <value>FFD402AA</value>
+    </variable>
+
+    <variable name="Color_Indicator_DBType">
+        <value>FFD402AA</value>
+    </variable>
+
+    <variable name="Color_Indicator_JLOM">
+        <value>FFD402AA</value>
+    </variable>
+
+    <!-- HIGHLIGHT COLOR -->
+
+    <variable name="Color_Highlight">
+        <value condition="!Skin.HasSetting(DisableColourTitleMenuSetting) + String.IsEqual(Skin.String(ColorHighlight.name),none)">$VAR[Color_Focus]</value>
+        <value condition="!Skin.HasSetting(DisableColourTitleMenuSetting) + !String.IsEmpty(Skin.String(ColorHighlight.name))">$INFO[Skin.String(ColorHighlight.name)]</value>
+        <value>Dark3</value>
+    </variable>
+
+    <!-- FOCUS COLOR  -->
+
+    <variable name="Color_Focus">
+        <value condition="String.IsEqual(Skin.String(ColorFocus.name),none)">FF03A9F4</value>
+        <value condition="!String.IsEmpty(Skin.String(ColorFocus.name))">$INFO[Skin.String(ColorFocus.name)]</value>
+        <value>FF03A9F4</value>
+    </variable>
+
+    <!-- OTHERS COLOR  -->
+
+    <variable name="Color_Background">
+        <value>405F5F5F</value>
+    </variable>
+
+    <variable name="Color_Rating_Kodi_Star">
+        <value condition="String.IsEqual(Skin.String(KodiRatingStarColor.name),none)">ColoredStars</value>
+        <value condition="!String.IsEmpty(Skin.String(KodiRatingStarColor.name))">$INFO[Skin.String(KodiRatingStarColor.name)]</value>
+        <value>ColoredStars</value>
+    </variable>
+
+    <variable name="Color_Mpaa_Certif">
+        <value condition="String.IsEqual(Skin.String(MpaaCertifColor.name),none)">ColorMpaaCertif</value>
+        <value condition="!String.IsEmpty(Skin.String(MpaaCertifColor.name))">$INFO[Skin.String(MpaaCertifColor.name)]</value>
+        <value>ColorMpaaCertif</value>
+    </variable>
+
+    <variable name="Color_Stars_User_Rating_Override">
+        <value condition="Skin.HasSetting(userrating.override.kodi.rating.stars) + !String.IsEmpty(ListItem.UserRating) + String.IsEqual(Skin.String(UserRatingStarColor.name),none)">ColorRatingUserStar</value>
+        <value condition="Skin.HasSetting(userrating.override.kodi.rating.stars) + !String.IsEmpty(ListItem.UserRating) + !String.IsEmpty(Skin.String(UserRatingStarColor.name))">$INFO[Skin.String(UserRatingStarColor.name)]</value>
+        <value condition="String.IsEqual(Skin.String(KodiRatingStarColor.name),none)">ColoredStars</value>
+        <value condition="!String.IsEmpty(Skin.String(KodiRatingStarColor.name))">$INFO[Skin.String(KodiRatingStarColor.name)]</value>
+        <value>ColoredStars</value>
+    </variable>
+
+    <variable name="Color_OSD_Stars_User_Rating_Override_Video">
+        <value condition="Skin.HasSetting(userrating.override.kodi.rating.stars) + !String.IsEmpty(VideoPlayer.UserRating) + String.IsEqual(Skin.String(UserRatingStarColor.name),none)">ColorRatingUserStar</value>
+        <value condition="Skin.HasSetting(userrating.override.kodi.rating.stars) + !String.IsEmpty(VideoPlayer.UserRating) + !String.IsEmpty(Skin.String(UserRatingStarColor.name))">$INFO[Skin.String(UserRatingStarColor.name)]</value>
+        <value condition="String.IsEqual(Skin.String(KodiRatingStarColor.name),none)">ColoredStars</value>
+        <value condition="!String.IsEmpty(Skin.String(KodiRatingStarColor.name))">$INFO[Skin.String(KodiRatingStarColor.name)]</value>
+        <value>ColoredStars</value>
+    </variable>
+
+    <variable name="Color_OSD_Stars_User_Rating_Override_Music">
+        <value condition="Skin.HasSetting(userrating.override.kodi.rating.stars) + !String.IsEmpty(MusicPlayer.UserRating) + String.IsEqual(Skin.String(UserRatingStarColor.name),none)">ColorRatingUserStar</value>
+        <value condition="Skin.HasSetting(userrating.override.kodi.rating.stars) + !String.IsEmpty(MusicPlayer.UserRating) + !String.IsEmpty(Skin.String(UserRatingStarColor.name))">$INFO[Skin.String(UserRatingStarColor.name)]</value>
+        <value condition="String.IsEqual(Skin.String(KodiRatingStarColor.name),none)">ColoredStars</value>
+        <value condition="!String.IsEmpty(Skin.String(KodiRatingStarColor.name))">$INFO[Skin.String(KodiRatingStarColor.name)]</value>
+        <value>ColoredStars</value>
+    </variable>
+
+    <variable name="Color_Stars_Rating_Video_Ext">
+        <value condition="Skin.HasSetting(enable.furniture.flags.colored) + String.IsEqual(Skin.String(KodiRatingStarColor.name),none)">ColoredStars</value>
+        <value condition="Skin.HasSetting(enable.furniture.flags.colored) + !String.IsEmpty(Skin.String(KodiRatingStarColor.name))">$INFO[Skin.String(KodiRatingStarColor.name)]</value>
+        <value condition="Skin.HasSetting(enable.furniture.flags.colored)">ColoredStars</value>
+        <value>Dark1</value>
+    </variable>
+
+    <variable name="Color_Stars_Rating_User_Video_Ext">
+        <value condition="Skin.HasSetting(enable.furniture.flags.colored) + Skin.HasSetting(userrating.override.kodi.rating.stars) + String.IsEqual(Skin.String(UserRatingStarColor.name),none)">ColorRatingUserStar</value>
+        <value condition="Skin.HasSetting(enable.furniture.flags.colored) + Skin.HasSetting(userrating.override.kodi.rating.stars) + !String.IsEmpty(Skin.String(UserRatingStarColor.name))">$INFO[Skin.String(UserRatingStarColor.name)]</value>
+        <value condition="Skin.HasSetting(enable.furniture.flags.colored)">ColoredStars</value>
+        <value>Dark1</value>
+    </variable>
+
+    <variable name="Color_Rating_User_Star">
+        <value condition="String.IsEqual(Skin.String(UserRatingStarColor.name),none)">ColorRatingUserStar</value>
+        <value condition="!String.IsEmpty(Skin.String(UserRatingStarColor.name))">$INFO[Skin.String(UserRatingStarColor.name)]</value>
+        <value>ColorRatingUserStar</value>
+    </variable>
+
+    <variable name="Color_Indicator_Background_UnWatched">
+        <value condition="String.IsEqual(Skin.String(IndicatorColorBackgroundUnWatched.name),none)">UnWatchedIcons</value>
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundUnWatched.name))">$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name)]</value>
+        <value>UnWatchedIcons</value>
+    </variable>
+
+    <variable name="Color_Indicator_Background_Watched">
+        <value condition="String.IsEqual(Skin.String(IndicatorColorBackgroundWatched.name),none)">FF294B89</value>
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundWatched.name))">$INFO[Skin.String(IndicatorColorBackgroundWatched.name)]</value>
+        <value>FF294B89</value>
+    </variable>
+
+    <variable name="Color_Indicator_Background_In_Progress">
+        <value condition="String.IsEqual(Skin.String(IndicatorColorBackgroundInProgress.name),none)">Panel</value>
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundInProgress.name))">$INFO[Skin.String(IndicatorColorBackgroundInProgress.name)]</value>
+        <value>Panel</value>
+    </variable>
+
+    <variable name="Color_Indicator_Background_Is_Playing">
+        <value condition="String.IsEqual(Skin.String(IndicatorColorBackgroundIsPlaying.name),none)">Highlight2</value>
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundIsPlaying.name))">$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name)]</value>
+        <value>Highlight2</value>
+    </variable>
+
+    <variable name="Color_Indicator_Background_New">
+        <value condition="String.IsEqual(Skin.String(IndicatorColorBackgroundNew.name),none)">$VAR[Color_Focus]</value>
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundNew.name))">$INFO[Skin.String(IndicatorColorBackgroundNew.name)]</value>
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <variable name="Color_Indicator_Background_Label">
+        <value condition="String.IsEqual(Skin.String(IndicatorColorBackgroundLabel.name),none)">FFFFFFFF</value>
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundLabel.name))">$INFO[Skin.String(IndicatorColorBackgroundLabel.name)]</value>
+        <value>FFFFFFFF</value>
+    </variable>
+
+    <variable name="Color_Indicator_Background_Is_Playing_Icon">
+        <value condition="String.IsEqual(Skin.String(IndicatorColorBackgroundIsPlayingicon.name),none)">FFFFFFFF</value>
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundIsPlayingicon.name))">$INFO[Skin.String(IndicatorColorBackgroundIsPlayingicon.name)]</value>
+        <value>FFFFFFFF</value>
+    </variable>
+
+    <variable name="Color_Indicator_Status_Background_Icon">
+        <value>FF333333</value>
+    </variable>
+
+    <!-- CUSTOM COLOR -->
+
+    <variable name="ColorHighlight.name.own">
+        <value condition="!String.IsEmpty(Skin.String(ColorHighlight.name.own))">$INFO[Skin.String(ColorHighlight.name.own)]</value>
+        <value>FFFE0000</value>
+    </variable>
+
+    <variable name="ColorFocus.name.own">
+        <value condition="!String.IsEmpty(Skin.String(ColorFocus.name.own))">$INFO[Skin.String(ColorFocus.name.own)]</value>
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <variable name="IndicatorColorBackgroundNew.name.own">
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundNew.name.own))">$INFO[Skin.String(IndicatorColorBackgroundNew.name.own)]</value>
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <variable name="IndicatorColorBackgroundInProgress.name.own">
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundInProgress.name.own))">$INFO[Skin.String(IndicatorColorBackgroundInProgress.name.own)]</value>
+        <value>Panel</value>
+    </variable>
+
+    <variable name="IndicatorColorBackgroundUnWatched.name.own">
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundUnWatched.name.own))">$INFO[Skin.String(IndicatorColorBackgroundUnWatched.name.own)]</value>
+        <value>FF294B89</value>
+    </variable>
+
+    <variable name="IndicatorColorBackgroundWatched.name.own">
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundWatched.name.own))">$INFO[Skin.String(IndicatorColorBackgroundWatched.name.own)]</value>
+        <value>FF294B89</value>
+    </variable>
+
+    <variable name="IndicatorColorBackgroundIsPlaying.name.own">
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundIsPlaying.name.own))">$INFO[Skin.String(IndicatorColorBackgroundIsPlaying.name.own)]</value>
+        <value>Highlight2</value>
+    </variable>
+
+    <variable name="IndicatorColorBackgroundLabel.name.own">
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundLabel.name.own))">$INFO[Skin.String(IndicatorColorBackgroundLabel.name.own)]</value>
+        <value>FFFFFFFF</value>
+    </variable>
+
+    <variable name="IndicatorColorBackgroundIsPlayingicon.name.own">
+        <value condition="!String.IsEmpty(Skin.String(IndicatorColorBackgroundIsPlayingicon.name.own))">$INFO[Skin.String(IndicatorColorBackgroundIsPlayingicon.name.own)]</value>
+        <value>FFFFFFFF</value>
+    </variable>
+
+    <variable name="KodiRatingStarColor.name.own">
+        <value condition="!String.IsEmpty(Skin.String(KodiRatingStarColor.name.own))">$INFO[Skin.String(KodiRatingStarColor.name.own)]</value>
+        <value>FFD402AA</value>
+    </variable>
+
+    <variable name="UserRatingStarColor.name.own">
+        <value condition="!String.IsEmpty(Skin.String(UserRatingStarColor.name.own))">$INFO[Skin.String(UserRatingStarColor.name.own)]</value>
+        <value>ColorRatingUserStar</value>
+    </variable>
+
+    <variable name="MpaaCertifColor.name.own">
+        <value condition="!String.IsEmpty(Skin.String(MpaaCertifColor.name.own))">$INFO[Skin.String(MpaaCertifColor.name.own)]</value>
+        <value>ColorMpaaCertif</value>
+    </variable>
+
+    <!-- DIALOG -->
+
+    <variable name="Color_Label_Dialog_Notification_Title">
+        <value condition="VideoPlayer.IsFullscreen | Window.IsVisible(MusicVisualisation.xml)">$VAR[Color_OSD_Label_Line1]</value>
+        <value>Dark1</value>
+    </variable>
+
+    <variable name="Color_Label_Dialog_Notification_Sub_Title">
+        <value condition="VideoPlayer.IsFullscreen | Window.IsVisible(MusicVisualisation.xml)">$VAR[Color_OSD_Label_Line2]</value>
+        <value>PanelWhite70</value>
+    </variable>
+
+    <variable name="Color_Picker">
+        <value condition="Control.HasFocus(3000)">$INFO[Container(3000).ListItem.Label2]</value>
+        <value>$INFO[Window(Home).Property(colorstring)]</value>
+    </variable>
+
+    <variable name="Color_ColorPicker_Selected">
+        <value condition="!String.IsEmpty(Window(Home).Property(color_picker_selected))">$INFO[Window(Home).Property(color_picker_selected)]</value>
+        <value>$INFO[Window(Home).Property(colorstring)]</value>
+    </variable>
+
+    <!-- OSD - COLOR -->
+
+    <variable name="Color_GameOSD_Background_Overlay">
+        <value>FF808080</value>
+    </variable>
+
+    <variable name="Color_Widget_Progress_Bar_Background_light">
+        <value>1F000000</value>
+    </variable>
+
+    <variable name="Color_Widget_Progress_Bar_Background_darkest">
+        <value>6FBBBBBB</value>
+    </variable>
+
+    <variable name="Color_OSD_Progress_Bar_Background">
+        <value>1FBBBBBB</value>
+    </variable>
+
+    <variable name="Color_OSD_Progress_Bar">
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <variable name="Color_OSD_Slider_Bar">
+        <value>1CFFFFFF</value>
+    </variable>
+
+    <variable name="Color_OSD_Slider_Nib">
+        <value>FF1A1A1A</value>
+    </variable>
+
+    <variable name="Color_OSD_Slider_Nib_Focus">
+        <value>$VAR[Color_Focus]</value>
+    </variable>
+
+    <variable name="Color_OSD_Slider_Cursor">
+        <value>FFA6A6A6</value>
+    </variable>
+
+    <variable name="Color_OSD_NowPlaying_Button_Background">
+        <value condition="!String.Contains(Skin.CurrentColourTheme,Light)">33FFFFFF</value>
+        <value>405F5F5F</value>
+    </variable>
+
+    <variable name="Color_OSD_NowPlaying_Progress_Bar_Background">
+        <value condition="!String.Contains(Skin.CurrentColourTheme,Light)">1FBBBBBB</value>
+        <value>1F000000</value>
+    </variable>
+
+    <variable name="Color_OSD_Panel_PVR">
+        <value>FF101010</value>
+    </variable>
+
+    <variable name="Color_OSD_Panel_White12">
+        <value>PanelWhite12</value>
+    </variable>
+
+    <variable name="Color_OSD_Panel_White30">
+        <value>PanelWhite90</value>
+    </variable>
+
+    <variable name="Color_OSD_Panel_White70">
+        <value>CCC5C5C5</value>
+    </variable>
+
+    <variable name="Color_OSD_Panel_White100">
+        <value>FFC5C5C5</value>
+    </variable>
+
+    <variable name="Color_OSD_Dialog_Border">
+        <value>B3141414</value>
+    </variable>
+
+    <variable name="Color_OSD_Dialog_Shadow">
+        <value>FF020202</value>
+    </variable>
+
+    <variable name="Color_OSD_Background_Overlay">
+        <value>B3000000</value>
+    </variable>
+
+    <variable name="Color_OSD_Background_Dialog">
+        <value>FF2D2E2E</value>
+    </variable>
+
+    <variable name="Color_OSD_Dialog_Header">
+        <value>CCC5C5C5</value>
+    </variable>
+
+    <variable name="Color_OSD_Dialog_Line">
+        <value>1FBBBBBB</value>
+    </variable>
+
+    <variable name="Color_OSD_Label_Line1">
+        <value>FFC5C5C5</value>
+    </variable>
+
+    <variable name="Color_OSD_Label_Line2">
+        <value>CCC5C5C5</value>
+    </variable>
+
+    <variable name="Color_OSD_Icon_Disabled">
+        <value>4DBBBBBB</value>
+    </variable>
+
+    <variable name="Color_Icon_Disabled">
+        <value>Black30</value>
+    </variable>
+
+    <variable name="Color_Item_Disabled">
+        <value>Dark3</value>
+    </variable>
+
+    <variable name="Color_OSD_Seek_Bar">
+        <value>4DBBBBBB</value>
+    </variable>
+
+    <variable name="Color_OSD_Button_Background">
+        <value>33ffffff</value>
+    </variable>
+</includes>

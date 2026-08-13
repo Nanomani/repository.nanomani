@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">3012</defaultcontrol>
+    <zorder>10</zorder>
+    <controls>
+        <control type="label" id="3000">
+            <visible>false</visible>
+        </control>
+        <control type="label" id="3002">
+            <visible>false</visible>
+        </control>
+        <control type="group">
+            <include>Animation_Common_Fade_In_Slide_Down_Bounce</include>
+            <include>Animation_Common_Fade_Out</include>
+
+            <right>64</right>
+            <bottom>64</bottom>
+            <width>512</width>
+            <height>288</height>
+
+            <include content="Def_Art_Full_Background_b24">
+                <param name="colordiffuse_border" value="$VAR[Color_OSD_Dialog_Border]" />
+                <param name="colordiffuse_shadow" value="$VAR[Color_OSD_Dialog_Shadow]" />
+                <param name="colordiffuse" value="black" />
+                <param name="condition_fade" value="false" />
+            </include>
+
+            <control type="label" description="text">
+                <top>-64</top>
+                <left>0</left>
+                <right>20</right>
+                <height>64</height>
+                <aligny>center</aligny>
+                <font>Small</font>
+                <label>$ADDON[service.upnext 30008]...</label>
+                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+            </control>
+
+            <control type="image" description="fanart">
+                <width>100%</width>
+                <height>100%</height>
+                <fadetime>350</fadetime>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/fanart_w512_h288_b24.png">$VAR[Image_UpNext]</texture>
+            </control>
+
+            <!-- TIME REMAINING -->
+
+            <control type="image" description="blackline">
+                <height>64</height>
+                <width>64</width>
+                <centertop>133</centertop>
+                <centerleft>50%</centerleft>
+                <aspectratio scalediffuse="false">keep</aspectratio>
+                <texture colordiffuse="B3333333">common/circle80.png</texture>
+            </control>
+            <control type="label">
+                <description>Remaining</description>
+                <centertop>132</centertop>
+                <centerleft>50%</centerleft>
+                <width>885</width>
+                <font>TinyBold</font>
+                <align>center</align>
+                <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                <label>$INFO[Player.TimeRemaining(ss)]</label>
+            </control>
+
+            <!-- FOOTER INFORMATION -->
+
+            <control type="group">
+                <left>16</left>
+                <right>16</right>
+                <height>64</height>
+                <bottom>16</bottom>
+
+                <control type="image" description="blackline">
+                    <width>100%</width>
+                    <height>64</height>
+                    <bottom>0</bottom>
+                    <texture colordiffuse="B3333333" border="12">diffuse/up_next_w480_h64.png</texture>
+                </control>
+
+                <control type="label" description="text">
+                    <left>20</left>
+                    <right>120</right>
+                    <height>64</height>
+                    <bottom>2</bottom>
+                    <aligny>center</aligny>
+                    <font>InfoNetflix</font>
+                    <label>$INFO[Window.Property(season),S,]$INFO[Window.Property(episode),E, - ]$INFO[Window.Property(title)]</label>
+                    <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                </control>
+
+                <!-- BUTTON PLAY -->
+
+                <control type="button" id="3012">
+                    <description>Play</description>
+                    <right>64</right>
+                    <bottom>8</bottom>
+                    <width>48</width>
+                    <height>48</height>
+                    <label/>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <textoffsetx>0</textoffsetx>
+                    <onleft>3013</onleft>
+                    <onright>3013</onright>
+                    <font>Null</font>
+                    <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                    <focusedcolor>$VAR[Color_OSD_Panel_White70]</focusedcolor>
+                    <include content="Texture_Button_Dialog_Settings">
+                        <param name="colordiffuse_nofocus" value="$VAR[Color_Background]" />
+                    </include>
+                </control>
+                <control type="image">
+                    <description>Play</description>
+                    <right>72</right>
+                    <bottom>16</bottom>
+                    <width>32</width>
+                    <height>32</height>
+                    <texture>indicator/playwhite.png</texture>
+                    <aspectratio>keep</aspectratio>
+                    <animation effect="fade" start="100" end="50" time="0" condition="!Control.HasFocus(3012)">Conditional</animation>
+                </control>
+
+                <!-- BUTTON CANCEL -->
+
+                <control type="button" id="3013">
+                    <description>Cancel</description>
+                    <right>8</right>
+                    <bottom>8</bottom>
+                    <width>48</width>
+                    <height>48</height>
+                    <label/>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <textoffsetx>0</textoffsetx>
+                    <onleft>3012</onleft>
+                    <onright>3012</onright>
+                    <font>Null</font>
+                    <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                    <focusedcolor>$VAR[Color_OSD_Panel_White70]</focusedcolor>
+                    <include content="Texture_Button_Dialog_Settings">
+                        <param name="colordiffuse_nofocus" value="$VAR[Color_Background]" />
+                    </include>
+                </control>
+                <control type="image">
+                    <description>Play</description>
+                    <right>16</right>
+                    <bottom>16</bottom>
+                    <width>32</width>
+                    <height>32</height>
+                    <texture>indicator/close.png</texture>
+                    <aspectratio>keep</aspectratio>
+                    <animation effect="fade" start="100" end="50" time="0" condition="!Control.HasFocus(3013)">Conditional</animation>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

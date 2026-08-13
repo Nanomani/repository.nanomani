@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <!-- GRID CONSTANTS -->
+
+    <constant name="grid_x01">10</constant>
+    <constant name="grid_x02">20</constant>
+    <constant name="grid_x03">30</constant>
+    <constant name="grid_x04">40</constant>
+    <constant name="grid_x06">60</constant>
+    <constant name="grid_x08">80</constant>
+    <constant name="grid_x12">120</constant>
+    <constant name="grid_x14">140</constant>
+    <constant name="grid_x16">160</constant>
+    <constant name="grid_x20">200</constant>
+    <constant name="grid_x24">240</constant>
+    <constant name="grid_x28">280</constant>
+    <constant name="grid_x30">300</constant>
+    <constant name="grid_x32">320</constant>
+    <constant name="grid_x36">360</constant>
+    <constant name="grid_x40">400</constant>
+    <constant name="grid_x44">440</constant>
+    <constant name="grid_x48">480</constant>
+    <constant name="grid_x52">520</constant>
+    <constant name="grid_x56">560</constant>
+    <constant name="grid_x60">600</constant>
+    <constant name="grid_x64">640</constant>
+    <constant name="grid_x68">680</constant>
+
+    <constant name="-grid_x01">-10</constant>
+    <constant name="-grid_x02">-20</constant>
+    <constant name="-grid_x03">-30</constant>
+    <constant name="-grid_x04">-40</constant>
+    <constant name="-grid_x06">-60</constant>
+    <constant name="-grid_x08">-80</constant>
+    <constant name="-grid_x12">-120</constant>
+    <constant name="-grid_x14">-140</constant>
+    <constant name="-grid_x16">-160</constant>
+    <constant name="-grid_x20">-200</constant>
+    <constant name="-grid_x24">-240</constant>
+    <constant name="-grid_x28">-280</constant>
+    <constant name="-grid_x30">-300</constant>
+    <constant name="-grid_x32">-320</constant>
+    <constant name="-grid_x36">-360</constant>
+    <constant name="-grid_x40">-400</constant>
+    <constant name="-grid_x44">-440</constant>
+    <constant name="-grid_x48">-480</constant>
+    <constant name="-grid_x52">-520</constant>
+    <constant name="-grid_x56">-560</constant>
+    <constant name="-grid_x60">-600</constant>
+    <constant name="-grid_x64">-640</constant>
+    <constant name="-grid_x68">-680</constant>
+
+    <constant name="View_List_Top">216</constant>
+    <constant name="View_List_Side">80</constant>
+    <constant name="View_List_Width">1760</constant>
+
+    <constant name="View_Poster_Top">206</constant>
+    <constant name="View_Poster_Side">71</constant>
+    <constant name="View_Poster_Width">1800</constant>
+    <constant name="View_Poster_height">670</constant>
+
+    <constant name="OSD_SidePad">130</constant>
+    <constant name="NavBarPad">112</constant>
+
+    <constant name="DialogInfo_Top">210</constant>
+    <constant name="DialogInfo_Poster_Left">570</constant>
+    <constant name="DialogInfo_Square_Left">784</constant>
+
+    <constant name="PosterH">640</constant>
+    <constant name="PosterW">428</constant>
+    <constant name="PosterShadowH">682</constant>
+    <constant name="PosterShadowW">472</constant>
+    <constant name="ListX">550</constant>
+    <constant name="ListW">1290</constant>
+
+    <constant name="ListSquareW">1078</constant>
+
+    <constant name="ScrollSquareX">742</constant>
+    <constant name="ListSquareX">762</constant>
+
+    <constant name="PosterFanartFadetime">250</constant>
+    <constant name="ClearArtFadetime">150</constant>
+    <constant name="ExtendedFlagIconsFadetime">150</constant>
+    <constant name="ImageViewerFadetime">400</constant>
+    <constant name="Background_Fanart_Time_Before_Next_Image">12000</constant>
+    <constant name="NetflixPlotWidth">702</constant>
+    <constant name="ClearLogoMaxWidth">300</constant>
+    <constant name="ClearLogoMaxHeight">102</constant>
+    <constant name="ClearLogoTitleMaxWidth">600</constant>
+    <constant name="ClearLogoTitleMaxHeight">102</constant>
+    <constant name="WeatherFanartTransparency">20</constant>
+
+    <!-- FLIXART -->
+
+    <constant name="flixart_size_w">1280</constant>
+    <constant name="flixart_size_h">720</constant>
+</includes>

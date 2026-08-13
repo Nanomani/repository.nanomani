@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol>SetFocus(9000)</defaultcontrol>
+    <views>50</views>
+
+    <onload>SetProperty(TMDbHelper.WidgetContainer,50,Home)</onload>
+    <onunload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunload>
+
+    <controls>
+        <include>Background_Global</include>
+
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        <include>Furniture_Header_Clock_Right</include>
+
+        <include content="Furniture_Header_Busy">
+            <param name="visible" value="!Control.IsVisible(990)" />
+        </include>
+
+        <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)">
+            <param name="id" value="50" />
+        </include>
+
+        <control type="group">
+            <visible>!Control.HasFocus(9000) + !Control.HasFocus(990) + Control.IsVisible(990)</visible>
+
+            <animation type="Visible">
+                <effect type="slide" start="466,0" end="0,0" tween="sine" time="300" delay="0" />
+                <effect type="fade" start="0" end="100" time="300" delay="0" />
+            </animation>
+            <animation type="Hidden">
+                <effect type="slide" end="466,0" start="0,0" tween="sine" time="300" delay="0" />
+                <effect type="fade" end="0" start="100" time="150" delay="0" />
+            </animation>
+
+            <include>Furniture_Header_Info</include>
+        </control>
+
+        <control type="group">
+            <visible>!Control.HasFocus(9000) + !Control.HasFocus(990) + Control.IsVisible(990)</visible>
+            <animation type="Visible"><effect type="fade" start="0" end="100" time="450" delay="250" /></animation>
+
+            <include>Furniture_Footer_Info</include>
+            <include condition="!Skin.HasSetting(hide.furniture.flags)">Furniture_Footer_Video_Flags</include>
+            <include condition="!Skin.HasSetting(hide.furniture.flags)">Furniture_Footer_Audio_Flags</include>
+        </control>
+
+        <!-- ICON HEADER -->
+
+        <control type="group">
+            <visible>String.IsEmpty(Window(Home).Property(Hide_On_Reload_Dialog_Info))</visible>
+            <include>Animation_Dialog_Info_Visible_Fade_Conditional</include>
+
+            <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+            <include>Animation_Common_Fade_Out</include>
+
+            <top>40</top>
+            <left>40</left>
+
+            <control type="group">
+                <visible>Control.IsVisible(990) + !Window.IsVisible(DialogBusy.xml)</visible>
+
+                <animation type="Visible">
+                    <effect type="slide" start="466,0" end="0,0" tween="sine" time="300" delay="0" />
+                    <effect type="fade" start="0" end="100" time="300" delay="0" />
+                </animation>
+                <animation type="Hidden">
+                    <effect type="slide" end="466,0" start="0,0" tween="sine" time="300" delay="0" />
+                    <effect type="fade" end="0" start="100" time="150" delay="0" />
+                </animation>
+
+                <control type="image">
+                    <width>160</width>
+                    <height>160</height>
+                    <texture colordiffuse="White70">$VAR[Image_Header_Background]</texture>
+                    <visible>Control.HasFocus(990)</visible>
+                </control>
+                <control type="image">
+                    <top>40</top>
+                    <left>40</left>
+                    <width>80</width>
+                    <height>80</height>
+                    <include>Texture_Circle_80</include>
+                    <visible>Control.HasFocus(990)</visible>
+                </control>
+                <control type="image">
+                    <top>36</top>
+                    <left>36</left>
+                    <width>88</width>
+                    <height>88</height>
+                    <texture colordiffuse="Selected" border="12">special://skin/extras/icons/search.png</texture>
+                    <visible>Control.HasFocus(990)</visible>
+                </control>
+
+                <control type="image">
+                    <width>160</width>
+                    <height>160</height>
+                    <texture colordiffuse="White70">$VAR[Image_Header_Background]</texture>
+                    <animation effect="fade" start="100" end="40" condition="true">Conditional</animation>
+                    <visible>!Control.HasFocus(990)</visible>
+                </control>
+                <control type="image">
+                    <top>36</top>
+                    <left>36</left>
+                    <width>88</width>
+                    <height>88</height>
+                    <texture colordiffuse="PanelWhite100" border="12">special://skin/extras/icons/search.png</texture>
+                    <animation effect="fade" start="100" end="40" condition="true">Conditional</animation>
+                    <visible>!Control.HasFocus(990)</visible>
+                </control>
+            </control>
+
+            <!-- BUTTON SEARCH     -->
+
+            <control type="button" id="990" description="Helper">
+                <animation effect="fade" time="300" start="0" end="0">Focus</animation>
+                <include>Def_Hidden_Button</include>
+                <include content="Object_OnDirection_Action"><param name="ondirection" value="9000" /></include>
+                <onclick>ClearProperty(GlobalSearchWindowOpen,Home)</onclick>
+                <onclick condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen))">SetFocus(9000)</onclick>
+                <onclick condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen))">SetProperty(GlobalSearchWindowOpen,1,Home)</onclick>
+            </control>
+        </control>
+
+        <control type="group">
+            <include>Animation_Common_Global</include>
+
+            <animation condition="!Control.HasFocus(9000) + !Control.HasFocus(990)" effect="slide" end="-466,0" start="0,0" reversible="true" time="300" tween="sine">Conditional</animation>
+
+            <!-- LABEL -->
+
+            <control type="label" id="999">
+                <top>0</top>
+                <left>436</left>
+                <width>1484</width>
+                <height>1080</height>
+                <align>center</align>
+                <aligny>center</aligny>
+                <font>Small33</font>
+                <label>$LOCALIZE[284]</label>
+            </control>
+
+            <control type="label" id="991">
+                <top>775</top>
+                <left>105</left>
+                <width>380</width>
+                <height>55</height>
+                <aligny>center</aligny>
+                <font>Small33</font>
+                <label/>
+            </control>
+
+            <!-- LEFT LIST RESULT -->
+
+            <control type="list" id="9000">
+                <top>214</top>
+                <left>View_List_Side</left>
+                <width>450</width>
+                <height>674</height>
+
+                <onup>990</onup>
+                <ondown>9000</ondown>
+                <onleft>50</onleft>
+                <onright>50</onright>
+
+                <scrolltime tween="cubic" easing="out">500</scrolltime>
+
+                <itemlayout height="64" width="450">
+                    <control type="image">
+                        <left>10</left>
+                        <top>1</top>
+                        <width>62</width>
+                        <height>62</height>
+                        <texture colordiffuse="Dark2">$INFO[ListItem.Icon]</texture>
+                    </control>
+                    <control type="label">
+                        <left>80</left>
+                        <width>auto</width>
+                        <aligny>center</aligny>
+                        <height>64</height>
+                        <font>SmallNavi</font>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <right>10</right>
+                        <width>60</width>
+                        <aligny>center</aligny>
+                        <height>64</height>
+                        <align>right</align>
+                        <font>SmallNavi</font>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="64" width="450">
+                    <control type="image">
+                        <width>100%</width>
+                        <height>100%</height>
+                        <include>Texture_Layout_Item_Focus</include>
+                        <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(9000)">Conditional</animation>
+                        <include condition="true">Animation_View_List_Focus_Scroll</include>
+                    </control>
+                    <control type="image">
+                        <left>10</left>
+                        <top>1</top>
+                        <width>62</width>
+                        <height>62</height>
+                        <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
+                    </control>
+                    <control type="label">
+                        <left>80</left>
+                        <width>300</width>
+                        <aligny>center</aligny>
+                        <height>64</height>
+                        <font>SmallNavi</font>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <right>10</right>
+                        <width>60</width>
+                        <aligny>center</aligny>
+                        <height>64</height>
+                        <align>right</align>
+                        <font>SmallNavi</font>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- RIGHT LIST RESULT -->
+
+            <control type="panel" id="50">
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <include>Def_On_Info</include>
+
+                <top>205</top>
+                <left>536</left>
+                <width>1900</width>
+                <height>674</height>
+
+                <onleft>9000</onleft>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen))">SetFocus(9000)</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen))">DOWN</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen))">UP</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(GlobalSearchWindowOpen))">SetProperty(GlobalSearchWindowOpen,1,Home)</onfocus>
+
+                <pagecontrol>1645</pagecontrol>
+                <preloaditems>2</preloaditems>
+
+                <itemlayout height="337" width="222" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)">
+                    <control type="group">
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="50" />
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="337" width="222" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)">
+                    <control type="group">
+                        <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+                        <height>325</height>
+                        <include content="Layout_Widget_Poster_Focus">
+                            <param name="texture_diffuse" value="poster_w202_h305" />
+                            <param name="id" value="50" />
+                        </include>
+                    </control>
+                </focusedlayout>
+
+                <itemlayout height="337" width="444" condition="Container.Content(episodes) | Container.Content(musicvideos)">
+                    <control type="group">
+                        <height>245</height>
+                        <include content="Layout_Widget_Landscape">
+                            <param name="texture_diffuse" value="fanart_w424_h225" />
+                            <param name="id" value="50" />
+                            <param name="height" value="245" />
+                            <param name="image_height" value="245" />
+                        </include>
+                    </control>
+
+                    <!-- FIRST LINE -->
+
+                    <control type="label">
+                        <font>InfoNetflix</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>center</align>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                    </control>
+
+                    <!-- SECOND LINE -->
+
+                    <control type="label">
+                        <font>Small24</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>center</align>
+                        <textcolor>Dark2</textcolor>
+                        <selectedcolor>Dark2</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="337" width="444" condition="Container.Content(episodes) | Container.Content(musicvideos)">
+                    <control type="group">
+                        <height>245</height>
+                        <include content="Layout_Widget_Landscape_Focus">
+                            <param name="texture_diffuse" value="fanart_w424_h225" />
+                            <param name="id" value="50" />
+                            <param name="height" value="245" />
+                            <param name="image_height" value="245" />
+                            <param name="glow_left" value="6" />
+                            <param name="glow_top" value="0" />
+                            <param name="glow_right" value="6" />
+                            <param name="glow_height" value="245" />
+                        </include>
+                    </control>
+
+                    <!-- FIRST LINE -->
+
+                    <control type="label">
+                        <font>InfoNetflix</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>40</bottom>
+                        <align>center</align>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                    </control>
+
+                    <!-- SECOND LINE -->
+
+                    <control type="label">
+                        <font>Small24</font>
+                        <left>15</left>
+                        <right>15</right>
+                        <bottom>3</bottom>
+                        <align>center</align>
+                        <textcolor>Dark2</textcolor>
+                        <selectedcolor>Dark2</selectedcolor>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                    </control>
+                </focusedlayout>
+
+                <itemlayout height="337" width="299.33" condition="Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(directors) | Container.Content(actors) | Container.Content(livetv)">
+                    <control type="group">
+                        <height>280</height>
+                        <width>280</width>
+                        <include content="Layout_Widget_Square">
+                            <param name="texture_diffuse" value="square_w260_h260" />
+                            <param name="aspectratio" value="scale" />
+                            <param name="id" value="50" />
+                            <param name="height" value="280" />
+                            <param name="image_height" value="280" />
+                        </include>
+                    </control>
+
+                    <!-- FIRST LINE -->
+
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>24</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>InfoNetflix</font>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                    </control>
+
+                    <!-- SECOND LINE -->
+
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>-10</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>Small24</font>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="337" width="299.33" condition="Container.Content(artists) | Container.Content(albums) | Container.Content(songs) | Container.Content(directors) | Container.Content(actors) | Container.Content(livetv)">
+                    <control type="group">
+                        <height>280</height>
+                        <width>280</width>
+                        <include content="Layout_Widget_Square_Focus">
+                            <param name="texture_diffuse" value="square_w260_h260" />
+                            <param name="aspectratio" value="scale" />
+                            <param name="id" value="50" />
+                            <param name="height" value="280" />
+                            <param name="image_height" value="280" />
+                            <param name="glow_height" value="278" />
+                            <param name="glow_top" value="1" />
+                        </include>
+                    </control>
+
+                    <!-- FIRST LINE -->
+
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>24</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>InfoNetflix</font>
+                        <label>$VAR[Label_Widget_Lign_1]</label>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                    </control>
+
+                    <!-- SECOND LINE -->
+
+                    <control type="label">
+                        <left>15</left>
+                        <right>30</right>
+                        <bottom>-10</bottom>
+                        <height>50</height>
+                        <align>center</align>
+                        <font>Small24</font>
+                        <label>$VAR[Label_Widget_Lign_2]</label>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                    </control>
+                </focusedlayout>
+            </control>
+        </control>
+    </controls>
+</window>

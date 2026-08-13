@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">4</defaultcontrol>
+
+    <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
+
+    <controls>
+        <include>Background_Global</include>
+
+        <include>Furniture_Header_Info</include>
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        <include condition="$EXP[Show_Weather_All_Views]">Furniture_Footer_Clock_Right</include>
+
+        <control type="group">
+            <include>Animation_Common_Settings</include>
+            <include>Def_Dialog_Settings</include>
+
+            <include content="Def_Dialog_Settings_Header">
+                <param name="label_right_sub_title" value="24020" />
+                <param name="visible_line_horizontale" value="!Container(3000).HasFocus(1)" />
+            </include>
+
+            <!-- LEFT - GROUP -->
+
+            <control type="grouplist" id="6000">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>140</top>
+                <left>16</left>
+                <width>418</width>
+                <height>490</height>
+
+                <onright>2</onright>
+                <onleft>2</onleft>
+
+                <onup>6000</onup>
+                <ondown>6000</ondown>
+
+                <itemgap>0</itemgap>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <control type="label" id="101">
+                    <include>Def_Settings_Label_Title_Right_Side</include>
+                    <label>$LOCALIZE[14227]</label>
+                </control>
+                <control type="radiobutton" id="4">
+                    <radioposx>360</radioposx>
+                    <width>418</width>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>20096</label>
+                </control>
+                <control type="label" id="102">
+                    <include>Def_Settings_Label_Title_Right_Side</include>
+                    <label>$LOCALIZE[33084]</label>
+                </control>
+                <control type="button" id="5">
+                    <width>418</width>
+                    <include>Def_Settings_Button_Focus_Select_Left_Side</include>
+                    <label>$INFO[System.ProfileAutoLogin]</label>
+                    <enable>!System.HasLoginScreen</enable>
+                </control>
+            </control>
+
+            <!-- RIGHT - GROUP -->
+
+            <control type="list" id="2">
+                <top>140</top>
+                <left>466</left>
+                <width>1278</width>
+                <height>490</height>
+
+                <onright>6000</onright>
+                <onleft>6000</onleft>
+                <onup>2</onup>
+                <ondown>2</ondown>
+
+                <itemlayout height="70" width="1278">
+                    <control type="image">
+                        <centertop>35</centertop>
+                        <left>16</left>
+                        <width>54</width>
+                        <height>54</height>
+                        <texture border="8" colordiffuse="Black12">diffuse/icon_w60_h60.png</texture>
+                    </control>
+                    <control type="image">
+                        <centertop>35</centertop>
+                        <left>16</left>
+                        <width>54</width>
+                        <height>54</height>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/icon_w60_h60.png" background="true" fallback="DefaultUser.png">$INFO[Listitem.Icon]</texture>
+                        <visible>!String.IsEmpty(ListItem.Icon)</visible>
+                    </control>
+                    <control type="image">
+                        <centertop>35</centertop>
+                        <left>16</left>
+                        <width>54</width>
+                        <height>54</height>
+                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <texture diffuse="diffuse/icon_w60_h60" background="true" colordiffuse="Dark1">DefaultUser.png</texture>
+                        <visible>String.IsEmpty(ListItem.Icon)</visible>
+                    </control>
+                    <control type="label">
+                        <left>96</left>
+                        <width>300</width>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <right>30</right>
+                        <width>810</width>
+                        <align>right</align>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="70" width="1278">
+                    <control type="group">
+                        <visible>Control.HasFocus(2)</visible>
+
+                        <!-- ITEM FOCUS -->
+                        <include>Def_Layout_Item_Focus</include>
+
+                        <control type="image">
+                            <centertop>35</centertop>
+                            <left>16</left>
+                            <width>54</width>
+                            <height>54</height>
+                            <texture border="8" colordiffuse="Dark3">diffuse/icon_w60_h60.png</texture>
+                        </control>
+                        <control type="image">
+                            <centertop>35</centertop>
+                            <left>16</left>
+                            <width>54</width>
+                            <height>54</height>
+                            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                            <texture diffuse="diffuse/icon_w60_h60.png" background="true" fallback="DefaultUser.png">$INFO[Listitem.Icon]</texture>
+                            <visible>!String.IsEmpty(ListItem.Icon)</visible>
+                        </control>
+                        <control type="image">
+                            <centertop>35</centertop>
+                            <left>16</left>
+                            <width>54</width>
+                            <height>54</height>
+                            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                            <texture diffuse="diffuse/icon_w60_h60" background="true" colordiffuse="Selected">DefaultUser.png</texture>
+                            <visible>String.IsEmpty(ListItem.Icon)</visible>
+                        </control>
+                        <control type="label">
+                            <left>96</left>
+                            <width>300</width>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <right>30</right>
+                            <width>810</width>
+                            <align>right</align>
+                            <font>Tiny</font>
+                            <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                    </control>
+                    <control type="group">
+                        <visible>!Control.HasFocus(2)</visible>
+
+                        <control type="image">
+                            <centertop>35</centertop>
+                            <left>16</left>
+                            <width>54</width>
+                            <height>54</height>
+                            <texture border="8" colordiffuse="Black12">diffuse/icon_w60_h60.png</texture>
+                        </control>
+                        <control type="image">
+                            <centertop>35</centertop>
+                            <left>16</left>
+                            <width>54</width>
+                            <height>54</height>
+                            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                            <texture diffuse="diffuse/icon_w60_h60.png" background="true" fallback="DefaultUser.png">$INFO[Listitem.Icon]</texture>
+                            <visible>!String.IsEmpty(ListItem.Icon)</visible>
+                        </control>
+                        <control type="image">
+                            <centertop>35</centertop>
+                            <left>16</left>
+                            <width>54</width>
+                            <height>54</height>
+                            <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                            <texture diffuse="diffuse/icon_w60_h60" background="true" colordiffuse="Dark1">DefaultUser.png</texture>
+                            <visible>String.IsEmpty(ListItem.Icon)</visible>
+                        </control>
+                        <control type="label">
+                            <left>96</left>
+                            <width>810</width>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <right>30</right>
+                            <width>810</width>
+                            <align>right</align>
+                            <font>Tiny</font>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                    </control>
+                </focusedlayout>
+            </control>
+        </control>
+    </controls>
+</window>

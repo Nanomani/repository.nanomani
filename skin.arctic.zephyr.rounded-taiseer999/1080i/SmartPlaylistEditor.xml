@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">22</defaultcontrol>
+    <controls>
+
+        <include>Background_Overlay</include>
+
+        <control type="group">
+            <include content="Def_Dialog_Background">
+                <param name="height" value="1002" />
+                <param name="width" value="1200" />
+                <param name="colordiffuse" value="Panel" />
+            </include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="" />
+                <param name="label_id" value="2" />
+                <param name="icon" value="settings" />
+            </include>
+
+            <control type="button" id="22">
+                <description>Set Playlist type</description>
+                <left>30</left>
+                <top>112</top>
+                <width>1140</width>
+                <label>467</label>
+                <onright>20</onright>
+                <onleft>20</onleft>
+                <onup>9002</onup>
+                <ondown>12</ondown>
+                <align>left</align>
+                <include>Texture_Button_Dialog_Settings</include>
+            </control>
+            <control type="label">
+                <description>Name Label</description>
+                <left>75</left>
+                <top>174</top>
+                <width>1140</width>
+                <label>21433</label>
+                <textcolor>Black70</textcolor>
+            </control>
+            <control type="edit" id="12">
+                <description>Name Button</description>
+                <left>30</left>
+                <top>243</top>
+                <width>1140</width>
+                <height>66</height>
+                <font>Small</font>
+                <align>left</align>
+                <aligny>center</aligny>
+                <textcolor>Black70</textcolor>
+                <focusedcolor>Selected</focusedcolor>
+                <label />
+                <textoffsetx>30</textoffsetx>
+                <include>Texture_Button_Dialog_Settings</include>
+                <pulseonselect>false</pulseonselect>
+                <onup>22</onup>
+                <onright>20</onright>
+                <onleft>20</onleft>
+                <ondown>10</ondown>
+            </control>
+            <control type="label">
+                <description>rules label</description>
+                <left>75</left>
+                <top>312</top>
+                <width>1140</width>
+                <align>left</align>
+                <label>21434</label>
+                <textcolor>Black70</textcolor>
+            </control>
+            <control type="list" id="10">
+                <description>Rules List Control</description>
+                <left>30</left>
+                <top>381</top>
+                <width>810</width>
+                <height>207</height>
+
+                <onup>12</onup>
+                <onleft>20</onleft>
+                <onright>9001</onright>
+                <ondown>23</ondown>
+
+                <itemlayout width="810" height="69">
+                    <control type="label">
+                        <left>30</left>
+                        <top>0</top>
+                        <width>740</width>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="810" height="69">
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>810</width>
+                        <height>66</height>
+                        <include>Texture_Layout_Item_Focus</include>
+                        <animation effect="fade" start="100" end="50" condition="!Control.HasFocus(10)">Conditional</animation>
+                    </control>
+                    <control type="label">
+                        <left>30</left>
+                        <top>0</top>
+                        <width>740</width>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>Selected</textcolor>
+                        <selectedcolor>Selected</selectedcolor>
+                        <animation effect="fade" start="100" end="75" condition="!Control.HasFocus(10)">Conditional</animation>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- BUTTON ON RIGHT -->
+
+            <control type="grouplist" id="9001">
+                <top>381</top>
+                <right>30</right>
+                <width>300</width>
+                <height>490</height>
+
+                <onup>17</onup>
+                <ondown>23</ondown>
+
+                <onleft>10</onleft>
+                <onright>20</onright>
+
+                <itemgap>3</itemgap>
+                <scrolltime tween="quadratic">200</scrolltime>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="13" />
+                    <param name="label" value="$LOCALIZE[15019]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="14" />
+                    <param name="label" value="$LOCALIZE[1210]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="15" />
+                    <param name="label" value="$LOCALIZE[21435]" />
+                </include>
+            </control>
+
+            <control type="button" id="23">
+                <left>30</left>
+                <top>588</top>
+                <width>572</width>
+                <label>$LOCALIZE[21458]</label>
+                <onright>24</onright>
+                <onleft>20</onleft>
+                <onup>10</onup>
+                <ondown>16</ondown>
+                <align>left</align>
+                <include>Texture_Button_Dialog_Settings</include>
+            </control>
+            <control type="radiobutton" id="24">
+                <left>617</left>
+                <top>588</top>
+                <width>553</width>
+                <label>$LOCALIZE[467]: $LOCALIZE[21459]</label>
+                <onright>20</onright>
+                <onleft>20</onleft>
+                <onup>10</onup>
+                <ondown>16</ondown>
+                <align>left</align>
+                <include>Texture_Button_Dialog_Settings</include>
+            </control>
+            <control type="button" id="16">
+                <left>30</left>
+                <top>657</top>
+                <width>1140</width>
+                <label>21424</label>
+                <onright>20</onright>
+                <onleft>20</onleft>
+                <onup>23</onup>
+                <ondown>17</ondown>
+                <align>left</align>
+                <include>Texture_Button_Dialog_Settings</include>
+            </control>
+            <control type="button" id="17">
+                <left>30</left>
+                <top>726</top>
+                <width>1140</width>
+                <label>21427</label>
+                <onright>20</onright>
+                <onleft>20</onleft>
+                <onup>16</onup>
+                <ondown>18</ondown>
+                <align>left</align>
+                <include>Texture_Button_Dialog_Settings</include>
+            </control>
+            <control type="button" id="18">
+                <left>30</left>
+                <top>795</top>
+                <width>870</width>
+                <label>21429</label>
+                <onright>19</onright>
+                <onleft>20</onleft>
+                <onup>17</onup>
+                <ondown>9002</ondown>
+                <align>left</align>
+                <include>Texture_Button_Dialog_Settings</include>
+            </control>
+            <control type="button" id="19">
+                <left>915</left>
+                <top>795</top>
+                <width>255</width>
+                <onright>20</onright>
+                <onleft>18</onleft>
+                <onup>17</onup>
+                <ondown>9002</ondown>
+                <include>Texture_Button_Dialog_Settings</include>
+            </control>
+
+            <control type="grouplist" id="9002">
+                <bottom>30</bottom>
+                <height>66</height>
+                <width>100%</width>
+                <align>center</align>
+                <centerleft>50%</centerleft>
+
+                <onup>18</onup>
+                <ondown>22</ondown>
+
+                <itemgap>14</itemgap>
+                <orientation>horizontal</orientation>
+
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="20" />
+                    <param name="label" value="$LOCALIZE[186]" />
+                </include>
+                <include content="Def_Dialog_Button_Action">
+                    <param name="id" value="21" />
+                    <param name="label" value="$LOCALIZE[222]" />
+                </include>
+            </control>
+        </control>
+    </controls>
+</window>

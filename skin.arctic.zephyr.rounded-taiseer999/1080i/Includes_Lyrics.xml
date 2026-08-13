@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="NormalLyrics">
+        <control type="group">
+            <visible>Player.HasMedia</visible>
+            <animation effect="slide" end="350" start="0" time="250" condition="Window.IsActive(musicosd) + !Skin.HasSetting(HideMusicOSDOnLyrics)">Conditional</animation>
+            <animation effect="slide" end="0,-100" start="0,0" time="150" condition="$EXP[MusicSeekbarIsVisible] + !Skin.HasSetting(hideseekbaronlyrics)">Conditional</animation>
+
+            <top>190</top>
+            <bottom>190</bottom>
+            <width>100%</width>
+            <animation effect="fade" start="0" end="100" delay="350" time="350" tween="cubic" easing="inout">WindowOpen</animation>
+            <include>Animation_Common_Fade_Out</include>
+
+            <!-- ** Required ** Do not change <id> or <type> (Smooth scrolling list for lyrics) -->
+            <control type="list" id="110">
+                <left>350</left>
+                <right>350</right>
+                <top>0</top>
+                <bottom>0</bottom>
+                <onleft>101</onleft>
+                <onright>101</onright>
+                <onup>110</onup>
+                <ondown>110</ondown>
+                <pagecontrol>111</pagecontrol>
+                <scrolltime>200</scrolltime>
+                <itemlayout height="100" width="1220">
+                    <control type="label">
+                        <width>100%</width>
+                        <align>center</align>
+                        <selectedcolor>$VAR[Color_Focus]</selectedcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <textcolor>$VAR[Color_OSD_Panel_White70]</textcolor>
+                        <font>Lyrics</font>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="100" width="1220">
+                    <control type="label">
+                        <width>100%</width>
+                        <align>center</align>
+                        <textcolor>$VAR[Color_Focus]</textcolor>
+                        <selectedcolor>$VAR[Color_Focus]</selectedcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                        <font>Lyrics</font>
+                    </control>
+                </focusedlayout>
+            </control>
+            <control type="label" id="200">
+                <description>Scraper label</description>
+                <visible>false</visible>
+            </control>
+        </control>
+    </include>
+
+    <include name="VideoLyrics">
+        <control type="group">
+
+            <!-- ** Required ** Do not change <id> or <type> (Text box for lyrics) -->
+            <control type="textbox" id="100">
+                <description>textarea</description>
+                <left>45</left>
+                <top>45</top>
+                <width>1830</width>
+                <height>508</height>
+                <align>center</align>
+                <font>Small</font>
+                <textcolor>grey</textcolor>
+            </control>
+            <!--control type="spincontrol" id="101">
+                <description>Next page button</description>
+                <left>1800</left>
+                <top>470</top>
+                <subtype>page</subtype>
+                <onleft>101</onleft>
+                <onright>101</onright>
+                <ondown>101</ondown>
+                <onup>101</onup>
+                <textcolor>labelheader</textcolor>
+                <showonepage>true</showonepage>
+                <visible>Control.IsVisible(100)</visible>
+            </control-->
+
+            <!-- ** Required ** Do not change <id> or <type> (Smooth scrolling list for lyrics) -->
+            <control type="list" id="110">
+                <left>45</left>
+                <top>45</top>
+                <width>1830</width>
+                <height>450</height>
+                <onleft>111</onleft>
+                <onright>111</onright>
+                <onup>110</onup>
+                <ondown>110</ondown>
+                <pagecontrol>101</pagecontrol>
+                <scrolltime tween="quadratic" easing="out">200</scrolltime>
+                <itemlayout height="50">
+                    <control type="label">
+                        <width>1830</width>
+                        <height>50</height>
+                        <font>Small</font>
+                        <textcolor>01ffffff</textcolor>
+                        <align>center</align>
+                        <selectedcolor>selected</selectedcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="50">
+                    <control type="label">
+                        <width>1830</width>
+                        <height>50</height>
+                        <font>Small</font>
+                        <align>center</align>
+                        <textcolor>01ffffff</textcolor>
+                        <label fallback="--">$INFO[ListItem.Label]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+
+            <!-- ** Required ** Do not change <id> or <type> (Song Chooser if it gets it wrong) -->
+            <control type="label">
+                <description>Scraper label</description>
+                <left>870</left>
+                <top>1020</top>
+                <width>825</width>
+                <height>45</height>
+                <label>$LOCALIZE[31152] - $INFO[Control.GetLabel(200)]</label>
+                <font>Small</font>
+                <align>right</align>
+                <textcolor>grey2</textcolor>
+                <visible>false</visible>
+            </control>
+            <control type="label" id="200">
+                <description>Scraper label</description>
+                <visible>false</visible>
+            </control>
+        </control>
+
+        <!-- ** Required ** Do not change <id> or <type> -->
+
+        <!-- ** Required ** Do not change <id> or <type> -->
+        <control type="group">
+            <visible>Player.HasMedia</visible>
+            <animation effect="slide" end="-25,200" start="0,0" time="0" condition="true">Conditional</animation>
+            <animation effect="zoom" end="70" center="auto" start="100" time="250" condition="Window.IsActive(musicosd) + !Skin.HasSetting(HideMusicOSDOnLyrics)">Conditional</animation>
+            <animation effect="slide" end="540" start="0" time="250" condition="Window.IsActive(musicosd) + !Skin.HasSetting(HideMusicOSDOnLyrics)">Conditional</animation>
+            <animation effect="slide" end="0,-100" start="0,0" time="150" condition="$EXP[MusicSeekbarIsVisible] + !Skin.HasSetting(hideseekbaronlyrics)">Conditional</animation>
+            <visible>!String.IsEmpty(Container(110).ListItem.Label) + !String.Contains(Container(110).ListItem.Label,@) + !String.Contains(Container(110).ListItem.Label,chorus) + !String.Contains(Container(110).ListItem.Label,lrc) + !String.Contains(Container(110).ListItem.Label,lyric) + !String.Contains(Container(110).ListItem.Label,qq) + !String.Contains(Container(110).ListItem.Label,www)</visible>
+            <control type="group">
+                <visible>[!String.IsEmpty(Window(Home).Property(culrc.islrc)) + Integer.IsGreater(Container(110).ListItem.Property(duration),299) + !Integer.IsGreater(Container(110).ListItem.Property(duration),1449)] | String.IsEmpty(Container(110).ListItem.Property(part4))</visible>
+                <!--Short LINEA 1 & 6-->
+                <control type="group">
+                    <left>510</left>
+                    <top>10</top>
+                    <animation effect="rotate" center="auto" start="4" end="4" time="0" condition="true">Conditional</animation>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,1) | String.EndsWith(Container(110).Currentitem,6)]</visible>
+                        <animation effect="slide" start="0,-600" end="0,0" time="200" tween="sine" easing="out" reversible="false">Visible</animation>
+                        <left>-1</left>
+                        <top>-1</top>
+                        <include>line1</include>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)] $INFO[Container(110).ListItem.Property(part4)]</label>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,1) | String.EndsWith(Container(110).Currentitem,6)]</visible>
+                        <animation effect="slide" start="0,-600" end="0,0" time="200" tween="sine" easing="out" reversible="false">Visible</animation>
+                        <left>2</left>
+                        <top>2</top>
+                        <include>line1</include>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)] $INFO[Container(110).ListItem.Property(part4)]</label>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,1) | String.EndsWith(Container(110).Currentitem,6)]</visible>
+                        <animation effect="slide" start="0,-600" end="0,0" time="200" tween="sine" easing="out" reversible="false">Visible</animation>
+                        <left>0</left>
+                        <top>0</top>
+                        <include>line1</include>
+                        <shadowcolor>black</shadowcolor>
+                        <label>[COLOR=FF89D5E0]$INFO[Container(110).ListItem.Property(part1)] [/COLOR][COLOR=FFC1DDCC]$INFO[Container(110).ListItem.Property(part2)] [/COLOR][COLOR=FFE9E6BD]$INFO[Container(110).ListItem.Property(part3)] [/COLOR][COLOR=FFF4ECE1]$INFO[Container(110).ListItem.Property(part4)][/COLOR]</label>
+                    </control>
+                </control>
+                <!--Short LINEA 3 & 8-->
+                <control type="group">
+                    <left>510</left>
+                    <top>10</top>
+                    <animation effect="rotate" center="auto" start="4" end="4" time="0" condition="true">Conditional</animation>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,3) | String.EndsWith(Container(110).Currentitem,8)]</visible>
+                        <animation effect="slide" start="-900,0" end="0,0" time="200" tween="sine" easing="out" reversible="false">Visible</animation>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)][CR]$INFO[Container(110).ListItem.Property(part4)]</label>
+                        <include>line3</include>
+                        <left>-1</left>
+                        <top>-1</top>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,3) | String.EndsWith(Container(110).Currentitem,8)]</visible>
+                        <animation effect="slide" start="-900,0" end="0,0" time="200" tween="sine" easing="out" reversible="false">Visible</animation>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)][CR]$INFO[Container(110).ListItem.Property(part4)]</label>
+                        <include>line3</include>
+                        <left>3</left>
+                        <top>3</top>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,3) | String.EndsWith(Container(110).Currentitem,8)]</visible>
+                        <animation effect="slide" start="-900,0" end="0,0" time="200" tween="sine" easing="out" reversible="false">Visible</animation>
+                        <label>[COLOR=FF124A8F]$INFO[Container(110).ListItem.Property(part1)] [/COLOR][COLOR=FF15A58F]$INFO[Container(110).ListItem.Property(part2)] [/COLOR][COLOR=FFC4E125]$INFO[Container(110).ListItem.Property(part3)][CR][/COLOR][COLOR=FFD9E898]$INFO[Container(110).ListItem.Property(part4)][/COLOR]</label>
+                        <include>line3</include>
+                        <left>0</left>
+                        <top>0</top>
+                        <shadowcolor>black</shadowcolor>
+                    </control>
+                </control>
+                <!--Short LINEA 5 & 0-->
+                <control type="group">
+                    <left>510</left>
+                    <top>10</top>
+                    <animation effect="rotate" center="auto" start="4" end="4" time="0" condition="true">Conditional</animation>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,5) | String.EndsWith(Container(110).Currentitem,0)]</visible>
+                        <animation effect="zoom" center="auto" start="0" end="100" time="200" reversible="false">Visible</animation>
+                        <left>-1</left>
+                        <top>-1</top>
+                        <width>900</width>
+                        <height>600</height>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)][CR]$INFO[Container(110).ListItem.Property(part4)]</label>
+                        <font>lyrics5s</font>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,5) | String.EndsWith(Container(110).Currentitem,0)]</visible>
+                        <animation effect="zoom" center="auto" start="0" end="100" time="200" reversible="false">Visible</animation>
+                        <left>2</left>
+                        <top>2</top>
+                        <width>900</width>
+                        <height>600</height>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)][CR]$INFO[Container(110).ListItem.Property(part4)]</label>
+                        <font>lyrics5s</font>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,5) | String.EndsWith(Container(110).Currentitem,0)]</visible>
+                        <animation effect="zoom" center="auto" start="0" end="100" time="200" reversible="false">Visible</animation>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>900</width>
+                        <height>600</height>
+                        <font>lyrics5s</font>
+                        <shadowcolor>black</shadowcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>[COLOR=FFFF9800]$INFO[Container(110).ListItem.Property(part1)] [/COLOR][COLOR=FFFFFAF0]$INFO[Container(110).ListItem.Property(part2)] [/COLOR][COLOR=FF00BCD4]$INFO[Container(110).ListItem.Property(part3)][/COLOR][CR][COLOR=FFF06292]$INFO[Container(110).ListItem.Property(part4)][/COLOR]</label>
+                    </control>
+                </control>
+                <!--Short LINEA 7 & 2-->
+                <control type="group">
+                    <left>510</left>
+                    <top>10</top>
+                    <animation effect="rotate" center="auto" start="4" end="4" time="0" condition="true">Conditional</animation>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,7) | String.EndsWith(Container(110).Currentitem,2)]</visible>
+                        <animation effect="slide" start="900,0" end="0,0" time="200" tween="sine" easing="out" reversible="false">Visible</animation>
+                        <left>-1</left>
+                        <top>-1</top>
+                        <include>line7</include>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)][CR]$INFO[Container(110).ListItem.Property(part4)]</label>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,7) | String.EndsWith(Container(110).Currentitem,2)]</visible>
+                        <animation effect="slide" start="900,0" end="0,0" time="200" tween="sine" easing="out" reversible="false">Visible</animation>
+                        <left>2</left>
+                        <top>2</top>
+                        <include>line7</include>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)][CR]$INFO[Container(110).ListItem.Property(part4)]</label>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,7) | String.EndsWith(Container(110).Currentitem,2)]</visible>
+                        <animation effect="slide" start="900,0" end="0,0" time="200" tween="sine" easing="out" reversible="false">Visible</animation>
+                        <left>0</left>
+                        <top>0</top>
+                        <include>line7</include>
+                        <shadowcolor>black</shadowcolor>
+                        <label>[COLOR=FF99B898]$INFO[Container(110).ListItem.Property(part1)] [/COLOR][COLOR=FFFF847C]$INFO[Container(110).ListItem.Property(part2)] [/COLOR][COLOR=FFE84A5F]$INFO[Container(110).ListItem.Property(part3)][/COLOR][CR][COLOR=FFFECEA8]$INFO[Container(110).ListItem.Property(part4)][/COLOR]</label>
+                    </control>
+                </control>
+                <!--Short LINEA 9 & 4-->
+                <control type="group">
+                    <left>510</left>
+                    <top>10</top>
+                    <animation effect="rotate" center="auto" start="4" end="4" time="0" condition="true">Conditional</animation>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,9) | String.EndsWith(Container(110).Currentitem,4)]</visible>
+                        <animation effect="zoom" center="auto" start="400" end="100" time="200" reversible="false">Visible</animation>
+                        <left>-1</left>
+                        <top>-1</top>
+                        <include>line9</include>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)][CR]$INFO[Container(110).ListItem.Property(part4)]</label>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,9) | String.EndsWith(Container(110).Currentitem,4)]</visible>
+                        <animation effect="zoom" center="auto" start="400" end="100" time="200" reversible="false">Visible</animation>
+                        <left>2</left>
+                        <top>2</top>
+                        <include>line9</include>
+                        <label>$INFO[Container(110).ListItem.Property(part1)] $INFO[Container(110).ListItem.Property(part2)] $INFO[Container(110).ListItem.Property(part3)][CR]$INFO[Container(110).ListItem.Property(part4)]</label>
+                        <textcolor>black</textcolor>
+                    </control>
+                    <control type="textbox">
+                        <visible>!Container(110).OnNext + !Container(110).OnPrevious + [String.EndsWith(Container(110).Currentitem,9) | String.EndsWith(Container(110).Currentitem,4)]</visible>
+                        <animation effect="zoom" center="auto" start="400" end="100" time="200" reversible="false">Visible</animation>
+                        <left>0</left>
+                        <top>0</top>
+                        <include>line9</include>
+                        <shadowcolor>black</shadowcolor>
+                        <label>[COLOR=ffFF4E50]$INFO[Container(110).ListItem.Property(part1)] [/COLOR][COLOR=ffFC913A]$INFO[Container(110).ListItem.Property(part2)] [/COLOR][COLOR=ffF9D423]$INFO[Container(110).ListItem.Property(part3)][/COLOR][CR][COLOR=ffEDE574]$INFO[Container(110).ListItem.Property(part4)][/COLOR]</label>
+                    </control>
+                </control>
+            </control>
+            <control type="group">
+                <visible>!String.IsEmpty(Container(110).ListItem.Property(part4)) + [Integer.IsGreater(Container(110).ListItem.Property(duration),1449) | String.IsEmpty(Window(Home).Property(culrc.islrc))]</visible>
+                <!--LINEA 1-->
+                <include content="Dem_lyr1">
+                </include>
+                <include content="Dem_lyr1">
+                    <param name="left1" value="4" />
+                    <param name="top1" value="254" />
+                </include>
+                <include content="Dem_lyr1">
+                    <param name="colorlyr11" value="FF4CB050" />
+                    <param name="colorlyr12" value="FFFEC106" />
+                    <param name="colorlyr13" value="FF2095F4" />
+                    <param name="colorlyr14" value="FFFFFAF0" />
+                    <param name="left1" value="1" />
+                    <param name="top1" value="251" />
+                </include>
+                <!--LINEA 2-->
+                <control type="grouplist">
+                    <left>0</left>
+                          <top>199</top>
+                          <width>1920</width>
+                          <height>100</height>
+                          <itemgap>10</itemgap>
+                          <scrolltime>0</scrolltime>
+                          <orientation>horizontal</orientation>
+                          <visible>true</visible>
+                          <align>center</align>
+                    <include content="Dem_lyr2">
+                    </include>
+                </control>
+                <control type="grouplist">
+                    <left>4</left>
+                          <top>203</top>
+                          <width>1920</width>
+                          <height>100</height>
+                          <itemgap>10</itemgap>
+                          <scrolltime>0</scrolltime>
+                          <orientation>horizontal</orientation>
+                          <visible>true</visible>
+                          <align>center</align>
+                    <include content="Dem_lyr2">
+                    </include>
+                </control>
+                <control type="grouplist">
+                    <left>1</left>
+                          <top>200</top>
+                          <width>1920</width>
+                          <height>100</height>
+                          <itemgap>10</itemgap>
+                          <scrolltime>0</scrolltime>
+                          <orientation>horizontal</orientation>
+                          <visible>true</visible>
+                          <align>center</align>
+                    <include content="Dem_lyr2">
+                        <param name="colorlyr21" value="FF69BBD3" />
+                        <param name="colorlyr22" value="FFE16B6B" />
+                        <param name="colorlyr23" value="FFF8E950" />
+                    </include>
+                </control>
+                <include content="Dem_lyr2b">
+                    <param name="left2b" value="509" />
+                    <param name="top2b" value="223" />
+                </include>
+                <include content="Dem_lyr2b">
+                    <param name="left2b" value="513" />
+                    <param name="top2b" value="227" />
+                </include>
+                <include content="Dem_lyr2b">
+                    <param name="colorlyr2b" value="FFFFFAF0" />
+                </include>
+                <!--LINEA 3-->
+                <include content="Dem_lyr3">
+                </include>
+                <include content="Dem_lyr3">
+                    <param name="left3" value="24" />
+                    <param name="top3" value="-16" />
+                </include>
+                <include content="Dem_lyr3">
+                    <param name="colorlyr31" value="FF00E676" />
+                    <param name="colorlyr32" value="FFFFFAF0" />
+                    <param name="colorlyr33" value="FFFB8C00" />
+                    <param name="colorlyr34" value="FFB39DDB" />
+                    <param name="left3" value="21" />
+                    <param name="top3" value="-19" />
+                </include>
+                <!--LINEA 4-->
+                <include content="Dem_lyr4">
+                </include>
+                <include content="Dem_lyr4">
+                    <param name="left4" value="4" />
+                    <param name="top4" value="254" />
+                </include>
+                <include content="Dem_lyr4">
+                    <param name="colorlyr41" value="FFEF4051" />
+                    <param name="colorlyr42" value="FF51BBB7" />
+                    <param name="colorlyr43" value="FFFAB649" />
+                    <param name="colorlyr44" value="FF84EFBB" />
+                    <param name="left4" value="1" />
+                    <param name="top4" value="251" />
+                </include>
+                <!--LINEA 5-->
+                <control type="grouplist">
+                    <left>0</left>
+                          <top>199</top>
+                          <width>1920</width>
+                          <height>100</height>
+                          <itemgap>10</itemgap>
+                          <scrolltime>0</scrolltime>
+                          <orientation>horizontal</orientation>
+                          <visible>true</visible>
+                          <align>center</align>
+                    <include content="Dem_lyr5">
+                    </include>
+                </control>
+                <control type="grouplist">
+                    <left>4</left>
+                          <top>203</top>
+                          <width>1920</width>
+                          <height>100</height>
+                          <itemgap>10</itemgap>
+                          <scrolltime>0</scrolltime>
+                          <orientation>horizontal</orientation>
+                          <visible>true</visible>
+                          <align>center</align>
+                    <include content="Dem_lyr5">
+                    </include>
+                </control>
+                <control type="grouplist">
+                    <left>1</left>
+                          <top>200</top>
+                          <width>1920</width>
+                          <height>100</height>
+                          <itemgap>10</itemgap>
+                          <scrolltime>0</scrolltime>
+                          <orientation>horizontal</orientation>
+                          <visible>true</visible>
+                          <align>center</align>
+                    <include content="Dem_lyr5">
+                        <param name="colorlyr51" value="FFA70267" />
+                        <param name="colorlyr52" value="FF339194" />
+                        <param name="colorlyr53" value="FFFB6B41" />
+                    </include>
+                </control>
+                <include content="Dem_lyr5b">
+                    <param name="left5b" value="509" />
+                    <param name="top5b" value="229" />
+                </include>
+                <include content="Dem_lyr5b">
+                    <param name="left5b" value="513" />
+                    <param name="top5b" value="233" />
+                </include>
+                <include content="Dem_lyr5b">
+                    <param name="colorlyr5b" value="FFF6D86B" />
+                </include>
+                <!--LINEA 6-->
+                <include content="Dem_lyr6">
+                </include>
+                <include content="Dem_lyr6">
+                    <param name="left6" value="174" />
+                    <param name="top6" value="4" />
+                </include>
+                <include content="Dem_lyr6">
+                    <param name="colorlyr61" value="FF00A1B3" />
+                    <param name="colorlyr62" value="FFE5E140" />
+                    <param name="colorlyr63" value="FFA70267" />
+                    <param name="colorlyr64" value="FFCBF0E9" />
+                    <param name="left6" value="171" />
+                    <param name="top6" value="1" />
+                </include>
+                <!--LINEA 7-->
+                <control type="grouplist">
+                    <left>0</left>
+                          <top>199</top>
+                          <width>1920</width>
+                          <height>100</height>
+                          <itemgap>3</itemgap>
+                          <scrolltime>0</scrolltime>
+                          <orientation>horizontal</orientation>
+                          <visible>true</visible>
+                          <align>center</align>
+                    <include content="Dem_lyr7">
+                    </include>
+                </control>
+                <control type="grouplist">
+                    <left>4</left>
+                          <top>203</top>
+                          <width>1920</width>
+                          <height>100</height>
+                          <itemgap>3</itemgap>
+                          <scrolltime>0</scrolltime>
+                          <orientation>horizontal</orientation>
+                          <visible>true</visible>
+                          <align>center</align>
+                    <include content="Dem_lyr7">
+                    </include>
+                </control>
+                <control type="grouplist">
+                    <left>1</left>
+                          <top>200</top>
+                          <width>1920</width>
+                          <height>100</height>
+                          <itemgap>3</itemgap>
+                          <scrolltime>0</scrolltime>
+                          <orientation>horizontal</orientation>
+                          <visible>true</visible>
+                          <align>center</align>
+                    <include content="Dem_lyr7">
+                        <param name="colorlyr71" value="FF607D8B" />
+                        <param name="colorlyr72" value="FFFF6B6B" />
+                        <param name="colorlyr73" value="FF4ECDC4" />
+                    </include>
+                </control>
+                <include content="Dem_lyr7b">
+                    <param name="left7b" value="509" />
+                    <param name="top7b" value="229" />
+                </include>
+                <include content="Dem_lyr7b">
+                    <param name="left7b" value="513" />
+                    <param name="top7b" value="233" />
+                </include>
+                <include content="Dem_lyr7b">
+                    <param name="colorlyr7b" value="FFC7F464" />
+                </include>
+                <!--LINEA 8-->
+                <include content="Dem_lyr8">
+                </include>
+                <include content="Dem_lyr8">
+                    <param name="left8" value="4" />
+                    <param name="top8" value="154" />
+                </include>
+                <include content="Dem_lyr8">
+                    <param name="colorlyr81" value="FFFF9800" />
+                    <param name="colorlyr82" value="FFFFFAF0" />
+                    <param name="colorlyr83" value="FF00BCD4" />
+                    <param name="colorlyr84" value="FFF06292" />
+                    <param name="left8" value="1" />
+                    <param name="top8" value="151" />
+                </include>
+                <!--LINEA 9-->
+                <include content="Dem_lyr9">
+                </include>
+                <include content="Dem_lyr9">
+                    <param name="left9" value="14" />
+                    <param name="top9" value="4" />
+                </include>
+                <include content="Dem_lyr9">
+                    <param name="colorlyr91" value="FFEA80FC" />
+                    <param name="left9" value="11" />
+                    <param name="top9" value="1" />
+                </include>
+                <include content="Dem_lyr9b">
+                </include>
+                <include content="Dem_lyr9b">
+                    <param name="left9b" value="14" />
+                    <param name="top9b" value="184" />
+                </include>
+                <include content="Dem_lyr9b">
+                    <param name="colorlyr92b" value="FFFFEB3B" />
+                    <param name="colorlyr93b" value="FF4DD0E1" />
+                    <param name="left9b" value="11" />
+                    <param name="top9b" value="181" />
+                </include>
+                <include content="Dem_lyr9c">
+                </include>
+                <include content="Dem_lyr9c">
+                    <param name="left9c" value="14" />
+                    <param name="top9c" value="4" />
+                </include>
+                <include content="Dem_lyr9c">
+                    <param name="colorlyr94" value="FFFFFAF0" />
+                    <param name="left9c" value="11" />
+                    <param name="top9c" value="1" />
+                </include>
+                <!--LINEA 0-->
+                <include content="Dem_lyr0">
+                </include>
+                <include content="Dem_lyr0">
+                    <param name="left0" value="14" />
+                    <param name="top0" value="4" />
+                </include>
+                <include content="Dem_lyr0">
+                    <param name="colorlyr01" value="FFF7CB03" />
+                    <param name="colorlyr02" value="FFE6227C" />
+                    <param name="colorlyr03" value="FF76105F" />
+                    <param name="colorlyr04" value="FFFFFDE7" />
+                    <param name="left0" value="11" />
+                    <param name="top0" value="1" />
+                </include>
+            </control>
+        </control>
+    </include>
+</includes>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">9000</defaultcontrol>
+    <menucontrol>9000</menucontrol>
+
+    <!-- TMDBHELPER.WIDGETCONTAINER -->
+
+    <onload condition="Window.IsVisible(Home) + !String.IsEmpty(Window(Home).Property(TMDBHelper.WidgetContainer))">SetProperty(TMDB_LastWidgetContainer,$INFO[Window(Home).Property(TMDBHelper.WidgetContainer)],Home)</onload>
+
+    <include>Def_Clear_TMDbHelper_WidgetContainer_On_Load</include>
+    <!-- <onload>SetProperty(TMDbHelper.EnableExtendedProperties,True)</onload> -->
+
+    <!-- INIT - ENCODE -->
+
+    <onload>ClearProperty(Encoded.ListItem.Title,Home)</onload>
+    <onload>ClearProperty(Encoded.ListItem.Label,Home)</onload>
+    <onload>ClearProperty(Encoded.ListItem.TVShowTitle,Home)</onload>
+
+    <!-- ENCODE -->
+
+    <onload condition="!String.IsEmpty(ListItem.Title)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Title&amp;&amp;$INFO[ListItem.Title]")</onload>
+
+    <onload condition="!String.IsEmpty(ListItem.Label)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.Label&amp;&amp;$INFO[ListItem.Label]")</onload>
+
+    <onload condition="!String.IsEmpty(ListItem.TVShowTitle)">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.TVShowTitle&amp;&amp;$INFO[ListItem.TVShowTitle]")</onload>
+
+    <!-- ALWAYS SHOW LOCAL INFO -->
+
+    <onload condition="![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]">Skin.Reset(filter.video.cast.on.line)</onload>
+    <onload condition="![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]">Skin.SetBool(filter.video.only.local)</onload>
+    <onload condition="Skin.HasSetting(lock.video.only.local)">Skin.SetBool(filter.video.only.local)</onload>
+
+    <include>Def_Cleanup_On_Load</include>
+    <include>Def_Dialog_Info_On_Load_Video_Set_Absolute_0</include>
+
+    <onload>ClearProperty(SetYoutubeTermToSearch,Home)</onload>
+    <onload>ClearProperty(view_extended,Home)</onload>
+    <onload>ClearProperty(Show_Disc,Home)</onload>
+    <onload>ClearProperty(moviecontent,Home)</onload>
+    <onload>ClearProperty(last_video_focus,Home)</onload>
+    <onload>ClearProperty(Hide_On_Reload_Dialog_Info,Home)</onload>
+    <onload>ClearProperty(open_dialog_info_settings,Home)</onload>
+
+    <onload>ClearProperty(ListVideoForCast,Home)</onload>
+    <onload>ClearProperty(ListVideoForCastIcon,Home)</onload>
+
+    <onload>ClearProperty(content)</onload>
+
+    <onload>ClearProperty(origin_tmdb_type,Home)</onload>
+    <onload>ClearProperty(origin_dbid,Home)</onload>
+    <onload>ClearProperty(origin_tmdb_id,Home)</onload>
+    <onload>ClearProperty(origin_season,Home)</onload>
+    <onload>ClearProperty(origin_episode,Home)</onload>
+
+    <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID)">SetProperty(origin_tmdb_id,$VAR[Path_InfoParams_TMDbID],Home)</onload>
+    <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID) + !String.IsEmpty(ListItem.Season)">SetProperty(origin_season,$INFO[ListItem.Season],Home)</onload>
+    <onload condition="String.IsEmpty(ListItem.DBID) + String.IsEmpty(ListItem.TvShowDBID) + String.IsEmpty(ListItem.Season) + !String.IsEmpty(ListItem.Episode)">SetProperty(origin_episode,$INFO[ListItem.Episode],Home)</onload>
+
+    <onload condition="!String.IsEmpty(ListItem.DBID) | !String.IsEmpty(ListItem.TvShowDBID)">SetProperty(origin_dbid,$VAR[Path_InfoParams_DBID],Home)</onload>
+
+    <onload>SetProperty(origin_tmdb_type,$VAR[Path_InfoParams_TMDbType],Home)</onload>
+
+    <onload>ClearProperty(filemanager_back_video_info_type,Home)</onload>
+    <onload>ClearProperty(filemanager_back_video_info_bdid,Home)</onload>
+
+    <!-- PERSON -->
+
+    <onload condition="!Control.IsVisible(8) + Control.IsVisible(90122) + [System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]">SetFocus(90122)</onload>
+    <onload condition="!Control.IsVisible(8) + Control.IsVisible(90123)+ ![System.AddonIsEnabled(plugin.video.themoviedb.helper) + Skin.HasSetting(enabled.tmdb.helper.service)]">SetFocus(90123)</onload>
+    <onload condition="!Control.IsVisible(8) + Control.IsVisible(9060)">SetFocus(9060)</onload>
+
+    <!-- MOVIE - BACK FULL SCREEN IF PLAYER HAS VIDEO -->
+
+    <onload condition="!Control.IsVisible(8) + Control.IsVisible(9201)">SetFocus(9201)</onload>
+
+    <!-- TVSHOW - BUTTON PARCOURIR -->
+
+    <onload condition="!Control.IsVisible(8) + !Control.IsVisible(9201) + Control.IsVisible(9078)">SetFocus(9078)</onload>
+
+    <!-- MOVIE - PLAY -->
+
+    <onload condition="Control.IsVisible(8008)">SetFocus(8008)</onload>
+
+    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + !Player.Paused + !String.IsEmpty(VideoPlayer.DBID)">PlayerControl(Play)</onload>
+    <onload condition="Skin.HasSetting(osd.open.auto.pause) + Player.HasMedia + Player.HasVideo + String.IsEmpty(Window(Home).Property(OSDVideo_DIALOG_VIDEO_INFO)) + !String.IsEmpty(VideoPlayer.DBID)">SetProperty(OSDVideo_DIALOG_VIDEO_INFO,1,Home)</onload>
+
+    <!-- AUTOPLAY TRAILER -->
+
+    <onload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + Skin.HasSetting(trailer.stop.on.dialogvideoinfo) + $EXP[Trailer_Is_Playing] + Player.Playing">Stop</onload>
+    <onload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + Skin.HasSetting(trailer.pause.on.dialogvideoinfo) + $EXP[Trailer_Is_Playing] + Player.Playing">Pause</onload>
+
+    <include>Def_Cleanup_On_UnLoad</include>
+
+    <onunload>ClearProperty(ListVideoForCast,Home)</onunload>
+    <onunload>ClearProperty(ListVideoForCastIcon,Home)</onunload>
+
+    <onunload>ClearProperty(Set_User_Rating,Home)</onunload>
+
+    <onunload>ClearProperty(Show_Disc,Home)</onunload>
+    <onunload>ClearProperty(dontslide,Home)</onunload>
+    <onunload>ClearProperty(view_extended,Home)</onunload>
+    <onunload>ClearProperty(open_dialog_info_settings,Home)</onunload>
+
+    <onunload>ClearProperty(isoninfo_actor,Home)</onunload>
+    <onunload condition="String.IsEqual(ListItem.Property(tmdb_type),person)">ClearProperty(isoninfo_director,Home)</onunload>
+
+    <onunload>ClearProperty(TrailerFullscreenIsPlaying,Home)</onunload>
+    <onunload>ClearProperty(VideoYoutubeIsPlaying,Home)</onunload>
+    <onunload>ClearProperty(show_mini_osd,Home)</onunload>
+
+    <onunload condition="!Player.HasMedia | String.IsEmpty(VideoPlayer.DBID)">ClearProperty(OSDVideo_DIALOG_VIDEO_INFO,Home)</onunload>
+
+    <!-- AUTOPLAY TRAILER -->
+
+    <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + Skin.HasSetting(trailer.pause.on.dialogvideoinfo) + $EXP[Trailer_Is_Playing] + Player.Paused">Pause</onunload>
+
+    <onunload condition="!String.IsEmpty(Window(Home).Property(backtoslidehome_2011))">SetFocus(2011)</onunload>
+    <onunload condition="!String.IsEmpty(Window(Home).Property(shownowplayinginfo))">SetFocus(4000)</onunload>
+    <onunload condition="!String.IsEmpty(Window(Home).Property(shownowplayinginfo))">ClearProperty(shownowplayinginfo,Home)</onunload>
+
+    <!-- SET LAST TMDBHELPER.WIDGETCONTAINER IN BACK HOME -->
+
+    <onunload condition="Window.IsVisible(Home) + !String.IsEmpty(Window(home).Property(TMDB_LastWidgetContainer))">SetProperty(TMDbHelper.WidgetContainer,$INFO[Window(home).Property(TMDB_LastWidgetContainer)],Home)</onunload>
+
+    <controls>
+        <control type="group">
+            <include>Animation_Dialog_Info_Background_Delay_400</include>
+            <include>Background_Global</include>
+        </control>
+
+        <control type="group">
+            <include>Animation_Dialog_Info_Right_Side_Delay_400</include>
+            <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        </control>
+
+        <include>Dialog_Video_Info</include>
+
+        <include content="Def_Dialog_Info_Overlay">
+            <param name="headerinfo" value="$INFO[ListItem.Title]" />
+            <param name="plotinfo" value="$VAR[Label_Tagline,[B],[/B][CR][CR]]$VAR[Label_Plot_Box_Video_Music]" />
+            <param name="show_clearlogo" value="Skin.HasSetting(show.dialog.info.clearlogo.video)" />
+        </include>
+    </controls>
+</window>

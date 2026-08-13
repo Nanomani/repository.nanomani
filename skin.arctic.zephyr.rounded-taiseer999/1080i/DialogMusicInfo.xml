@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog">
+    <defaultcontrol always="true">9000</defaultcontrol>
+    <menucontrol>9000</menucontrol>
+
+    <!-- ==================================== -->
+    <!--                 ON LOAD              -->
+    <!-- ==================================== -->
+
+    <!-- TMDBHELPER.WIDGETCONTAINER -->
+
+    <onload condition="Window.IsVisible(Home) + !String.IsEmpty(Window(Home).Property(TMDBHelper.WidgetContainer))">SetProperty(TMDB_LastWidgetContainer,$INFO[Window(Home).Property(TMDBHelper.WidgetContainer)],Home)</onload>
+
+    <include>Def_Clear_TMDbHelper_WidgetContainer_On_Load</include>
+
+
+    <!-- INIT - ENCODE ARTIST NAME -->
+
+    <onload>ClearProperty(Encoded.ListItem.AlbumArtist,Home)</onload>
+    <onload>ClearProperty(Init_Value_Album_Artist,Home)</onload>
+
+    <!-- ENCODE ARTIST NAME - 1 ARTIST -->
+
+    <onload condition="!String.IsEmpty(ListItem.AlbumArtist) + !String.Contains(ListItem.AlbumArtist, / )">RunPlugin("plugin://script.skinvariables/?info=get_encoded_string&amp;unencoded_paths=true&amp;window_id=Home&amp;window_prop=Encoded.ListItem.AlbumArtist&amp;&amp;$INFO[ListItem.AlbumArtist]")</onload>
+
+    <!-- ENCODE ARTIST NAME - MORE THAN 1 ARTIST -->
+
+    <onload condition="!String.IsEmpty(ListItem.AlbumArtist) + String.Contains(ListItem.AlbumArtist, / )">RunPlugin("plugin://script.skinvariables/?info=get_split_string&amp;window_id=Home&amp;window_prop=List.Multi.Artist.Album&amp;infolabel=ListItem.AlbumArtist&amp;separator=' / '")</onload>
+
+    <!-- FOCUS AT START -->
+
+    <onload>AlarmClock(Delay_focus12,SetFocus(129),00:00,silent)</onload>
+    <onload condition="Control.IsVisible(9002)">AlarmClock(Delay_focus9002,SetFocus(9002),00:00,silent)</onload>
+
+    <!-- INIT VALUE -->
+
+    <onload>ClearProperty(content)</onload>
+    <onload>ClearProperty(Show_Disc,Home)</onload>
+    <onload>ClearProperty(Rotate_Cover,Home)</onload>
+    <onload>ClearProperty(musiccontent,Home)</onload>
+    <onload>ClearProperty(view_extended,Home)</onload>
+    <onload>ClearProperty(focus_tracklist,Home)</onload>
+    <onload>ClearProperty(last_music_focus,Home)</onload>
+    <onload>ClearProperty(title_tempo,Home)</onload>
+    <onload>ClearProperty(Hide_On_Reload_Dialog_Info,Home)</onload>
+    <onload>ClearProperty(open_dialog_info_settings,Home)</onload>
+
+    <include>Def_Dialog_Info_On_Load_Music_Set_Absolute_0</include>
+
+    <!-- AUTOPLAY TRAILER -->
+
+    <onload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + Skin.HasSetting(trailer.stop.on.dialogvideoinfo) + $EXP[Trailer_Is_Playing] + Player.Playing">Stop</onload>
+    <onload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + Skin.HasSetting(trailer.pause.on.dialogvideoinfo) + $EXP[Trailer_Is_Playing] + Player.Playing">Pause</onload>
+
+    <!-- YOUTUBE -->
+
+    <onload>ClearProperty(SetYoutubeSearch,Home)</onload>
+
+    <!-- SHOW INFO ARTIST - IF SONGINFORMATION IS OPEN -->
+
+    <onload condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">SetProperty(show_info_song,1,Home)</onload>
+    <onload condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">ClearProperty(show_info_artist,Home)</onload>
+    <onload condition="Window.Is(songinformation) + !Window.IsActive(musicinformation)">ClearProperty(show_info_album,Home)</onload>
+
+    <!-- ==================================== -->
+    <!--               ON UNLOAD              -->
+    <!-- ==================================== -->
+
+    <onunload>ClearProperty(Set_User_Rating,Home)</onunload>
+    <onunload>ClearProperty(Show_Disc,Home)</onunload>
+    <onunload>ClearProperty(Rotate_Cover,Home)</onunload>
+    <onunload>ClearProperty(view_extended,Home)</onunload>
+    <onunload>ClearProperty(open_dialog_info_settings,Home)</onunload>
+
+    <onunload condition="!String.IsEmpty(Window(Home).Property(backtoslidehome_2011))">SetFocus(2011)</onunload>
+
+    <onunload condition="!Window.IsVisible(MusicVisualisation.xml) + !String.IsEmpty(Window(Home).Property(shownowplayinginfo))">SetFocus(399)</onunload>
+
+    <onunload condition="Player.PauseEnabled + Window.IsVisible(MusicVisualisation.xml) + Window.IsVisible(MusicOSD.xml)">SetFocus(14)</onunload>
+    <onunload condition="!Player.PauseEnabled + Window.IsVisible(MusicVisualisation.xml) + Window.IsVisible(MusicOSD.xml) ">SetFocus(15)</onunload>
+
+    <onunload condition="!String.IsEmpty(Window(Home).Property(shownowplayinginfo))">ClearProperty(shownowplayinginfo,Home)</onunload>
+
+    <!-- AUTOPLAY TRAILER -->
+
+    <onunload condition="Skin.HasSetting(home.views.flix.autoplay.trailer) + Skin.HasSetting(trailer.pause.on.dialogvideoinfo) + $EXP[Trailer_Is_Playing] + Player.Paused">Pause</onunload>
+
+    <!-- YOUTUBE -->
+
+    <onunload>ClearProperty(SetYoutubeSearch,Home)</onunload>
+
+    <!-- SHOW INFO ARTIST - IF SONGINFORMATION IS OPEN -->
+
+    <onunload condition="Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_song))">ClearProperty(show_info_song,Home)</onunload>
+    <onunload condition="Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_album))">ClearProperty(show_info_album,Home)</onunload>
+    <onunload condition="Window.IsActive(musicinformation) + !String.IsEmpty(Window(Home).Property(show_info_artist))">ClearProperty(show_info_artist,Home)</onunload>
+
+    <!-- SET LAST TMDBHELPER.WIDGETCONTAINER IN BACK HOME -->
+
+    <onunload condition="Window.IsVisible(Home) + !String.IsEmpty(Window(home).Property(TMDB_LastWidgetContainer))">SetProperty(TMDbHelper.WidgetContainer,$INFO[Window(home).Property(TMDB_LastWidgetContainer)],Home)</onunload>
+
+    <controls>
+        <control type="group">
+            <include>Animation_Dialog_Info_Background_Delay_400</include>
+            <include>Background_Global</include>
+        </control>
+
+        <control type="group">
+            <include>Animation_Dialog_Info_Right_Side_Delay_400</include>
+            <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        </control>
+
+        <include>Dialog_Music_Info</include>
+
+        <include content="Def_Dialog_Info_Overlay">
+            <param name="headerinfo" value="$INFO[ListItem.Artist]" />
+            <param name="plotinfo" value="$VAR[Label_Overlay_Info_Music_Plot]$VAR[Label_Overlay_Info_Music_TagLine]$VAR[Label_Overlay_Info_Music_Album_Tracks]" />
+            <param name="show_clearlogo" value="Skin.HasSetting(show.dialog.info.clearlogo.music)" />
+        </include>
+    </controls>
+</window>

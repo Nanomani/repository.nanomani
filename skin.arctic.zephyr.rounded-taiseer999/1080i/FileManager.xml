@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">20</defaultcontrol>
+
+    <onload>CancelAlarm(power_menu_setfocus_399,true)</onload>
+
+    <onload condition="!String.IsEmpty(Window(Home).Property(CloseFileManager))">Close</onload>
+    <onunload condition="!String.IsEmpty(Window(Home).Property(CloseFileManager))">ClearProperty(CloseFileManager,Home)</onunload>
+
+    <!-- RESET TMDB WIDGET CONTAINER -->
+
+    <onunload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunload>
+    <onunload>ClearProperty(ListItem_DBID,Home)</onunload>
+    <onunload>ClearProperty(ListItem_FolderPath,Home)</onunload>
+    <onunload>ClearProperty(filemanager_back_video_info_bdid,Home)</onunload>
+
+    <controls>
+        <include>Background_Global</include>
+        <include>Furniture_Header_Info</include>
+        <include condition="!Skin.HasSetting(hide.furniture.nowplaying.views)">Furniture_Header_NowPlaying</include>
+        <include>Furniture_Header_Clock_Right</include>
+
+        <control type="group">
+            <include>Animation_Common_Settings</include>
+
+            <!-- LEFT PANEL -->
+
+            <control type="group">
+                <include content="Def_Dialog_Settings"><param name="width" value="850" /></include>
+
+                <!-- HEADER -->
+
+                <include content="Def_Dialog_Header">
+                    <param name="label" value="10003" />
+                    <param name="icon" value="folder" />
+                </include>
+
+                <control type="list" id="20">
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <top>112</top>
+                    <left>16</left>
+                    <right>0</right>
+                    <height>490</height>
+
+                    <onup>20</onup>
+                    <ondown>20</ondown>
+                    <onright>21</onright>
+                    <onleft>1824</onleft>
+
+                    <onfocus condition="String.IsEmpty(Window(Home).Property(CloseFileManager))">SetProperty(TMDbHelper.WidgetContainer,20,Home)</onfocus>
+                    <onunfocus>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunfocus>
+
+                    <pagecontrol>1824</pagecontrol>
+
+                    <itemlayout height="70" width="818">
+                        <include>layout_list_item_filemanager</include>
+                    </itemlayout>
+                    <focusedlayout height="70" width="818">
+                        <include content="layout_list_focus_filemanager" >
+                            <param name="fade_condition" value="!Control.HasFocus(20)" />
+                        </include>
+                    </focusedlayout>
+                </control>
+
+                <!-- SCROLLBAR - LEFT -->
+
+                <include content="Object_Scrollbar_Filemanager">
+                    <param name="scrollid" value="1824" />
+                    <param name="onleft" value="9000" />
+                    <param name="onright" value="20" />
+                    <param name="left" value="-20" />
+                    <param name="animation_fade_hide" value="false" />
+                </include>
+            </control>
+
+            <!-- RIGHT PANEL -->
+
+            <control type="group">
+                <include content="Def_Dialog_Settings">
+                    <param name="left" value="990" />
+                    <param name="width" value="850" />
+                </include>
+
+                <include content="Def_Dialog_Header">
+                    <param name="label" value="10003" />
+                    <param name="icon" value="folder" />
+                </include>
+
+                <control type="list" id="21">
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <top>112</top>
+                    <left>16</left>
+                    <right>0</right>
+                    <height>490</height>
+
+                    <onup>21</onup>
+                    <ondown>21</ondown>
+                    <onleft>20</onleft>
+                    <onright>1825</onright>
+
+                    <onfocus condition="String.IsEmpty(Window(Home).Property(CloseFileManager))">SetProperty(TMDbHelper.WidgetContainer,21,Home)</onfocus>
+                    <onunfocus>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunfocus>
+
+                    <pagecontrol>1825</pagecontrol>
+
+                    <itemlayout height="70" width="818">
+                        <include>layout_list_item_filemanager</include>
+                    </itemlayout>
+                    <focusedlayout height="70" width="818">
+                        <include content="layout_list_focus_filemanager" >
+                            <param name="fade_condition" value="!Control.HasFocus(21)" />
+                        </include>
+                    </focusedlayout>
+                </control>
+
+                <!-- SCROLLBAR - RIGHT -->
+
+                <include content="Object_Scrollbar_Filemanager">
+                    <param name="scrollid" value="1825" />
+                    <param name="onleft" value="21" />
+                    <param name="onright" value="9000" />
+                    <param name="left" value="862" />
+                    <param name="animation_fade_hide" value="false" />
+                </include>
+            </control>
+        </control>
+
+        <!-- OVERLAY -->
+
+        <include>Def_Dialog_Menu_Background_Overlay</include>
+
+        <!-- CONTEXT MENU -->
+
+        <control type="group">
+            <include content="Animation_Common_Context_Menu_Slide_Left"><param name="left" value="-490" /></include>
+
+            <top>20</top>
+            <centerleft>255</centerleft>
+
+            <include content="Def_Dialog_Menu_Box"><param name="height" value="1039" /></include>
+
+            <include content="Def_Dialog_Header">
+                <param name="label" value="16106" />
+                <param name="icon" value="bars" />
+            </include>
+
+            <control type="grouplist" id="9000">
+                <include>Animation_Scrolltime_Views_List</include>
+
+                <top>112</top>
+
+                <pagecontrol>9070</pagecontrol>
+                <usecontrolcoords>true</usecontrolcoords>
+
+                <include content="Def_Dialog_Menu_GroupList"><param name="height" value="910" /><param name="idlayout" value="20" /></include>
+
+                <!-- NOW PLAYING -->
+
+                <control type="button" id="55555">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>31448</label>
+                    <visible>$EXP[Display_Views_Menu_MiniPlayer]</visible>
+                </control>
+
+                <include>Def_Dialog_Menu_Button_Playlist</include>
+
+                <!-- MINI PLAYER -->
+
+                <include>Def_Dialog_Menu_MiniPlayer</include>
+
+                <!-- NAVIGATE -->
+
+                <control type="button" id="55552">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>19326</label>
+                </control>
+
+                <!-- HOME -->
+
+                <control type="button" id="10">
+                    <description>Check for updates</description>
+                    <label>10000</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>Dialog.Close(all)</onclick>
+                    <onclick>ActivateWindow(home,return)</onclick>
+                </control>
+
+                <!-- KODI SETTINGS -->
+
+                <control type="button" id="11">
+                    <description>Check for updates</description>
+                    <label>5</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>Dialog.Close(all)</onclick>
+                    <onclick>ActivateWindow(settings,return)</onclick>
+                </control>
+
+                <!-- MOVIE/TVSHOW/EPISODE INFORMATION -->
+
+                <control type="button" id="120">
+                    <description>Update settings</description>
+                    <label>19033</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>Dialog.Close(all)</onclick>
+                    <onclick>RunScript(plugin.video.themoviedb.helper,add_dbid=$INFO[Window(Home).Property(filemanager_back_video_info_bdid)],tmdb_type=$INFO[Window(Home).Property(filemanager_back_video_info_type)],call_auto=1190,return)</onclick>
+
+                    <visible>!String.IsEmpty(Window(Home).Property(filemanager_back_video_info_bdid))</visible>
+                </control>
+
+                <!-- OPTION -->
+
+                <control type="button" id="55553">
+                    <include>Def_Dialog_Menu_Button_Title</include>
+                    <label>33063</label>
+                </control>
+
+                <!-- ROOT -->
+
+                <control type="button" id="121">
+                    <description>Check for updates</description>
+                    <label>20108</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>Close</onclick>
+                    <onclick>ActivateWindow(settings,return)</onclick>
+                    <onclick>AlarmClock(DelayFileManager,ActivateWindow(filemanager,return),00:01,silent)</onclick>
+                </control>
+
+                <!-- EXIT -->
+
+                <control type="button" id="122">
+                    <description>Check for updates</description>
+                    <label>35222</label>
+                    <include>Def_Dialog_Menu_Button_Focus_Select</include>
+                    <onclick>Close</onclick>
+                    <onclick>ActivateWindow(settings,return)</onclick>
+                    <onclick>SetProperty(CloseFileManager,1,Home)</onclick>
+                    <onclick>AlarmClock(DelayFileManager,ActivateWindow(filemanager,return),00:01,silent)</onclick>
+                </control>
+            </control>
+        </control>
+
+        <!-- FOOTER - INFORMATION - FILE / PATH -->
+
+        <control type="group">
+            <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+            <include>Animation_Common_Fade_Out</include>
+
+            <centerbottom>100</centerbottom>
+            <left>View_List_Side</left>
+            <align>left</align>
+
+            <!-- FILE - TITLE - LEFT -->
+
+            <control type="label">
+                <top>18</top>
+                <left>12</left>
+                <align>left</align>
+                <width>230</width>
+                <height>42</height>
+                <font>Mini</font>
+                <textcolor>Dark2</textcolor>
+                <selectedcolor>Dark2</selectedcolor>
+                <label>[B][UPPERCASE]$LOCALIZE[561] $LOCALIZE[39162][/UPPERCASE][/B] : </label>
+                <visible>Control.HasFocus(20) | Control.HasFocus(1824)</visible>
+            </control>
+
+            <!-- FILE - TITLE - RIGHT -->
+
+            <control type="label">
+                <top>18</top>
+                <left>12</left>
+                <height>42</height>
+                <align>left</align>
+                <width min="128" max="970">auto</width>
+                <font>Mini</font>
+                <textcolor>Dark2</textcolor>
+                <selectedcolor>Dark2</selectedcolor>
+                <label>[B][UPPERCASE]$LOCALIZE[561] $LOCALIZE[39164][/UPPERCASE][/B] : </label>
+                <visible>Control.HasFocus(21) | Control.HasFocus(1825)</visible>
+            </control>
+
+            <!-- FILE - VALUE - LEFT / RIGHT -->
+
+            <control type="label">
+                <top>18</top>
+                <left>230</left>
+                <height>42</height>
+                <align>left</align>
+                <width min="128" max="970">auto</width>
+                <font>Mini</font>
+                <textcolor>Dark2</textcolor>
+                <selectedcolor>Dark2</selectedcolor>
+                <label>$INFO[ListItem.Label]</label>
+            </control>
+
+            <!-- PATH - TITLE / VALUE - LEFT -->
+
+            <control type="label">
+                <bottom>90</bottom>
+                <left>12</left>
+                <align>left</align>
+                <width>230</width>
+                <height>42</height>
+                <font>Mini</font>
+                <textcolor>Dark2</textcolor>
+                <selectedcolor>Dark2</selectedcolor>
+                <label>[B][UPPERCASE]$LOCALIZE[20334] $LOCALIZE[39162][/UPPERCASE][/B] : </label>
+                <visible>Control.HasFocus(20) | Control.HasFocus(1824)</visible>
+            </control>
+            <control type="textbox">
+                <width min="128" max="1270">auto</width>
+                <top>72</top>
+                <left>230</left>
+                <height min="64" max="128">auto</height>
+                <align>left</align>
+                <font>Mini</font>
+                <textcolor>Dark2</textcolor>
+                <selectedcolor>Dark2</selectedcolor>
+                <label>$INFO[Control.GetLabel(101)]</label>
+                <visible>Control.HasFocus(20) | Control.HasFocus(1824)</visible>
+            </control>
+
+            <!-- PATH - TITLE / VALUE - RIGHT -->
+
+            <control type="label">
+                <bottom>90</bottom>
+                <left>12</left>
+                <align>left</align>
+                <width>230</width>
+                <height>42</height>
+                <font>Mini</font>
+                <textcolor>Dark2</textcolor>
+                <selectedcolor>Dark2</selectedcolor>
+                <label>[B][UPPERCASE]$LOCALIZE[20334] $LOCALIZE[39164][/UPPERCASE][/B] : </label>
+                <visible>Control.HasFocus(21) | Control.HasFocus(1825)</visible>
+            </control>
+            <control type="textbox">
+                <width min="128" max="1500">auto</width>
+                <top>72</top>
+                <left>230</left>
+                <height min="64" max="128">auto</height>
+                <align>left</align>
+                <font>Mini</font>
+                <textcolor>Dark2</textcolor>
+                <selectedcolor>Dark2</selectedcolor>
+                <label>$INFO[Control.GetLabel(102)]</label>
+                <visible>Control.HasFocus(21) | Control.HasFocus(1825)</visible>
+            </control>
+        </control>
+
+        <!-- FOOTER - INFORMATION -  -->
+
+        <control type="group">
+            <include content="Animation_Common_Delay_Fade_In"><param name="delay" value="200" /></include>
+            <include>Animation_Common_Fade_Out</include>
+
+            <centerbottom>100</centerbottom>
+            <align>right</align>
+
+            <!-- RIGHT - LINE 1 - NUM ITEM - LEFT PANEL -->
+
+            <control type="label">
+                <right>105</right>
+                <bottom>148</bottom>
+                <align>right</align>
+                <width>700</width>
+                <height>42</height>
+                <font>InfoNetflix</font>
+                <textcolor>Dark2</textcolor>
+                <label>$LOCALIZE[19076] $INFO[Container(20).NumItems,  •  , $LOCALIZE[31073]]</label>
+                <visible>Window.IsVisible(FileManager.xml) + [Control.HasFocus(20) | Control.HasFocus(1824)]</visible>
+                <visible>Integer.IsGreater(Container(20).NumItems,1)</visible>
+            </control>
+            <control type="label">
+                <right>105</right>
+                <bottom>148</bottom>
+                <align>right</align>
+                <width>700</width>
+                <height>42</height>
+                <font>InfoNetflix</font>
+                <textcolor>Dark2</textcolor>
+                <label>$LOCALIZE[21400] $INFO[Container(20).NumItems] $LOCALIZE[31321]</label>
+                <visible>Window.IsVisible(FileManager.xml) + [Control.HasFocus(20) | Control.HasFocus(1824)]</visible>
+                <visible>Integer.IsEqual(Container(20).NumItems,1)</visible>
+            </control>
+
+            <!-- RIGHT - LINE 1 - NUM ITEM - RIGHT PANEL -->
+
+            <control type="label">
+                <right>105</right>
+                <bottom>148</bottom>
+                <align>right</align>
+                <width>700</width>
+                <height>42</height>
+                <font>InfoNetflix</font>
+                <textcolor>Dark2</textcolor>
+                <label>$LOCALIZE[19076] $INFO[Container(21).NumItems,  •  , $LOCALIZE[31073]]</label>
+                <visible>Window.IsVisible(FileManager.xml) + [Control.HasFocus(21) | Control.HasFocus(1825)]</visible>
+                <visible>Integer.IsGreater(Container(21).NumItems,1)</visible>
+            </control>
+            <control type="label">
+                <right>105</right>
+                <bottom>148</bottom>
+                <align>right</align>
+                <width>700</width>
+                <height>42</height>
+                <font>InfoNetflix</font>
+                <textcolor>Dark2</textcolor>
+                <label>$LOCALIZE[21400] $INFO[Container(21).NumItems] $LOCALIZE[31321]</label>
+                <visible>Window.IsVisible(FileManager.xml) + [Control.HasFocus(21) | Control.HasFocus(1825)]</visible>
+                <visible>Integer.IsEqual(Container(21).NumItems,1)</visible>
+            </control>
+
+            <!-- RIGHT - LINE 2 - NUM ITEM -->
+
+            <control type="label">
+                <right>105</right>
+                <bottom>90</bottom>
+                <align>right</align>
+                <width>300</width>
+                <height>42</height>
+                <font>InfoNetflix</font>
+                <textcolor>Dark2</textcolor>
+                <label>$VAR[Label_Dialog_Select_Num_Item_Footer]</label>
+            </control>
+        </control>
+
+        <!-- HIDDEN LABEL -->
+
+        <control type="label" id="101">
+            <description>Header Label left</description>
+            <visible>false</visible>
+        </control>
+        <control type="label" id="102">
+            <description>Header Label right</description>
+            <visible>false</visible>
+        </control>
+    </controls>
+</window>

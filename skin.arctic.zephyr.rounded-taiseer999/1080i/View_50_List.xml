@@ -1,0 +1,3386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <!-- =========================================== -->
+    <!--                   ART                       -->
+    <!-- =========================================== -->
+
+    <!-- ART - POSTER -->
+
+    <include name="View_50_Side_Poster">
+        <param name="top" value="$PARAM[top]" default="View_List_Top" />
+        <param name="left" value="$PARAM[left]" default="View_List_Side" />
+        <param name="width" value="$PARAM[width]" default="PosterW" />
+        <param name="height" value="$PARAM[height]" default="PosterH" />
+        <param name="texture" value="$PARAM[texture]"  default="$VAR[Image_Poster]" />
+        <param name="condition_fadetime" value="$PARAM[condition_fadetime]"  default="true" />
+
+        <definition>
+            <control type="group" description="Poster">
+                <visible>$PARAM[visible]</visible>
+
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+
+                <include content="Def_Art_Full_Background_b24">
+                    <param name="colordiffuse" value="Fallback" />
+                </include>
+
+                <!-- ALL OTHERS -->
+
+                <include content="Def_Art_Icon_Image">
+                    <param name="aspectratio" value="scale" />
+                    <param name="texture" value="$PARAM[texture]" />
+                    <param name="texture_diffuse" value="poster_w428_h640_b24" />
+                    <param name="condition_fadetime" value="$PARAM[condition_fadetime]" />
+                    <param name="visible" value="!$EXP[IsYoutubeItem]" />
+                </include>
+
+                <!-- YOUTUBE -->
+
+                <include content="Def_Art_Image">
+                    <param name="visible_background_b24" value="true" />
+                    <param name="colordiffuse_background" value="black" />
+                    <param name="aspectratio" value="keep" />
+                    <param name="texture" value="$VAR[Image_Square_50_List]" />
+                    <param name="texture_diffuse" value="poster_w428_h640_b24" />
+                    <param name="condition_fadetime" value="$PARAM[condition_fadetime]" />
+                    <param name="visible" value="!ListItem.IsParentFolder + $EXP[IsYoutubeItem]" />
+                </include>
+            </control>
+        </definition>
+    </include>
+
+    <!-- ART - SQUARE -->
+
+    <include name="View_50_Side_Square">
+        <param name="top" value="$PARAM[top]" default="View_List_Top" />
+        <param name="left" value="$PARAM[left]" default="View_List_Side" />
+        <param name="width" value="$PARAM[width]" default="PosterH" />
+        <param name="height" value="$PARAM[height]" default="PosterH" />
+        <param name="texture" value="$PARAM[texture]"  default="$VAR[Image_Square_50_List]" />
+        <param name="condition_fadetime" value="$PARAM[condition_fadetime]"  default="true" />
+
+        <definition>
+            <control type="group" description="Poster">
+                <visible>$PARAM[visible]</visible>
+
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <width>$PARAM[width]</width>
+                <height>$PARAM[height]</height>
+
+                <include content="Def_Art_Full_Background_b24">
+                    <param name="colordiffuse" value="Fallback" />
+                </include>
+
+                <!-- ALL OTHERS -->
+
+                <include content="Def_Art_Icon_Image">
+                    <param name="aspectratio" value="scale" />
+                    <param name="texture" value="$PARAM[texture]" />
+                    <param name="texture_diffuse" value="square_w640_h640_b24" />
+                    <param name="condition_fadetime" value="$PARAM[condition_fadetime]" />
+                    <param name="visible" value="![Container.Content(images) | Container.Content(favourites) | $EXP[IsYoutubeItem]]" />
+                </include>
+
+                <!-- FAVOURITES -->
+
+                <include content="Def_Art_Icon_Image">
+                    <param name="aspectratio" value="keep" />
+                    <param name="texture" value="$PARAM[texture]" />
+                    <param name="texture_diffuse" value="square_w640_h640_b24" />
+                    <param name="condition_fadetime" value="$PARAM[condition_fadetime]" />
+                    <param name="visible" value="Container.Content(favourites)" />
+                </include>
+
+                <!-- PICS -->
+
+                <include content="Def_Art_Icon_Image">
+                    <param name="visible_background_b24" value="true" />
+                    <param name="colordiffuse_background" value="black" />
+                    <param name="aspectratio" value="keep" />
+                    <param name="texture" value="$PARAM[texture]" />
+                    <param name="texture_diffuse" value="square_w640_h640_b24" />
+                    <param name="condition_fadetime" value="$PARAM[condition_fadetime]" />
+                    <param name="visible" value="Container.Content(images)" />
+                </include>
+
+                <!-- YOUTUBE -->
+
+                <include content="Def_Art_Image">
+                    <param name="visible_background_b24" value="true" />
+                    <param name="colordiffuse_background" value="black" />
+                    <param name="aspectratio" value="keep" />
+                    <param name="texture" value="$PARAM[texture]" />
+                    <param name="texture_diffuse" value="square_w640_h640_b24" />
+                    <param name="condition_fadetime" value="$PARAM[condition_fadetime]" />
+                    <param name="visible" value="!ListItem.IsParentFolder + $EXP[IsYoutubeItem] + !$EXP[IsYoutube_Comments]" />
+                </include>
+
+                <control type="image">
+                    <include content="Def_Padding"><param name="pad" value="0" /></include>
+                    <fadetime>PosterFanartFadetime</fadetime>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+                    <texture diffuse="diffuse/square_w640_h640_b24.png" background="true">$INFO[ListItem.Art(back)]</texture>
+                    <animation effect="rotatey" end="-180" start="0" center="320,0" time="0" condition="true">Conditional</animation>
+                    <animation type="Visible">
+                        <effect type="fade" end="100" start="0" time="0" delay="200" />
+                    </animation>
+                    <animation type="Hidden">
+                        <effect type="fade" end="0" start="100" time="50" delay="100" />
+                    </animation>
+                    <visible>String.IsEqual(Window(Home).Property(Rotate_Cover),1) + !String.IsEmpty(ListItem.Art(back))</visible>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <!-- =========================================== -->
+    <!--                   VIEWS                     -->
+    <!-- =========================================== -->
+
+    <!-- VIEW 50 - VIDEO - POSTER -->
+
+    <include name="Control_50_List_Poster_List">
+        <control type="list" id="50">
+            <include>Layout_50_List_Poster_Video</include>
+        </control>
+    </include>
+
+    <include name="Control_50_List_Poster_Fixed_List">
+        <control type="fixedlist" id="50">
+            <include>Layout_50_List_Poster_Video</include>
+        </control>
+    </include>
+
+    <include name="Layout_50_List_Poster_Video">
+        <visible>$EXP[Exp_View_50]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <include>Def_On_Info</include>
+
+        <top>View_List_Top</top>
+        <height>PosterH</height>
+        <right>View_List_Side</right>
+
+        <include condition="Skin.HasSetting(hide.poster.view.50)" content="Def_Left"><param name="left" value="View_List_Side" /></include>
+        <include condition="Skin.HasSetting(hide.poster.view.50)" content="Def_Width"><param name="width" value="1750" /></include>
+
+        <include condition="!Skin.HasSetting(hide.poster.view.50)" content="Def_Left"><param name="left" value="ListX" /></include>
+        <include condition="!Skin.HasSetting(hide.poster.view.50)" content="Def_Width"><param name="width" value="ListW" /></include>
+
+        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+        <onleft>1627</onleft>
+        <onup>50</onup>
+        <ondown>50</ondown>
+
+        <pagecontrol>1627</pagecontrol>
+
+        <focusposition>1</focusposition>
+
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(5x.list.control.list)">
+            <param name="focusposition" value="1" />
+        </include>
+
+        <include content="Def_Movement" condition="!Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
+            <param name="movement" value="8" />
+        </include>
+        <include content="Def_Movement" condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
+            <param name="movement" value="5" />
+        </include>
+
+        <viewtype label="535">list</viewtype>
+
+        <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" height="64">
+            <include>layout_list_item_video</include>
+        </itemlayout>
+        <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" height="64">
+            <include content="layout_list_focus_video"><param name="list_id" value="50" /></include>
+        </focusedlayout>
+
+        <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" height="91.4">
+            <include>layout_list_item_video_info</include>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" height="91.4">
+            <include content="layout_list_focus_video_info"><param name="list_id" value="50" /></include>
+        </focusedlayout>
+    </include>
+
+    <include name="View_50_List">
+        <description>List View (id=50)</description>
+        <control type="group">
+            <visible>Control.IsVisible(50)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <include condition="!Skin.HasSetting(5x.list.control.list)">Control_50_List_Poster_Fixed_List</include>
+                <include condition="Skin.HasSetting(5x.list.control.list)">Control_50_List_Poster_List</include>
+
+                <control type="scrollbar" id="1627">
+                    <include content="Object_Scrollbar_Views_Vertical" condition="!Skin.HasSetting(hide.poster.view.50)">
+                        <param name="scrollid" value="1627" />
+                        <param name="centerleft" value="530" />
+                    </include>
+                    <include content="Object_Scrollbar_Views_Vertical" condition="Skin.HasSetting(hide.poster.view.50)">
+                        <param name="scrollid" value="1627" />
+                    </include>
+                </control>
+            </control>
+            <include condition="!Skin.HasSetting(hide.poster.view.50)">View_50_Side_Poster</include>
+        </control>
+    </include>
+
+    <!-- VIEW 550 - VIDEO - SQUARE -->
+
+    <include name="View_550_List_Square_Video">
+        <description>List View (id=550)</description>
+        <control type="group">
+            <visible>Control.IsVisible(550)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <control type="fixedlist" id="550">
+                    <visible>$EXP[Exp_View_550]</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <include>Def_On_Info</include>
+
+                    <top>View_List_Top</top>
+                    <height>PosterH</height>
+                    <left>ListSquareX</left>
+                    <right>View_List_Side</right>
+
+                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                    <onleft>1660</onleft>
+                    <onup>550</onup>
+                    <ondown>550</ondown>
+
+                    <pagecontrol>1660</pagecontrol>
+
+                    <focusposition>1</focusposition>
+
+                    <include content="Def_Movement" condition="Skin.HasSetting(disable.view.550.extended.list.video)">
+                        <param name="movement" value="8" />
+                    </include>
+                    <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.550.extended.list.video)">
+                        <param name="movement" value="5" />
+                    </include>
+
+                    <viewtype label="31587">list</viewtype>
+
+                    <itemlayout condition="Skin.HasSetting(disable.view.550.extended.list.video)" height="64">
+                        <include>layout_list_item_video</include>
+                    </itemlayout>
+                    <focusedlayout condition="Skin.HasSetting(disable.view.550.extended.list.video)" height="64">
+                        <include content="layout_list_focus_video"><param name="list_id" value="550" /></include>
+                    </focusedlayout>
+
+                    <itemlayout condition="!Skin.HasSetting(disable.view.550.extended.list.video)" height="91.4">
+                        <include>layout_list_item_video_info</include>
+                    </itemlayout>
+                    <focusedlayout condition="!Skin.HasSetting(disable.view.550.extended.list.video)" height="91.4">
+                        <include content="layout_list_focus_video_info"><param name="list_id" value="550" /></include>
+                    </focusedlayout>
+                </control>
+
+                <!-- SCROLLBAR -->
+
+                <control type="scrollbar" id="1660">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1660" />
+                        <param name="idlayout" value="550" />
+                        <param name="centerleft" value="ScrollSquareX" />
+                    </include>
+                </control>
+            </control>
+
+            <include>View_50_Side_Square</include>
+        </control>
+    </include>
+
+    <!-- VIEW 50 - MUSIC -->
+
+    <include name="Control_50_List_Square_List">
+        <control type="list" id="50">
+            <include>Layout_50_List_Square_Music</include>
+        </control>
+    </include>
+
+    <include name="Control_50_List_Square_Fixed_List">
+        <control type="fixedlist" id="50">
+            <include>Layout_50_List_Square_Music</include>
+        </control>
+    </include>
+
+    <include name="Layout_50_List_Square_Music">
+        <visible>$EXP[Exp_View_50]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <top>View_List_Top</top>
+        <height>PosterH</height>
+        <left>ListSquareX</left>
+        <right>View_List_Side</right>
+
+        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+        <onleft>1679</onleft>
+        <onup>50</onup>
+        <ondown>50</ondown>
+
+        <pagecontrol>1679</pagecontrol>
+
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(5x.list.control.list)">
+            <param name="focusposition" value="1" />
+        </include>
+
+        <include content="Def_Movement" condition="Skin.HasSetting(disable.view.50.extended.list.music) + !Skin.HasSetting(5x.list.control.list)">
+            <param name="movement" value="8" />
+        </include>
+        <include content="Def_Movement" condition="!Skin.HasSetting(disable.view.50.extended.list.music) + !Skin.HasSetting(5x.list.control.list)">
+            <param name="movement" value="5" />
+        </include>
+
+        <viewtype label="535">list</viewtype>
+
+        <itemlayout condition="Skin.HasSetting(disable.view.50.extended.list.music)" width="ListSquareW" height="64">
+            <include>layout_list_item_music</include>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(disable.view.50.extended.list.music)" width="ListSquareW" height="64">
+            <include content="layout_list_focus_music"><param name="list_id" value="50" /></include>
+        </focusedlayout>
+
+        <itemlayout condition="!Skin.HasSetting(disable.view.50.extended.list.music)" width="ListSquareW" height="91.4">
+            <include>layout_list_item_music_info</include>
+        </itemlayout>
+        <focusedlayout condition="!Skin.HasSetting(disable.view.50.extended.list.music)" width="ListSquareW" height="91.4">
+            <include content="layout_list_focus_music_info"><param name="list_id" value="50" /></include>
+        </focusedlayout>
+    </include>
+
+    <include name="View_50_List_Square_Music">
+        <description>List View (id=50)</description>
+        <control type="group">
+            <visible>Control.IsVisible(50)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <include condition="!Skin.HasSetting(5x.list.control.list)">Control_50_List_Square_Fixed_List</include>
+                <include condition="Skin.HasSetting(5x.list.control.list)">Control_50_List_Square_List</include>
+
+                <!-- SCROLLBAR -->
+
+                <control type="scrollbar" id="1679">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1679" />
+                        <param name="centerleft" value="ScrollSquareX" />
+                    </include>
+                </control>
+
+                <!-- ALBUMS COUNT -->
+
+                <include content="Hidden_List_Artist_Album_Count" condition="!Skin.HasSetting(disable.all.hidden.list)"><param name="id" value="50" /></include>
+            </control>
+
+            <include>View_50_Side_Square</include>
+        </control>
+    </include>
+
+    <!-- VIEW 50 - PICS - PROGRAMS -->
+
+    <include name="View_50_List_Square">
+        <description>List View (id=50)</description>
+        <control type="group">
+            <visible>Control.IsVisible(50)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <control type="list" id="50">
+                    <visible>$EXP[Exp_View_50]</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <top>View_List_Top</top>
+                    <height>PosterH</height>
+                    <left>ListSquareX</left>
+                    <right>View_List_Side</right>
+
+                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                    <onleft>1679</onleft>
+                    <onup>50</onup>
+                    <ondown>50</ondown>
+
+                    <pagecontrol>1679</pagecontrol>
+
+                    <viewtype label="535">list</viewtype>
+
+                    <itemlayout condition="Skin.HasSetting(disable.view.50.extended.list.pics)" width="ListSquareW" height="64">
+                        <include>layout_list_item_video</include>
+                    </itemlayout>
+                    <focusedlayout condition="Skin.HasSetting(disable.view.50.extended.list.pics)" width="ListSquareW" height="64">
+                        <include content="layout_list_focus_video"><param name="list_id" value="50" /></include>
+                    </focusedlayout>
+
+                    <itemlayout condition="!Skin.HasSetting(disable.view.50.extended.list.pics)" width="ListSquareW" height="91.4">
+                        <include>layout_list_item_video_info</include>
+                    </itemlayout>
+                    <focusedlayout condition="!Skin.HasSetting(disable.view.50.extended.list.pics)" width="ListSquareW" height="91.4">
+                        <include content="layout_list_focus_video_info"><param name="list_id" value="50" /></include>
+                    </focusedlayout>
+                </control>
+
+                <!-- SCROLLBAR -->
+
+                <control type="scrollbar" id="1679">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1679" />
+                        <param name="centerleft" value="ScrollSquareX" />
+                    </include>
+                </control>
+            </control>
+
+            <include>View_50_Side_Square</include>
+        </control>
+    </include>
+
+    <!-- VIEW 50 - PLAYLIST -->
+
+    <include name="Control_50_List_Square_Playlist_List">
+        <control type="list" id="50">
+            <include>Layout_50_List_Square_Playlist</include>
+        </control>
+    </include>
+
+    <include name="Control_50_List_Square_Playlist_Fixed_List">
+        <control type="fixedlist" id="50">
+            <include>Layout_50_List_Square_Playlist</include>
+        </control>
+    </include>
+
+    <include name="Layout_50_List_Square_Playlist">
+        <visible>$EXP[Exp_View_50]</visible>
+        <include>Animation_Scrolltime_Views_List</include>
+
+        <top>View_List_Top</top>
+        <height>PosterH</height>
+        <left>ListSquareX</left>
+        <right>View_List_Side</right>
+
+        <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+        <onleft>1658</onleft>
+        <onup>50</onup>
+        <ondown>50</ondown>
+
+        <pagecontrol>1658</pagecontrol>
+
+        <focusposition>1</focusposition>
+
+        <include content="Def_Focus_Position" condition="!Skin.HasSetting(5x.list.control.list)">
+            <param name="focusposition" value="1" />
+        </include>
+
+        <include content="Def_Movement" condition="!Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
+            <param name="movement" value="8" />
+        </include>
+        <include content="Def_Movement" condition="Skin.HasSetting(enable.view.5x.51x.extended.list) + !Skin.HasSetting(5x.list.control.list)">
+            <param name="movement" value="5" />
+        </include>
+
+        <viewtype label="535">list</viewtype>
+
+        <itemlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="64">
+            <include>layout_list_item_playlist</include>
+        </itemlayout>
+        <focusedlayout condition="!Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="64">
+            <include content="layout_list_focus_playlist"><param name="list_id" value="50" /></include>
+        </focusedlayout>
+        <itemlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="91.4">
+            <include>layout_list_item_playlist_info</include>
+        </itemlayout>
+        <focusedlayout condition="Skin.HasSetting(enable.view.5x.51x.extended.list)" width="ListSquareW" height="91.4">
+            <include content="layout_list_focus_playlist_info"><param name="list_id" value="50" /></include>
+        </focusedlayout>
+    </include>
+
+    <include name="View_50_List_Square_Playlist">
+        <description>List View (id=50)</description>
+        <control type="group">
+            <visible>Control.IsVisible(50)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <include condition="!Skin.HasSetting(5x.list.control.list)">Control_50_List_Square_Playlist_Fixed_List</include>
+                <include condition="Skin.HasSetting(5x.list.control.list)">Control_50_List_Square_Playlist_List</include>
+
+                <!-- SCROLLBAR -->
+
+                <control type="scrollbar" id="1658">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1658" />
+                        <param name="centerleft" value="ScrollSquareX" />
+                    </include>
+                </control>
+            </control>
+
+            <include>View_50_Side_Square</include>
+        </control>
+    </include>
+
+    <!-- VIEW 50 - ADDONS -->
+
+    <include name="View_50_List_Addons">
+        <description>List View (id=50)</description>
+        <control type="group">
+            <visible>Control.IsVisible(50)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <control type="panel" id="50">
+                    <visible>$EXP[Exp_View_50]</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <top>View_List_Top</top>
+                    <height>PosterH</height>
+                    <left>ListSquareX</left>
+                    <right>View_List_Side</right>
+
+                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                    <onleft>1679</onleft>
+                    <onup>50</onup>
+                    <ondown>50</ondown>
+
+                    <pagecontrol>1679</pagecontrol>
+
+                    <viewtype label="535">list</viewtype>
+
+                    <itemlayout condition="Skin.HasSetting(disable.view.50.extended.list.addons)" width="ListSquareW" height="64">
+                        <include>layout_list_item_addons</include>
+                    </itemlayout>
+                    <focusedlayout condition="Skin.HasSetting(disable.view.50.extended.list.addons)" width="ListSquareW" height="64">
+                        <include>layout_list_focus_addons</include>
+                    </focusedlayout>
+
+                    <itemlayout condition="!Skin.HasSetting(disable.view.50.extended.list.addons)" width="ListSquareW" height="91.4">
+                        <include>layout_list_item_addons_info</include>
+                    </itemlayout>
+                    <focusedlayout condition="!Skin.HasSetting(disable.view.50.extended.list.addons)" width="ListSquareW" height="91.4">
+                        <include>layout_list_focus_addons_info</include>
+                    </focusedlayout>
+                </control>
+
+                <!-- SCROLLBAR -->
+
+                <control type="scrollbar" id="1679">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1679" />
+                        <param name="centerleft" value="ScrollSquareX" />
+                    </include>
+                </control>
+            </control>
+
+            <include>View_50_Side_Square</include>
+        </control>
+    </include>
+
+    <!-- VIEW 550 - ADDONS -->
+
+    <include name="View_550_List_Square_Addons">
+        <description>List View (id=550)</description>
+        <control type="group">
+            <visible>Control.IsVisible(550)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <control type="panel" id="550">
+                    <visible>$EXP[Exp_View_550]</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <top>View_List_Top</top>
+                    <height>PosterH</height>
+                    <left>ListSquareX</left>
+                    <right>View_List_Side</right>
+
+                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                    <onleft>1681</onleft>
+                    <onup>550</onup>
+                    <ondown>550</ondown>
+
+                    <pagecontrol>1681</pagecontrol>
+
+                    <viewtype label="535">list</viewtype>
+
+                    <itemlayout condition="Skin.HasSetting(disable.view.50.extended.list.addons)" width="ListSquareW" height="64">
+                        <include>layout_list_item_addons</include>
+                    </itemlayout>
+                    <focusedlayout condition="Skin.HasSetting(disable.view.50.extended.list.addons)" width="ListSquareW" height="64">
+                        <include>layout_list_focus_addons</include>
+                    </focusedlayout>
+
+                    <itemlayout condition="!Skin.HasSetting(disable.view.50.extended.list.addons)" width="ListSquareW" height="91.4">
+                        <include>layout_list_item_addons_info</include>
+                    </itemlayout>
+                    <focusedlayout condition="!Skin.HasSetting(disable.view.50.extended.list.addons)" width="ListSquareW" height="91.4">
+                        <include>layout_list_focus_addons_info</include>
+                    </focusedlayout>
+                </control>
+
+                <!-- SCROLLBAR -->
+
+                <control type="scrollbar" id="1681">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1681" />
+                        <param name="centerleft" value="ScrollSquareX" />
+                    </include>
+                </control>
+            </control>
+
+            <include>View_50_Side_Square</include>
+        </control>
+    </include>
+
+    <!-- VIEW 51 - PICS -->
+
+    <include name="View_51_List_Squarepics">
+        <description>List View (id=51)</description>
+        <control type="group">
+            <visible>Control.IsVisible(51)</visible>
+            <include>Animation_Common_Global</include>
+
+            <include condition="!Skin.HasSetting(show.clock.date.weather.home.only) + !Skin.HasSetting(show.furniture.footer)">Furniture_Footer_Clock_Right</include>
+
+            <control type="group">
+                <control type="panel" id="51">
+                    <visible>$EXP[Exp_View_51]</visible>
+                    <include>Animation_Scrolltime_Views_List</include>
+
+                    <top>View_Poster_Top</top>
+                    <right>-47</right>
+                    <width>1220</width>
+                    <height>682</height>
+
+                    <include>Def_View_Focus_Dialog_Menu_On_Right</include>
+                    <onleft>1640</onleft>
+                    <onup>50</onup>
+                    <ondown>50</ondown>
+
+                    <preloaditems>2</preloaditems>
+                    <pagecontrol>1640</pagecontrol>
+
+                    <viewtype label="Squarepics">list</viewtype>
+
+                    <itemlayout height="341" width="372" condition="!Skin.HasSetting(pics.layout.fanart)">
+                        <include>50_51_item_layout_pics</include>
+                    </itemlayout>
+                    <itemlayout height="341" width="557" condition="Skin.HasSetting(pics.layout.fanart)">
+                        <include>50_51_item_layout_pics</include>
+                    </itemlayout>
+                    <focusedlayout height="341" width="372" condition="!Skin.HasSetting(pics.layout.fanart)">
+                        <include>50_51_focus_layout_pics</include>
+                    </focusedlayout>
+                    <focusedlayout height="341" width="557" condition="Skin.HasSetting(pics.layout.fanart)">
+                        <include>50_51_focus_layout_pics</include>
+                    </focusedlayout>
+                </control>
+
+                <!-- SCROLLBAR -->
+
+                <control type="scrollbar" id="1640">
+                    <include content="Object_Scrollbar_Views_Vertical">
+                        <param name="scrollid" value="1640" />
+                        <param name="centerleft" value="ScrollSquareX" />
+                    </include>
+                </control>
+            </control>
+
+            <include>View_50_Side_Square</include>
+        </control>
+    </include>
+
+    <!-- =========================================== -->
+    <!--                   LAYOUTS                   -->
+    <!-- =========================================== -->
+
+    <!-- LAYOUT - 550 - FAVOURITES / VIDEO / PLUGINS - 50 57 516 524 - VIDEO  -->
+
+    <include name="layout_list_item_video">
+
+        <!-- IS PLAYING -->
+
+        <include>Def_View_List_Item_IsPlaying</include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon">
+            <param name="colordiffuse_icon_black" value="Dark1" />
+        </include>
+
+        <!-- YEAR -->
+
+        <control type="label">
+            <left>90</left>
+            <width>200</width>
+            <font>SmallNavi</font>
+            <aligny>center</aligny>
+            <height>64</height>
+            <label>$VAR[Label_View_List_Year]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <visible>Container.Content(movies) + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.Year)]">Conditional</animation>
+            <left>180</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <visible>!ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- LABEL VERSION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="-75" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
+            <left>180</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$INFO[ListItem.Title]$INFO[ListItem.VideoVersionName,  •  ,]</label>
+            <visible>ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="[Container.Content(Seasons) + !Control.IsVisible(5161)] | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="[!Container.Content(Seasons) | [Container.Content(Seasons) + Control.IsVisible(5161)]] + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>!String.IsEmpty(ListItem.DBType) + !Container.Content() + !String.IsEqual(ListItem.DBType,set)</visible>
+            <visible>!$EXP[IsVideoVersionsList]</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="[Container.Content(Seasons) + !Control.IsVisible(5161)] | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="[!Container.Content(Seasons) | [Container.Content(Seasons) + Control.IsVisible(5161)]] + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | Container.Content(sets)</visible>
+            <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
+            <visible>!$EXP[IsVideoVersionsList] + !Skin.HasSetting(hide.markers)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginJLOM]</visible>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | Container.Content(sets) | [Container.Content(Seasons) + Control.IsVisible(5161)]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | [Container.Content(Seasons) + Control.IsVisible(5161)]</visible>
+            <visible>!Skin.HasSetting(hide.video.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!$EXP[IsVideoVersionsList]</visible>
+        </control>
+
+        <!-- ACTOR / DIRECTOR NUM ITEM -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$INFO[ListItem.Label2]</label>
+            <visible>!Container.SortMethod(1)</visible>
+            <visible>Container.Content(actors) | Container.Content(directors)</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_video">
+
+        <!-- IS PLAYING -->
+
+        <include content="Def_View_List_Focus_IsPlaying"><param name="list_id" value="$PARAM[list_id]" /></include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon">
+            <param name="colordiffuse_icon_black" value="Selected" />
+        </include>
+
+        <!-- YEAR -->
+
+        <control type="label">
+            <left>90</left>
+            <width>200</width>
+            <font>SmallNavi</font>
+            <aligny>center</aligny>
+            <height>64</height>
+            <label>$VAR[Label_View_List_Year]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>Container.Content(movies) + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="-100" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.Year)]">Conditional</animation>
+            <left>180</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <visible>!ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- LABEL VERSION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="-75" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
+            <left>180</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Title]$INFO[ListItem.VideoVersionName,  •  ,]</label>
+            <visible>ListItem.HasVideoVersions + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="[Container.Content(Seasons) + !Control.IsVisible(5161)] | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="[!Container.Content(Seasons) | [Container.Content(Seasons) + Control.IsVisible(5161)]] + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>!String.IsEmpty(ListItem.DBType) + !Container.Content() + !String.IsEqual(ListItem.DBType,set)</visible>
+            <visible>!$EXP[IsVideoVersionsList]</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="[Container.Content(Seasons) + !Control.IsVisible(5161)] | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="[!Container.Content(Seasons) | [Container.Content(Seasons) + Control.IsVisible(5161)]] + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched_Focus]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | Container.Content(sets)</visible>
+            <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
+            <visible>!$EXP[IsVideoVersionsList] + !Skin.HasSetting(hide.markers)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginJLOM]</visible>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | Container.Content(sets) | [Container.Content(Seasons) + Control.IsVisible(5161)]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | [Container.Content(Seasons) + Control.IsVisible(5161)]</visible>
+            <visible>!Skin.HasSetting(hide.video.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!$EXP[IsVideoVersionsList]</visible>
+        </control>
+
+        <!-- ACTOR / DIRECTOR NUM ITEM -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Label2]</label>
+            <visible>!Container.SortMethod(1)</visible>
+            <visible>Container.Content(actors) | Container.Content(directors)</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_item_video_info">
+
+        <!-- IS PLAYING -->
+
+        <include>Def_View_List_Item_IsPlaying</include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon_Info">
+            <param name="colordiffuse_icon_black" value="Dark1" />
+            <param name="colordiffuse_background_icon_black" value="Black12" />
+        </include>
+
+        <!-- YEAR -->
+
+        <control type="label">
+            <top>-5</top>
+            <left>120</left>
+            <width>200</width>
+            <font>SmallNavi</font>
+            <aligny>center</aligny>
+            <height>64</height>
+            <label>$VAR[Label_View_List_Year]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <visible>Container.Content(movies) + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.Year)]">Conditional</animation>
+            <top>-5</top>
+            <left>210</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Label]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <visible>!ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows)</visible>
+        </control>
+        <control type="label">
+            <top>-5</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Label]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <visible>Container.Content(episodes) | Container.Content(tvshows)</visible>
+        </control>
+
+        <!-- LABEL VERSION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
+            <top>-5</top>
+            <left>210</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Title]$INFO[ListItem.VideoVersionName,  •  ,]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <visible>ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows) + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="[Container.Content(Seasons) + !Control.IsVisible(5161)] | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="[!Container.Content(Seasons) | [Container.Content(Seasons) + Control.IsVisible(5161)]] + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <top>-5</top>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>!String.IsEmpty(ListItem.DBType) + !Container.Content() + !String.IsEqual(ListItem.DBType,set)</visible>
+            <visible>!$EXP[IsVideoVersionsList]</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="[Container.Content(Seasons) + !Control.IsVisible(5161)] | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="[!Container.Content(Seasons) | [Container.Content(Seasons) + Control.IsVisible(5161)]] + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <top>-5</top>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | Container.Content(sets)</visible>
+            <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
+            <visible>!$EXP[IsVideoVersionsList] + !Skin.HasSetting(hide.markers)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginJLOM]</visible>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | Container.Content(sets) | [Container.Content(Seasons) + Control.IsVisible(5161)]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | [Container.Content(Seasons) + Control.IsVisible(5161)]</visible>
+            <visible>!Skin.HasSetting(hide.video.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!$EXP[IsVideoVersionsList]</visible>
+        </control>
+
+        <!-- ACTOR / DIRECTOR NUM ITEM -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$INFO[ListItem.Label2]</label>
+            <visible>Container.Content(actors) | Container.Content(directors)</visible>
+        </control>
+
+        <!-- SECOND LINE - LABEL -->
+
+        <control type="label">
+            <visible>[!Skin.HasSetting(list.show.filename) | [Skin.HasSetting(list.show.filename) + ![Container.Content(movies) | Container.Content(tvshows)]]]</visible>
+            <top>30</top>
+            <left>120</left>
+            <width>800</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$VAR[Label_List_Extended_Video]</label>
+            <textcolor>Dark2</textcolor>
+            <selectedcolor>Dark2</selectedcolor>
+        </control>
+
+        <!-- SECOND LINE - FILE PATH -->
+
+        <control type="label">
+            <visible>Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder</visible>
+            <visible>Container.Content(movies) | Container.Content(tvshows)</visible>
+            <top>30</top>
+            <left>120</left>
+            <width>800</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Dark2</textcolor>
+            <selectedcolor>Dark2</selectedcolor>
+            <label>$VAR[Label_View_List_FolderPath_File]</label>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_video_info">
+
+        <!-- IS PLAYING -->
+
+        <include content="Def_View_List_Focus_IsPlaying"><param name="list_id" value="$PARAM[list_id]" /></include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon_Info">
+            <param name="colordiffuse_icon_black" value="Selected" />
+            <param name="colordiffuse_background_icon_black" value="Dark3" />
+        </include>
+
+        <!-- YEAR -->
+
+        <control type="label">
+            <top>-5</top>
+            <left>120</left>
+            <width>200</width>
+            <font>SmallNavi</font>
+            <aligny>center</aligny>
+            <height>64</height>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Year]</label>
+            <visible>Container.Content(movies) + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.Year)]">Conditional</animation>
+            <top>-5</top>
+            <left>210</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <visible>!ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows)</visible>
+        </control>
+        <control type="label">
+            <top>-5</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <visible>Container.Content(episodes) | Container.Content(tvshows)</visible>
+        </control>
+
+        <!-- LABEL VERSION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="-90" time="0" condition="!Container.Content(movies) | [Container.Content(movies) + String.IsEmpty(ListItem.DBType)]">Conditional</animation>
+            <top>-5</top>
+            <left>210</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Title]$INFO[ListItem.VideoVersionName,  •  ,]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.HasVideoVersions + !Container.Content(episodes) + !Container.Content(tvshows) + !ListItem.IsParentFolder</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <top>-5</top>
+            <animation effect="slide" start="0" end="60" time="0" condition="[Container.Content(Seasons) + !Control.IsVisible(5161)] | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="[!Container.Content(Seasons) | [Container.Content(Seasons) + Control.IsVisible(5161)]] + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>!String.IsEmpty(ListItem.DBType) + !Container.Content() + !String.IsEqual(ListItem.DBType,set)</visible>
+            <visible>!$EXP[IsVideoVersionsList]</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="[Container.Content(Seasons) + !Control.IsVisible(5161)] | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="[!Container.Content(Seasons) | [Container.Content(Seasons) + Control.IsVisible(5161)]] + Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.video.ratings)">Conditional</animation>
+            <top>-5</top>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched_Focus]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | Container.Content(sets)</visible>
+            <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
+            <visible>!$EXP[IsVideoVersionsList] + !Skin.HasSetting(hide.markers)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>!$EXP[IsAnPlugin] | $EXP[IsTMDbHelper] | $EXP[IsPluginJLOM]</visible>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | Container.Content(sets) | [Container.Content(Seasons) + Control.IsVisible(5161)]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | [Container.Content(Seasons) + Control.IsVisible(5161)]</visible>
+            <visible>!Skin.HasSetting(hide.video.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!$EXP[IsVideoVersionsList]</visible>
+        </control>
+
+        <!-- ACTOR / DIRECTOR NUM ITEM -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$INFO[ListItem.Label2]</label>
+            <visible>!Container.SortMethod(1)</visible>
+            <visible>Container.Content(actors) | Container.Content(directors)</visible>
+        </control>
+
+        <!-- SECOND LINE - LABEL -->
+
+        <control type="label">
+            <visible>!Skin.HasSetting(list.show.filename)</visible>
+            <top>30</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$VAR[Label_List_Extended_Video]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+        </control>
+
+        <!-- SECOND LINE - FILE PATH -->
+
+        <control type="label">
+            <visible>Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder</visible>
+            <visible>Container.Content(movies) | Container.Content(tvshows)</visible>
+            <top>30</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_FolderPath_File]</label>
+        </control>
+    </include>
+
+    <!-- LAYOUT - 50 57 524 - MUSIC -->
+
+    <include name="layout_list_item_music">
+
+        <!-- IS PLAYING -->
+
+        <include>Def_View_List_Item_IsPlaying</include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon">
+            <param name="colordiffuse_icon_black" value="Dark1" />
+        </include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <left>100</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[label_music_list]</label>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- IS PLAYING -->
+
+        <control type="image">
+            <left>100</left>
+            <centertop>34</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_play.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>!Player.Paused</visible>
+        </control>
+        <control type="image">
+            <left>100</left>
+            <centertop>34</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_pause.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>Player.Paused</visible>
+        </control>
+        <control type="label">
+            <left>145</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list_isplaying]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
+            <visible>Skin.HasSetting(show.markers.watched.music)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!Skin.HasSetting(hide.music.ratings)</visible>
+            <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>!Skin.HasSetting(hide.music.ratings)</visible>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- "#38018" -->
+        <!-- "MY RATING" -->
+
+        <control type="image">
+            <right>97</right>
+            <centertop>33</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="$VAR[Color_Rating_User_Star]">flags/star/my_rating/star10.png</texture>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+        </control>
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_music">
+
+        <!-- IS PLAYING -->
+
+        <include content="Def_View_List_Focus_IsPlaying"><param name="list_id" value="$PARAM[list_id]" /></include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon">
+            <param name="colordiffuse_icon_black" value="Selected" />
+        </include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <left>100</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[label_music_list]</label>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- IS PLAYING -->
+
+        <control type="image">
+            <left>100</left>
+            <centertop>34</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_play.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>!Player.Paused</visible>
+        </control>
+        <control type="image">
+            <left>100</left>
+            <centertop>34</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_pause.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>Player.Paused</visible>
+        </control>
+        <control type="label">
+            <left>145</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list_isplaying]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched_Focus]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
+            <visible>Skin.HasSetting(show.markers.watched.music)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!Skin.HasSetting(hide.music.ratings)</visible>
+            <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+        </control>
+
+        <!-- "#38018" -->
+        <!-- "MY RATING" -->
+
+        <control type="image">
+            <right>97</right>
+            <centertop>33</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">flags/star/my_rating/star10.png</texture>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+        </control>
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_item_music_info">
+
+        <!-- IS PLAYING -->
+
+        <include>Def_View_List_Item_IsPlaying</include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon_Info">
+            <param name="colordiffuse_icon_black" value="Dark1" />
+            <param name="colordiffuse_background_icon_black" value="Black12" />
+        </include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <top>-5</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- IS PLAYING -->
+
+        <control type="image">
+            <left>120</left>
+            <centertop>29</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_play.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>!Player.Paused</visible>
+        </control>
+        <control type="image">
+            <left>120</left>
+            <centertop>29</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_pause.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>Player.Paused</visible>
+        </control>
+        <control type="label">
+            <top>-5</top>
+            <left>165</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list_isplaying]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <top>-5</top>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <top>-5</top>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <top>-5</top>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
+            <visible>Skin.HasSetting(show.markers.watched.music)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!Skin.HasSetting(hide.music.ratings)</visible>
+            <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>!Skin.HasSetting(hide.music.ratings)</visible>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- "#38018" -->
+        <!-- "MY RATING" -->
+
+        <control type="image">
+            <right>97</right>
+            <centertop>29</centertop>
+            <width>30</width>
+            <height>30</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="$VAR[Color_Rating_User_Star]">flags/star/my_rating/star10.png</texture>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+        </control>
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- SECOND LINE - LABEL -->
+
+        <control type="label">
+            <top>28</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$VAR[Label_List_Extended_Music]</label>
+            <textcolor>Dark2</textcolor>
+            <selectedcolor>Dark2</selectedcolor>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <top>28</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$VAR[Label_List_Extended_Music]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_music_info">
+
+        <!-- IS PLAYING -->
+
+        <include content="Def_View_List_Focus_IsPlaying"><param name="list_id" value="$PARAM[list_id]" /></include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon_Info">
+            <param name="colordiffuse_icon_black" value="Selected" />
+            <param name="colordiffuse_background_icon_black" value="Dark3" />
+        </include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <top>-5</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- IS PLAYING -->
+
+        <control type="image">
+            <left>120</left>
+            <centertop>29</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_play.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>!Player.Paused</visible>
+        </control>
+        <control type="image">
+            <left>120</left>
+            <centertop>29</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_pause.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>Player.Paused</visible>
+        </control>
+        <control type="label">
+            <top>-5</top>
+            <left>165</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list_isplaying]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <top>-5</top>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="!Skin.HasSetting(show.markers.watched.music)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.music.ratings) + !String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <animation effect="slide" start="0" end="-66" time="0" condition="String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">Conditional</animation>
+            <top>-5</top>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched_Focus]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.DBType)</visible>
+            <visible>Skin.HasSetting(show.markers.watched.music)</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
+            <visible>!String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+            <visible>!Skin.HasSetting(hide.music.ratings)</visible>
+        </control>
+
+        <!-- "#38018" -->
+        <!-- "MY RATING" -->
+
+        <control type="image">
+            <right>97</right>
+            <centertop>29</centertop>
+            <width>30</width>
+            <height>30</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">flags/star/my_rating/star10.png</texture>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+        </control>
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label fallback=" -- ">$INFO[ListItem.UserRating,,.0]</label>
+            <visible>!ListItem.IsParentFolder + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])</visible>
+        </control>
+
+        <!-- SECOND LINE - LABEL -->
+
+        <control type="label">
+            <top>28</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>Small24</font>
+            <label>$VAR[Label_List_Extended_Music]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+        </control>
+    </include>
+
+    <!-- LAYOUT - 50 57 524 - PLAYLIST -->
+
+    <include name="layout_list_item_playlist">
+
+        <!-- IS PLAYING -->
+
+        <include>Def_View_List_Item_IsPlaying</include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon">
+            <param name="visible_icon" value="true" />
+            <param name="visible_icon_black" value="false" />
+        </include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <left>90</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- Isplaying -->
+
+        <control type="image">
+            <left>90</left>
+            <centertop>34</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_play.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>!Player.Paused</visible>
+        </control>
+        <control type="image">
+            <left>90</left>
+            <centertop>34</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_pause.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>Player.Paused</visible>
+        </control>
+        <control type="label">
+            <left>135</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list_isplaying]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | $EXP[IsAnVideoInPlaylist]</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | $EXP[IsAnVideoInPlaylist]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!Skin.HasSetting(hide.playlist.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | $EXP[IsAnVideoInPlaylist]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!Skin.HasSetting(hide.playlist.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_playlist">
+
+        <!-- IS PLAYING -->
+
+        <include content="Def_View_List_Focus_IsPlaying"><param name="list_id" value="$PARAM[list_id]" /></include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon">
+            <param name="visible_icon" value="true" />
+            <param name="visible_icon_black" value="false" />
+        </include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <left>90</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- IsPlaying -->
+
+        <control type="image">
+            <left>90</left>
+            <centertop>34</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_play.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>!Player.Paused</visible>
+        </control>
+        <control type="image">
+            <left>90</left>
+            <centertop>34</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_pause.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>Player.Paused</visible>
+        </control>
+        <control type="label">
+            <left>135</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list_isplaying]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched_Focus]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | $EXP[IsAnVideoInPlaylist]</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | $EXP[IsAnVideoInPlaylist]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!Skin.HasSetting(hide.playlist.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_item_playlist_info">
+
+        <!-- IS PLAYING -->
+
+        <include>Def_View_List_Item_IsPlaying</include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon_Info">
+            <param name="visible_icon" value="true" />
+            <param name="visible_icon_black" value="false" />
+        </include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <left>120</left>
+            <top>-5</top>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- IS PLAYING -->
+
+        <control type="image">
+            <left>120</left>
+            <centertop>29</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_play.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>!Player.Paused</visible>
+        </control>
+        <control type="image">
+            <left>120</left>
+            <centertop>29</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_pause.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>Player.Paused</visible>
+        </control>
+        <control type="label">
+            <left>165</left>
+            <top>-5</top>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list_isplaying]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <top>-5</top>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <top>-5</top>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <top>-5</top>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | $EXP[IsAnVideoInPlaylist]</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | $EXP[IsAnVideoInPlaylist]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!Skin.HasSetting(hide.playlist.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | $EXP[IsAnVideoInPlaylist]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!Skin.HasSetting(hide.playlist.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- SECOND LINE - LABEL -->
+
+        <control type="label">
+            <visible>!Skin.HasSetting(list.show.filename)</visible>
+            <top>28</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Dark2</textcolor>
+            <selectedcolor>Dark2</selectedcolor>
+            <label>$VAR[Label_List_Extended_Playlist]</label>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <visible>!Skin.HasSetting(list.show.filename)</visible>
+            <top>28</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_List_Extended_Playlist]</label>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- SECOND LINE - FILE PATH -->
+
+        <control type="label">
+            <visible>Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder</visible>
+            <top>28</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Dark2</textcolor>
+            <selectedcolor>Dark2</selectedcolor>
+            <label>$VAR[Label_View_List_FolderPath_File]</label>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+        <control type="label">
+            <visible>Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder</visible>
+            <top>28</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_FolderPath_File]</label>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_playlist_info">
+
+        <!-- IS PLAYING -->
+
+        <include content="Def_View_List_Focus_IsPlaying"><param name="list_id" value="$PARAM[list_id]" /></include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon_Info">
+            <param name="visible_icon" value="true" />
+            <param name="visible_icon_black" value="false" />
+        </include>
+
+        <!-- LABEL -->
+
+        <control type="label">
+            <left>120</left>
+            <top>-5</top>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>!ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- IS PLAYING -->
+
+        <control type="image">
+            <left>120</left>
+            <centertop>29</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_play.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>!Player.Paused</visible>
+        </control>
+        <control type="image">
+            <left>120</left>
+            <centertop>29</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">indicator/playlist_pause.png</texture>
+            <visible>ListItem.IsPlaying</visible>
+            <visible>Player.Paused</visible>
+        </control>
+        <control type="label">
+            <left>165</left>
+            <top>-5</top>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$VAR[label_music_list_isplaying]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <visible>ListItem.IsPlaying</visible>
+        </control>
+
+        <!-- DURATION -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <top>-5</top>
+            <right>154</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Right]</label>
+        </control>
+
+        <!-- WATCHED STATUS -->
+
+        <control type="label">
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="$EXP[IsAnPlugin] + !$EXP[IsTMDbHelper] + !$EXP[IsPluginJLOM] + !Skin.HasSetting(hide.playlist.ratings)">Conditional</animation>
+            <top>-5</top>
+            <align>right</align>
+            <aligny>center</aligny>
+            <width>64</width>
+            <centerright>130</centerright>
+            <height>68</height>
+            <font>SymbolList</font>
+            <label>$VAR[Label_List_Watched_Focus]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | Container.Content(videoversions) | $EXP[IsAnVideoInPlaylist]</visible>
+        </control>
+
+        <!-- RATING -->
+
+        <control type="label">
+            <top>-5</top>
+            <right>30</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_Rating]</label>
+            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(videos) | $EXP[IsAnVideoInPlaylist]</visible>
+            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!Skin.HasSetting(hide.playlist.ratings) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+        </control>
+
+        <!-- SECOND LINE - LABEL -->
+
+        <control type="label">
+            <visible>!Skin.HasSetting(list.show.filename)</visible>
+            <top>28</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_List_Extended_Playlist]</label>
+        </control>
+
+        <!-- SECOND LINE - FILE PATH -->
+
+        <control type="label">
+            <visible>Skin.HasSetting(list.show.filename) + !ListItem.IsParentFolder</visible>
+            <top>28</top>
+            <left>120</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>left</align>
+            <font>Small24</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_View_List_FolderPath_File]</label>
+        </control>
+    </include>
+
+    <!-- LAYOUT - 50 - ADDONS -->
+
+    <include name="layout_list_item_addons">
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon">
+            <param name="colordiffuse_icon_black" value="Dark1" />
+            <param name="visible_icon" value="!$EXP[Icon_Container_Addons]" />
+            <param name="visible_icon_black" value="$EXP[Icon_Container_Addons]" />
+        </include>
+
+        <!-- LABEL ADDON -->
+
+        <control type="label">
+            <left>90</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Label]</label>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+        </control>
+
+        <!-- ADDONS_INFO -->
+
+        <control type="label">
+            <right>140</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Dark1</textcolor>
+            <selectedcolor>Dark1</selectedcolor>
+            <label>$VAR[Label_Addons_Info]</label>
+            <animation effect="slide" start="0" end="115" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
+            <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+        </control>
+
+        <!-- ORIGIN -->
+
+        <control type="image">
+            <right>80</right>
+            <centertop>33</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Dark1">$VAR[Image_Addons_Origin_Icon]</texture>
+            <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+            <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+        </control>
+
+        <!-- STATUS -->
+
+        <control type="image">
+            <right>25</right>
+            <centertop>33</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="FF00D273">$VAR[Image_Addons_Status_Icon]</texture>
+            <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+            <visible>ListItem.Property(addon.isenabled)</visible>
+        </control>
+        <control type="image">
+            <right>25</right>
+            <centertop>33</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="FFFF0000">$VAR[Image_Addons_Status_Icon_Disable]</texture>
+            <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_addons">
+
+        <!-- ITEM FOCUS -->
+
+        <include>Def_Layout_Item_Focus</include>
+
+        <!-- ICON -->
+
+        <include content="Def_View_List_Icon">
+            <param name="colordiffuse_icon_black" value="Selected" />
+            <param name="visible_icon" value="!$EXP[Icon_Container_Addons]" />
+            <param name="visible_icon_black" value="$EXP[Icon_Container_Addons]" />
+        </include>
+
+        <!-- LABEL ADDON -->
+
+        <control type="label">
+            <left>90</left>
+            <width max="700">auto</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <font>InfoNetflix</font>
+            <label>$INFO[ListItem.Label]</label>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+        </control>
+
+        <!-- ADDONS_INFO -->
+
+        <control type="label">
+            <right>140</right>
+            <width>500</width>
+            <aligny>center</aligny>
+            <height>64</height>
+            <align>right</align>
+            <font>SmallNavi</font>
+            <textcolor>Selected</textcolor>
+            <selectedcolor>Selected</selectedcolor>
+            <label>$VAR[Label_Addons_Info]</label>
+            <animation effect="slide" start="0" end="115" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
+            <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+        </control>
+
+        <!-- ORIGIN -->
+
+        <control type="image">
+            <right>80</right>
+            <centertop>33</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">$VAR[Image_Addons_Origin_Icon]</texture>
+            <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+            <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+        </control>
+
+        <!-- STATUS -->
+
+        <control type="image">
+            <right>25</right>
+            <centertop>33</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">$VAR[Image_Addons_Status_Icon]</texture>
+            <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+            <visible>ListItem.Property(addon.isenabled)</visible>
+        </control>
+        <control type="image">
+            <right>25</right>
+            <centertop>33</centertop>
+            <width>32</width>
+            <height>32</height>
+            <aspectratio aligny="top">keep</aspectratio>
+            <texture colordiffuse="Selected">$VAR[Image_Addons_Status_Icon_Disable]</texture>
+            <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+        </control>
+    </include>
+
+    <include name="layout_list_item_addons_info">
+        <param name="textcolor_line_1" value="$PARAM[textcolor_line_1]" default="Dark1" />
+        <param name="textcolor_line_2" value="$PARAM[textcolor_line_2]" default="Dark2" />
+        <param name="colordiffuse_icon_black" value="$PARAM[colordiffuse_icon_black]" default="Dark1" />
+
+        <definition>
+            <control type="group">
+                <include content="Def_Top" condition="Window.IsVisible(AddonBrowser.xml)">
+                   <param name="top" value="3.3" />
+                </include>
+                <include content="Def_Left" condition="Window.IsVisible(AddonBrowser.xml)">
+                   <param name="left" value="3.3" />
+                </include>
+                <top>0</top>
+                <left>0</left>
+
+                <!-- ICON -->
+
+                <include content="Def_View_List_Icon_Info">
+                    <param name="colordiffuse_icon_black" value="$PARAM[colordiffuse_icon_black]" />
+                    <param name="colordiffuse_background_icon_black" value="Black12" />
+                    <param name="visible_icon" value="!$EXP[Icon_Container_Addons]" />
+                    <param name="visible_icon_black" value="$EXP[Icon_Container_Addons]" />
+                </include>
+
+                <!-- LABEL ADDON -->
+
+                <control type="label">
+                    <left>120</left>
+                    <top>-5</top>
+                    <width max="700">auto</width>
+                    <aligny>center</aligny>
+                    <height>64</height>
+                    <font>InfoNetflix</font>
+                    <label>$INFO[ListItem.Label]</label>
+                    <textcolor>$PARAM[textcolor_line_1]</textcolor>
+                    <selectedcolor>$PARAM[textcolor_line_1]</selectedcolor>
+                </control>
+
+                <!-- VERSION -->
+
+                <control type="label">
+                    <right>195</right>
+                    <top>-5</top>
+                    <width>500</width>
+                    <aligny>center</aligny>
+                    <height>64</height>
+                    <align>right</align>
+                    <font>SmallNavi</font>
+                    <textcolor>$PARAM[textcolor_line_1]</textcolor>
+                    <selectedcolor>$PARAM[textcolor_line_1]</selectedcolor>
+                    <label>$VAR[Label_Addons_Info]</label>
+                    <animation effect="slide" start="0" end="150" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
+                    <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                </control>
+
+                <!-- AUTO UPDATEABLE -->
+
+                <control type="image">
+                    <right>135</right>
+                    <centertop>33</centertop>
+                    <width>32</width>
+                    <height>32</height>
+                    <aspectratio aligny="top">keep</aspectratio>
+                    <texture colordiffuse="$PARAM[colordiffuse_icon_black]">$VAR[Image_Addons_AutoUpdateable_Icon]</texture>
+                    <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                    <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+                    <visible>ListItem.IsAutoUpdateable</visible>
+                </control>
+                <control type="image">
+                    <right>135</right>
+                    <centertop>33</centertop>
+                    <width>32</width>
+                    <height>32</height>
+                    <aspectratio aligny="top">keep</aspectratio>
+                    <texture colordiffuse="$VAR[Color_Indicator_Version]">$VAR[Image_Addons_AutoUpdateable_Icon]</texture>
+                    <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                    <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+                    <visible>!ListItem.IsAutoUpdateable</visible>
+                </control>
+
+                <!-- ORIGIN -->
+
+                <control type="image">
+                    <right>80</right>
+                    <centertop>33</centertop>
+                    <width>32</width>
+                    <height>32</height>
+                    <aspectratio aligny="top">keep</aspectratio>
+                    <texture colordiffuse="$PARAM[colordiffuse_icon_black]">$VAR[Image_Addons_Origin_Icon]</texture>
+                    <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                    <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+                </control>
+
+                <!-- STATUS -->
+
+                <control type="image">
+                    <right>25</right>
+                    <centertop>33</centertop>
+                    <width>32</width>
+                    <height>32</height>
+                    <aspectratio aligny="top">keep</aspectratio>
+                    <texture colordiffuse="FF00D273">$VAR[Image_Addons_Status_Icon]</texture>
+                    <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+                    <visible>ListItem.Property(addon.isenabled)</visible>
+                </control>
+                <control type="image">
+                    <right>25</right>
+                    <centertop>33</centertop>
+                    <width>32</width>
+                    <height>32</height>
+                    <aspectratio aligny="top">keep</aspectratio>
+                    <texture colordiffuse="FFFF0000">$VAR[Image_Addons_Status_Icon_Disable]</texture>
+                    <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+                </control>
+
+                <!-- SECOND LINE - LEFT - TYPE / ORIGIN -->
+
+                <control type="label">
+                    <top>28</top>
+                    <left>120</left>
+                    <width max="700">auto</width>
+                    <aligny>center</aligny>
+                    <height>64</height>
+                    <align>left</align>
+                    <font>Small24</font>
+                    <textcolor>Dark2</textcolor>
+                    <selectedcolor>Dark2</selectedcolor>
+                    <label>$VAR[label_addon_list]</label>
+                </control>
+
+                <!-- SECOND LINE - RIGHT - TYPE / ORIGIN -->
+
+                <control type="label">
+                    <right>195</right>
+                    <top>28</top>
+                    <width>500</width>
+                    <aligny>center</aligny>
+                    <height>64</height>
+                    <align>right</align>
+                    <font>Small24</font>
+                    <textcolor>$PARAM[textcolor_line_1]</textcolor>
+                    <selectedcolor>$PARAM[textcolor_line_1]</selectedcolor>
+                    <label>$VAR[Label_Addons_Info_2]</label>
+                    <animation effect="slide" start="0" end="150" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
+                    <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="layout_list_focus_addons_info">
+
+        <!-- ITEM FOCUS -->
+
+        <include>Def_Layout_Item_Focus</include>
+
+        <control type="group">
+            <include content="Def_Top" condition="Window.IsVisible(AddonBrowser.xml)">
+               <param name="top" value="3.3" />
+            </include>
+            <include content="Def_Left" condition="Window.IsVisible(AddonBrowser.xml)">
+               <param name="left" value="3.3" />
+            </include>
+            <top>0</top>
+            <left>0</left>
+
+            <!-- ICON -->
+
+            <include content="Def_View_List_Icon_Info">
+                <param name="colordiffuse_icon_black" value="Selected" />
+                <param name="colordiffuse_background_icon_black" value="Dark3" />
+                <param name="visible_icon" value="!$EXP[Icon_Container_Addons]" />
+                <param name="visible_icon_black" value="$EXP[Icon_Container_Addons]" />
+            </include>
+
+            <!-- LABEL ADDON -->
+
+            <control type="label">
+                <left>120</left>
+                <top>-5</top>
+                <width max="700">auto</width>
+                <aligny>center</aligny>
+                <height>64</height>
+                <font>InfoNetflix</font>
+                <label>$INFO[ListItem.Label]</label>
+                <textcolor>Selected</textcolor>
+                <selectedcolor>Selected</selectedcolor>
+            </control>
+
+            <!-- VERSION -->
+
+            <control type="label">
+                <right>195</right>
+                <top>-5</top>
+                <width>500</width>
+                <aligny>center</aligny>
+                <height>64</height>
+                <align>right</align>
+                <font>SmallNavi</font>
+                <textcolor>Selected</textcolor>
+                <selectedcolor>Selected</selectedcolor>
+                <label>$VAR[Label_Addons_Info]</label>
+                <animation effect="slide" start="0" end="150" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
+                <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+            </control>
+
+            <!-- AUTO UPDATEABLE -->
+
+            <control type="image">
+                <right>135</right>
+                <centertop>33</centertop>
+                <width>32</width>
+                <height>32</height>
+                <aspectratio aligny="top">keep</aspectratio>
+                <texture colordiffuse="Selected">$VAR[Image_Addons_AutoUpdateable_Icon]</texture>
+                <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+            </control>
+
+            <!-- ORIGIN -->
+
+            <control type="image">
+                <right>80</right>
+                <centertop>33</centertop>
+                <width>32</width>
+                <height>32</height>
+                <aspectratio aligny="top">keep</aspectratio>
+                <texture colordiffuse="Selected">$VAR[Image_Addons_Origin_Icon]</texture>
+                <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+                <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+            </control>
+
+            <!-- STATUS -->
+
+            <control type="image">
+                <right>25</right>
+                <centertop>33</centertop>
+                <width>32</width>
+                <height>32</height>
+                <aspectratio aligny="top">keep</aspectratio>
+                <texture colordiffuse="Selected">$VAR[Image_Addons_Status_Icon]</texture>
+                <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+                <visible>ListItem.Property(addon.isenabled)</visible>
+            </control>
+            <control type="image">
+                <right>25</right>
+                <centertop>33</centertop>
+                <width>32</width>
+                <height>32</height>
+                <aspectratio aligny="top">keep</aspectratio>
+                <texture colordiffuse="Selected">$VAR[Image_Addons_Status_Icon_Disable]</texture>
+                <visible>!ListItem.IsFolder + Container.Content(addons)</visible>
+            </control>
+
+            <!-- SECOND LINE - LEFT - TYPE / ORIGIN -->
+
+            <control type="label">
+                <top>28</top>
+                <left>120</left>
+                <width max="700">auto</width>
+                <aligny>center</aligny>
+                <height>64</height>
+                <align>left</align>
+                <font>Small24</font>
+                <textcolor>Selected</textcolor>
+                <selectedcolor>Selected</selectedcolor>
+                <label>$VAR[label_addon_list]</label>
+            </control>
+
+            <!-- SECOND LINE - RIGHT - TYPE / ORIGIN -->
+
+            <control type="label">
+                <right>195</right>
+                <top>28</top>
+                <width>500</width>
+                <aligny>center</aligny>
+                <height>64</height>
+                <align>right</align>
+                <font>Small24</font>
+                <textcolor>Selected</textcolor>
+                <selectedcolor>Selected</selectedcolor>
+                <label>$VAR[Label_Addons_Info_2]</label>
+                <animation effect="slide" start="0" end="150" time="0" condition="String.Contains(Container.FolderPath,addons://repos/)">Conditional</animation>
+                <animation effect="slide" start="0" end="57" time="0" condition="Window.IsVisible(MyPrograms.xml)">Conditional</animation>
+            </control>
+        </control>
+    </include>
+
+    <!-- LAYOUT - 50 - EVENTS -->
+
+    <include name="layout_list_item_events">
+        <control type="group">
+            <top>3.3</top>
+            <left>3.3</left>
+
+            <!-- ICON -->
+
+            <include content="Def_View_List_Icon_Info">
+                <param name="colordiffuse_icon_black" value="PanelWhite100" />
+                <param name="colordiffuse_background_icon_black" value="Black12" />
+                <param name="visible_icon" value="!String.StartsWith(ListItem.Icon,Default)" />
+                <param name="visible_icon_black" value="String.StartsWith(ListItem.Icon,Default)" />
+            </include>
+
+            <!-- LABEL -->
+            <control type="label">
+                <top>-5</top>
+                <left>120</left>
+                <width max="700">auto</width>
+                <aligny>center</aligny>
+                <height>64</height>
+                <font>InfoNetflix</font>
+                <label>$INFO[ListItem.Label]</label>
+                <textcolor>PanelWhite100</textcolor>
+                <selectedcolor>PanelWhite100</selectedcolor>
+            </control>
+
+            <control type="label">
+                <top>-5</top>
+                <right>30</right>
+                <width>500</width>
+                <aligny>center</aligny>
+                <height>64</height>
+                <align>right</align>
+                <font>SmallNavi</font>
+                <textcolor>PanelWhite100</textcolor>
+                <selectedcolor>PanelWhite100</selectedcolor>
+                <label>$INFO[ListItem.Label2]</label>
+            </control>
+
+            <!-- SECOND LINE - LABEL -->
+
+            <control type="textbox">
+                <top>36</top>
+                <left>120</left>
+                <right>30</right>
+                <aligny>center</aligny>
+                <height>54</height>
+                <font>Small24</font>
+                <label>$INFO[ListItem.Property(Event.Description)]</label>
+                <textcolor>Dark2</textcolor>
+                <selectedcolor>Dark2</selectedcolor>
+            </control>
+        </control>
+    </include>
+
+    <include name="layout_list_focus_events">
+
+        <!-- ITEM FOCUS -->
+        <include>Def_Layout_Item_Focus</include>
+
+        <control type="group">
+            <top>3.3</top>
+            <left>3.3</left>
+
+            <!-- ICON -->
+
+            <include content="Def_View_List_Icon_Info">
+                <param name="colordiffuse_icon_black" value="Selected" />
+                <param name="colordiffuse_background_icon_black" value="Dark3" />
+                <param name="visible_icon" value="!String.StartsWith(ListItem.Icon,Default)" />
+                <param name="visible_icon_black" value="String.StartsWith(ListItem.Icon,Default)" />
+            </include>
+
+            <!-- LABEL -->
+            <control type="label">
+                <top>-5</top>
+                <left>120</left>
+                <width max="700">auto</width>
+                <aligny>center</aligny>
+                <height>64</height>
+                <font>InfoNetflix</font>
+                <label>$INFO[ListItem.Label]</label>
+                <textcolor>Selected</textcolor>
+                <selectedcolor>Selected</selectedcolor>
+            </control>
+
+            <control type="label">
+                <top>-5</top>
+                <right>30</right>
+                <width>500</width>
+                <aligny>center</aligny>
+                <height>64</height>
+                <align>right</align>
+                <font>SmallNavi</font>
+                <textcolor>Selected</textcolor>
+                <selectedcolor>Selected</selectedcolor>
+                <label>$INFO[ListItem.Label2]</label>
+            </control>
+
+            <!-- SECOND LINE - LABEL -->
+            <control type="textbox">
+                <top>36</top>
+                <left>120</left>
+                <right>30</right>
+                <aligny>center</aligny>
+                <height>54</height>
+                <font>Small24</font>
+                <label>$INFO[ListItem.Property(Event.Description)]</label>
+                <textcolor>Selected</textcolor>
+                <selectedcolor>Selected</selectedcolor>
+            </control>
+        </control>
+    </include>
+
+    <!-- LAYOUT - VIEW - PVRGUIDE -->
+
+    <include name="11_item_layout_epg">
+        <control type="label">
+            <left>10</left>
+            <width>200</width>
+            <height>64</height>
+            <font>EPGTimeline</font>
+            <label>$INFO[ListItem.Label]</label>
+            <textcolor>PanelWhite100</textcolor>
+            <selectedcolor>PanelWhite100</selectedcolor>
+        </control>
+    </include>
+
+    <include name="11_focus_layout_epg">
+        <control type="label">
+            <left>10</left>
+            <width>200</width>
+            <font>EPGTimeline</font>
+            <height>64</height>
+            <textcolor>$VAR[Color_Focus]</textcolor>
+            <selectedcolor>$VAR[Color_Focus]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+        </control>
+    </include>
+
+    <!-- LAYOUT - VIEW 51 - PICS -->
+
+    <include name="50_51_item_layout_pics">
+        <control type="group">
+            <top>10</top>
+            <bottom>32</bottom>
+            <left>14</left>
+            <right>25</right>
+
+            <include content="Def_Art_Full_Background_b12">
+                <param name="colordiffuse" value="Fallback" />
+            </include>
+            <control type="group">
+                <visible>!Skin.HasSetting(pics.layout.fanart)</visible>
+                <include content="Def_Art_Icon_Image">
+                    <param name="aspectratio" value="keep" />
+                    <param name="texture" value="$INFO[ListItem.Icon]" />
+                    <param name="texture_diffuse" value="fanart_w332_h300" />
+                    <param name="visible_background_b12" value="true" />
+                    <param name="colordiffuse_background" value="black" />
+                </include>
+            </control>
+            <control type="group">
+                <visible>Skin.HasSetting(pics.layout.fanart)</visible>
+                <include content="Def_Art_Icon_Image">
+                    <param name="aspectratio" value="keep" />
+                    <param name="texture" value="$INFO[ListItem.Icon]" />
+                    <param name="texture_diffuse" value="fanart_w512_h300" />
+                    <param name="visible_background_b12" value="true" />
+                    <param name="colordiffuse_background" value="black" />
+                </include>
+            </control>
+            <control type="image">
+                <left>0</left>
+                <right>0</right>
+                <bottom>10</bottom>
+                <height>60</height>
+                <texture colordiffuse="White70" border="0">common/white.png</texture>
+                <visible>!$EXP[IsTMDbHelper]</visible>
+            </control>
+            <control type="label">
+                <left>0</left>
+                <right>0</right>
+                <bottom>12</bottom>
+                <height>60</height>
+                <align>center</align>
+                <font>Tiny</font>
+                <label>$INFO[ListItem.Label]</label>
+                <textcolor>Dark2</textcolor>
+                <visible>!$EXP[IsTMDbHelper]</visible>
+            </control>
+        </control>
+    </include>
+
+    <include name="50_51_focus_layout_pics">
+        <control type="group">
+            <include condition="Skin.HasSetting(items.focus.zoom)">Animation_Widget_Focus_Zoom</include>
+
+            <control type="group">
+                <top>10</top>
+                <bottom>32</bottom>
+                <left>14</left>
+                <right>25</right>
+
+                <include content="Def_Art_Full_Background_b12">
+                    <param name="colordiffuse" value="Fallback" />
+                </include>
+                <control type="group">
+                    <visible>!Skin.HasSetting(pics.layout.fanart)</visible>
+                    <include content="Def_Art_Icon_Image">
+                        <param name="aspectratio" value="keep" />
+                        <param name="texture" value="$INFO[ListItem.Icon]" />
+                        <param name="texture_diffuse" value="fanart_w332_h300" />
+                        <param name="visible_background_b12" value="true" />
+                        <param name="colordiffuse_background" value="black" />
+                    </include>
+                </control>
+                <control type="group">
+                    <visible>Skin.HasSetting(pics.layout.fanart)</visible>
+                    <include content="Def_Art_Icon_Image">
+                        <param name="aspectratio" value="keep" />
+                        <param name="texture" value="$INFO[ListItem.Icon]" />
+                        <param name="texture_diffuse" value="fanart_w512_h300" />
+                        <param name="visible_background_b12" value="true" />
+                        <param name="colordiffuse_background" value="black" />
+                    </include>
+                </control>
+                <control type="image">
+                    <left>0</left>
+                    <right>0</right>
+                    <bottom>10</bottom>
+                    <height>60</height>
+                    <texture colordiffuse="White70" border="0">common/white.png</texture>
+                    <visible>!$EXP[IsTMDbHelper]</visible>
+                </control>
+                <control type="label">
+                    <left>0</left>
+                    <right>0</right>
+                    <bottom>12</bottom>
+                    <height>60</height>
+                    <align>center</align>
+                    <font>Tiny</font>
+                    <label>$INFO[ListItem.Label]</label>
+                    <textcolor>Dark2</textcolor>
+                    <visible>!$EXP[IsTMDbHelper]</visible>
+                </control>
+            </control>
+
+            <include content="Layout_Widget_Glow" condition="!Skin.HasSetting(pics.layout.fanart)">
+                <param name="glow_height" value="308" />
+                <param name="glow_top" value="7" />
+                <param name="glow_left" value="9" />
+                <param name="glow_right" value="20" />
+                <param name="id" value="51" />
+            </include>
+
+            <include content="Layout_Widget_Glow" condition="Skin.HasSetting(pics.layout.fanart)">
+                <param name="glow_height" value="308" />
+                <param name="glow_top" value="7" />
+                <param name="glow_left" value="15" />
+                <param name="glow_right" value="25" />
+                <param name="id" value="51" />
+            </include>
+
+            <control type="image">
+                <include>Animation_Select_Focus</include>
+                <left>6</left>
+                <top>3</top>
+                <right>17</right>
+                <bottom>24</bottom>
+                <include>Texture_SelectBox</include>
+            </control>
+        </control>
+    </include>
+</includes>
