@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addons>
-  <addon id="skin.arctic.zephyr.rounded" version="2.3.21" name="Arctic: Zephyr - Rounded" provider-name="jurialmunkey, beatmasterrs, nanomani">
+  <addon id="skin.arctic.zephyr.rounded" version="2.3.22" name="Arctic: Zephyr - Rounded" provider-name="jurialmunkey, beatmasterrs, nanomani">
     <requires>
       <import addon="xbmc.gui" version="5.18.0" />
       <import addon="script.skinshortcuts" version="3.0.0~beta32" />
@@ -229,13 +229,13 @@
     </extension>
     <extension point="kodi.context.item" library="context.py">
       <item>
-      	<label>32000</label>
-      	<visible>String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,season) | String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,set)</visible>
+        <label>32000</label>
+        <visible>String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,season) | String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,set)</visible>
       </item>
     </extension>
     <extension point="xbmc.addon.metadata">
       <assets>
-      	<icon>icon.png</icon>
+        <icon>icon.png</icon>
       </assets>
       <platform>all</platform>
       <forum>https://forum.kodi.tv/showthread.php?tid=316342</forum>
